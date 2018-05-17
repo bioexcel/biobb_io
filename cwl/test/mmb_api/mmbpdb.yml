@@ -1,0 +1,4 @@
+conf_file:
+    class: File
+    location: ../../../test/conf.yaml
+output_pdb_path: hola3.pdb

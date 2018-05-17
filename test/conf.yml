@@ -1,0 +1,23 @@
+linux:
+  workflow_path: /tmp/biobb_io/unitests
+
+galaxy:
+  workflow_path: /tmp/galaxy/unitests
+
+mmbpdb:
+  paths:
+    output_pdb_path: output_pdb_path.pdb
+  properties:
+    pdb_code: "2VGB"
+
+mmbpdbclusterzip:
+  paths:
+    output_pdb_zip_path: output_pdb_zip_path.zip
+  properties:
+    pdb_code: "2VGB"
+
+mmbpdbvariants:
+  paths:
+    output_mutations_list_txt: output_mutations_list_txt.txt
+  properties:
+    pdb_code: "2VGB"
