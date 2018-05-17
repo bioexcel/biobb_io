@@ -1,7 +1,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3f9ac104a1444a57a1a5287e95830a84)](https://www.codacy.com/app/andriopau/pymdsetup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bioexcel/pymdsetup&amp;utm_campaign=Badge_Grade)
 [![Documentation Status](https://readthedocs.org/projects/pymdsetup/badge/?version=latest)](http://pymdsetup.readthedocs.io/en/latest/?badge=latest)
 
-# biobb_common
+# biobb_io
 
 ### Introduction
 Pymdsetup is a python package to setup systems to run molecular
