@@ -34,9 +34,9 @@ def get_cluster_pdb_codes(pdb_code, url="http://mmb.irbbarcelona.org/api/pdb/", 
         pdb_codes.add(elem['_id'].lower())
 
     if out_log:
-        out_log.info('Cluster: '+self.cluster+' of pdb_code: '+pdb_code+'\n List: '+str(pdb_codes))
+        out_log.info('Cluster: '+cluster+' of pdb_code: '+pdb_code+'\n List: '+str(pdb_codes))
     if global_log:
-        global_log.info(22*' '+'Cluster: '+self.cluster+' of pdb_code: '+pdb_code+'\n List: '+str(pdb_codes))
+        global_log.info(22*' '+'Cluster: '+cluster+' of pdb_code: '+pdb_code+'\n List: '+str(pdb_codes))
 
     return pdb_codes
 
@@ -67,10 +67,10 @@ def get_variants(uniprot_id, url="http://mmb.irbbarcelona.org/api", out_log=None
     variants = variants if variants else []
 
     if out_log:
-        out_log.info('Found: '+len(variants)+' variants for uniprot id: '+uniprot_id)
+        out_log.info('Found: '+str(len(variants))+' variants for uniprot id: '+uniprot_id)
         out_log.info(str(variants))
     if global_log:
-        global_log.info('Found: '+len(variants)+' variants for uniprot id: '+uniprot_id)
+        global_log.info('Found: '+str(len(variants))+' variants for uniprot id: '+uniprot_id)
         global_log.info(str(variants))
 
     return variants if variants else []

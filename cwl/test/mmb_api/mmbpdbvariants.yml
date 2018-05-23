@@ -1,4 +1,4 @@
 conf_file:
     class: File
     location: ../../../test/conf.yml
-output_pdb_path: output_pdb_path.pdb
+output_mutations_list_txt: output_mutations_list_txt.txt

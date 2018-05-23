@@ -86,7 +86,6 @@ atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 
 # MACOSX
-
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -105,3 +104,6 @@ pycompss*/
 \#*
 mdout.mdp
 traj_comp.xtc
+
+# ipynb checkpoints
+.ipynb_checkpoints

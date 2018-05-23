@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+import argparse
+from biobb_common.configuration import  settings
+from biobb_common.tools import file_utils as fu
 import requests
 import os
 import json
-from biobb_common.tools import file_utils as fu
 from common import get_cluster_pdb_codes
 from common import download_pdb
 import logging
@@ -42,12 +45,12 @@ class MmbPdbClusterZip(object):
         #Downloading PDB_files
         pdb_code_list = get_cluster_pdb_codes(self.pdb_code, self.url, self.cluster, out_log, self.global_log)
         for pdb_code in pdb_code_list:
-            pdb_string = self.download_pdb(self.pdb_code, self.url, self.fil, out_log, self.global_log)
+            pdb_string = download_pdb(pdb_code, self.url, self.filt, out_log, self.global_log)
             pdb_file = pdb_code+'.pdb'
 
-            out_log.info("\nWritting: "+pdb_code+"\nto: "+os.path.abspath(pdb_file))
+            out_log.info("\nWritting: "+pdb_code+" to: "+os.path.abspath(pdb_file))
             if self.global_log:
-                self.global_log.info(22*' '+"Writting: "+pdb_code+"\nto: "+os.path.abspath(pdb_file))
+                self.global_log.info(22*' '+"Writting: "+pdb_code+" to: "+os.path.abspath(pdb_file))
 
             with open(pdb_file, 'w') as f:
                 f.write(pdb_string)
@@ -59,3 +62,23 @@ class MmbPdbClusterZip(object):
         if self.global_log:
             self.global_log.info("Zipping the pdb files to: "+self.output_pdb_zip_path)
         fu.zip_list(self.output_pdb_zip_path, file_list)
+
+def main():
+    parser = argparse.ArgumentParser(description="Wrapper for the PDB Cluster (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)")
+    parser.add_argument('--conf_file', required=True)
+    parser.add_argument('--system', required=True)
+    parser.add_argument('--step', required=True)
+
+    #Specific args of each building block
+    parser.add_argument('--output_pdb_zip_path', required=True)
+    ####
+
+    args = parser.parse_args()
+    properties = settings.YamlReader(conf_file_path=args.conf_file, system=args.system).get_prop_dic()[args.step]
+
+    #Specific call of each building block
+    MmbPdbClusterZip(output_pdb_zip_path=args.output_pdb_zip_path, properties=properties).launch()
+    ####
+
+if __name__ == '__main__':
+    main()

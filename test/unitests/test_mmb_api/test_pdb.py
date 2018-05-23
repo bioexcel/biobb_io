@@ -8,8 +8,7 @@ class TestMmbPdb(object):
         fx.test_setup(self,'mmbpdb')
 
     def tearDown(self):
-        pass
-        #fx.test_teardown(self)
+        fx.test_teardown(self)
 
     def test_get_pdb_zip(self):
         MmbPdb(properties=self.properties, **self.paths).launch()

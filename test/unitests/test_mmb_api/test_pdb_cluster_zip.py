@@ -8,7 +8,6 @@ class TestMmbPdbClusterZip(object):
         fx.test_setup(self,'mmbpdbclusterzip')
 
     def tearDown(self):
-        pass
         fx.test_teardown(self)
 
     def test_get_pdb_zip(self):

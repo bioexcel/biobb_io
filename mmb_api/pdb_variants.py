@@ -1,6 +1,9 @@
+#!/usr/bin/env python
+import argparse
 import requests
-import re
+from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
+import re
 from common import get_uniprot
 from common import get_variants
 import logging
@@ -47,7 +50,7 @@ class MmbPdbVariants(object):
 
         mapdic = requests.get(url_mapPDBRes).json()
         mutations = []
-        uniprot_var_list = self.get_variants(uniprot_id, self.url, out_log, self.global_log)
+        uniprot_var_list = get_variants(uniprot_id, self.url, out_log, self.global_log)
         for var in uniprot_var_list:
             uni_mut = pattern.match(var).groupdict()
             for k in mapdic.keys():
@@ -56,11 +59,11 @@ class MmbPdbVariants(object):
                         resnum = int(uni_mut['resnum']) + int(fragment['pdb_start']) - int(fragment['unp_start'])
                         mutations.append(k[-1]+'.'+uni_mut['wt']+str(resnum)+uni_mut['mt'])
 
-        out_log.info('Found '+str(len(mutations))+':')
+        out_log.info('Found '+str(len(mutations))+' mutations mapped to PDB: '+self.pdb_code)
         out_log.info(str(mutations))
         out_log.info('Writting mutations to: '+self.output_mutations_list_txt)
         if self.global_log:
-            self.global_log.info(22*' '+'Found '+str(len(mutations))+':')
+            self.global_log.info(22*' '+'Found '+str(len(mutations))+' mutations mapped to PDB: ' + self.pdb_code)
             self.global_log.info(22*' '+str(mutations))
             self.global_log.info(22*' '+'Writting mutations to: '+self.output_mutations_list_txt)
 
@@ -68,18 +71,21 @@ class MmbPdbVariants(object):
             mut_file.write(",".join(mutations))
 
 def main():
-    parser = argparse.ArgumentParser(description="Wrapper for the MMB group UNIPROT REST API. This class is a wrapper for the UNIPROT (http://www.uniprot.org/)    mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)")
-    parser.add_argument('--output_pdb_path', required=True)
-    parser.add_argument('--pdb_code', required=True)
-    parser.add_argument('--filter')
-    parser.add_argument('--url')
+    parser = argparse.ArgumentParser(description="Wrapper for the PDB Variants (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)")
+    parser.add_argument('--conf_file', required=True)
+    parser.add_argument('--system', required=True)
+    parser.add_argument('--step', required=True)
+
+    #Specific args of each building block
+    parser.add_argument('--output_mutations_list_txt', required=True)
+    ####
+
     args = parser.parse_args()
-    properties = {'pdb_code':args.pdb_code}
-    if args.filter:
-        properties['filter']= args.filter
-    if args.url:
-        properties['url']= args.url
-    MmbPdb(output_pdb_path=args.output_pdb_path, properties=properties).launch()
+    properties = settings.YamlReader(conf_file_path=args.conf_file, system=args.system).get_prop_dic()[args.step]
+
+    #Specific call of each building block
+    MmbPdbVariants(output_mutations_list_txt=args.output_mutations_list_txt, properties=properties).launch()
+    ####
 
 if __name__ == '__main__':
     main()

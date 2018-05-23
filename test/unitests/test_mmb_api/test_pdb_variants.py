@@ -1,6 +1,6 @@
 from os.path import join as opj
 from biobb_common.tools import test_fixtures as fx
-from mmb_api.pdb_cluster_zip import MmbPdbClusterZip
+from mmb_api.pdb_variants import MmbPdbVariants
 
 
 class TestMmbPdbVariants(object):
@@ -8,7 +8,6 @@ class TestMmbPdbVariants(object):
         fx.test_setup(self,'mmbpdbvariants')
 
     def tearDown(self):
-        pass
         fx.test_teardown(self)
 
     def test_get_pdb_zip(self):
