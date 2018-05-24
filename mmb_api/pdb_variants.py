@@ -21,7 +21,7 @@ class MmbPdbVariants(object):
             | - **pdb_code** (*str*): RSCB PDB four letter code. ie: "2ki5".
             | - **url** (*str*): ("http://mmb.irbbarcelona.org/api") URL of the MMB REST API.
     """
-    def __init__(self, output_mutations_list_txt, properties):
+    def __init__(self, output_mutations_list_txt, properties, **kwargs):
         self.output_mutations_list_txt = output_mutations_list_txt
         self.pdb_code = properties.get('pdb_code')
         if not self.pdb_code:
