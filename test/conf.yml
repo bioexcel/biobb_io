@@ -1,8 +1,8 @@
 linux:
-  workflow_path: /tmp/biobb_io/unitests
+  workflow_path: /tmp/biobb/unitests
 
 macos:
-  workflow_path: /tmp/biobb_io/unitests
+  workflow_path: /tmp/biobb/unitests
 
 galaxy:
   workflow_path: /tmp/galaxy/unitests
