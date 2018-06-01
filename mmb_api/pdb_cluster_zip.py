@@ -50,7 +50,7 @@ class MmbPdbClusterZip(object):
 
             out_log.info("\nWritting: "+pdb_code+" to: "+os.path.abspath(pdb_file))
             if self.global_log:
-                self.global_log.info(22*' '+"Writting: "+pdb_code+" to: "+os.path.abspath(pdb_file))
+                self.global_log.info(fu.get_logs_prefix()+"Writting: "+pdb_code+" to: "+os.path.abspath(pdb_file))
 
             with open(pdb_file, 'w') as f:
                 f.write(pdb_string)

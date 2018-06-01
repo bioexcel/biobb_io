@@ -43,7 +43,7 @@ class MmbPdbVariants(object):
 
         out_log.info('Fetching variants for uniprot_id: '+uniprot_id+' and pdb_code: '+self.pdb_code)
         if self.global_log:
-            self.global_log.info(22*' '+'Fetching variants for uniprot_id: '+uniprot_id+' and pdb_code: '+self.pdb_code)
+            self.global_log.info(fu.get_logs_prefix()+'Fetching variants for uniprot_id: '+uniprot_id+' and pdb_code: '+self.pdb_code)
 
         unfiltered_dic = requests.get(url_mapPDBRes).json()
         if not unfiltered_dic: return []
@@ -63,9 +63,9 @@ class MmbPdbVariants(object):
         out_log.info(str(mutations))
         out_log.info('Writting mutations to: '+self.output_mutations_list_txt)
         if self.global_log:
-            self.global_log.info(22*' '+'Found '+str(len(mutations))+' mutations mapped to PDB: ' + self.pdb_code)
-            self.global_log.info(22*' '+str(mutations))
-            self.global_log.info(22*' '+'Writting mutations to: '+self.output_mutations_list_txt)
+            self.global_log.info(fu.get_logs_prefix()+'Found '+str(len(mutations))+' mutations mapped to PDB: ' + self.pdb_code)
+            self.global_log.info(fu.get_logs_prefix()+str(mutations))
+            self.global_log.info(fu.get_logs_prefix()+'Writting mutations to: '+self.output_mutations_list_txt)
 
         with open(self.output_mutations_list_txt, 'w') as mut_file:
             mut_file.write(",".join(mutations))
