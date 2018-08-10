@@ -5,7 +5,7 @@ Submodules
 ----------
 
 mmb_api.pdb module
------------------------------
+------------------
 
 .. automodule:: mmb_api.pdb
     :members:
@@ -13,7 +13,7 @@ mmb_api.pdb module
     :show-inheritance:
 
 mmb_api.pdb_variants module
------------------------------
+---------------------------
 
 .. automodule:: mmb_api.pdb_variants
     :members:
@@ -21,7 +21,7 @@ mmb_api.pdb_variants module
     :show-inheritance:
 
 mmb_api.pdb_cluster_zip module
------------------------------
+------------------------------
 
 .. automodule:: mmb_api.pdb_cluster_zip
     :members:

@@ -5,8 +5,8 @@ from biobb_common.tools import file_utils as fu
 import requests
 import os
 import json
-from common import get_cluster_pdb_codes
-from common import download_pdb
+from mmb_api.common import get_cluster_pdb_codes
+from mmb_api.common import download_pdb
 import logging
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
@@ -52,7 +52,7 @@ class MmbPdbClusterZip(object):
             if self.global_log:
                 self.global_log.info(fu.get_logs_prefix()+"Writting: "+pdb_code+" to: "+os.path.abspath(pdb_file))
 
-            with open(pdb_file, 'w') as f:
+            with open(pdb_file, 'wb') as f:
                 f.write(pdb_string)
 
             file_list.append(os.path.abspath(pdb_file))

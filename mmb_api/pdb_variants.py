@@ -4,8 +4,8 @@ import requests
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 import re
-from common import get_uniprot
-from common import get_variants
+from mmb_api.common import get_uniprot
+from mmb_api.common import get_variants
 import logging
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
