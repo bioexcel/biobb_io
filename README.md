@@ -1,18 +1,18 @@
 [![Documentation Status](https://readthedocs.org/projects/biobb-io/badge/?version=latest)](https://biobb-io.readthedocs.io/en/latest/?badge=latest)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e5c5537c6234bff958171e273471879)](https://www.codacy.com/app/andriopau/biobb_common?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bioexcel/biobb_common&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f98ed1286f244616bf39352e1877d310)](https://www.codacy.com/app/andriopau/biobb_io?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bioexcel/biobb_io&amp;utm_campaign=Badge_Grade)
 
-# biobb_common
+# biobb_io
 
 ### Introduction
-Biobb_common is the base package required to use the biobb
-packages.
+Biobb_io is the Biobb module collection to fetch data to be consumed by the
+rest of the Biobb building blocks.
 Biobb (BioExcel building blocks) packages are Python building blocks that
 create new layer of compatibility and interoperability over popular
 bioinformatics tools.
 The latest documentation of this package can be found in our readthedocs site:
-[latest API documentation](http://biobb_common.readthedocs.io/en/latest/).
+[latest API documentation](http://biobb_io.readthedocs.io/en/latest/).
 
-### Version 0.0.4
+### Version 0.0.1
 This software is in Alpha version.
 
 ### Copyright & Licensing
