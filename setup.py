@@ -18,7 +18,7 @@ setuptools.setup(
         "Bioexcel": "https://bioexcel.eu/"
     },
     packages=setuptools.find_packages(exclude=['docs', 'test']),
-    install_requires=['biobb_common', 'requests', ],
+    install_requires=['mistune==0.7.4','biobb_common', 'requests', ],
     python_requires='~=3.6',
     classifiers=(
         "Development Status :: 3 - Alpha",
