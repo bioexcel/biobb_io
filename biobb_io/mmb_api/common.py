@@ -19,7 +19,7 @@ def download_pdb(pdb_code, url="http://mmb.irbbarcelona.org/api/pdb/", filt='fil
     if global_log:
         global_log.info(fu.get_logs_prefix()+"Downloading: "+pdb_code+"from: "+url)
 
-    return requests.get(url).content
+    return requests.get(url).content.decode('utf-8')
 
 def get_cluster_pdb_codes(pdb_code, url="http://mmb.irbbarcelona.org/api/pdb/", cluster='90', out_log=None, global_log=None):
     """
@@ -29,7 +29,7 @@ def get_cluster_pdb_codes(pdb_code, url="http://mmb.irbbarcelona.org/api/pdb/", 
     pdb_codes = set()
 
     url = url+pdb_code.lower()+'/clusters/cl-'+cluster+".json"
-    cluster_list = json.loads(requests.get(url).content)['clusterMembers']
+    cluster_list = json.loads(requests.get(url).content.decode('utf-8'))['clusterMembers']
     for elem in cluster_list:
         pdb_codes.add(elem['_id'].lower())
 

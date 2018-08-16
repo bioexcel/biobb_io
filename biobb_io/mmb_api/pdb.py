@@ -47,7 +47,7 @@ class MmbPdb(object):
         if self.global_log:
             self.global_log.info(fu.get_logs_prefix()+"Writting: "+self.pdb_code+"\nto: "+os.path.abspath(self.output_pdb_path))
 
-        with open(self.output_pdb_path, 'wb') as f:
+        with open(self.output_pdb_path, 'w') as f:
             f.write(pdb_string)
 
 def main():

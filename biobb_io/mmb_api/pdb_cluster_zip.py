@@ -52,7 +52,7 @@ class MmbPdbClusterZip(object):
             if self.global_log:
                 self.global_log.info(fu.get_logs_prefix()+"Writting: "+pdb_code+" to: "+os.path.abspath(pdb_file))
 
-            with open(pdb_file, 'wb') as f:
+            with open(pdb_file, 'w') as f:
                 f.write(pdb_string)
 
             file_list.append(os.path.abspath(pdb_file))
