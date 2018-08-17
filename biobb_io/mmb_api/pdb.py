@@ -5,7 +5,7 @@ import os
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 import logging
-from mmb_api.common import download_pdb
+from biobb_io.mmb_api.common import download_pdb
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
@@ -18,7 +18,7 @@ class MmbPdb(object):
         output_pdb_path (str): Path to the output PDB file.
         properties (dic):
             | - **pdb_code** (*str*) - RSCB PDB code. ie: "2VGB"
-            | - **filter** (*str*) - ("filter=/1&group=ATOM") Filter for the :meth:`mmb_api.MmbPdb.get_pdb_zip` method following the J(s)Mol format.
+            | - **filter** (*str*) - ("filter=/1&group=ATOM") Filter for the :meth:`biobb_io.mmb_api.MmbPdb.get_pdb_zip` method following the J(s)Mol format.
             | - **url** (*str*) - ("http://mmb.irbbarcelona.org/api/pdb/") URL of the MMB PDB REST API.
 
     """

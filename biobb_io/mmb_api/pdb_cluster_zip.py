@@ -3,8 +3,8 @@ import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 import os
-from mmb_api.common import get_cluster_pdb_codes
-from mmb_api.common import download_pdb
+from biobb_io.mmb_api.common import get_cluster_pdb_codes
+from biobb_io.mmb_api.common import download_pdb
 import logging
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
@@ -18,8 +18,8 @@ class MmbPdbClusterZip(object):
         output_pdb_zip_path (str): Path to the ZIP or PDB file containing the output PDB files.
         properties (dic):
             | - **pdb_code** (*str*) - RSCB PDB code. ie: "2VGB"
-            | - **filter** (*str*) - ("filter=/1&group=ATOM") Filter for the :meth:`mmb_api.MmbPdb.get_pdb_zip` method following the J(s)Mol format.
-            | - **cluster** (*str*) - (90) Cluster number for the :meth:`mmb_api.MmbPdb.get_pdb_cluster_zip` method.
+            | - **filter** (*str*) - ("filter=/1&group=ATOM") Filter for the :meth:`biobb_io.mmb_api.MmbPdb.get_pdb_zip` method following the J(s)Mol format.
+            | - **cluster** (*str*) - (90) Cluster number for the :meth:`biobb_io.mmb_api.MmbPdb.get_pdb_cluster_zip` method.
             | - **url** (*str*) - ("http://mmb.irbbarcelona.org/api/pdb/") URL of the MMB PDB REST API.
     """
     def __init__(self, output_pdb_zip_path, properties, **kwargs):
