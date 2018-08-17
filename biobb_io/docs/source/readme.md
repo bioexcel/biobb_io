@@ -12,7 +12,7 @@ bioinformatics tools.
 The latest documentation of this package can be found in our readthedocs site:
 [latest API documentation](http://biobb_io.readthedocs.io/en/latest/).
 
-### Version 0.0.1
+### Version
 This software is in Alpha version.
 
 ### Copyright & Licensing
