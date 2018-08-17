@@ -36,7 +36,7 @@ class MmbPdbVariants(object):
         """Writes the variants of the selected
         `self.pdb_code` to `self.output_mutations_list_txt`
         """
-        out_log, err_log = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step)
+        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step)
         uniprot_id = get_uniprot(self.pdb_code, self.url, out_log, self.global_log)
         url_mapPDBRes = (self.url+"/uniprot/"+uniprot_id+"/mapPDBRes?pdbId="+self.pdb_code)
         pattern = re.compile(("p.(?P<wt>[a-zA-Z]{3})(?P<resnum>\d+)(?P<mt>[a-zA-Z]{3})"))

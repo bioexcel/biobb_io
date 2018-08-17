@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+
 import argparse
-import requests
 import os
-import json
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 import logging
@@ -38,7 +37,7 @@ class MmbPdb(object):
         Writes the PDB file content of the first pdb_code
         to output_pdb_path.
         """
-        out_log, err_log = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step)
+        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step)
 
         #Downloading PDB_files
         pdb_string = download_pdb(self.pdb_code, self.url, self.filt, out_log, self.global_log)

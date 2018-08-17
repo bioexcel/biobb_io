@@ -1,4 +1,3 @@
-from os.path import join as opj
 from biobb_common.tools import test_fixtures as fx
 from mmb_api.pdb_variants import MmbPdbVariants
 

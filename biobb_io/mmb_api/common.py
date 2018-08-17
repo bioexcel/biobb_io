@@ -1,5 +1,4 @@
 import requests
-import os
 import json
 from biobb_common.tools import file_utils as fu
 import logging

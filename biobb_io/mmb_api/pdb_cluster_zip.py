@@ -2,9 +2,7 @@
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
-import requests
 import os
-import json
 from mmb_api.common import get_cluster_pdb_codes
 from mmb_api.common import download_pdb
 import logging
@@ -40,7 +38,7 @@ class MmbPdbClusterZip(object):
         Writes each PDB file content of each pdb_code in the cluster
         to a pdb_file then creates a zip_file output_pdb_zip_path.
         """
-        out_log, err_log = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step)
+        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step)
         file_list = []
         #Downloading PDB_files
         pdb_code_list = get_cluster_pdb_codes(self.pdb_code, self.url, self.cluster, out_log, self.global_log)
