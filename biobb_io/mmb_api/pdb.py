@@ -60,7 +60,7 @@ def main():
     ####
 
     args = parser.parse_args()
-    properties = settings.YamlReader(conf_file_path=args.conf_file, system=args.system).get_prop_dic()[args.step]
+    properties = settings.ConfReader(conf_file_path=args.conf_file, system=args.system).get_prop_dic()[args.step]
 
     #Specific call of each building block
     MmbPdb(output_pdb_path=args.output_pdb_path, properties=properties).launch()

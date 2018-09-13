@@ -1,11 +1,10 @@
+
 linux:
-  workflow_path: /tmp/biobb/unitests
+  workflow_path: /tmp/linux/unitests
 
-macos:
-  workflow_path: /tmp/biobb/unitests
 
-galaxy:
-  workflow_path: /tmp/galaxy/unitests
+workflow_path: /tmp/biobb/unitests
+
 
 mmbpdb:
   paths:
