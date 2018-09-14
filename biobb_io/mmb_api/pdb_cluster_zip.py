@@ -64,15 +64,18 @@ class MmbPdbClusterZip(object):
 def main():
     parser = argparse.ArgumentParser(description="Wrapper for the PDB Cluster (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)")
     parser.add_argument('--conf_file', required=True)
-    parser.add_argument('--system', required=True)
-    parser.add_argument('--step', required=True)
+    parser.add_argument('--system', required=False)
+    parser.add_argument('--step', required=False)
 
     #Specific args of each building block
     parser.add_argument('--output_pdb_zip_path', required=True)
     ####
 
     args = parser.parse_args()
-    properties = settings.ConfReader(conf_file_path=args.conf_file, system=args.system).get_prop_dic()[args.step]
+    if args.step:
+        properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()[args.step]
+    else:
+        properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()
 
     #Specific call of each building block
     MmbPdbClusterZip(output_pdb_zip_path=args.output_pdb_zip_path, properties=properties).launch()
