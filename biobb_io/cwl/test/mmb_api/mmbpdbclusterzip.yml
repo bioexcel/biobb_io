@@ -1,4 +1,0 @@
-conf_file:
-    class: File
-    location: ../../../test/conf.yml
-output_pdb_zip_path: output_pdb_zip_path.zip

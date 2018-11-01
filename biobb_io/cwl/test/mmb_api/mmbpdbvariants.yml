@@ -1,4 +1,0 @@
-conf_file:
-    class: File
-    location: ../../../test/conf.yml
-output_mutations_list_txt: output_mutations_list_txt.txt
