@@ -1,7 +1,6 @@
 from biobb_common.tools import test_fixtures as fx
 from mmb_api.pdb import MmbPdb
 
-
 class TestMmbPdb(object):
     def setUp(self):
         fx.test_setup(self,'mmbpdb')
@@ -12,3 +11,4 @@ class TestMmbPdb(object):
     def test_get_pdb_zip(self):
         MmbPdb(properties=self.properties, **self.paths).launch()
         assert fx.not_empty(self.paths['output_pdb_path'])
+        assert fx.equal(self.paths['output_pdb_path'], self.paths['reference_output_pdb_path'])

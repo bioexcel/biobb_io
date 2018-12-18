@@ -1,55 +1,53 @@
 #!/usr/bin/env python
 
-import os
+"""MmbPdb Module"""
 import logging
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_io.mmb_api.common import download_pdb
+from biobb_io.mmb_api.common import write_pdb
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class MmbPdb():
-    """Wrapper class for the MMB group PDB REST API.
+    """Wrapper class for the PDB REST API.
     This class is a wrapper for the PDB (http://www.rcsb.org/pdb/home/home.do)
-    mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)
+    download page.
 
     Args:
         output_pdb_path (str): Path to the output PDB file.
         properties (dic):
             | - **pdb_code** (*str*) - ('1ubq') RSCB PDB code. ie: "2VGB"
-            | - **filter** (*str*) - ("filter=/1&group=ATOM") Filter for the :meth:`biobb_io.mmb_api.MmbPdb.get_pdb_zip` method following the J(s)Mol format.
-            | - **url** (*str*) - ("http://mmb.irbbarcelona.org/api/pdb/") URL of the MMB PDB REST API.
+            | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be keep. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
+            | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the MMB PDB REST API.
 
     """
-    def __init__(self, output_pdb_path='', properties={}, **kwargs):
-        self.output_pdb_path = output_pdb_path or os.path.join(properties.get('step') or '' ,'output_pdb.pdb')
-        self.url = properties.get('url',"http://mmb.irbbarcelona.org/api/pdb/")
-        self.pdb_code = properties.get('pdb_code','1ubq').strip().lower()
-        self.filt = properties.get('filter', 'filter=/1&group=ATOM')
+    def __init__(self, output_pdb_path, properties=None, **kwargs):
+        properties = properties or {}
 
-        self.global_log= properties.get('global_log', None)
-        self.prefix = properties.get('prefix',None)
-        self.step = properties.get('step',None)
-        self.path = properties.get('path','')
-        self.console_log = properties.get('console_log', False)
+        # IN OUT files
+        self.output_pdb_path = output_pdb_path
+
+        # Properties specific for BB
+        self.url = properties.get('url', "https://files.rcsb.org/download/")
+        self.pdb_code = properties.get('pdb_code', '1ubq').strip().lower()
+        self.filt = properties.get('filter', ["ATOM", "MODEL", "ENDMDL"])
+
+        # Common in all BB
+        self.global_log = properties.get('global_log', None)
+        self.console_log = properties.get('console_log', True)
+        self.prefix = properties.get('prefix', None)
+        self.step = properties.get('step', None)
+        self.path = properties.get('path', '')
 
     def launch(self):
-        """
-        Writes the PDB file content of the first pdb_code
-        to output_pdb_path.
-        """
+        """Writes the PDB file content of the first pdb_code to output_pdb_path."""
         out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, console=self.console_log)
 
         #Downloading PDB_files
-        pdb_string = download_pdb(self.pdb_code, self.url, self.filt, out_log, self.global_log)
-
-        out_log.info("\nWritting: "+self.pdb_code+"\nto: "+os.path.abspath(self.output_pdb_path))
-        if self.global_log:
-            self.global_log.info(fu.get_logs_prefix()+"Writting: "+self.pdb_code+"\nto: "+os.path.abspath(self.output_pdb_path))
-
-        with open(self.output_pdb_path, 'w') as f:
-            f.write(pdb_string)
+        pdb_string = download_pdb(self.pdb_code, self.url, out_log, self.global_log)
+        write_pdb(pdb_string, self.output_pdb_path, self.filt, out_log, self.global_log)
 
 def main():
     parser = argparse.ArgumentParser(description="Wrapper for the PDB (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)")
@@ -68,12 +66,6 @@ def main():
         properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()[args.step]
     else:
         properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()
-
-    # Print log in console
-    properties['console_log'] = properties.get('console_log', True)
-
-
-
 
     #Specific call of each building block
     MmbPdb(output_pdb_path=args.output_pdb_path, properties=properties).launch()

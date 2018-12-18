@@ -1,24 +1,34 @@
-import requests
-import json
-from biobb_common.tools import file_utils as fu
+""" Common functions for package mmb_api """
+import os
 import logging
+import json
+import requests
+from biobb_common.tools import file_utils as fu
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 
-def download_pdb(pdb_code, url="http://mmb.irbbarcelona.org/api/pdb/", filt='filter=/1&group=ATOM', out_log=None, global_log=None):
+def download_pdb(pdb_code, url="https://files.rcsb.org/download/", out_log=None, global_log=None):
     """
     Returns:
         String: Content of the pdb file.
     """
-    url = url+pdb_code.lower()+"/coords/?"+filt
+    url = url+pdb_code.lower()+".pdb"
 
-    if out_log:
-        out_log.info("\nDownloading:\npdb_code: "+pdb_code+"\nfrom: "+url)
-    if global_log:
-        global_log.info(fu.get_logs_prefix()+"Downloading: "+pdb_code+"from: "+url)
-
+    fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url).content.decode('utf-8')
+
+def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=None):
+    """ Writes and filters a PDB """
+    fu.log("Writting pdb to: %s" % (os.path.abspath(output_pdb_path)), out_log, global_log)
+    with open(output_pdb_path, 'w') as output_pdb_file:
+        if filt:
+            fu.log("Filtering lines NOT starting with one of these words: %s" % str(filt), out_log, global_log)
+            for line in pdb_string.splitlines(True):
+                if line.strip().split()[0][0:6] in filt:
+                    output_pdb_file.write(line)
+        else:
+            output_pdb_file.write(pdb_string)
 
 def get_cluster_pdb_codes(pdb_code, url="http://mmb.irbbarcelona.org/api/pdb/", cluster='90', out_log=None, global_log=None):
     """
@@ -65,11 +75,5 @@ def get_variants(uniprot_id, url="http://mmb.irbbarcelona.org/api", out_log=None
     variants = requests.get(url_uniprot_mut).json()['variants.vardata.mut']
     variants = variants if variants else []
 
-    if out_log:
-        out_log.info('Found: '+str(len(variants))+' variants for uniprot id: '+uniprot_id)
-        out_log.info(str(variants))
-    if global_log:
-        global_log.info('Found: '+str(len(variants))+' variants for uniprot id: '+uniprot_id)
-        global_log.info(str(variants))
-
+    fu.log('Found: %d variants for uniprot id: %s' % (len(variants), uniprot_id), out_log, global_log)
     return variants if variants else []

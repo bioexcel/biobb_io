@@ -1,25 +1,16 @@
-
-linux:
-  workflow_path: /tmp/linux/unitests
-
-
-workflow_path: /tmp/biobb/unitests
-
+working_dir_path: /tmp/biobb/unitests
 
 mmbpdb:
   paths:
     output_pdb_path: output_pdb_path.pdb
-  properties:
-    pdb_code: "2VGB"
+    reference_output_pdb_path: file:test_reference_dir/mmb_api/pdb_1ubq.pdb
 
 mmbpdbclusterzip:
   paths:
     output_pdb_zip_path: output_pdb_zip_path.zip
-  properties:
-    pdb_code: "2VGB"
+    reference_output_pdb_zip_path: file:test_reference_dir/mmb_api/reference_output_pdb_zip_path.zip
 
 mmbpdbvariants:
   paths:
     output_mutations_list_txt: output_mutations_list_txt.txt
-  properties:
-    pdb_code: "2VGB"
+    reference_output_mutations_list_txt: file:test_reference_dir/mmb_api/output_mutations_list_txt.txt
