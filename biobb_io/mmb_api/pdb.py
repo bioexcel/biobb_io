@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""MmbPdb Module"""
+"""Module containing the MmbPdb class and the command line interface."""
 import logging
 import argparse
 from biobb_common.configuration import  settings
@@ -21,12 +21,11 @@ class MmbPdb():
             | - **pdb_code** (*str*) - ('1ubq') RSCB PDB code. ie: "2VGB"
             | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be keep. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
             | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the MMB PDB REST API.
-
     """
     def __init__(self, output_pdb_path, properties=None, **kwargs):
         properties = properties or {}
 
-        # IN OUT files
+        # Input/Output files
         self.output_pdb_path = output_pdb_path
 
         # Properties specific for BB
@@ -35,21 +34,22 @@ class MmbPdb():
         self.filt = properties.get('filter', ["ATOM", "MODEL", "ENDMDL"])
 
         # Common in all BB
+        self.can_write_console_log = properties.get('can_write_console_log', True)
         self.global_log = properties.get('global_log', None)
-        self.console_log = properties.get('console_log', True)
         self.prefix = properties.get('prefix', None)
         self.step = properties.get('step', None)
         self.path = properties.get('path', '')
 
     def launch(self):
         """Writes the PDB file content of the first pdb_code to output_pdb_path."""
-        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, console=self.console_log)
+        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, can_write_console=self.can_write_console_log)
 
         #Downloading PDB_files
         pdb_string = download_pdb(self.pdb_code, self.url, out_log, self.global_log)
         write_pdb(pdb_string, self.output_pdb_path, self.filt, out_log, self.global_log)
 
 def main():
+    """Command line interface."""
     parser = argparse.ArgumentParser(description="Wrapper for the PDB (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)")
     parser.add_argument('--config', required=False)
     parser.add_argument('--system', required=False)
@@ -57,19 +57,15 @@ def main():
 
     #Specific args of each building block
     parser.add_argument('--output_pdb_path', required=False)
-    ####
-
 
     args = parser.parse_args()
     args.config = args.config or "{}"
+    properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()
     if args.step:
-        properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()[args.step]
-    else:
-        properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()
+        properties = properties[args.step]
 
     #Specific call of each building block
     MmbPdb(output_pdb_path=args.output_pdb_path, properties=properties).launch()
-    ####
 
 if __name__ == '__main__':
     main()

@@ -35,14 +35,14 @@ class MmbPdbVariants(object):
 
         # Common in all BB
         self.global_log = properties.get('global_log', None)
-        self.console_log = properties.get('console_log', True)
+        self.can_write_console_log = properties.get('can_write_console_log', True)
         self.prefix = properties.get('prefix', None)
         self.step = properties.get('step', None)
         self.path = properties.get('path', '')
 
     def launch(self):
         """Writes the variants of the selected `pdb_code` to `output_mutations_list_txt`"""
-        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, console=self.console_log)
+        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, can_write_console=self.can_write_console_log)
 
         uniprot_id = get_uniprot(self.pdb_code, self.url, out_log, self.global_log)
         url_mapPDBRes = (self.url+"/uniprot/"+uniprot_id+"/mapPDBRes?pdbId="+self.pdb_code)
@@ -84,10 +84,9 @@ def main():
 
     args = parser.parse_args()
     args.config = args.config or "{}"
+    properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()
     if args.step:
-        properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()[args.step]
-    else:
-        properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()
+        properties = properties[args.step]
 
     #Specific call of each building block
     MmbPdbVariants(output_mutations_list_txt=args.output_mutations_list_txt, properties=properties).launch()

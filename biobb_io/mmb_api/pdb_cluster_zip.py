@@ -36,7 +36,7 @@ class MmbPdbClusterZip(object):
 
         # Common in all BB
         self.global_log = properties.get('global_log', None)
-        self.console_log = properties.get('console_log', True)
+        self.can_write_console_log = properties.get('can_write_console_log', True)
         self.prefix = properties.get('prefix', None)
         self.step = properties.get('step', None)
         self.path = properties.get('path', '')
@@ -46,7 +46,7 @@ class MmbPdbClusterZip(object):
         Writes each PDB file content of each pdb_code in the cluster
         to a pdb_file then creates a zip_file output_pdb_zip_path.
         """
-        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, console=self.console_log)
+        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, can_write_console=self.can_write_console_log)
         file_list = []
         #Downloading PDB_files
         pdb_code_list = get_cluster_pdb_codes(pdb_code=self.pdb_code, cluster=self.cluster, out_log=out_log, global_log=self.global_log)
@@ -73,10 +73,9 @@ def main():
 
     args = parser.parse_args()
     args.config = args.config or "{}"
+    properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()
     if args.step:
-        properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()[args.step]
-    else:
-        properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()
+        properties = properties[args.step]
 
     #Specific call of each building block
     MmbPdbClusterZip(output_pdb_zip_path=args.output_pdb_zip_path, properties=properties).launch()
