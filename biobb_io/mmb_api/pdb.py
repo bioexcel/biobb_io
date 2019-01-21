@@ -33,7 +33,7 @@ class MmbPdb():
         self.pdb_code = properties.get('pdb_code', '1ubq').strip().lower()
         self.filt = properties.get('filter', ["ATOM", "MODEL", "ENDMDL"])
 
-        # Common in all BB
+        # Properties common in all BB
         self.can_write_console_log = properties.get('can_write_console_log', True)
         self.global_log = properties.get('global_log', None)
         self.prefix = properties.get('prefix', None)
