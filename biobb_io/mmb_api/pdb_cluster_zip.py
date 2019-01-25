@@ -12,7 +12,7 @@ from biobb_io.mmb_api.common import write_pdb
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-class MmbPdbClusterZip(object):
+class MmbPdbClusterZip():
     """Wrapper class for the MMB group PDB REST API.
 
     Args:

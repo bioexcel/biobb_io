@@ -1,7 +1,7 @@
 from biobb_common.tools import test_fixtures as fx
 from mmb_api.pdb import MmbPdb
 
-class TestMmbPdb(object):
+class TestMmbPdb():
     def setUp(self):
         fx.test_setup(self,'mmbpdb')
 

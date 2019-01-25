@@ -12,7 +12,7 @@ from biobb_io.mmb_api.common import get_variants
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-class MmbPdbVariants(object):
+class MmbPdbVariants():
     """Wrapper class for the MMB group UNIPROT REST API.
     This class is a wrapper for the UNIPROT (http://www.uniprot.org/)
     mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)

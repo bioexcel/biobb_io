@@ -2,7 +2,7 @@ from biobb_common.tools import test_fixtures as fx
 from mmb_api.pdb_cluster_zip import MmbPdbClusterZip
 
 
-class TestMmbPdbClusterZip(object):
+class TestMmbPdbClusterZip():
     def setUp(self):
         fx.test_setup(self,'mmbpdbclusterzip')
 

@@ -2,7 +2,7 @@ from biobb_common.tools import test_fixtures as fx
 from mmb_api.pdb import MmbPdb
 
 
-class TestMmbPdb(object):
+class TestMmbPdb():
     def setUp(self):
         json_config='{"working_dir_path":"/tmp/biobb/unitests", "paths":{"output_pdb_path":"output_pdb_path.pdb", "reference_output_pdb_path":"file:test_reference_dir/mmb_api/pdb_1ubq.pdb"}, "properties":{"pdb_code":"1UBQ"}}'
         fx.test_setup(self,config=json_config)
