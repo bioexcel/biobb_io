@@ -74,7 +74,7 @@ class MmbPdbVariants():
 
 def main():
     parser = argparse.ArgumentParser(description="Wrapper for the PDB Variants (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)")
-    parser.add_argument('--config', required=True)
+    parser.add_argument('--config', required=False)
     parser.add_argument('--system', required=False)
     parser.add_argument('--step', required=False)
 
@@ -83,8 +83,8 @@ def main():
     ####
 
     args = parser.parse_args()
-    args.config = args.config or "{}"
-    properties = settings.ConfReader(config=args.config, system=args.system).get_prop_dic()
+    config = args.config if args.config else None
+    properties = settings.ConfReader(config=config, system=args.system).get_prop_dic()
     if args.step:
         properties = properties[args.step]
 

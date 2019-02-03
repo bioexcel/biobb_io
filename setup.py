@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="biobb_io",
-    version="0.1.1",
+    version="0.1.2",
     author="Biobb developers",
     author_email="pau.andrio@bsc.es",
     description="Biobb_io is the Biobb module collection to fetch data to be consumed by the rest of the Biobb building blocks.",
@@ -18,7 +18,7 @@ setuptools.setup(
         "Bioexcel": "https://bioexcel.eu/"
     },
     packages=setuptools.find_packages(exclude=['docs',]),
-    install_requires=['biobb_common>=0.0.8', 'requests',],
+    install_requires=['biobb_common>=0.1.0', 'requests'],
     python_requires='>=3',
     classifiers=(
         "Development Status :: 3 - Alpha",
