@@ -1,0 +1,40 @@
+{ 
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://bioexcel.eu/biobb_io/json_schemas/0.1/pdb",
+    "title": "Wrapper class for PDB download from PDB API",
+    "type": "object",
+    "required": ["output_pdb_path"],
+    "properties":
+            {
+                "output_pdb_path": {
+                    "type": "string",
+                    "description": "Path to the output PDB file"
+                },
+                "properties": {
+                    "type": "object",
+                    "required": ["pdb_code"],
+                    "properties": {
+                        "pdb_code": {
+                            "type": "string",
+                            "description": "RCSB PDB code. ie. 2VBG" 
+                        },
+                        "filter": {
+                            "type": "array",
+                            "description": "Array of groups to be keep. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)",
+                            "default": ["ATOM", "MODEL", "ENDMDL"],
+                            "items" : {
+                                "type": "string",
+                                "enum": ["ATOM","MODEL","ENDMDL","HETATM"]
+                            }
+                        },
+                        "url": {
+                            "type":"string",
+                            "default": "https://files.rcsb.org/download/",
+                            "format": "url"
+                        }
+                    }
+                }
+            },
+    "additionalProperties": false
+}
+
