@@ -50,13 +50,14 @@ class MmbPdb():
 
 def main():
     """Command line interface."""
-    parser = argparse.ArgumentParser(description="Wrapper for the PDB (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)")
-    parser.add_argument('--config', required=False)
+    parser = argparse.ArgumentParser(description="Wrapper for the PDB (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check (https://biobb-io.readthedocs.io/en/latest/command_line.html)")
+    parser.add_argument('-c', '--config', required=False)
     parser.add_argument('--system', required=False)
     parser.add_argument('--step', required=False)
 
     #Specific args of each building block
-    parser.add_argument('--output_pdb_path', required=False)
+    required_args = parser.add_argument_group('required arguments')
+    required_args.add_argument('-o', '--output_pdb_path', required=True, help="Output file name")
 
     args = parser.parse_args()
     config = args.config if args.config else None
