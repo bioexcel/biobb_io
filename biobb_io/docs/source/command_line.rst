@@ -12,6 +12,7 @@ Get help
 ~~~~~~~~
 
 Input:
+
 .. code:: bash
 
     
@@ -19,6 +20,7 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     usage: pdb [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_PDB_PATH
@@ -50,6 +52,7 @@ Config
 -  **url** (*str*) - (“https://files.rcsb.org/download/”) URL of the MMB PDB REST API.
 
 Input:
+
 .. code:: bash
 
     
@@ -58,6 +61,7 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     2019-02-28 10:32:29,165 [MainThread  ] [INFO ]  Downloading: 1ubq from: https://files.rcsb.org/download/1ubq.pdb
@@ -66,6 +70,7 @@ Output:
 
 
 Input:
+
 .. code:: bash
 
     
@@ -74,6 +79,7 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     2019-02-28 10:32:31,181 [MainThread  ] [INFO ]  Downloading: 1aki from: https://files.rcsb.org/download/1aki.pdb
@@ -82,6 +88,7 @@ Output:
 
 
 Input:
+
 .. code:: bash
 
     
@@ -93,12 +100,14 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     pdb_code: 1aki
     filter: ["ATOM"]
 
 Output:
+
 .. parsed-literal::
 
     2019-02-28 10:32:35,954 [MainThread  ] [INFO ]  Downloading: 1aki from: https://files.rcsb.org/download/1aki.pdb
@@ -113,6 +122,7 @@ Get help
 ~~~~~~~~
 
 Input:
+
 .. code:: bash
 
     
@@ -120,6 +130,7 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     usage: pdb_variants [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o
@@ -148,6 +159,7 @@ Config
 -  **url** (*str*): (“http://mmb.irbbarcelona.org/api”) URL of the MMB REST API.
 
 Input:
+
 .. code:: bash
 
     
@@ -156,6 +168,7 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     2019-02-28 10:32:47,152 [MainThread  ] [INFO ]  PDB code: 2vgb correspond to uniprot id: P30613
@@ -166,6 +179,7 @@ Output:
 
 
 Input:
+
 .. code:: bash
 
     
@@ -174,6 +188,7 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     2019-02-28 10:32:51,432 [MainThread  ] [INFO ]  PDB code: 2src correspond to uniprot id: P12931
@@ -184,6 +199,7 @@ Output:
 
 
 Input:
+
 .. code:: bash
 
     
@@ -195,11 +211,13 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     pdb_code: 2src
 
 Output:
+
 .. parsed-literal::
 
     2019-02-28 10:32:55,134 [MainThread  ] [INFO ]  PDB code: 2src correspond to uniprot id: P12931
@@ -216,6 +234,7 @@ Get help
 ~~~~~~~~
 
 Input:
+
 .. code:: bash
 
     
@@ -223,6 +242,7 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     usage: pdb_cluster_zip [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o
@@ -256,6 +276,7 @@ Config
 -  **url** (*str*) - (“https://files.rcsb.org/download/”) URL of the MMB PDB REST API.
 
 Input:
+
 .. code:: bash
 
     
@@ -264,6 +285,7 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     2019-02-28 10:33:12,658 [MainThread  ] [INFO ]  Cluster: 90 of pdb_code: 2vgb
@@ -282,6 +304,7 @@ Output:
 
 
 Input:
+
 .. code:: bash
 
     
@@ -290,6 +313,7 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     2019-02-28 10:35:04,797 [MainThread  ] [INFO ]  Cluster: 95 of pdb_code: 2src
@@ -306,6 +330,7 @@ Output:
 
 
 Input:
+
 .. code:: bash
 
     
@@ -317,12 +342,14 @@ Input:
 
 
 Output:
+
 .. parsed-literal::
 
     pdb_code: 2src
     cluster: 95
 
 Output:
+
 .. parsed-literal::
 
     2019-02-28 10:47:28,218 [MainThread  ] [INFO ]  Cluster: 95 of pdb_code: 2src

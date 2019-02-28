@@ -10,6 +10,8 @@ sed "s/{{version}}/${version}/g" $REPOSITORY/$repo_name/docs/README_template.md 
 cp $REPOSITORY/$repo_name/docs/source/readme.md $REPOSITORY/README.md
 sed 's/%%bash//g' $REPOSITORY/$repo_name/docs/command_line_template.rst > $REPOSITORY/$repo_name/docs/source/command_line.rst
 sed -i '' 's/.. code:: bash/Input:\
+\
 .. code:: bash/g' $REPOSITORY/$repo_name/docs/source/command_line.rst
 sed -i '' 's/.. parsed-literal::/Output:\
+\
 .. parsed-literal::/g' $REPOSITORY/$repo_name/docs/source/command_line.rst
