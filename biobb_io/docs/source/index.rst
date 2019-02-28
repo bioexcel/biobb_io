@@ -17,7 +17,7 @@ Contents
 
    Introducction & installation <readme>
    Python API Documentation <modules>
-   Command Line <command_line>
+   Command Line Documentation <command_line>
 
 Indices and tables
 ==================
