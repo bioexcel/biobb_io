@@ -16,8 +16,8 @@ Contents
    :maxdepth: 1
 
    Introducction & installation <readme>
-   API Documentation <modules>
-   Commandline <command_line>
+   Python API Documentation <modules>
+   Command Line <command_line>
 
 Indices and tables
 ==================

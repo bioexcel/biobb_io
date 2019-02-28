@@ -14,6 +14,22 @@ The latest documentation of this package can be found in our readthedocs site:
 ### Version
 v0.1.3 February 2019 Release
 
+### Installation
+Using PIP:
+* Installation:
+        pip install biobb_io
+* Usage: [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html)
+
+Using ANACONDA:
+* Installation:
+        conda install -c bioconda "biobb_io>=0.1.3"
+* Usage: With conda installation BioBBs can be used with the [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html) and the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+
+Using DOCKER:
+* Installation:
+        docker pull mmbirb/biobb_analysis:0.1.3
+* Usage: docker run mmbirb/biobb_analysis:0.1.3 [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+
 ### Copyright & Licensing
 This software has been developed in the MMB group (http://mmb.irbbarcelona.org) at the
 BSC (http://www.bsc.es/) & IRB (https://www.irbbarcelona.org/) for the European BioExcel (http://bioexcel.eu/), funded by the European Commission

@@ -62,13 +62,14 @@ class MmbPdbClusterZip():
         fu.zip_list(self.output_pdb_zip_path, file_list, out_log=out_log)
 
 def main():
-    parser = argparse.ArgumentParser(description="Wrapper for the PDB Cluster (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)")
-    parser.add_argument('--config', required=False)
-    parser.add_argument('--system', required=False)
-    parser.add_argument('--step', required=False)
+    parser = argparse.ArgumentParser(description="Wrapper for the PDB Cluster (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')")
+    parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
+    parser.add_argument('--system', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
+    parser.add_argument('--step', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
 
     #Specific args of each building block
-    parser.add_argument('--output_pdb_zip_path', required=True)
+    required_args = parser.add_argument_group('required arguments')
+    required_args.add_argument('-o','--output_pdb_zip_path', required=True, help="Output ZIP file name")
     ####
 
     args = parser.parse_args()
