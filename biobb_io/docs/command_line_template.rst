@@ -11,14 +11,12 @@ pdb: Download PDB files from RCSB PDB API
 Get help
 ~~~~~~~~
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     pdb -h
 
 
-Output:
 .. parsed-literal::
 
     usage: pdb [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_PDB_PATH
@@ -49,15 +47,13 @@ Config
    (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
 -  **url** (*str*) - (“https://files.rcsb.org/download/”) URL of the MMB PDB REST API.
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     #Default config
     pdb -o 1aki.pdb
 
 
-Output:
 .. parsed-literal::
 
     2019-02-28 10:32:29,165 [MainThread  ] [INFO ]  Downloading: 1ubq from: https://files.rcsb.org/download/1ubq.pdb
@@ -65,15 +61,13 @@ Output:
     2019-02-28 10:32:29,801 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: ['ATOM', 'MODEL', 'ENDMDL']
 
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     #JSON string
     pdb -c "{\"pdb_code\":\"1aki\", \"filter\":[\"ATOM\"]}" -o 1aki.pdb
 
 
-Output:
 .. parsed-literal::
 
     2019-02-28 10:32:31,181 [MainThread  ] [INFO ]  Downloading: 1aki from: https://files.rcsb.org/download/1aki.pdb
@@ -81,10 +75,9 @@ Output:
     2019-02-28 10:32:31,788 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: ['ATOM']
 
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     #YAML file
     printf "pdb_code: 1aki\nfilter: [\"ATOM\"]" > conf.yml
     cat conf.yml
@@ -92,13 +85,11 @@ Input:
     pdb -c conf.yml -o 1aki.pdb
 
 
-Output:
 .. parsed-literal::
 
     pdb_code: 1aki
     filter: ["ATOM"]
 
-Output:
 .. parsed-literal::
 
     2019-02-28 10:32:35,954 [MainThread  ] [INFO ]  Downloading: 1aki from: https://files.rcsb.org/download/1aki.pdb
@@ -112,14 +103,12 @@ pdb_variants: Retreive variants from UNIPROT mapped to the selected PDB
 Get help
 ~~~~~~~~
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     pdb_variants -h
 
 
-Output:
 .. parsed-literal::
 
     usage: pdb_variants [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o
@@ -147,15 +136,13 @@ Config
 -  **pdb_code** (*str*): (“2vgb”) RSCB PDB four letter code. ie: “2ki5”.
 -  **url** (*str*): (“http://mmb.irbbarcelona.org/api”) URL of the MMB REST API.
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     #Default config
     pdb_variants -o mutations.txt
 
 
-Output:
 .. parsed-literal::
 
     2019-02-28 10:32:47,152 [MainThread  ] [INFO ]  PDB code: 2vgb correspond to uniprot id: P30613
@@ -165,15 +152,13 @@ Output:
     2019-02-28 10:32:49,331 [MainThread  ] [INFO ]  Writting mutations to: mutations.txt
 
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     #JSON string
     pdb_variants -c "{\"pdb_code\":\"2src\"}" -o mutations.txt
 
 
-Output:
 .. parsed-literal::
 
     2019-02-28 10:32:51,432 [MainThread  ] [INFO ]  PDB code: 2src correspond to uniprot id: P12931
@@ -183,10 +168,9 @@ Output:
     2019-02-28 10:32:52,228 [MainThread  ] [INFO ]  Writting mutations to: mutations.txt
 
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     #YAML file
     printf "pdb_code: 2src" > conf.yml
     cat conf.yml
@@ -194,12 +178,10 @@ Input:
     pdb_variants -c conf.yml -o mutations.txt
 
 
-Output:
 .. parsed-literal::
 
     pdb_code: 2src
 
-Output:
 .. parsed-literal::
 
     2019-02-28 10:32:55,134 [MainThread  ] [INFO ]  PDB code: 2src correspond to uniprot id: P12931
@@ -215,14 +197,12 @@ pdb_cluster_zip: Download the selected similarity cluster of the selected PDB
 Get help
 ~~~~~~~~
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     pdb_cluster_zip -h
 
 
-Output:
 .. parsed-literal::
 
     usage: pdb_cluster_zip [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o
@@ -255,15 +235,13 @@ Config
 -  **cluster** (*str*) - (90) Cluster number for the :meth:``biobb_io.mmb_api.MmbPdb.get_pdb_cluster_zip`` method.
 -  **url** (*str*) - (“https://files.rcsb.org/download/”) URL of the MMB PDB REST API.
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     #Default config
     pdb_cluster_zip -o 2vgb_cluster90.zip
 
 
-Output:
 .. parsed-literal::
 
     2019-02-28 10:33:12,658 [MainThread  ] [INFO ]  Cluster: 90 of pdb_code: 2vgb
@@ -281,15 +259,13 @@ Output:
     2019-02-28 10:33:20,391 [MainThread  ] [INFO ]  to: /Users/pau/projects/biobb_io/biobb_io/docs/2vgb_cluster90.zip
 
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     #JSON string
     pdb_cluster_zip -c "{\"pdb_code\":\"2src\", \"cluster\":95}" -o 2src_cluster95.zip
 
 
-Output:
 .. parsed-literal::
 
     2019-02-28 10:35:04,797 [MainThread  ] [INFO ]  Cluster: 95 of pdb_code: 2src
@@ -305,10 +281,9 @@ Output:
     2019-02-28 10:36:58,645 [MainThread  ] [INFO ]  to: /Users/pau/projects/biobb_io/biobb_io/docs/2src_cluster95.zip
 
 
-Input:
 .. code:: bash
 
-    
+    %%bash
     #YAML file
     printf "pdb_code: 2src\ncluster: 95" > conf.yml
     cat conf.yml
@@ -316,13 +291,11 @@ Input:
     pdb_cluster_zip -c conf.yml -o 2src_cluster95.zip
 
 
-Output:
 .. parsed-literal::
 
     pdb_code: 2src
     cluster: 95
 
-Output:
 .. parsed-literal::
 
     2019-02-28 10:47:28,218 [MainThread  ] [INFO ]  Cluster: 95 of pdb_code: 2src
