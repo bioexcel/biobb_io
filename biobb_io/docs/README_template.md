@@ -39,8 +39,10 @@ Using DOCKER:
 * Usage:
 
 
-        docker run mmbirb/biobb_analysis:{{version}} [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+        docker run mmbirb/biobb_analysis:{{version}} <command>
 
+
+The command list and specification can be found at the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html).
 
 Using SINGULARITY:
 * Installation:
@@ -52,7 +54,10 @@ Using SINGULARITY:
 * Usage:
 
 
-        singularity exec mmbirb/biobb_analysis:{{version}} [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+        singularity exec mmbirb/biobb_analysis:{{version}} <command>
+
+
+The command list and specification can be found at the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html).
 
 
 ### Copyright & Licensing
