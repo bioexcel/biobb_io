@@ -12,19 +12,19 @@ The latest documentation of this package can be found in our readthedocs site:
 [latest API documentation](http://biobb_io.readthedocs.io/en/latest/).
 
 ### Version
-v$version February 2019 Release
+v0.1.3 February 2019 Release
 
 ### Installation
 Using PIP:
 * Installation:
-        pip install "biobb_io>=$version"
+        pip install "biobb_io>=0.1.3"
 * Usage: [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html)
 
 Using ANACONDA:
 * Installation:
 
 
-        conda install -c bioconda "biobb_io>=$version"
+        conda install -c bioconda "biobb_io>=0.1.3"
 
 
 * Usage: With conda installation BioBBs can be used with the [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html) and the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
@@ -33,10 +33,27 @@ Using DOCKER:
 * Installation:
 
 
-        docker pull mmbirb/biobb_analysis:$version
+        docker pull mmbirb/biobb_analysis:0.1.3
 
 
-* Usage: docker run mmbirb/biobb_analysis:$version [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+* Usage:
+
+
+        docker run mmbirb/biobb_analysis:0.1.3 [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+
+
+Using SINGULARITY:
+* Installation:
+
+
+        singularity pull mmbirb/biobb_analysis:0.1.3
+
+
+* Usage:
+
+
+        singularity exec mmbirb/biobb_analysis:0.1.3 [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+
 
 ### Copyright & Licensing
 This software has been developed in the MMB group (http://mmb.irbbarcelona.org) at the

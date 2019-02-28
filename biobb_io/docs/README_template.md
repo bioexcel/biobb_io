@@ -36,7 +36,24 @@ Using DOCKER:
         docker pull mmbirb/biobb_analysis:{{version}}
 
 
-* Usage: docker run mmbirb/biobb_analysis:{{version}} [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+* Usage:
+
+
+        docker run mmbirb/biobb_analysis:{{version}} [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+
+
+Using SINGULARITY:
+* Installation:
+
+
+        singularity pull mmbirb/biobb_analysis:{{version}}
+
+
+* Usage:
+
+
+        singularity exec mmbirb/biobb_analysis:{{version}} [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
+
 
 ### Copyright & Licensing
 This software has been developed in the MMB group (http://mmb.irbbarcelona.org) at the
