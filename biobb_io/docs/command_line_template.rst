@@ -1,21 +1,3 @@
-
-.. code:: ipython3
-
-    %%html
-    <style>
-        .prompt{width: 0px; min-width: 0px; visibility: collapse}
-    </style>
-
-
-
-.. raw:: html
-
-    <style>
-        .prompt{width: 0px; min-width: 0px; visibility: collapse}
-    </style>
-
-
-
 BioBB IO Command Line Help
 ==========================
 
@@ -47,16 +29,16 @@ Get help
 .. code:: ipython3
 
     usage: pdb [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_PDB_PATH
-    
+
     Wrapper for the PDB ('http://www.rcsb.org/pdb/home/home.do') mirror of the MMB group REST API ('http://mmb.irbbarcelona.org/api/') for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
       --system SYSTEM       Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
       --step STEP           Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
-    
+
     required arguments:
       -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
                             Output file name
@@ -140,16 +122,16 @@ Get help
 .. code:: ipython3
 
     usage: pdb_variants [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_MUTATIONS_LIST_TXT
-    
+
     Wrapper for the PDB Variants (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
       --system SYSTEM       Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
       --step STEP           Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
-    
+
     required arguments:
       -o OUTPUT_MUTATIONS_LIST_TXT, --output_mutations_list_txt OUTPUT_MUTATIONS_LIST_TXT
                             Output variants list text file name
@@ -228,16 +210,16 @@ Get help
 .. code:: ipython3
 
     usage: pdb_cluster_zip [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_PDB_ZIP_PATH
-    
+
     Wrapper for the PDB Cluster (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
       --system SYSTEM       Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
       --step STEP           Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
-    
+
     required arguments:
       -o OUTPUT_PDB_ZIP_PATH, --output_pdb_zip_path OUTPUT_PDB_ZIP_PATH
                             Output ZIP file name
