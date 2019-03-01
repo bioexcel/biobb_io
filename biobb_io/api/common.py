@@ -1,4 +1,4 @@
-""" Common functions for package mmb_api """
+""" Common functions for package api """
 import os
 import logging
 import json
@@ -13,7 +13,13 @@ def download_pdb(pdb_code, url="https://files.rcsb.org/download/", out_log=None,
     Returns:
         String: Content of the pdb file.
     """
-    url = url+pdb_code.lower()+".pdb"
+    url += pdb_code.lower()
+    if 'mmb' in url:
+        url += "/coords/?"
+    else:
+        url += ".pdb"
+
+
 
     fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url).content.decode('utf-8')

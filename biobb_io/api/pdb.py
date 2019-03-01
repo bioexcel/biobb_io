@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 
-"""Module containing the MmbPdb class and the command line interface."""
+"""Module containing the Pdb class and the command line interface."""
 import logging
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
-from biobb_io.mmb_api.common import download_pdb
-from biobb_io.mmb_api.common import write_pdb
+from biobb_io.api.common import download_pdb
+from biobb_io.api.common import write_pdb
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-class MmbPdb():
+class Pdb():
     """Wrapper class for the PDB REST API.
     This class is a wrapper for the PDB (http://www.rcsb.org/pdb/home/home.do)
     download page.
@@ -19,8 +19,8 @@ class MmbPdb():
         output_pdb_path (str): Path to the output PDB file.
         properties (dic):
             | - **pdb_code** (*str*) - ('1ubq') RSCB PDB code. ie: "2VGB"
-            | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be keep. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
-            | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the MMB PDB REST API.
+            | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
+            | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/").
     """
     def __init__(self, output_pdb_path, properties=None, **kwargs):
         properties = properties or {}
@@ -50,7 +50,7 @@ class MmbPdb():
 
 def main():
     """Command line interface."""
-    parser = argparse.ArgumentParser(description="Wrapper for the PDB ('http://www.rcsb.org/pdb/home/home.do') mirror of the MMB group REST API ('http://mmb.irbbarcelona.org/api/') for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')")
+    parser = argparse.ArgumentParser(description="Wrapper for the PDB ('http://www.rcsb.org/pdb/home/home.do') mirror of the MMB group REST API ('http://mmb.irbbarcelona.org/api/') for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
     parser.add_argument('--system', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
     parser.add_argument('--step', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
@@ -66,7 +66,7 @@ def main():
         properties = properties[args.step]
 
     #Specific call of each building block
-    MmbPdb(output_pdb_path=args.output_pdb_path, properties=properties).launch()
+    Pdb(output_pdb_path=args.output_pdb_path, properties=properties).launch()
 
 if __name__ == '__main__':
     main()

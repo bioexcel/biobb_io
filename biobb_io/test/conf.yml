@@ -1,16 +1,23 @@
 working_dir_path: /tmp/biobb/unitests
 
-mmbpdb:
+pdb:
   paths:
     output_pdb_path: output_pdb_path.pdb
-    reference_output_pdb_path: file:test_reference_dir/mmb_api/pdb_1ubq.pdb
+    reference_output_pdb_path: file:test_reference_dir/api/pdb_1ubq.pdb
+
+pdb_url:
+  properties:
+    url: http://mmb.irbbarcelona.org/api/pdb/
+  paths:
+    output_pdb_path: output_pdb_path.pdb
+    reference_output_pdb_path: file:test_reference_dir/api/pdb_1ubq.pdb
 
 mmbpdbclusterzip:
   paths:
     output_pdb_zip_path: output_pdb_zip_path.zip
-    reference_output_pdb_zip_path: file:test_reference_dir/mmb_api/reference_output_pdb_zip_path.zip
+    reference_output_pdb_zip_path: file:test_reference_dir/api/reference_output_pdb_zip_path.zip
 
 mmbpdbvariants:
   paths:
     output_mutations_list_txt: output_mutations_list_txt.txt
-    reference_output_mutations_list_txt: file:test_reference_dir/mmb_api/output_mutations_list_txt.txt
+    reference_output_mutations_list_txt: file:test_reference_dir/api/output_mutations_list_txt.txt

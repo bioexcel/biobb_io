@@ -4,26 +4,26 @@ configuration package
 Submodules
 ----------
 
-mmb_api.pdb module
+api.pdb module
 ------------------
 
-.. automodule:: mmb_api.pdb
+.. automodule:: api.pdb
     :members:
     :undoc-members:
     :show-inheritance:
 
-mmb_api.pdb_variants module
+api.pdb_variants module
 ---------------------------
 
-.. automodule:: mmb_api.pdb_variants
+.. automodule:: api.pdb_variants
     :members:
     :undoc-members:
     :show-inheritance:
 
-mmb_api.pdb_cluster_zip module
+api.pdb_cluster_zip module
 ------------------------------
 
-.. automodule:: mmb_api.pdb_cluster_zip
+.. automodule:: api.pdb_cluster_zip
     :members:
     :undoc-members:
     :show-inheritance:

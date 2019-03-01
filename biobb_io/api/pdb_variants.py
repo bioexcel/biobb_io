@@ -7,8 +7,8 @@ import argparse
 import requests
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
-from biobb_io.mmb_api.common import get_uniprot
-from biobb_io.mmb_api.common import get_variants
+from biobb_io.api.common import get_uniprot
+from biobb_io.api.common import get_variants
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
@@ -21,7 +21,7 @@ class MmbPdbVariants():
         output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations.
         properties (dic):
             | - **pdb_code** (*str*): ("2vgb") RSCB PDB four letter code. ie: "2ki5".
-            | - **url** (*str*): ("http://mmb.irbbarcelona.org/api") URL of the MMB REST API.
+            | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/").
     """
     def __init__(self, output_mutations_list_txt, properties=None, **kwargs):
         properties = properties or {}
@@ -73,7 +73,7 @@ class MmbPdbVariants():
             mut_file.write(",".join(mutations))
 
 def main():
-    parser = argparse.ArgumentParser(description="Wrapper for the PDB Variants (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')")
+    parser = argparse.ArgumentParser(description="Wrapper for the PDB Variants (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
     parser.add_argument('--system', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
     parser.add_argument('--step', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")

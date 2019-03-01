@@ -1,5 +1,5 @@
 from biobb_common.tools import test_fixtures as fx
-from mmb_api.pdb_cluster_zip import MmbPdbClusterZip
+from api.pdb_cluster_zip import MmbPdbClusterZip
 
 
 class TestMmbPdbClusterZip():
