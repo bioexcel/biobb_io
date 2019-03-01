@@ -233,7 +233,7 @@ Config parameters for this building block:
 
 -  **pdb_code** (*str*) - (‘2vgb’) RSCB PDB code. ie: “2VGB”
 -  **filter** (*str*) - ([“ATOM”, “MODEL”, “ENDMDL”]) Array of groups to
-   be keep. If value is None or False no filter will be applied. All the
+   be kept. If value is None or False no filter will be applied. All the
    possible values are defined in the official PDB specification
    (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
 -  **cluster** (*str*) - (90) Cluster number for the
