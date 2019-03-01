@@ -3,7 +3,7 @@ BioBB IO Command Line Help
 
 Generic usage:
 
-.. code:: ipython3
+.. parsed-literal::
 
     biobb_command [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] --in_file <in_file>  --out_file <out_file>
 
@@ -28,7 +28,7 @@ Command:
     
     pdb -h
 
-.. code:: ipython3
+.. parsed-literal::
 
     usage: pdb [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_PDB_PATH
 
@@ -86,7 +86,7 @@ JSON file config
 
 conf.json:
 
-.. code:: ipython3
+.. parsed-literal::
 
     {"pdb_code":"1aki", "filter":["ATOM"]}
 
@@ -102,7 +102,7 @@ YAML file config
 
 conf.yml:
 
-.. code:: ipython3
+.. parsed-literal::
 
     pdb_code: 1aki
     filter: ["ATOM"]
@@ -131,7 +131,7 @@ Command:
     
     pdb_variants -h
 
-.. code:: ipython3
+.. parsed-literal::
 
     usage: pdb_variants [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_MUTATIONS_LIST_TXT
 
@@ -185,7 +185,7 @@ JSON file config
 
 conf.json:
 
-.. code:: ipython3
+.. parsed-literal::
 
     {"pdb_code":"2src"}
 
@@ -201,7 +201,7 @@ YAML file config
 
 conf.yml:
 
-.. code:: ipython3
+.. parsed-literal::
 
     pdb_code: 2src
 
@@ -229,7 +229,7 @@ Command:
     
     pdb_cluster_zip -h
 
-.. code:: ipython3
+.. parsed-literal::
 
     usage: pdb_cluster_zip [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_PDB_ZIP_PATH
 
@@ -289,7 +289,7 @@ JSON file config
 
 conf.json:
 
-.. code:: ipython3
+.. parsed-literal::
 
     {"pdb_code":"2src", "cluster":95}
 

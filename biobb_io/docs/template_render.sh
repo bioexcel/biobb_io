@@ -12,3 +12,4 @@ sed 's/%%bash//g' $REPOSITORY/$repo_name/docs/command_line_template.rst > $REPOS
 sed -i '' 's/.. code:: bash/Command:\
 \
 .. code:: bash/g' $REPOSITORY/$repo_name/docs/source/command_line.rst
+sed -i '' 's/.. code:: ipython3/.. parsed-literal::/g' $REPOSITORY/$repo_name/docs/source/command_line.rst
