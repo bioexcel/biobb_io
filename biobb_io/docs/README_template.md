@@ -12,7 +12,7 @@ The latest documentation of this package can be found in our readthedocs site:
 [latest API documentation](http://biobb_io.readthedocs.io/en/latest/).
 
 ### Version
-v{{version}} February 2019 Release
+v{{version}} {{v_name}}
 
 ### Installation
 Using PIP:
@@ -48,13 +48,13 @@ Using SINGULARITY:
 * Installation:
 
 
-        singularity pull mmbirb/biobb_io:{{version}}
+        singularity pull shub://bioexcel/biobb_io
 
 
 * Usage:
 
 
-        singularity exec mmbirb/biobb_io:{{version}} <command>
+        singularity exec bioexcel-biobb_io-master-latest.simg <command>
 
 
 The command list and specification can be found at the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html).
