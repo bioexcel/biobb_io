@@ -1,18 +1,6 @@
-
-[//]: # (READTHEDOCS badge)
-
 [![Documentation Status](https://readthedocs.org/projects/biobb-io/badge/?version=latest)](https://biobb-io.readthedocs.io/en/latest/?badge=latest)
-
-[//]: # (BIOCONDA badge)
-
 [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/biobb_io/README.html)
-
-[//]: # (DOCKER badge)
-
 [![Docker image](https://quay.io/repository/biocontainers/biobb_io/status)](https://quay.io/repository/biocontainers/biobb_io)
-
-[//]: # (LICENSE badge)
-
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 
@@ -33,7 +21,7 @@ v{{version}} {{v_name}}
 ### Installation
 Using PIP:
 * Installation:
-        pip install "biobb_io>={{version}}"
+        pip install "biobb_io=={{version}}"
 * Usage: [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html)
 
 Using ANACONDA:
