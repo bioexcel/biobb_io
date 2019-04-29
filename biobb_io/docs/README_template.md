@@ -1,4 +1,20 @@
+
+[//]: # (READTHEDOCS badge)
+
 [![Documentation Status](https://readthedocs.org/projects/biobb-io/badge/?version=latest)](https://biobb-io.readthedocs.io/en/latest/?badge=latest)
+
+[//]: # (BIOCONDA badge)
+
+[![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/biobb_io/README.html)
+
+[//]: # (DOCKER badge)
+
+[![Docker image](https://quay.io/repository/biocontainers/biobb_io/status)](https://quay.io/repository/biocontainers/biobb_io)
+
+[//]: # (LICENSE badge)
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 
 # biobb_io
 
@@ -24,7 +40,7 @@ Using ANACONDA:
 * Installation:
 
 
-        conda install -c bioconda "biobb_io>={{version}}"
+        conda install -c bioconda "biobb_io=={{version}}"
 
 
 * Usage: With conda installation BioBBs can be used with the [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html) and the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
