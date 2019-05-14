@@ -41,6 +41,9 @@ class MmbPdbClusterZip():
         self.step = properties.get('step', None)
         self.path = properties.get('path', '')
 
+        # Check the properties
+        fu.check_properties(self, properties)
+
     def launch(self):
         """
         Writes each PDB file content of each pdb_code in the cluster

@@ -19,8 +19,6 @@ def download_pdb(pdb_code, url="https://files.rcsb.org/download/", out_log=None,
     else:
         url += ".pdb"
 
-
-
     fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url).content.decode('utf-8')
 
