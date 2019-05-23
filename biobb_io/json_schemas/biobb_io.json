@@ -1,0 +1,40 @@
+{
+    "_id": "biobb_io",
+    "desc": "Biobb_io is the Biobb module collection to fetch data to be consumed by the rest of the Biobb building blocks.",
+    "github": "https://github.com/bioexcel/biobb_io",
+    "readthedocs": "https://biobb-io.readthedocs.io/en/latest/",
+    "conda": "https://anaconda.org/bioconda/biobb_io",
+    "docker": "https://quay.io/repository/biocontainers/biobb_io",
+    "singularity": "https://www.singularity-hub.org/collections/2411/usage",
+    "version": "1.1.6",
+    "tools" : [
+        {
+            "block" : "MmbPdb", 
+            "tool" : "MMB PDB API REST", 
+            "desc" : "Downloads a PDB file from the RCSB or MMB REST APIs"
+        }, 
+        {
+            "block" : "MmbPdbVariants", 
+            "tool" : "MMB PDB API REST", 
+            "desc" : "Creates a text file containing a list of all the variants mapped to a RSCB PDB code from the corresponding UNIPROT entries."
+        }, 
+        {
+            "block" : "MmbPdbClusterZip", 
+            "tool" : "MMB PDB API REST", 
+            "desc" : "Creates a zip file containing all the PDB files in the given sequence similarity cluster percentage of the given RSCB PDB code"
+        }
+    ],
+    "dep_pypi" : [
+        "install_requires=['biobb_common==1.1.6']", 
+        "python_requires='==3.6.*'"
+    ], 
+    "dep_conda" : [
+        "python ==3.6.*", 
+        "biobb_common ==1.1.6"
+    ],
+    "keywords" : [
+        "io", 
+        "mmb", 
+        "pdb"
+    ]
+}
