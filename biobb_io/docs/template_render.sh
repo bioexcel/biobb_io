@@ -12,11 +12,3 @@ read -p "Version name ie 'April 2019 Release' : " v_name
 sed -i "s/{{v_name}}/${v_name}/g" $REPOSITORY/$repo_name/docs/source/readme.md
 
 cp $REPOSITORY/$repo_name/docs/source/readme.md $REPOSITORY/README.md
-
-sed 's/%%bash//g' $REPOSITORY/$repo_name/docs/command_line_template.rst > $REPOSITORY/$repo_name/docs/source/command_line.rst
-
-sed -i 's/.. code:: bash/Command:\
-\
-.. code:: bash/g' $REPOSITORY/$repo_name/docs/source/command_line.rst
-
-sed -i 's/.. code:: ipython3/.. parsed-literal::/g' $REPOSITORY/$repo_name/docs/source/command_line.rst
