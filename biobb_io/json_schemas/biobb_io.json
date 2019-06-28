@@ -21,7 +21,7 @@
         {
             "block" : "MmbPdbClusterZip", 
             "tool" : "API Call", 
-            "desc" : "Creates a zip file containing all the PDB files in the given sequence similarity cluster percentage of the given RSCB PDB code"
+            "desc" : "Creates a zip file containing all the PDB files in the given sequence similarity cluster percentage of the given RSCB PDB code."
         }
     ],
     "dep_pypi" : [
