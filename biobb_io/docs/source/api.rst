@@ -4,6 +4,14 @@ configuration package
 Submodules
 ----------
 
+api.ligand module
+------------------
+
+.. automodule:: api.ligand
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 api.pdb module
 ------------------
 
