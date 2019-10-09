@@ -22,6 +22,16 @@ def download_pdb(pdb_code, url="https://files.rcsb.org/download/", out_log=None,
     fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url).content.decode('utf-8')
 
+def download_ligand(ligand_code, url="http://mmb.irbbarcelona.org/api/pdbMonomer/", out_log=None, global_log=None):
+    """
+    Returns:
+        String: Content of the ligand file.
+    """
+    url += ligand_code.lower()
+
+    fu.log("Downloading: %s from: %s" % (ligand_code, url), out_log, global_log)
+    return requests.get(url).content.decode('utf-8')
+
 def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=None):
     """ Writes and filters a PDB """
     fu.log("Writting pdb to: %s" % (os.path.abspath(output_pdb_path)), out_log, global_log)

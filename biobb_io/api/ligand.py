@@ -1,0 +1,75 @@
+#!/usr/bin/env python
+
+"""Module containing the Ligand class and the command line interface."""
+import logging
+import argparse
+from biobb_common.configuration import  settings
+from biobb_common.tools import file_utils as fu
+from biobb_io.api.common import download_ligand
+from biobb_io.api.common import write_pdb
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+
+class Ligand():
+    """Wrapper class for the PDB REST API.
+    This class is a wrapper for the MMB PDB mirror (http://mmb.irbbarcelona.org/api/)
+
+    Args:
+        output_pdb_path (str): Path to the output PDB ligand file.
+        properties (dic):
+            | - **ligand_code** (*str*) - ('12D') RSCB PDB ligand code. ie: "12D"
+    """
+    def __init__(self, output_pdb_path, properties=None, **kwargs):
+        properties = properties or {}
+
+        # Input/Output files
+        self.output_pdb_path = output_pdb_path
+
+        # Properties specific for BB
+        self.url = properties.get('url', "http://mmb.irbbarcelona.org/api/pdbMonomer/")
+        self.ligand_code = properties.get('ligand_code', '12D').strip().lower()
+        self.properties = properties
+
+        # Properties common in all BB
+        self.can_write_console_log = properties.get('can_write_console_log', True)
+        self.global_log = properties.get('global_log', None)
+        self.prefix = properties.get('prefix', None)
+        self.step = properties.get('step', None)
+        self.path = properties.get('path', '')
+        self.remove_tmp = properties.get('remove_tmp', True)
+        self.restart = properties.get('restart', False)
+        
+
+    def launch(self):
+        """Writes the PDB file content of the first ligand_code to output_pdb_path."""
+        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, can_write_console=self.can_write_console_log)
+
+        # Check the properties
+        fu.check_properties(self, self.properties)
+
+        #Downloading PDB_files
+        pdb_string = download_ligand(self.ligand_code, self.url, out_log, self.global_log)
+        write_pdb(pdb_string, self.output_pdb_path, None, out_log, self.global_log)
+
+def main():
+    """Command line interface."""
+    parser = argparse.ArgumentParser(description="Wrapper for the PDB ('http://www.rcsb.org/pdb/home/home.do') mirror of the MMB group REST API ('http://mmb.irbbarcelona.org/api/') for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+    parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
+    parser.add_argument('--system', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
+    parser.add_argument('--step', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
+
+    #Specific args of each building block
+    required_args = parser.add_argument_group('required arguments')
+    required_args.add_argument('-o', '--output_pdb_path', required=True, help="Path to the output PDB ligand file.")
+
+    args = parser.parse_args()
+    config = args.config if args.config else None
+    properties = settings.ConfReader(config=config, system=args.system).get_prop_dic()
+    if args.step:
+        properties = properties[args.step]
+
+    #Specific call of each building block
+    Ligand(output_pdb_path=args.output_pdb_path, properties=properties).launch()
+
+if __name__ == '__main__':
+    main()
