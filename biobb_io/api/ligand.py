@@ -5,10 +5,9 @@ import logging
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
+from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import download_ligand
 from biobb_io.api.common import write_pdb
-logging.getLogger("requests").setLevel(logging.WARNING)
-logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class Ligand():
     """Wrapper class for the PDB REST API.
@@ -39,10 +38,13 @@ class Ligand():
         self.remove_tmp = properties.get('remove_tmp', True)
         self.restart = properties.get('restart', False)
         
-
+    @launchlogger
     def launch(self):
         """Writes the PDB file content of the first ligand_code to output_pdb_path."""
-        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, can_write_console=self.can_write_console_log)
+
+        # Get local loggers from launchlogger decorator
+        out_log = getattr(self, 'out_log', None)
+        err_log = getattr(self, 'err_log', None)
 
         # Check the properties
         fu.check_properties(self, self.properties)
