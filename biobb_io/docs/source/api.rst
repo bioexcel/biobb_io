@@ -8,7 +8,7 @@ api.ligand module
 ------------------
 
 .. automodule:: api.ligand
-    :members:
+    :members: launch
     :undoc-members:
     :show-inheritance:
 

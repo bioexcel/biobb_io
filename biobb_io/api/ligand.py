@@ -5,6 +5,7 @@ import logging
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
+from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import download_ligand
 from biobb_io.api.common import write_pdb
 
@@ -37,6 +38,7 @@ class Ligand():
         self.remove_tmp = properties.get('remove_tmp', True)
         self.restart = properties.get('restart', False)
         
+    @launchlogger
     def launch(self):
         """Writes the PDB file content of the first ligand_code to output_pdb_path."""
 
