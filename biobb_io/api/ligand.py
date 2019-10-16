@@ -38,7 +38,7 @@ class Ligand():
         self.remove_tmp = properties.get('remove_tmp', True)
         self.restart = properties.get('restart', False)
         
-    @launchlogger
+    #@launchlogger
     def launch(self):
         """Writes the PDB file content of the first ligand_code to output_pdb_path."""
 
