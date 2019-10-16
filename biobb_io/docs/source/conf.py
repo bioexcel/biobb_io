@@ -30,11 +30,11 @@ def no_op_wraps(func):
     import sys
     if func.__module__ is None or 'blessed' not in func.__module__:
         return functools.orig_wraps(func)
-    def wrapper(decorator):
+    def wrapper_log(decorator):
         sys.stderr.write('patched for function signature: {0!r}\n'.format(func))
         return func
     return wrapper
-functools.orig_wraps = functools.wraps
+#functools.orig_wraps = functools.wraps
 functools.wraps = no_op_wraps
 
 # -- General configuration ------------------------------------------------
