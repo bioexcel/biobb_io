@@ -20,6 +20,23 @@ import os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../../'))
 
+# Monkey-patch functools.wraps and contextlib.wraps
+# https://github.com/sphinx-doc/sphinx/issues/1711#issuecomment-93126473
+import functools
+def no_op_wraps(func):
+    """
+    Replaces functools.wraps in order to undo wrapping when generating Sphinx documentation
+    """
+    import sys
+    if func.__module__ is None or 'blessed' not in func.__module__:
+        return functools.orig_wraps(func)
+    def wrapper(decorator):
+        sys.stderr.write('patched for function signature: {0!r}\n'.format(func))
+        return func
+    return wrapper
+functools.orig_wraps = functools.wraps
+functools.wraps = no_op_wraps
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
