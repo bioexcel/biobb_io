@@ -30,7 +30,12 @@ def download_ligand(ligand_code, url="http://mmb.irbbarcelona.org/api/pdbMonomer
     url += ligand_code.lower()
 
     fu.log("Downloading: %s from: %s" % (ligand_code, url), out_log, global_log)
-    return requests.get(url).content.decode('utf-8')
+
+    text = requests.get(url).content.decode('utf-8')
+    # removing useless empty lines at the end of the file
+    text = os.linesep.join([s for s in text.splitlines() if s])
+    
+    return text
 
 def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=None):
     """ Writes and filters a PDB """
