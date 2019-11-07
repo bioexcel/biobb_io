@@ -1,30 +1,31 @@
-{ 
+{
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://bioexcel.eu/biobb_io/json_schemas/0.1/pdb_variants",
-    "title": "Wrapper class for getting variants from UNIPROT MMB-IRB API",
+    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/pdb_variants",
+    "title": "Wrapper class for the MMB group UNIPROT REST API.",
     "type": "object",
-    "required": ["output_mutation_list_txt"],
-    "properties":
-            {
-                "output_mutationt_list_txt": {
+    "required": [
+        "output_mutations_list_txt"
+    ],
+    "properties": {
+        "output_mutations_list_txt": {
+            "type": "string",
+            "description": "Path to the TXT file containing an ASCII comma separated values of the mutations."
+        },
+        "properties": {
+            "type": "object",
+            "properties": {
+                "pdb_code": {
                     "type": "string",
-                    "description": "Path to the TXT file containing an ASCII comma separated values of the mutations"
+                    "default": "2vgb",
+                    "description": "RSCB PDB four letter code. ie: \"2ki5\"."
                 },
-                "properties": {
-                    "type": "object",
-                    "required": ["pdb_code"],
-                    "properties": {
-                        "pdb_code": {
-                            "type": "string",
-                            "description": "RCSB PDB code. ie. 2VBG" 
-                        },
-                        "url": {
-                            "type":"string",
-                            "default": "https://files.rcsb.org/download/",
-                            "format": "url"
-                        }
-                    }
+                "url": {
+                    "type": "string",
+                    "default": "https://files.rcsb.org/download/",
+                    "description": "URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API (\"http://mmb.irbbarcelona.org/api/pdb/\")."
                 }
-            },
+            }
+        }
+    },
     "additionalProperties": false
 }

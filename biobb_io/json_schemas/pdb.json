@@ -1,40 +1,40 @@
-{ 
+{
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://bioexcel.eu/biobb_io/json_schemas/0.1/pdb",
-    "title": "Wrapper class for PDB download from PDB API",
+    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/pdb",
+    "title": "Wrapper class for the PDB REST API.",
     "type": "object",
-    "required": ["output_pdb_path"],
-    "properties":
-            {
-                "output_pdb_path": {
+    "required": [
+        "output_pdb_path"
+    ],
+    "properties": {
+        "output_pdb_path": {
+            "type": "string",
+            "description": "Path to the output PDB file."
+        },
+        "properties": {
+            "type": "object",
+            "properties": {
+                "pdb_code": {
                     "type": "string",
-                    "description": "Path to the output PDB file"
+                    "default": "1ubq",
+                    "description": "RSCB PDB code. ie: \"2VGB\""
                 },
-                "properties": {
-                    "type": "object",
-                    "required": ["pdb_code"],
-                    "properties": {
-                        "pdb_code": {
-                            "type": "string",
-                            "description": "RCSB PDB code. ie. 2VBG" 
-                        },
-                        "filter": {
-                            "type": "array",
-                            "description": "Array of groups to be keep. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)",
-                            "default": ["ATOM", "MODEL", "ENDMDL"],
-                            "items" : {
-                                "type": "string",
-                                "enum": ["ATOM","MODEL","ENDMDL","HETATM"]
-                            }
-                        },
-                        "url": {
-                            "type":"string",
-                            "default": "https://files.rcsb.org/download/",
-                            "format": "url"
-                        }
-                    }
+                "filter": {
+                    "type": "string",
+                    "default": [
+                        "ATOM",
+                        "MODEL",
+                        "ENDMDL"
+                    ],
+                    "description": "Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)"
+                },
+                "url": {
+                    "type": "string",
+                    "default": "https://files.rcsb.org/download/",
+                    "description": "URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API (\"http://mmb.irbbarcelona.org/api/pdb/\")."
                 }
-            },
+            }
+        }
+    },
     "additionalProperties": false
 }
-
