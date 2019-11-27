@@ -15,7 +15,7 @@ Contents
 .. toctree::
    :maxdepth: 1
 
-   Introducction & installation <readme>
+   Introduction & installation <readme>
    Python API Documentation <modules>
    Command Line Documentation <command_line>
 
