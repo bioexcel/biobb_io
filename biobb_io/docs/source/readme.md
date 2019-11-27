@@ -38,13 +38,13 @@ Using DOCKER:
 * Installation:
 
 
-        docker pull mmbirb/biobb_io:latest
+        docker pull quay.io/biocontainers/biobb_md:2.0.0--py_0
 
 
 * Usage:
 
 
-        docker run mmbirb/biobb_io:latest <command>
+        docker run quay.io/biocontainers/biobb_io:2.0.0--py_0 <command>
 
 
 The command list and specification can be found at the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html).
