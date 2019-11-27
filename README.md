@@ -17,19 +17,19 @@ The latest documentation of this package can be found in our readthedocs site:
 [latest API documentation](http://biobb_io.readthedocs.io/en/latest/).
 
 ### Version
-v1.1.6 "May 2019 Release"
+v2.0.0 2019.4
 
 ### Installation
 Using PIP:
 * Installation:
-        pip install "biobb_io==1.1.6"
+        pip install "biobb_io==2.0.0"
 * Usage: [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html)
 
 Using ANACONDA:
 * Installation:
 
 
-        conda install -c bioconda "biobb_io==1.1.6"
+        conda install -c bioconda "biobb_io==2.0.0"
 
 
 * Usage: With conda installation BioBBs can be used with the [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html) and the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
@@ -38,13 +38,13 @@ Using DOCKER:
 * Installation:
 
 
-        docker pull mmbirb/biobb_io:1.1.6
+        docker pull mmbirb/biobb_io:latest
 
 
 * Usage:
 
 
-        docker run mmbirb/biobb_io:1.1.6 <command>
+        docker run mmbirb/biobb_io:latest <command>
 
 
 The command list and specification can be found at the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html).

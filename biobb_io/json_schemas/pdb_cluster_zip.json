@@ -37,6 +37,16 @@
                     "type": "string",
                     "default": "https://files.rcsb.org/download/",
                     "description": "URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API (\"http://mmb.irbbarcelona.org/api/pdb/\")."
+                },
+                "remove_tmp": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "[WF property] Remove temporal files."
+                },
+                "restart": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "[WF property] Do not execute if output files exist."
                 }
             }
         }

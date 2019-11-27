@@ -17,6 +17,8 @@ class Ligand():
         output_pdb_path (str): Path to the output PDB ligand file.
         properties (dic):
             | - **ligand_code** (*str*) - ("12D") RSCB PDB ligand code. ie: "12D"
+            | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
+            | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
     """
     def __init__(self, output_pdb_path, properties=None, **kwargs):
         properties = properties or {}

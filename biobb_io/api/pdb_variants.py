@@ -22,6 +22,8 @@ class MmbPdbVariants():
         properties (dic):
             | - **pdb_code** (*str*): ("2vgb") RSCB PDB four letter code. ie: "2ki5".
             | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/").
+            | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
+            | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
     """
     def __init__(self, output_mutations_list_txt, properties=None, **kwargs):
         properties = properties or {}

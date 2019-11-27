@@ -22,6 +22,8 @@ class MmbPdbClusterZip():
             | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
             | - **cluster** (*str*) - (90) Cluster number for the :meth:`biobb_io.api.MmbPdb.get_pdb_cluster_zip` method.
             | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/").
+            | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
+            | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
     """
     def __init__(self, output_pdb_zip_path, properties=None, **kwargs):
         properties = properties or {}
