@@ -7,6 +7,7 @@ import argparse
 import requests
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
+from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import get_uniprot
 from biobb_io.api.common import get_variants
 logging.getLogger("requests").setLevel(logging.WARNING)
@@ -34,6 +35,7 @@ class MmbPdbVariants():
         # Properties specific for BB
         self.pdb_code = properties.get('pdb_code', '2vgb').strip().lower()
         self.url = properties.get('url', "http://mmb.irbbarcelona.org/api")
+        self.properties = properties
 
         # Common in all BB
         self.global_log = properties.get('global_log', None)
@@ -41,13 +43,19 @@ class MmbPdbVariants():
         self.prefix = properties.get('prefix', None)
         self.step = properties.get('step', None)
         self.path = properties.get('path', '')
+        self.remove_tmp = properties.get('remove_tmp', True)
+        self.restart = properties.get('restart', False)
 
-        # Check the properties
-        fu.check_properties(self, properties)
-
+    @launchlogger
     def launch(self):
         """Writes the variants of the selected `pdb_code` to `output_mutations_list_txt`"""
-        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, can_write_console=self.can_write_console_log)
+        
+        # Get local loggers from launchlogger decorator
+        out_log = getattr(self, 'out_log', None)
+        err_log = getattr(self, 'err_log', None)
+
+        # Check the properties
+        fu.check_properties(self, self.properties)
 
         uniprot_id = get_uniprot(self.pdb_code, self.url, out_log, self.global_log)
         url_mapPDBRes = (self.url+"/uniprot/"+uniprot_id+"/mapPDBRes?pdbId="+self.pdb_code)

@@ -6,6 +6,7 @@ import argparse
 import logging
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
+from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import get_cluster_pdb_codes
 from biobb_io.api.common import download_pdb
 from biobb_io.api.common import write_pdb
@@ -35,6 +36,7 @@ class MmbPdbClusterZip():
         self.pdb_code = properties.get('pdb_code', '2vgb').strip().lower()
         self.filt = properties.get('filter', ["ATOM", "MODEL", "ENDMDL"])
         self.cluster = str(properties.get('cluster', 90))
+        self.properties = properties
 
         # Common in all BB
         self.global_log = properties.get('global_log', None)
@@ -42,16 +44,23 @@ class MmbPdbClusterZip():
         self.prefix = properties.get('prefix', None)
         self.step = properties.get('step', None)
         self.path = properties.get('path', '')
+        self.remove_tmp = properties.get('remove_tmp', True)
+        self.restart = properties.get('restart', False)
 
-        # Check the properties
-        fu.check_properties(self, properties)
-
+    @launchlogger
     def launch(self):
         """
         Writes each PDB file content of each pdb_code in the cluster
         to a pdb_file then creates a zip_file output_pdb_zip_path.
         """
-        out_log, _ = fu.get_logs(path=self.path, prefix=self.prefix, step=self.step, can_write_console=self.can_write_console_log)
+        
+        # Get local loggers from launchlogger decorator
+        out_log = getattr(self, 'out_log', None)
+        err_log = getattr(self, 'err_log', None)
+
+        # Check the properties
+        fu.check_properties(self, self.properties)
+
         file_list = []
         #Downloading PDB_files
         pdb_code_list = get_cluster_pdb_codes(pdb_code=self.pdb_code, cluster=self.cluster, out_log=out_log, global_log=self.global_log)
