@@ -38,7 +38,7 @@ Using DOCKER:
 * Installation:
 
 
-        docker pull quay.io/biocontainers/biobb_md:2.0.1--py_0
+        docker pull quay.io/biocontainers/biobb_io:2.0.1--py_0
 
 
 * Usage:
