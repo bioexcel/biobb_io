@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/pdb_cluster_zip",
-    "title": "Wrapper class for the MMB group PDB REST API.",
+    "title": "Wrapper class for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_.",
     "type": "object",
     "required": [
         "output_pdb_zip_path"
@@ -9,7 +9,13 @@
     "properties": {
         "output_pdb_zip_path": {
             "type": "string",
-            "description": "Path to the ZIP or PDB file containing the output PDB files."
+            "description": "Path to the ZIP or PDB file containing the output PDB files",
+            "filetype": "output",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/reference_output_pdb_zip_path.zip",
+            "enum": [
+                ".*\\.pdb$",
+                ".*\\.zip$"
+            ]
         },
         "properties": {
             "type": "object",

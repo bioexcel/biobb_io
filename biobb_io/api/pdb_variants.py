@@ -15,11 +15,10 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class MmbPdbVariants():
     """Wrapper class for the MMB group UNIPROT REST API.
-    This class is a wrapper for the UNIPROT (http://www.uniprot.org/)
-    mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)
+    This class is a wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_.
 
     Args:
-        output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations.
+        output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. Accepted formats: txt.
         properties (dic):
             | - **pdb_code** (*str*): ("2vgb") RSCB PDB four letter code. ie: "2ki5".
             | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/").

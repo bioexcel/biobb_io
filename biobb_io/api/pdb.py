@@ -13,11 +13,10 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class Pdb():
     """Wrapper class for the PDB REST API.
-    This class is a wrapper for the PDB (http://www.rcsb.org/pdb/home/home.do)
-    download page.
+    This class is a wrapper for the `PDB download page <https://www.rcsb.org/>`_.
 
     Args:
-        output_pdb_path (str): Path to the output PDB file.
+        output_pdb_path (str): Path to the output PDB file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/pdb_1ubq.pdb>`_. Accepted formats: pdb.
         properties (dic):
             | - **pdb_code** (*str*) - ("1ubq") RSCB PDB code. ie: "2VGB"
             | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)

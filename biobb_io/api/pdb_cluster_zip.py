@@ -14,10 +14,10 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class MmbPdbClusterZip():
-    """Wrapper class for the MMB group PDB REST API.
+    """Wrapper class for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_.
 
     Args:
-        output_pdb_zip_path (str): Path to the ZIP or PDB file containing the output PDB files.
+        output_pdb_zip_path (str): Path to the ZIP or PDB file containing the output PDB files. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/reference_output_pdb_zip_path.zip>`_. Accepted formats: pdb, zip.
         properties (dic):
             | - **pdb_code** (*str*) - ("2vgb") RSCB PDB code. ie: "2VGB"
             | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)

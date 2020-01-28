@@ -11,10 +11,10 @@ from biobb_io.api.common import write_pdb
 
 class Ligand():
     """Wrapper class for the PDB REST API.
-    This class is a wrapper for the MMB PDB mirror (http://mmb.irbbarcelona.org/api/)
+    This class is a wrapper for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_.
 
     Args:
-        output_pdb_path (str): Path to the output PDB ligand file.
+        output_pdb_path (str): Path to the output PDB ligand file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb>`_. Accepted formats: pdb.
         properties (dic):
             | - **ligand_code** (*str*) - ("12D") RSCB PDB ligand code. ie: "12D"
             | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
