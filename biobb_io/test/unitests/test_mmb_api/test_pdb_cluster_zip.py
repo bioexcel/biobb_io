@@ -4,7 +4,7 @@ from api.pdb_cluster_zip import MmbPdbClusterZip
 
 class TestMmbPdbClusterZip():
     def setUp(self):
-        fx.test_setup(self,'mmbpdbclusterzip')
+        fx.test_setup(self,'pdb_cluster_zip')
 
     def tearDown(self):
         fx.test_teardown(self)

@@ -27,7 +27,7 @@
                 "remove_tmp": {
                     "type": "boolean",
                     "default": true,
-                    "description": "[WF property] Remove temporal files."
+                    "description": "[WF property] Remove temporal files"
                 },
                 "restart": {
                     "type": "boolean",

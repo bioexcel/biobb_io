@@ -19,12 +19,12 @@ pdb_url:
     output_pdb_path: output_pdb_path.pdb
     reference_output_pdb_path: file:test_reference_dir/api/pdb_1ubq.pdb
 
-mmbpdbclusterzip:
+pdb_cluster_zip:
   paths:
     output_pdb_zip_path: output_pdb_zip_path.zip
     reference_output_pdb_zip_path: file:test_reference_dir/api/reference_output_pdb_zip_path.zip
 
-mmbpdbvariants:
+pdb_variants:
   paths:
     output_mutations_list_txt: output_mutations_list_txt.txt
     reference_output_mutations_list_txt: file:test_reference_dir/api/output_mutations_list_txt.txt

@@ -3,7 +3,7 @@ from api.pdb_variants import MmbPdbVariants
 
 class TestMmbPdbVariants():
     def setUp(self):
-        fx.test_setup(self,'mmbpdbvariants')
+        fx.test_setup(self,'pdb_variants')
 
     def tearDown(self):
         fx.test_teardown(self)
