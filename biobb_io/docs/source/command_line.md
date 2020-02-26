@@ -1,14 +1,11 @@
-
 # BioBB IO Command Line Help
 
 Generic usage:
 
 
 ```python
-biobb_command [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] --in_file <in_file>  --out_file <out_file>
+biobb_command [-h] [-c CONFIG] --in_file <in_file>  --out_file <out_file>
 ```
-
-Please refer to the [system & step documentation](https://biobb-common.readthedocs.io/en/latest/system_step.html) for more information of these two parameters.
 
 ***
 
@@ -25,7 +22,7 @@ ligand -h
 
 
 ```python
-usage: ligand.py [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_PDB_PATH
+usage: ligand.py [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
 
 Wrapper for the PDB ('http://www.rcsb.org/pdb/home/home.do') mirror of the MMB group REST API ('http://mmb.irbbarcelona.org/api/') for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')
 
@@ -33,8 +30,6 @@ optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG, --config CONFIG
                         This file can be a YAML file, JSON file or JSON string
-  --system SYSTEM       Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
-  --step STEP           Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
 
 required arguments:
   -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
@@ -120,7 +115,7 @@ pdb -h
 
 
 ```python
-usage: pdb [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_PDB_PATH
+usage: pdb.py [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
 
 Wrapper for the PDB ('http://www.rcsb.org/pdb/home/home.do') mirror of the MMB group REST API ('http://mmb.irbbarcelona.org/api/') for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')
 
@@ -128,8 +123,6 @@ optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG, --config CONFIG
                         This file can be a YAML file, JSON file or JSON string
-  --system SYSTEM       Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
-  --step STEP           Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
 
 required arguments:
   -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
@@ -221,7 +214,7 @@ pdb_variants -h
 
 
 ```python
-usage: pdb_variants [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_MUTATIONS_LIST_TXT
+usage: pdb_variants.py [-h] [-c CONFIG] -o OUTPUT_MUTATIONS_LIST_TXT
 
 Wrapper for the PDB Variants (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')
 
@@ -229,8 +222,6 @@ optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG, --config CONFIG
                         This file can be a YAML file, JSON file or JSON string
-  --system SYSTEM       Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
-  --step STEP           Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
 
 required arguments:
   -o OUTPUT_MUTATIONS_LIST_TXT, --output_mutations_list_txt OUTPUT_MUTATIONS_LIST_TXT
@@ -318,7 +309,7 @@ pdb_cluster_zip -h
 
 
 ```python
-usage: pdb_cluster_zip [-h] [-c CONFIG] [--system SYSTEM] [--step STEP] -o OUTPUT_PDB_ZIP_PATH
+usage: pdb_cluster_zip.py [-h] [-c CONFIG] -o OUTPUT_PDB_ZIP_PATH
 
 Wrapper for the PDB Cluster (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')
 
@@ -326,8 +317,6 @@ optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG, --config CONFIG
                         This file can be a YAML file, JSON file or JSON string
-  --system SYSTEM       Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
-  --step STEP           Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help
 
 required arguments:
   -o OUTPUT_PDB_ZIP_PATH, --output_pdb_zip_path OUTPUT_PDB_ZIP_PATH
