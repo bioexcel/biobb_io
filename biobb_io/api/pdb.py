@@ -34,7 +34,7 @@ class Pdb():
         # Properties specific for BB
         self.url = properties.get('url', "https://files.rcsb.org/download/")
         self.pdb_code = properties.get('pdb_code', '1ubq').strip().lower()
-        self.filt = properties.get('filter', ["ATOM", "MODEL", "ENDMDL"])
+        self.filter = properties.get('filter', ["ATOM", "MODEL", "ENDMDL"])
         self.properties = properties
 
         # Properties common in all BB
@@ -57,9 +57,9 @@ class Pdb():
         # Check the properties
         fu.check_properties(self, self.properties)
 
-        #Downloading PDB_files
+        # Downloading PDB_files
         pdb_string = download_pdb(self.pdb_code, self.url, out_log, self.global_log)
-        write_pdb(pdb_string, self.output_pdb_path, self.filt, out_log, self.global_log)
+        write_pdb(pdb_string, self.output_pdb_path, self.filter, out_log, self.global_log)
 
 def main():
     """Command line interface."""
@@ -68,7 +68,7 @@ def main():
     parser.add_argument('--system', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
     parser.add_argument('--step', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
 
-    #Specific args of each building block
+    # Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
     required_args.add_argument('-o', '--output_pdb_path', required=True, help="Output file name")
 
@@ -78,7 +78,7 @@ def main():
     if args.step:
         properties = properties[args.step]
 
-    #Specific call of each building block
+    # Specific call of each building block
     Pdb(output_pdb_path=args.output_pdb_path, properties=properties).launch()
 
 if __name__ == '__main__':
