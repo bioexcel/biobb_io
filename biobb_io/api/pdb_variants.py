@@ -15,11 +15,10 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class MmbPdbVariants():
     """Wrapper class for the MMB group UNIPROT REST API.
-    This class is a wrapper for the UNIPROT (http://www.uniprot.org/)
-    mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/)
+    This class is a wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_.
 
     Args:
-        output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations.
+        output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. Accepted formats: txt.
         properties (dic):
             | - **pdb_code** (*str*): ("2vgb") RSCB PDB four letter code. ie: "2ki5".
             | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/").
@@ -88,24 +87,17 @@ class MmbPdbVariants():
 def main():
     parser = argparse.ArgumentParser(description="Wrapper for the PDB Variants (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
-    parser.add_argument('--system', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
-    parser.add_argument('--step', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
-
 
     #Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
     required_args.add_argument('-o', '--output_mutations_list_txt', required=True, help="Output variants list text file name")
-    ####
 
     args = parser.parse_args()
     config = args.config if args.config else None
-    properties = settings.ConfReader(config=config, system=args.system).get_prop_dic()
-    if args.step:
-        properties = properties[args.step]
+    properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
     MmbPdbVariants(output_mutations_list_txt=args.output_mutations_list_txt, properties=properties).launch()
-    ####
 
 if __name__ == '__main__':
     main()

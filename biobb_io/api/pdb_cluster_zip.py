@@ -14,10 +14,10 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class MmbPdbClusterZip():
-    """Wrapper class for the MMB group PDB REST API.
+    """Wrapper class for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_.
 
     Args:
-        output_pdb_zip_path (str): Path to the ZIP or PDB file containing the output PDB files.
+        output_pdb_zip_path (str): Path to the ZIP or PDB file containing the output PDB files. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/reference_output_pdb_zip_path.zip>`_. Accepted formats: pdb, zip.
         properties (dic):
             | - **pdb_code** (*str*) - ("2vgb") RSCB PDB code. ie: "2VGB"
             | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
@@ -78,23 +78,17 @@ class MmbPdbClusterZip():
 def main():
     parser = argparse.ArgumentParser(description="Wrapper for the PDB Cluster (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
-    parser.add_argument('--system', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
-    parser.add_argument('--step', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
 
     #Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
     required_args.add_argument('-o','--output_pdb_zip_path', required=True, help="Output ZIP file name")
-    ####
 
     args = parser.parse_args()
     config = args.config if args.config else None
-    properties = settings.ConfReader(config=config, system=args.system).get_prop_dic()
-    if args.step:
-        properties = properties[args.step]
+    properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
     MmbPdbClusterZip(output_pdb_zip_path=args.output_pdb_zip_path, properties=properties).launch()
-    ####
 
 if __name__ == '__main__':
     main()

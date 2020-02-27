@@ -9,7 +9,12 @@
     "properties": {
         "output_pdb_path": {
             "type": "string",
-            "description": "Path to the output PDB ligand file."
+            "description": "Path to the output PDB ligand file",
+            "filetype": "output",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb",
+            "enum": [
+                ".*\\.pdb$"
+            ]
         },
         "properties": {
             "type": "object",

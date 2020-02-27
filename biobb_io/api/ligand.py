@@ -11,10 +11,10 @@ from biobb_io.api.common import write_pdb
 
 class Ligand():
     """Wrapper class for the PDB REST API.
-    This class is a wrapper for the MMB PDB mirror (http://mmb.irbbarcelona.org/api/)
+    This class is a wrapper for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_.
 
     Args:
-        output_pdb_path (str): Path to the output PDB ligand file.
+        output_pdb_path (str): Path to the output PDB ligand file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb>`_. Accepted formats: pdb.
         properties (dic):
             | - **ligand_code** (*str*) - ("12D") RSCB PDB ligand code. ie: "12D"
             | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
@@ -59,8 +59,6 @@ def main():
     """Command line interface."""
     parser = argparse.ArgumentParser(description="Wrapper for the PDB ('http://www.rcsb.org/pdb/home/home.do') mirror of the MMB group REST API ('http://mmb.irbbarcelona.org/api/') for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
-    parser.add_argument('--system', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
-    parser.add_argument('--step', required=False, help="Check 'https://biobb-common.readthedocs.io/en/latest/system_step.html' for help")
 
     #Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
@@ -68,9 +66,7 @@ def main():
 
     args = parser.parse_args()
     config = args.config if args.config else None
-    properties = settings.ConfReader(config=config, system=args.system).get_prop_dic()
-    if args.step:
-        properties = properties[args.step]
+    properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
     Ligand(output_pdb_path=args.output_pdb_path, properties=properties).launch()

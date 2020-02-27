@@ -9,7 +9,12 @@
     "properties": {
         "output_pdb_path": {
             "type": "string",
-            "description": "Path to the output PDB file."
+            "description": "Path to the output PDB file",
+            "filetype": "output",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/pdb_1ubq.pdb",
+            "enum": [
+                ".*\\.pdb$"
+            ]
         },
         "properties": {
             "type": "object",

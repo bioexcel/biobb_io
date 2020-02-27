@@ -9,7 +9,12 @@
     "properties": {
         "output_mutations_list_txt": {
             "type": "string",
-            "description": "Path to the TXT file containing an ASCII comma separated values of the mutations."
+            "description": "Path to the TXT file containing an ASCII comma separated values of the mutations",
+            "filetype": "output",
+            "sample": null,
+            "enum": [
+                ".*\\.txt$"
+            ]
         },
         "properties": {
             "type": "object",
