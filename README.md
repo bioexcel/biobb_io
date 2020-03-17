@@ -53,13 +53,14 @@ Using SINGULARITY:
 * Installation:
 
 
-        singularity pull shub://bioexcel/biobb_io
+        singularity pull --name biobb_io.sif shub://bioexcel/biobb_io
 
 
 * Usage:
 
 
-        singularity exec bioexcel-biobb_io-master-latest.simg <command>
+        singularity exec biobb_io.sif <command>
+
 
 
 The command list and specification can be found at the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html).
