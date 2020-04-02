@@ -20,7 +20,7 @@ class Ligand():
             | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
     """
-    def __init__(self, output_pdb_path, properties=None, **kwargs):
+    def __init__(self, output_pdb_path, properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Input/Output files
@@ -41,7 +41,7 @@ class Ligand():
         self.restart = properties.get('restart', False)
         
     @launchlogger
-    def launch(self):
+    def launch(self) -> int:
         """Writes the PDB file content of the first ligand_code to output_pdb_path."""
 
         # Get local loggers from launchlogger decorator

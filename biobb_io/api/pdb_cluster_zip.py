@@ -26,7 +26,7 @@ class MmbPdbClusterZip():
             | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
     """
-    def __init__(self, output_pdb_zip_path, properties=None, **kwargs):
+    def __init__(self, output_pdb_zip_path, properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # IN OUT files
@@ -48,7 +48,7 @@ class MmbPdbClusterZip():
         self.restart = properties.get('restart', False)
 
     @launchlogger
-    def launch(self):
+    def launch(self) -> int:
         """
         Writes each PDB file content of each pdb_code in the cluster
         to a pdb_file then creates a zip_file output_pdb_zip_path.
