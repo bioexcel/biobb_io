@@ -42,7 +42,7 @@ Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
 
-* **output_pdb_path** (_str_): Path to the output PDB ligand file.
+* **output_pdb_path** (_str_): Path to the output PDB ligand file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb). Accepted formats: pdb.
 
 ### Config
 
@@ -135,7 +135,7 @@ Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
 
-* **output_pdb_path** (_str_): Path to the output PDB file.
+* **output_pdb_path** (_str_): Path to the output PDB file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/pdb_1ubq.pdb). Accepted formats: pdb.
 
 ### Config
 
@@ -234,7 +234,7 @@ Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
 
-* **output_mutations_list_txt** (_str_): Path to the TXT file containing an ASCII comma separated values of the mutations.
+* **output_mutations_list_txt** (_str_): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. Accepted formats: txt.
 
 ### Config
 
@@ -329,7 +329,7 @@ Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
 
-* **output_pdb_zip_path** (_str_): Path to the ZIP or PDB file containing the output PDB files.
+* **output_pdb_zip_path** (_str_): Path to the ZIP or PDB file containing the output PDB files. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/reference_output_pdb_zip_path.zip). Accepted formats: pdb, zip.
 
 ### Config
 
