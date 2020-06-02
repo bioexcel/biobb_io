@@ -18,6 +18,7 @@ Contents
    Introduction & installation <readme>
    Python API Documentation <modules>
    Command Line Documentation <command_line>
+   Changelog <change_log>
 
 Indices and tables
 ==================
