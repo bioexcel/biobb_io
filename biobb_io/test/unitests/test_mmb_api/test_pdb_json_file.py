@@ -1,6 +1,6 @@
 import os
 from biobb_common.tools import test_fixtures as fx
-from api.pdb import Pdb
+from biobb_io.api.pdb import Pdb
 
 class TestPdb():
     def setUp(self):

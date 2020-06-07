@@ -1,5 +1,5 @@
 from biobb_common.tools import test_fixtures as fx
-from api.pdb_variants import MmbPdbVariants
+from biobb_io.api.pdb_variants import MmbPdbVariants
 
 class TestMmbPdbVariants():
     def setUp(self):

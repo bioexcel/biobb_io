@@ -1,5 +1,5 @@
 from biobb_common.tools import test_fixtures as fx
-from api.ligand import Ligand
+from biobb_io.api.ligand import Ligand
 
 class TestPdb():
     def setUp(self):
