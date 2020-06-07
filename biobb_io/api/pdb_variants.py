@@ -25,7 +25,7 @@ class MmbPdbVariants():
             | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
     """
-    def __init__(self, output_mutations_list_txt, properties=None, **kwargs):
+    def __init__(self, output_mutations_list_txt, properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # IN OUT files
@@ -46,7 +46,7 @@ class MmbPdbVariants():
         self.restart = properties.get('restart', False)
 
     @launchlogger
-    def launch(self):
+    def launch(self) -> int:
         """Writes the variants of the selected `pdb_code` to `output_mutations_list_txt`"""
         
         # Get local loggers from launchlogger decorator
