@@ -61,12 +61,12 @@ class MmbPdbVariants():
         pattern = re.compile((r"p.(?P<wt>[a-zA-Z]{3})(?P<resnum>\d+)(?P<mt>[a-zA-Z]{3})"))
 
         fu.log('Fetching variants for uniprot_id: %s and pdb_code: %s' % (uniprot_id, self.pdb_code), out_log, self.global_log)
-        unfiltered_dic = requests.get(url_mapPDBRes).json()
+        unfiltered_dic = requests.get(url_mapPDBRes, verify=False).json()
         if not unfiltered_dic:
             fu.log("No mutation found", out_log, self.global_log)
             return None
 
-        mapdic = requests.get(url_mapPDBRes).json()
+        mapdic = requests.get(url_mapPDBRes, verify=False).json()
         mutations = []
         uniprot_var_list = get_variants(uniprot_id, self.url, out_log, self.global_log)
         for var in uniprot_var_list:
