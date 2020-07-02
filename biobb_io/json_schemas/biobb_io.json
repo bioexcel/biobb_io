@@ -12,25 +12,29 @@
             "block" : "Ligand", 
             "tool" : "API Call", 
             "desc" : "Downloads a ligand file from the MMB REST API.",
-            "exec" : "ligand"
+            "exec" : "ligand",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.ligand"
         },
         {
             "block" : "Pdb", 
             "tool" : "API Call", 
             "desc" : "Downloads a PDB file from the RCSB or MMB REST APIs.",
-            "exec" : "pdb"
+            "exec" : "pdb",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb"
         }, 
         {
             "block" : "MmbPdbVariants", 
             "tool" : "API Call", 
             "desc" : "Creates a text file containing a list of all the variants mapped to a RSCB PDB code from the corresponding UNIPROT entries.",
-            "exec" : "pdb_variants"
+            "exec" : "pdb_variants",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb_variants"
         }, 
         {
             "block" : "MmbPdbClusterZip", 
             "tool" : "API Call", 
             "desc" : "Creates a zip file containing all the PDB files in the given sequence similarity cluster percentage of the given RSCB PDB code.",
-            "exec" : "pdb_cluster_zip"
+            "exec" : "pdb_cluster_zip",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb_cluster_zip"
         }
     ],
     "dep_pypi" : [
