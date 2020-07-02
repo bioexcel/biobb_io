@@ -20,7 +20,7 @@ def download_pdb(pdb_code, url="https://files.rcsb.org/download/", out_log=None,
         url += ".pdb"
 
     fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
-    return requests.get(url).content.decode('utf-8')
+    return requests.get(url, verify=False).content.decode('utf-8')
 
 def download_ligand(ligand_code, url="http://mmb.irbbarcelona.org/api/pdbMonomer/", out_log=None, global_log=None):
     """
@@ -31,7 +31,7 @@ def download_ligand(ligand_code, url="http://mmb.irbbarcelona.org/api/pdbMonomer
 
     fu.log("Downloading: %s from: %s" % (ligand_code, url), out_log, global_log)
 
-    text = requests.get(url).content.decode('utf-8')
+    text = requests.get(url, verify=False).content.decode('utf-8')
     # removing useless empty lines at the end of the file
     text = os.linesep.join([s for s in text.splitlines() if s])
     
@@ -57,7 +57,7 @@ def get_cluster_pdb_codes(pdb_code, url="http://mmb.irbbarcelona.org/api/pdb/", 
     pdb_codes = set()
 
     url = url+pdb_code.lower()+'/clusters/cl-'+cluster+".json"
-    cluster_list = json.loads(requests.get(url).content.decode('utf-8'))['clusterMembers']
+    cluster_list = json.loads(requests.get(url, verify=False).content.decode('utf-8'))['clusterMembers']
     for elem in cluster_list:
         pdb_codes.add(elem['_id'].lower())
 
@@ -75,7 +75,7 @@ def get_uniprot(pdb_code, url="http://mmb.irbbarcelona.org/api", out_log=None, g
         str: UNIPROT code.
     """
     url_uniprot_id = (url+"/pdb/"+pdb_code.lower()+"/entry/uniprotRefs/_id")
-    uniprot_id = requests.get(url_uniprot_id).json()['uniprotRefs._id'][0]
+    uniprot_id = requests.get(url_uniprot_id, verify=False).json()['uniprotRefs._id'][0]
 
     if out_log:
         out_log.info('PDB code: '+pdb_code+' correspond to uniprot id: '+uniprot_id)
@@ -91,7 +91,7 @@ def get_variants(uniprot_id, url="http://mmb.irbbarcelona.org/api", out_log=None
         :obj:`list` of :obj:`str`: List of variants.
     """
     url_uniprot_mut = (url+"/uniprot/"+uniprot_id+"/entry/variants/vardata/mut/?varorig=humsavar")
-    variants = requests.get(url_uniprot_mut).json()['variants.vardata.mut']
+    variants = requests.get(url_uniprot_mut, verify=False).json()['variants.vardata.mut']
     variants = variants if variants else []
 
     fu.log('Found: %d variants for uniprot id: %s' % (len(variants), uniprot_id), out_log, global_log)
