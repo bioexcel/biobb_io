@@ -11,7 +11,7 @@
         {
             "block" : "Ligand", 
             "tool" : "API Call", 
-            "desc" : "Downloads a ligand file from the MMB REST API.",
+            "desc" : "Downloads a ligand file from the MMB REST API",
             "exec" : "ligand",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.ligand"
         },
