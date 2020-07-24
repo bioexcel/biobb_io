@@ -33,8 +33,9 @@ class MmbPdbClusterZip():
         self.output_pdb_zip_path = output_pdb_zip_path
 
         # Properties specific for BB
+        self.url = properties.get('url', "https://files.rcsb.org/download/")
         self.pdb_code = properties.get('pdb_code', '2vgb').strip().lower()
-        self.filt = properties.get('filter', ["ATOM", "MODEL", "ENDMDL"])
+        self.filter = properties.get('filter', ["ATOM", "MODEL", "ENDMDL"])
         self.cluster = str(properties.get('cluster', 90))
         self.properties = properties
 
@@ -67,13 +68,18 @@ class MmbPdbClusterZip():
         unique_dir = fu.create_unique_dir(prefix=self.prefix, out_log=out_log)
         for pdb_code in pdb_code_list:
             pdb_file = os.path.join(unique_dir, pdb_code+".pdb")
-            pdb_string = download_pdb(pdb_code=pdb_code, out_log=out_log, global_log=self.global_log)
-            write_pdb(pdb_string, pdb_file, self.filt, out_log, self.global_log)
+            pdb_string = download_pdb(pdb_code=pdb_code, url=self.url, out_log=out_log, global_log=self.global_log)
+            write_pdb(pdb_string, pdb_file, self.filter, out_log, self.global_log)
             file_list.append(os.path.abspath(pdb_file))
 
         #Zipping files
         fu.log("Zipping the pdb files to: %s" % self.output_pdb_zip_path)
         fu.zip_list(self.output_pdb_zip_path, file_list, out_log=out_log)
+
+        if self.remove_tmp:
+            # remove temporary folder
+            fu.rm(unique_dir)
+            fu.log('Removed temporary folder: %s' % unique_dir, out_log)
 
 def main():
     parser = argparse.ArgumentParser(description="Wrapper for the PDB Cluster (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
