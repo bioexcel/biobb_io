@@ -22,7 +22,9 @@ v3.0.0 2020.1
 ### Installation
 Using PIP:
 * Installation:
+
         pip install "biobb_io==3.0.0"
+        
 * Usage: [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html)
 
 Using ANACONDA:

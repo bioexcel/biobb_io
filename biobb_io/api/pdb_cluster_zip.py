@@ -65,7 +65,7 @@ class MmbPdbClusterZip():
         file_list = []
         #Downloading PDB_files
         pdb_code_list = get_cluster_pdb_codes(pdb_code=self.pdb_code, cluster=self.cluster, out_log=out_log, global_log=self.global_log)
-        unique_dir = fu.create_unique_dir(prefix=self.prefix, out_log=out_log)
+        unique_dir = fu.create_unique_dir()
         for pdb_code in pdb_code_list:
             pdb_file = os.path.join(unique_dir, pdb_code+".pdb")
             pdb_string = download_pdb(pdb_code=pdb_code, url=self.url, out_log=out_log, global_log=self.global_log)
