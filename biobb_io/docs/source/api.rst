@@ -35,3 +35,11 @@ api.pdb_cluster_zip module
     :members:
     :undoc-members:
     :show-inheritance:
+
+api.drugbank module
+------------------
+
+.. automodule:: api.drugbank
+    :members:
+    :undoc-members:
+    :show-inheritance:
