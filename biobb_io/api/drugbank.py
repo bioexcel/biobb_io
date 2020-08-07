@@ -1,34 +1,33 @@
 #!/usr/bin/env python
 
-"""Module containing the Ligand class and the command line interface."""
+"""Module containing the Drugbank class and the command line interface."""
 import logging
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import download_ligand
-from biobb_io.api.common import write_pdb
+from biobb_io.api.common import download_drugbank
+from biobb_io.api.common import write_sdf
 
-class Ligand():
-    """Wrapper class for the PDB REST API.
-    This class is a wrapper for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_.
+class Drugbank():
+    """Download a component in SDF format from the `Drugbank <https://www.drugbank.ca/>`_.
 
     Args:
-        output_pdb_path (str): Path to the output PDB ligand file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb>`_. Accepted formats: pdb.
+        output_sdf_path (str): Path to the output SDF component file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sdf_path.sdf>`_. Accepted formats: sdf.
         properties (dic):
-            | - **ligand_code** (*str*) - ("12D") RSCB PDB ligand code.
+            | - **drugbank_id** (*str*) - ("DB00530") Drugbank component id.
             | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
     """
-    def __init__(self, output_pdb_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_sdf_path, properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Input/Output files
-        self.output_pdb_path = output_pdb_path
+        self.output_sdf_path = output_sdf_path
 
         # Properties specific for BB
-        self.url = properties.get('url', "http://mmb.irbbarcelona.org/api/pdbMonomer/")
-        self.ligand_code = properties.get('ligand_code', '12D').strip().lower()
+        self.url = properties.get('url', "https://www.drugbank.ca/structures/small_molecule_drugs/%s.sdf?type=3d")
+        self.drugbank_id = properties.get('drugbank_id', 'DB00530').strip().lower()
         self.properties = properties
 
         # Properties common in all BB
@@ -42,7 +41,7 @@ class Ligand():
         
     @launchlogger
     def launch(self) -> int:
-        """Writes the PDB file content of the first ligand_code to output_pdb_path."""
+        """Writes the SDF content of the first drugbank_id to output_sdf_path."""
 
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
@@ -51,25 +50,25 @@ class Ligand():
         # Check the properties
         fu.check_properties(self, self.properties)
 
-        #Downloading PDB file
-        pdb_string = download_ligand(self.ligand_code, self.url, out_log, self.global_log)
-        write_pdb(pdb_string, self.output_pdb_path, None, out_log, self.global_log)
+        #Downloading SDF file
+        sdf_string = download_drugbank(self.drugbank_id, self.url, out_log, self.global_log)
+        write_sdf(sdf_string, self.output_sdf_path, out_log, self.global_log)
 
 def main():
     """Command line interface."""
-    parser = argparse.ArgumentParser(description="Wrapper for the PDB ('http://www.rcsb.org/pdb/home/home.do') mirror of the MMB group REST API ('http://mmb.irbbarcelona.org/api/') for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+    parser = argparse.ArgumentParser(description="Download a component in SDF format from the Drugbank (https://www.drugbank.ca/).", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
     #Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
-    required_args.add_argument('-o', '--output_pdb_path', required=True, help="Path to the output PDB ligand file.")
+    required_args.add_argument('-o', '--output_sdf_path', required=True, help="Path to the output SDF component file. Accepted formats: sdf.")
 
     args = parser.parse_args()
     config = args.config if args.config else None
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    Ligand(output_pdb_path=args.output_pdb_path, properties=properties).launch()
+    Drugbank(output_sdf_path=args.output_sdf_path, properties=properties).launch()
 
 if __name__ == '__main__':
     main()

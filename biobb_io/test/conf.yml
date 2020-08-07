@@ -12,6 +12,13 @@ ligand:
   properties:
     ligand_code: 12D
 
+drugbank:
+  paths:
+    output_sdf_path: output_sdf_path.sdf
+    reference_output_sdf_path: file:test_reference_dir/api/output_sdf_path.sdf
+  properties:
+    drugbank_id: DB00530
+
 pdb_url:
   properties:
     url: http://mmb.irbbarcelona.org/api/pdb/

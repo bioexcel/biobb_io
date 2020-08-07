@@ -392,3 +392,96 @@ pdb_cluster_zip -c '{"pdb_code":"2src", "cluster":95}' -o 2src_cluster95.zip
 ```python
 pdb_cluster_zip -c conf.json -o 2src_cluster95.zip
 ```
+
+## drugbank
+
+Download a component in SDF format from the [Drugbank](http://mmb.irbbarcelona.org/api/).
+
+### Get help
+
+
+```python
+drugbank -h
+```
+
+
+```python
+usage: drugbank [-h] [-c CONFIG] -o OUTPUT_SDF_PATH
+
+Download a component in SDF format from the Drugbank (https://www.drugbank.ca/).
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -c CONFIG, --config CONFIG
+                        This file can be a YAML file, JSON file or JSON string
+
+required arguments:
+  -o OUTPUT_SDF_PATH, --output_sdf_path OUTPUT_SDF_PATH
+                        Path to the output SDF component file. Accepted formats: sdf.
+```
+
+### I / O Arguments
+
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+
+* **output_sdf_path** (_str_): Path to the output PDB ligand file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sdf_path.sdf). Accepted formats: sdf.
+
+### Config
+
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+
+Config parameters for this building block:
+
+- **drugbank_id** (*str*) - ("DB00530") Drugbank component id.
+- **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
+- **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+
+### Default config
+
+
+```python
+drugbank -o DB00530.sdf
+```
+
+### YAML
+
+#### File config
+
+
+```python
+properties:
+  drugbank_id : DB00530
+```
+
+
+```python
+drugbank -c conf.yml -o output.sdf
+```
+
+### JSON
+
+#### String config
+
+
+```python
+pdb -c '{"drugbank_id":"DB00530"}' -o output.sdf
+```
+
+#### File config
+
+
+```python
+{
+  "properties": {
+    "drugbank_id":"DB00530"
+  }
+}
+```
+
+
+```python
+ligand -c conf.json -o output.sdf
+```

@@ -37,6 +37,20 @@ def download_ligand(ligand_code, url="http://mmb.irbbarcelona.org/api/pdbMonomer
     
     return text
 
+def download_drugbank(drugbank_id, url="https://www.drugbank.ca/structures/small_molecule_drugs/%s.sdf?type=3d", out_log=None, global_log=None):
+    """
+    Returns:
+        String: Content of the component file.
+    """
+    url = (url % drugbank_id)
+
+    fu.log("Downloading: %s from: %s" % (drugbank_id, url), out_log, global_log)
+
+    text = requests.get(url, verify=False).content.decode('utf-8')
+    
+    return text
+
+
 def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=None):
     """ Writes and filters a PDB """
     fu.log("Writting pdb to: %s" % (os.path.abspath(output_pdb_path)), out_log, global_log)
@@ -48,6 +62,12 @@ def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=N
                     output_pdb_file.write(line)
         else:
             output_pdb_file.write(pdb_string)
+
+def write_sdf(sdf_string, output_sdf_path, out_log=None, global_log=None):
+    """ Writes a SDF """
+    fu.log("Writting sdf to: %s" % (os.path.abspath(output_sdf_path)), out_log, global_log)
+    with open(output_sdf_path, 'w') as output_sdf_file:
+        output_sdf_file.write(sdf_string)
 
 def get_cluster_pdb_codes(pdb_code, url="http://mmb.irbbarcelona.org/api/pdb/", cluster='90', out_log=None, global_log=None):
     """

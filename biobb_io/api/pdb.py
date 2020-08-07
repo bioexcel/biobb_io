@@ -18,7 +18,7 @@ class Pdb():
     Args:
         output_pdb_path (str): Path to the output PDB file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/pdb_1ubq.pdb>`_. Accepted formats: pdb.
         properties (dic):
-            | - **pdb_code** (*str*) - ("1ubq") RSCB PDB code. ie: "2VGB"
+            | - **pdb_code** (*str*) - ("1ubq") RSCB PDB code.
             | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
             | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/").
             | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
@@ -56,7 +56,7 @@ class Pdb():
         # Check the properties
         fu.check_properties(self, self.properties)
 
-        # Downloading PDB_files
+        # Downloading PDB file
         pdb_string = download_pdb(self.pdb_code, self.url, out_log, self.global_log)
         write_pdb(pdb_string, self.output_pdb_path, self.filter, out_log, self.global_log)
 
