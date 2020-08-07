@@ -395,7 +395,7 @@ pdb_cluster_zip -c conf.json -o 2src_cluster95.zip
 
 ## drugbank
 
-Download a component in SDF format from the [Drugbank](http://mmb.irbbarcelona.org/api/).
+Download a component in SDF format from the [Drugbank](https://www.drugbank.ca/).
 
 ### Get help
 
