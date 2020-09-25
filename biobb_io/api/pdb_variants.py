@@ -21,7 +21,7 @@ class MmbPdbVariants():
         output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. Accepted formats: txt.
         properties (dic):
             | - **pdb_code** (*str*): ("2vgb") RSCB PDB four letter code. ie: "2ki5".
-            | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/").
+            | - **url** (*str*) - ("http://mmb.irbbarcelona.org/api") URL of the UNIPROT REST API.
             | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
     """
