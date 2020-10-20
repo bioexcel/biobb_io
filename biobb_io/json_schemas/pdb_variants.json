@@ -26,8 +26,8 @@
                 },
                 "url": {
                     "type": "string",
-                    "default": "https://files.rcsb.org/download/",
-                    "description": "URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API (\"http://mmb.irbbarcelona.org/api/pdb/\")."
+                    "default": "http://mmb.irbbarcelona.org/api",
+                    "description": "URL of the UNIPROT REST API."
                 },
                 "remove_tmp": {
                     "type": "boolean",

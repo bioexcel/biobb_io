@@ -1,28 +1,28 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/ligand",
-    "title": "Wrapper class for the PDB REST API.",
+    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/drugbank",
+    "title": "Download a component in SDF format from the `Drugbank <https://www.drugbank.ca/>`_.",
     "type": "object",
     "required": [
-        "output_pdb_path"
+        "output_sdf_path"
     ],
     "properties": {
-        "output_pdb_path": {
+        "output_sdf_path": {
             "type": "string",
-            "description": "Path to the output PDB ligand file",
+            "description": "Path to the output SDF component file",
             "filetype": "output",
-            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sdf_path.sdf",
             "enum": [
-                ".*\\.pdb$"
+                ".*\\.sdf$"
             ]
         },
         "properties": {
             "type": "object",
             "properties": {
-                "ligand_code": {
+                "drugbank_id": {
                     "type": "string",
-                    "default": "12D",
-                    "description": "RSCB PDB ligand code."
+                    "default": "DB00530",
+                    "description": "Drugbank component id."
                 },
                 "remove_tmp": {
                     "type": "boolean",

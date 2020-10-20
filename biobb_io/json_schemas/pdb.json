@@ -22,7 +22,7 @@
                 "pdb_code": {
                     "type": "string",
                     "default": "1ubq",
-                    "description": "RSCB PDB code. ie: \"2VGB\""
+                    "description": "RSCB PDB code."
                 },
                 "filter": {
                     "type": "string",
