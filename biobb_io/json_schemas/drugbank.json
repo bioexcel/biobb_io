@@ -1,8 +1,21 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/drugbank",
-    "title": "Download a component in SDF format from the `Drugbank <https://www.drugbank.ca/>`_.",
+    "name": "biobb_io Drugbank",
+    "title": "This class is a wrapper for the Drugbank REST API.",
+    "description": "Download a single component in SDF format from the Drugbank REST API.",
     "type": "object",
+    "info": {
+        "wrapped_software": {
+            "name": "Drugbank",
+            "version": ">1",
+            "license": "Creative Commons"
+        },
+        "ontology": {
+            "name": "EDAM",
+            "schema": "http://edamontology.org/EDAM.owl"
+        }
+    },
     "required": [
         "output_sdf_path"
     ],
@@ -14,6 +27,12 @@
             "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sdf_path.sdf",
             "enum": [
                 ".*\\.sdf$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.sdf$",
+                    "description": "Path to the output SDF component file"
+                }
             ]
         },
         "properties": {
@@ -22,17 +41,20 @@
                 "drugbank_id": {
                     "type": "string",
                     "default": "DB00530",
+                    "wf_prop": false,
                     "description": "Drugbank component id."
                 },
                 "remove_tmp": {
                     "type": "boolean",
                     "default": true,
-                    "description": "[WF property] Remove temporal files."
+                    "wf_prop": true,
+                    "description": "Remove temporal files."
                 },
                 "restart": {
                     "type": "boolean",
                     "default": false,
-                    "description": "[WF property] Do not execute if output files exist."
+                    "wf_prop": true,
+                    "description": "Do not execute if output files exist."
                 }
             }
         }

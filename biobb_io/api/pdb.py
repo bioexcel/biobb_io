@@ -12,18 +12,31 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class Pdb():
-    """Wrapper class for the PDB REST API.
-    This class is a wrapper for the `PDB download page <https://www.rcsb.org/>`_.
+    """
+    | biobb_io Pdb
+    | This class is a wrapper for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for downloading a single PDB structure.
+    | Wrapper for the `PDB <http://www.rcsb.org/pdb/home/home.do>`_ mirror of the `MMB group REST API <http://mmb.irbbarcelona.org/api/>`_ for additional help in the commandline usage please check `here <https://biobb-io.readthedocs.io/en/latest/command_line.html>`_.
 
     Args:
         output_pdb_path (str): Path to the output PDB file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/pdb_1ubq.pdb>`_. Accepted formats: pdb.
         properties (dic):
-            | - **pdb_code** (*str*) - ("1ubq") RSCB PDB code.
-            | - **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
-            | - **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/").
-            | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
-            | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+            * **pdb_code** (*str*) - ("1ubq") RSCB PDB code.
+            * **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the `official PDB specification <http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)>`_.
+            * **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the `MMB PDB mirror API <http://mmb.irbbarcelona.org/api/pdb/>`_. Values: https://files.rcsb.org/download/ (PDB REST API), http://mmb.irbbarcelona.org/api/pdb/ (MMB PDB mirror API).
+            * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
+            * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+
+    Info:
+        * wrapped_software:
+            * name: PDB
+            * version: >1
+            * license: Apache-2.0
+        * ontology:
+            * name: EDAM
+            * schema: http://edamontology.org/EDAM.owl
+
     """
+
     def __init__(self, output_pdb_path, properties=None, **kwargs) -> None:
         properties = properties or {}
 

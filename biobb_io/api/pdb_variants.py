@@ -14,17 +14,30 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 class MmbPdbVariants():
-    """Wrapper class for the MMB group UNIPROT REST API.
-    This class is a wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_.
+    """
+    | biobb_io MmbPdbVariants
+    | This class is a wrapper for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for downloading PDB variants.
+    | Wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB group REST API <http://mmb.irbbarcelona.org/api/>`_ for additional help in the commandline usage please check `here <https://biobb-io.readthedocs.io/en/latest/command_line.html>`_.
 
     Args:
         output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. Accepted formats: txt.
         properties (dic):
-            | - **pdb_code** (*str*): ("2vgb") RSCB PDB four letter code. ie: "2ki5".
-            | - **url** (*str*) - ("http://mmb.irbbarcelona.org/api") URL of the UNIPROT REST API.
-            | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
-            | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+            * **pdb_code** (*str*) - ("2vgb") RSCB PDB four letter code. ie: "2ki5".
+            * **url** (*str*) - ("http://mmb.irbbarcelona.org/api") URL of the UNIPROT REST API.
+            * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
+            * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+
+    Info:
+        * wrapped_software:
+            * name: UNIPROT
+            * version: >1
+            * license: Creative Commons
+        * ontology:
+            * name: EDAM
+            * schema: http://edamontology.org/EDAM.owl
+
     """
+
     def __init__(self, output_mutations_list_txt, properties=None, **kwargs) -> None:
         properties = properties or {}
 
@@ -85,7 +98,7 @@ class MmbPdbVariants():
             mut_file.write(",".join(mutations))
 
 def main():
-    parser = argparse.ArgumentParser(description="Wrapper for the PDB Variants (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+    parser = argparse.ArgumentParser(description="Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
     #Specific args of each building block

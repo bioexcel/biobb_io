@@ -1,8 +1,21 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/pdb_variants",
-    "title": "Wrapper class for the MMB group UNIPROT REST API.",
+    "name": "biobb_io MmbPdbVariants",
+    "title": "This class is a wrapper for the MMB PDB mirror for downloading PDB variants.",
+    "description": "Wrapper for the UNIPROT mirror of the MMB group REST API for additional help in the commandline usage please check here.",
     "type": "object",
+    "info": {
+        "wrapped_software": {
+            "name": "UNIPROT",
+            "version": ">1",
+            "license": "Creative Commons"
+        },
+        "ontology": {
+            "name": "EDAM",
+            "schema": "http://edamontology.org/EDAM.owl"
+        }
+    },
     "required": [
         "output_mutations_list_txt"
     ],
@@ -14,6 +27,12 @@
             "sample": null,
             "enum": [
                 ".*\\.txt$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.txt$",
+                    "description": "Path to the TXT file containing an ASCII comma separated values of the mutations"
+                }
             ]
         },
         "properties": {
@@ -22,22 +41,26 @@
                 "pdb_code": {
                     "type": "string",
                     "default": "2vgb",
+                    "wf_prop": false,
                     "description": "RSCB PDB four letter code. ie: \"2ki5\"."
                 },
                 "url": {
                     "type": "string",
                     "default": "http://mmb.irbbarcelona.org/api",
+                    "wf_prop": false,
                     "description": "URL of the UNIPROT REST API."
                 },
                 "remove_tmp": {
                     "type": "boolean",
                     "default": true,
-                    "description": "[WF property] Remove temporal files."
+                    "wf_prop": true,
+                    "description": "Remove temporal files."
                 },
                 "restart": {
                     "type": "boolean",
                     "default": false,
-                    "description": "[WF property] Do not execute if output files exist."
+                    "wf_prop": true,
+                    "description": "Do not execute if output files exist."
                 }
             }
         }

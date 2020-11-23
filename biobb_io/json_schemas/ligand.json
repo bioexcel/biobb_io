@@ -1,8 +1,21 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/ligand",
-    "title": "Wrapper class for the PDB REST API.",
+    "name": "biobb_io Ligand",
+    "title": "This class is a wrapper for the MMB PDB mirror for downloading a single ligand.",
+    "description": "Wrapper for the PDB mirror of the MMB group REST API for additional help in the commandline usage please check here.",
     "type": "object",
+    "info": {
+        "wrapped_software": {
+            "name": "PDB",
+            "version": ">1",
+            "license": "Apache-2.0"
+        },
+        "ontology": {
+            "name": "EDAM",
+            "schema": "http://edamontology.org/EDAM.owl"
+        }
+    },
     "required": [
         "output_pdb_path"
     ],
@@ -14,6 +27,12 @@
             "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb",
             "enum": [
                 ".*\\.pdb$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.pdb$",
+                    "description": "Path to the output PDB ligand file"
+                }
             ]
         },
         "properties": {
@@ -22,17 +41,20 @@
                 "ligand_code": {
                     "type": "string",
                     "default": "12D",
+                    "wf_prop": false,
                     "description": "RSCB PDB ligand code."
                 },
                 "remove_tmp": {
                     "type": "boolean",
                     "default": true,
-                    "description": "[WF property] Remove temporal files."
+                    "wf_prop": true,
+                    "description": "Remove temporal files."
                 },
                 "restart": {
                     "type": "boolean",
                     "default": false,
-                    "description": "[WF property] Do not execute if output files exist."
+                    "wf_prop": true,
+                    "description": "Do not execute if output files exist."
                 }
             }
         }

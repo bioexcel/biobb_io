@@ -10,15 +10,29 @@ from biobb_io.api.common import download_drugbank
 from biobb_io.api.common import write_sdf
 
 class Drugbank():
-    """Download a component in SDF format from the `Drugbank <https://www.drugbank.ca/>`_.
+    """
+    | biobb_io Drugbank
+    | This class is a wrapper for the `Drugbank <https://www.drugbank.ca/>`_ REST API.
+    | Download a single component in SDF format from the `Drugbank <https://www.drugbank.ca/>`_ REST API.
 
     Args:
         output_sdf_path (str): Path to the output SDF component file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sdf_path.sdf>`_. Accepted formats: sdf.
         properties (dic):
-            | - **drugbank_id** (*str*) - ("DB00530") Drugbank component id.
-            | - **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
-            | - **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+            * **drugbank_id** (*str*) - ("DB00530") Drugbank component id.
+            * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
+            * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+
+    Info:
+        * wrapped_software:
+            * name: Drugbank
+            * version: >1
+            * license: Creative Commons
+        * ontology:
+            * name: EDAM
+            * schema: http://edamontology.org/EDAM.owl
+
     """
+
     def __init__(self, output_sdf_path, properties=None, **kwargs) -> None:
         properties = properties or {}
 
