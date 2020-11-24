@@ -25,7 +25,6 @@ class Drugbank():
     Info:
         * wrapped_software:
             * name: Drugbank
-            * version: >1
             * license: Creative Commons
         * ontology:
             * name: EDAM

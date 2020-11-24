@@ -12,20 +12,20 @@ from biobb_io.api.common import write_pdb
 class Ligand():
     """
     | biobb_io Ligand
-    | This class is a wrapper for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for downloading a single ligand.
-    | Wrapper for the `PDB <http://www.rcsb.org/pdb/home/home.do>`_ mirror of the `MMB group REST API <http://mmb.irbbarcelona.org/api/>`_ for additional help in the commandline usage please check `here <https://biobb-io.readthedocs.io/en/latest/command_line.html>`_.
+    | This class is a wrapper for downloading a PDB ligand from the Protein Data Bank.
+    | Wrapper for the `Protein Data Bank in Europe <https://www.ebi.ac.uk/pdbe/>`_ and the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for downloading a single PDB ligand.
 
     Args:
         output_pdb_path (str): Path to the output PDB ligand file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb>`_. Accepted formats: pdb.
         properties (dic):
             * **ligand_code** (*str*) - ("12D") RSCB PDB ligand code.
+            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
     Info:
         * wrapped_software:
-            * name: PDB
-            * version: >1
+            * name: Protein Data Bank
             * license: Apache-2.0
         * ontology:
             * name: EDAM
@@ -40,7 +40,7 @@ class Ligand():
         self.output_pdb_path = output_pdb_path
 
         # Properties specific for BB
-        self.url = properties.get('url', "http://mmb.irbbarcelona.org/api/pdbMonomer/")
+        self.api_id = properties.get('api_id', 'pdbe')
         self.ligand_code = properties.get('ligand_code', '12D').strip().lower()
         self.properties = properties
 
@@ -65,12 +65,12 @@ class Ligand():
         fu.check_properties(self, self.properties)
 
         #Downloading PDB file
-        pdb_string = download_ligand(self.ligand_code, self.url, out_log, self.global_log)
+        pdb_string = download_ligand(self.ligand_code, self.api_id, out_log, self.global_log)
         write_pdb(pdb_string, self.output_pdb_path, None, out_log, self.global_log)
 
 def main():
     """Command line interface."""
-    parser = argparse.ArgumentParser(description="Wrapper for the PDB ('http://www.rcsb.org/pdb/home/home.do') mirror of the MMB group REST API ('http://mmb.irbbarcelona.org/api/') for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+    parser = argparse.ArgumentParser(description="Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB ligand.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
     #Specific args of each building block

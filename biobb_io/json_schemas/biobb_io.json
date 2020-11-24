@@ -11,50 +11,54 @@
         {
             "block" : "Drugbank", 
             "tool" : "API Call", 
-            "desc" : "Download a component in SDF format from the Drugbank.",
+            "desc" : "This class is a wrapper for the Drugbank REST API.",
             "exec" : "drugbank",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#api-drugbank-module"
         },
         {
             "block" : "Ligand", 
             "tool" : "API Call", 
-            "desc" : "Downloads a ligand file from the MMB REST API",
+            "desc" : "This class is a wrapper for downloading a PDB ligand from the Protein Data Bank.",
             "exec" : "ligand",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.ligand"
         },
         {
             "block" : "Pdb", 
             "tool" : "API Call", 
-            "desc" : "Downloads a PDB file from the RCSB or MMB REST APIs.",
+            "desc" : "This class is a wrapper for downloading a PDB structure from the Protein Data Bank.",
             "exec" : "pdb",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb"
         }, 
         {
-            "block" : "MmbPdbVariants", 
+            "block" : "PdbVariants", 
             "tool" : "API Call", 
-            "desc" : "Creates a text file containing a list of all the variants mapped to a RSCB PDB code from the corresponding UNIPROT entries.",
+            "desc" : "This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.",
             "exec" : "pdb_variants",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb_variants"
         }, 
         {
-            "block" : "MmbPdbClusterZip", 
+            "block" : "PdbClusterZip", 
             "tool" : "API Call", 
-            "desc" : "Creates a zip file containing all the PDB files in the given sequence similarity cluster percentage of the given RSCB PDB code.",
+            "desc" : "This class is a wrapper for downloading a PDB cluster from the Protein Data Bank.",
             "exec" : "pdb_cluster_zip",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb_cluster_zip"
         }
     ],
     "dep_pypi" : [
-        "install_requires=['biobb_common==3.0.1']", 
+        "install_requires=['biobb_common==3.0.1', 'requests ==2.23.0']", 
         "python_requires='==3.7.*'"
     ], 
     "dep_conda" : [
         "python ==3.7.*", 
-        "biobb_common ==3.0.1"
+        "biobb_common ==3.0.1", 
+        "requests ==2.23.0"
     ],
     "keywords" : [
         "io", 
         "mmb", 
-        "pdb"
+        "pdb",
+        "rcsb",
+        "ebi",
+        "MemProtMD"
     ]
 }

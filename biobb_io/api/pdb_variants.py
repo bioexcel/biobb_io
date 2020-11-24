@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""MmbPdbVariants Module"""
+"""PdbVariants Module"""
 import re
 import logging
 import argparse
@@ -13,24 +13,22 @@ from biobb_io.api.common import get_variants
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-class MmbPdbVariants():
+class PdbVariants():
     """
-    | biobb_io MmbPdbVariants
-    | This class is a wrapper for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for downloading PDB variants.
-    | Wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB group REST API <http://mmb.irbbarcelona.org/api/>`_ for additional help in the commandline usage please check `here <https://biobb-io.readthedocs.io/en/latest/command_line.html>`_.
+    | biobb_io PdbVariants
+    | This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
+    | Wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB group REST API <http://mmb.irbbarcelona.org/api/>`_ for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
 
     Args:
         output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. Accepted formats: txt.
         properties (dic):
             * **pdb_code** (*str*) - ("2vgb") RSCB PDB four letter code. ie: "2ki5".
-            * **url** (*str*) - ("http://mmb.irbbarcelona.org/api") URL of the UNIPROT REST API.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
     Info:
         * wrapped_software:
             * name: UNIPROT
-            * version: >1
             * license: Creative Commons
         * ontology:
             * name: EDAM
@@ -46,7 +44,6 @@ class MmbPdbVariants():
 
         # Properties specific for BB
         self.pdb_code = properties.get('pdb_code', '2vgb').strip().lower()
-        self.url = properties.get('url', "http://mmb.irbbarcelona.org/api")
         self.properties = properties
 
         # Common in all BB
@@ -69,8 +66,9 @@ class MmbPdbVariants():
         # Check the properties
         fu.check_properties(self, self.properties)
 
-        uniprot_id = get_uniprot(self.pdb_code, self.url, out_log, self.global_log)
-        url_mapPDBRes = (self.url+"/uniprot/"+uniprot_id+"/mapPDBRes?pdbId="+self.pdb_code)
+        url = 'http://mmb.irbbarcelona.org/api'
+        uniprot_id = get_uniprot(self.pdb_code, url, out_log, self.global_log)
+        url_mapPDBRes = (url+"/uniprot/"+uniprot_id+"/mapPDBRes?pdbId="+self.pdb_code)
         pattern = re.compile((r"p.(?P<wt>[a-zA-Z]{3})(?P<resnum>\d+)(?P<mt>[a-zA-Z]{3})"))
 
         fu.log('Fetching variants for uniprot_id: %s and pdb_code: %s' % (uniprot_id, self.pdb_code), out_log, self.global_log)
@@ -81,7 +79,7 @@ class MmbPdbVariants():
 
         mapdic = requests.get(url_mapPDBRes, verify=False).json()
         mutations = []
-        uniprot_var_list = get_variants(uniprot_id, self.url, out_log, self.global_log)
+        uniprot_var_list = get_variants(uniprot_id, url, out_log, self.global_log)
         for var in uniprot_var_list:
             uni_mut = pattern.match(var).groupdict()
             for k in mapdic.keys():
@@ -98,7 +96,7 @@ class MmbPdbVariants():
             mut_file.write(",".join(mutations))
 
 def main():
-    parser = argparse.ArgumentParser(description="Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+    parser = argparse.ArgumentParser(description="Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
     #Specific args of each building block
@@ -110,7 +108,7 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    MmbPdbVariants(output_mutations_list_txt=args.output_mutations_list_txt, properties=properties).launch()
+    PdbVariants(output_mutations_list_txt=args.output_mutations_list_txt, properties=properties).launch()
 
 if __name__ == '__main__':
     main()

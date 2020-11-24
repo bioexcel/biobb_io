@@ -3,35 +3,43 @@ import os
 import logging
 import json
 import requests
+import urllib.request
 from biobb_common.tools import file_utils as fu
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 
-def download_pdb(pdb_code, url="https://files.rcsb.org/download/", out_log=None, global_log=None):
+def download_pdb(pdb_code, api_id, out_log=None, global_log=None):
     """
     Returns:
         String: Content of the pdb file.
     """
-    url += pdb_code.lower()
-    if 'mmb' in url:
-        url += "/coords/?"
-    else:
-        url += ".pdb"
+
+    if api_id == 'mmb':
+        url = "http://mmb.irbbarcelona.org/api/pdb/" + pdb_code + "/coords/?"
+    elif api_id == 'pdb':
+        url = "https://files.rcsb.org/download/" + pdb_code + ".pdb"
+    elif api_id == 'pdbe':
+        url = "http://www.ebi.ac.uk/pdbe/entry-files/download/pdb" + pdb_code + ".ent"
 
     fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url, verify=False).content.decode('utf-8')
 
-def download_ligand(ligand_code, url="http://mmb.irbbarcelona.org/api/pdbMonomer/", out_log=None, global_log=None):
+def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
     """
     Returns:
         String: Content of the ligand file.
     """
-    url += ligand_code.lower()
+
+    if api_id == 'mmb':
+        url = "http://mmb.irbbarcelona.org/api/pdbMonomer/" + ligand_code.lower()
+        text = requests.get(url, verify=False).content.decode('utf-8')
+    elif api_id == 'pdbe':
+        url = "ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem/files/pdb/" + ligand_code.upper() + ".pdb"
+        text = urllib.request.urlopen(url).read().decode('utf-8')
 
     fu.log("Downloading: %s from: %s" % (ligand_code, url), out_log, global_log)
 
-    text = requests.get(url, verify=False).content.decode('utf-8')
     # removing useless empty lines at the end of the file
     text = os.linesep.join([s for s in text.splitlines() if s])
     
@@ -69,26 +77,27 @@ def write_sdf(sdf_string, output_sdf_path, out_log=None, global_log=None):
     with open(output_sdf_path, 'w') as output_sdf_file:
         output_sdf_file.write(sdf_string)
 
-def get_cluster_pdb_codes(pdb_code, url="http://mmb.irbbarcelona.org/api/pdb/", cluster='90', out_log=None, global_log=None):
+def get_cluster_pdb_codes(pdb_code, cluster, out_log=None, global_log=None):
     """
     Returns:
         String list: The list of pdb_codes of the selected cluster.
     """
+    url="http://mmb.irbbarcelona.org/api/pdb/"
     pdb_codes = set()
 
-    url = url+pdb_code.lower()+'/clusters/cl-'+cluster+".json"
+    url = url+pdb_code.lower()+'/clusters/cl-'+str(cluster)+".json"
     cluster_list = json.loads(requests.get(url, verify=False).content.decode('utf-8'))['clusterMembers']
     for elem in cluster_list:
         pdb_codes.add(elem['_id'].lower())
 
     if out_log:
-        out_log.info('Cluster: '+cluster+' of pdb_code: '+pdb_code+'\n List: '+str(pdb_codes))
+        out_log.info('Cluster: '+str(cluster)+' of pdb_code: '+pdb_code+'\n List: '+str(pdb_codes))
     if global_log:
-        global_log.info(fu.get_logs_prefix()+'Cluster: '+cluster+' of pdb_code: '+pdb_code+'\n List: '+str(pdb_codes))
+        global_log.info(fu.get_logs_prefix()+'Cluster: '+str(cluster)+' of pdb_code: '+pdb_code+'\n List: '+str(pdb_codes))
 
     return pdb_codes
 
-def get_uniprot(pdb_code, url="http://mmb.irbbarcelona.org/api", out_log=None, global_log=None):
+def get_uniprot(pdb_code, url, out_log=None, global_log=None):
     """Returns the UNIPROT code corresponding to the `pdb_code`.
 
     Returns:

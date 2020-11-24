@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""MmbPdbClusterZip Module"""
+"""PdbClusterZip Module"""
 import os
 import argparse
 import logging
@@ -13,26 +13,25 @@ from biobb_io.api.common import write_pdb
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-class MmbPdbClusterZip():
+class PdbClusterZip():
     """
-    | biobb_io MmbPdbClusterZip
-    | This class is a wrapper for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for downloading a PDB cluster.
-    | Wrapper for the `PDB <http://www.rcsb.org/pdb/home/home.do>`_ mirror of the `MMB group REST API <http://mmb.irbbarcelona.org/api/>`_ for additional help in the commandline usage please check `here <https://biobb-io.readthedocs.io/en/latest/command_line.html>`_.
+    | biobb_io PdbClusterZip
+    | This class is a wrapper for downloading a PDB cluster from the Protein Data Bank.
+    | Wrapper for the `Protein Data Bank in Europe <https://www.ebi.ac.uk/pdbe/>`_, the `Protein Data Bank <https://www.rcsb.org/>`_ and the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for downloading a PDB cluster.
 
     Args:
         output_pdb_zip_path (str): Path to the ZIP or PDB file containing the output PDB files. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/reference_output_pdb_zip_path.zip>`_. Accepted formats: pdb, zip.
         properties (dic):
             * **pdb_code** (*str*) - ("2vgb") RSCB PDB code. ie: "2VGB"
             * **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
-            * **cluster** (*str*) - (90) Cluster number for the :meth:`biobb_io.api.MmbPdb.get_pdb_cluster_zip` method.
-            * **url** (*str*) - ("https://files.rcsb.org/download/") URL of the PDB REST API. Another option for this parameter is the MMB PDB mirror API ("http://mmb.irbbarcelona.org/api/pdb/"). Values: https://files.rcsb.org/download/ (PDB REST API), http://mmb.irbbarcelona.org/api/pdb/ (MMB PDB mirror API).
+            * **cluster** (*int*) - (90) Cluster number for the :meth:`biobb_io.api.MmbPdb.get_pdb_cluster_zip` method.
+            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
     Info:
         * wrapped_software:
-            * name: PDB
-            * version: >1
+            * name: Protein Data Bank
             * license: Apache-2.0
         * ontology:
             * name: EDAM
@@ -47,10 +46,10 @@ class MmbPdbClusterZip():
         self.output_pdb_zip_path = output_pdb_zip_path
 
         # Properties specific for BB
-        self.url = properties.get('url', "https://files.rcsb.org/download/")
+        self.api_id = properties.get('api_id', 'pdbe')
         self.pdb_code = properties.get('pdb_code', '2vgb').strip().lower()
-        self.filter = properties.get('filter', ["ATOM", "MODEL", "ENDMDL"])
-        self.cluster = str(properties.get('cluster', 90))
+        self.filter = properties.get('filter', ['ATOM', 'MODEL', 'ENDMDL'])
+        self.cluster = properties.get('cluster', 90)
         self.properties = properties
 
         # Common in all BB
@@ -82,7 +81,7 @@ class MmbPdbClusterZip():
         unique_dir = fu.create_unique_dir()
         for pdb_code in pdb_code_list:
             pdb_file = os.path.join(unique_dir, pdb_code+".pdb")
-            pdb_string = download_pdb(pdb_code=pdb_code, url=self.url, out_log=out_log, global_log=self.global_log)
+            pdb_string = download_pdb(pdb_code=pdb_code, api_id=self.api_id, out_log=out_log, global_log=self.global_log)
             write_pdb(pdb_string, pdb_file, self.filter, out_log, self.global_log)
             file_list.append(os.path.abspath(pdb_file))
 
@@ -96,7 +95,7 @@ class MmbPdbClusterZip():
             fu.log('Removed temporary folder: %s' % unique_dir, out_log)
 
 def main():
-    parser = argparse.ArgumentParser(description="Wrapper for the PDB Cluster (http://www.rcsb.org/pdb/home/home.do) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for additional help in the commandline usage please check ('https://biobb-io.readthedocs.io/en/latest/command_line.html')", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+    parser = argparse.ArgumentParser(description="Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a PDB cluster.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
     #Specific args of each building block
@@ -108,7 +107,7 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    MmbPdbClusterZip(output_pdb_zip_path=args.output_pdb_zip_path, properties=properties).launch()
+    PdbClusterZip(output_pdb_zip_path=args.output_pdb_zip_path, properties=properties).launch()
 
 if __name__ == '__main__':
     main()
