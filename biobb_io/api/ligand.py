@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 
 """Module containing the Ligand class and the command line interface."""
-import logging
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import download_ligand
-from biobb_io.api.common import write_pdb
+from biobb_io.api.common import *
 
 class Ligand():
     """
@@ -18,7 +16,7 @@ class Ligand():
     Args:
         output_pdb_path (str): Path to the output PDB ligand file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb>`_. Accepted formats: pdb.
         properties (dic):
-            * **ligand_code** (*str*) - ("12D") RSCB PDB ligand code.
+            * **ligand_code** (*str*) - (None) RSCB PDB ligand code.
             * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
@@ -41,7 +39,7 @@ class Ligand():
 
         # Properties specific for BB
         self.api_id = properties.get('api_id', 'pdbe')
-        self.ligand_code = properties.get('ligand_code', '12D').strip().lower()
+        self.ligand_code = properties.get('ligand_code', None)
         self.properties = properties
 
         # Properties common in all BB
@@ -53,6 +51,10 @@ class Ligand():
         self.remove_tmp = properties.get('remove_tmp', True)
         self.restart = properties.get('restart', False)
         
+    def check_data_params(self, out_log, err_log):
+        """ Checks all the input/output paths and parameters """
+        self.output_pdb_path = check_output_path(self.output_pdb_path, "output_pdb_path", False, out_log, self.__class__.__name__)
+
     @launchlogger
     def launch(self) -> int:
         """Writes the PDB file content of the first ligand_code to output_pdb_path."""
@@ -61,8 +63,15 @@ class Ligand():
         out_log = getattr(self, 'out_log', None)
         err_log = getattr(self, 'err_log', None)
 
+        # check input/output paths and parameters
+        self.check_data_params(out_log, err_log)
+
         # Check the properties
         fu.check_properties(self, self.properties)
+
+        check_mandatory_property(self.ligand_code, 'ligand_code', out_log, self.__class__.__name__)
+
+        self.ligand_code = self.ligand_code.strip().lower()
 
         #Downloading PDB file
         pdb_string = download_ligand(self.ligand_code, self.api_id, out_log, self.global_log)

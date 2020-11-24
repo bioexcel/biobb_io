@@ -1,28 +1,29 @@
 #!/usr/bin/env python
 
-"""Module containing the Drugbank class and the command line interface."""
+"""Module containing the MemProtMDSimSearch class and the command line interface."""
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import *
 
-class Drugbank():
+class MemProtMDSimSearch():
     """
-    | biobb_io Drugbank
-    | This class is a wrapper for the `Drugbank <https://www.drugbank.ca/>`_ REST API.
-    | Download a single component in SDF format from the `Drugbank <https://www.drugbank.ca/>`_ REST API.
+    | biobb_io MemProtMDSimSearch
+    | This class is a wrapper of the MemProtMD to perform advanced searches in the MemProtMD DB using its REST API.
+    | Wrapper for the `MemProtMD DB REST API <http://memprotmd.bioch.ox.ac.uk/>`_ to perform advanced searches.
 
     Args:
-        output_sdf_path (str): Path to the output SDF component file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sdf_path.sdf>`_. Accepted formats: sdf.
+        output_simulations (str): Path to the output JSON file. File type: output. `Sample file <>`_. Accepted formats: json.
         properties (dic):
-            * **drugbank_id** (*str*) - (None) Drugbank component id.
+            * **collection_name** (*str*) - ("refs") Remove temporal files.
+            * **keyword** (*str*) - (None) Remove temporal files.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
     Info:
         * wrapped_software:
-            * name: Drugbank
+            * name: MemProtMD DB
             * license: Creative Commons
         * ontology:
             * name: EDAM
@@ -30,14 +31,15 @@ class Drugbank():
 
     """
 
-    def __init__(self, output_sdf_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_simulations, properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Input/Output files
-        self.output_sdf_path = output_sdf_path
+        self.output_simulations = output_simulations
 
         # Properties specific for BB
-        self.drugbank_id = properties.get('drugbank_id', None)
+        self.collection_name = properties.get('collection_name', 'refs')
+        self.keyword = properties.get('keyword', None)
         self.properties = properties
 
         # Properties common in all BB
@@ -48,15 +50,15 @@ class Drugbank():
         self.path = properties.get('path', '')
         self.remove_tmp = properties.get('remove_tmp', True)
         self.restart = properties.get('restart', False)
-        
+
     def check_data_params(self, out_log, err_log):
         """ Checks all the input/output paths and parameters """
-        self.output_sdf_path = check_output_path(self.output_sdf_path, "output_sdf_path", False, out_log, self.__class__.__name__)
+        self.output_simulations = check_output_path(self.output_simulations, "output_simulations", False, out_log, self.__class__.__name__)
 
     @launchlogger
     def launch(self) -> int:
-        """Writes the SDF content of the first drugbank_id to output_sdf_path."""
-
+        """Writes all the simulation in JSON format to the output_simulations file"""
+        
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
         err_log = getattr(self, 'err_log', None)
@@ -67,30 +69,27 @@ class Drugbank():
         # Check the properties
         fu.check_properties(self, self.properties)
 
-        check_mandatory_property(self.drugbank_id, 'drugbank_id', out_log, self.__class__.__name__)
+        # get JSON object
+        json_string = get_memprotmd_sim_search(self.collection_name, self.keyword, out_log, self.global_log)
 
-        self.drugbank_id = self.drugbank_id.strip().lower()
-        url = "https://www.drugbank.ca/structures/small_molecule_drugs/%s.sdf?type=3d"
-
-        #Downloading SDF file
-        sdf_string = download_drugbank(self.drugbank_id, url, out_log, self.global_log)
-        write_sdf(sdf_string, self.output_sdf_path, out_log, self.global_log)
+        # write JSON file
+        write_json(json_string, self.output_simulations, self.out_log, self.global_log)
 
 def main():
     """Command line interface."""
-    parser = argparse.ArgumentParser(description="Download a component in SDF format from the Drugbank (https://www.drugbank.ca/).", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+    parser = argparse.ArgumentParser(description="Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to perform advanced searches.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
-    #Specific args of each building block
+    # Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
-    required_args.add_argument('-o', '--output_sdf_path', required=True, help="Path to the output SDF component file. Accepted formats: sdf.")
+    required_args.add_argument('-o', '--output_simulations', required=True, help="Output file name")
 
     args = parser.parse_args()
     config = args.config if args.config else None
     properties = settings.ConfReader(config=config).get_prop_dic()
 
-    #Specific call of each building block
-    Drugbank(output_sdf_path=args.output_sdf_path, properties=properties).launch()
+    # Specific call of each building block
+    MemProtMDSimSearch(output_simulations=args.output_simulations, properties=properties).launch()
 
 if __name__ == '__main__':
     main()

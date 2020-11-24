@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 
 """Module containing the Pdb class and the command line interface."""
-import logging
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import download_pdb
-from biobb_io.api.common import write_pdb
-logging.getLogger("requests").setLevel(logging.WARNING)
-logging.getLogger("urllib3").setLevel(logging.WARNING)
+from biobb_io.api.common import *
 
 class Pdb():
     """
@@ -20,7 +16,7 @@ class Pdb():
     Args:
         output_pdb_path (str): Path to the output PDB file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/pdb_1ubq.pdb>`_. Accepted formats: pdb.
         properties (dic):
-            * **pdb_code** (*str*) - ("1ubq") RSCB PDB code.
+            * **pdb_code** (*str*) - (None) RSCB PDB code.
             * **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the `official PDB specification <http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)>`_.
             * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
@@ -44,7 +40,7 @@ class Pdb():
 
         # Properties specific for BB
         self.api_id = properties.get('api_id', 'pdbe')
-        self.pdb_code = properties.get('pdb_code', '1ubq').strip().lower()
+        self.pdb_code = properties.get('pdb_code', None)
         self.filter = properties.get('filter', ['ATOM', 'MODEL', 'ENDMDL'])
         self.properties = properties
 
@@ -57,6 +53,10 @@ class Pdb():
         self.remove_tmp = properties.get('remove_tmp', True)
         self.restart = properties.get('restart', False)
 
+    def check_data_params(self, out_log, err_log):
+        """ Checks all the input/output paths and parameters """
+        self.output_pdb_path = check_output_path(self.output_pdb_path, "output_pdb_path", False, out_log, self.__class__.__name__)
+
     @launchlogger
     def launch(self) -> int:
         """Writes the PDB file content of the first pdb_code to output_pdb_path."""
@@ -65,8 +65,15 @@ class Pdb():
         out_log = getattr(self, 'out_log', None)
         err_log = getattr(self, 'err_log', None)
 
+        # check input/output paths and parameters
+        self.check_data_params(out_log, err_log)
+
         # Check the properties
         fu.check_properties(self, self.properties)
+
+        check_mandatory_property(self.pdb_code, 'pdb_code', out_log, self.__class__.__name__)
+
+        self.pdb_code = self.pdb_code.strip().lower()
 
         # Downloading PDB file
         pdb_string = download_pdb(self.pdb_code, self.api_id, out_log, self.global_log)

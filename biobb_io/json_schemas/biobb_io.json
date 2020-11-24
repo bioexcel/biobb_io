@@ -42,6 +42,27 @@
             "desc" : "This class is a wrapper for downloading a PDB cluster from the Protein Data Bank.",
             "exec" : "pdb_cluster_zip",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb_cluster_zip"
+        }, 
+        {
+            "block" : "MemProtMDSimList", 
+            "tool" : "API Call", 
+            "desc" : "This class is a wrapper of the MemProtMD to get all available membrane-protein systems from its REST API.",
+            "exec" : "memprotmd_sim_list",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim_list"
+        }, 
+        {
+            "block" : "MemProtMDSimSearch", 
+            "tool" : "API Call", 
+            "desc" : "This class is a wrapper of the MemProtMD to perform advanced searches in the MemProtMD DB using its REST API.",
+            "exec" : "memprotmd_sim_search",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim_search"
+        }, 
+        {
+            "block" : "MemProtMDSim", 
+            "tool" : "API Call", 
+            "desc" : "This class is a wrapper of the MemProtMD to download a simulation using its REST API.",
+            "exec" : "memprotmd_sim",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim"
         }
     ],
     "dep_pypi" : [

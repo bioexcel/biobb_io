@@ -3,15 +3,10 @@
 """PdbClusterZip Module"""
 import os
 import argparse
-import logging
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import get_cluster_pdb_codes
-from biobb_io.api.common import download_pdb
-from biobb_io.api.common import write_pdb
-logging.getLogger("requests").setLevel(logging.WARNING)
-logging.getLogger("urllib3").setLevel(logging.WARNING)
+from biobb_io.api.common import *
 
 class PdbClusterZip():
     """
@@ -22,7 +17,7 @@ class PdbClusterZip():
     Args:
         output_pdb_zip_path (str): Path to the ZIP or PDB file containing the output PDB files. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/reference_output_pdb_zip_path.zip>`_. Accepted formats: pdb, zip.
         properties (dic):
-            * **pdb_code** (*str*) - ("2vgb") RSCB PDB code. ie: "2VGB"
+            * **pdb_code** (*str*) - (None) RSCB PDB code.
             * **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
             * **cluster** (*int*) - (90) Cluster number for the :meth:`biobb_io.api.MmbPdb.get_pdb_cluster_zip` method.
             * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
@@ -47,7 +42,7 @@ class PdbClusterZip():
 
         # Properties specific for BB
         self.api_id = properties.get('api_id', 'pdbe')
-        self.pdb_code = properties.get('pdb_code', '2vgb').strip().lower()
+        self.pdb_code = properties.get('pdb_code', None)
         self.filter = properties.get('filter', ['ATOM', 'MODEL', 'ENDMDL'])
         self.cluster = properties.get('cluster', 90)
         self.properties = properties
@@ -61,6 +56,10 @@ class PdbClusterZip():
         self.remove_tmp = properties.get('remove_tmp', True)
         self.restart = properties.get('restart', False)
 
+    def check_data_params(self, out_log, err_log):
+        """ Checks all the input/output paths and parameters """
+        self.output_pdb_zip_path = check_output_path(self.output_pdb_zip_path, "output_pdb_zip_path", False, out_log, self.__class__.__name__)
+
     @launchlogger
     def launch(self) -> int:
         """
@@ -72,8 +71,15 @@ class PdbClusterZip():
         out_log = getattr(self, 'out_log', None)
         err_log = getattr(self, 'err_log', None)
 
+        # check input/output paths and parameters
+        self.check_data_params(out_log, err_log)
+
         # Check the properties
         fu.check_properties(self, self.properties)
+
+        check_mandatory_property(self.pdb_code, 'pdb_code', out_log, self.__class__.__name__)
+
+        self.pdb_code = self.pdb_code.strip().lower()
 
         file_list = []
         #Downloading PDB_files

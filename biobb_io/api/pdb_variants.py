@@ -2,16 +2,12 @@
 
 """PdbVariants Module"""
 import re
-import logging
 import argparse
 import requests
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import get_uniprot
-from biobb_io.api.common import get_variants
-logging.getLogger("requests").setLevel(logging.WARNING)
-logging.getLogger("urllib3").setLevel(logging.WARNING)
+from biobb_io.api.common import *
 
 class PdbVariants():
     """
@@ -20,9 +16,9 @@ class PdbVariants():
     | Wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB group REST API <http://mmb.irbbarcelona.org/api/>`_ for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
 
     Args:
-        output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. Accepted formats: txt.
+        output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. `Sample file <>`_. Accepted formats: txt.
         properties (dic):
-            * **pdb_code** (*str*) - ("2vgb") RSCB PDB four letter code. ie: "2ki5".
+            * **pdb_code** (*str*) - (None) RSCB PDB four letter code.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
@@ -43,7 +39,7 @@ class PdbVariants():
         self.output_mutations_list_txt = output_mutations_list_txt
 
         # Properties specific for BB
-        self.pdb_code = properties.get('pdb_code', '2vgb').strip().lower()
+        self.pdb_code = properties.get('pdb_code', None)
         self.properties = properties
 
         # Common in all BB
@@ -55,6 +51,10 @@ class PdbVariants():
         self.remove_tmp = properties.get('remove_tmp', True)
         self.restart = properties.get('restart', False)
 
+    def check_data_params(self, out_log, err_log):
+        """ Checks all the input/output paths and parameters """
+        self.output_mutations_list_txt = check_output_path(self.output_mutations_list_txt, "output_mutations_list_txt", False, out_log, self.__class__.__name__)
+
     @launchlogger
     def launch(self) -> int:
         """Writes the variants of the selected `pdb_code` to `output_mutations_list_txt`"""
@@ -63,8 +63,15 @@ class PdbVariants():
         out_log = getattr(self, 'out_log', None)
         err_log = getattr(self, 'err_log', None)
 
+        # check input/output paths and parameters
+        self.check_data_params(out_log, err_log)
+
         # Check the properties
         fu.check_properties(self, self.properties)
+
+        check_mandatory_property(self.pdb_code, 'pdb_code', out_log, self.__class__.__name__)
+
+        self.pdb_code = self.pdb_code.strip().lower()
 
         url = 'http://mmb.irbbarcelona.org/api'
         uniprot_id = get_uniprot(self.pdb_code, url, out_log, self.global_log)

@@ -1,13 +1,35 @@
 """ Common functions for package api """
 import os
-import logging
 import json
 import requests
 import urllib.request
+from pathlib import Path, PurePath
 from biobb_common.tools import file_utils as fu
-logging.getLogger("requests").setLevel(logging.WARNING)
-logging.getLogger("urllib3").setLevel(logging.WARNING)
 
+def check_output_path(path, argument, optional, out_log, classname):
+    """ Checks output file """ 
+    if optional and not path:
+        return None
+    if PurePath(path).parent and not Path(PurePath(path).parent).exists():
+        fu.log(classname + ': Unexisting %s folder, exiting' % argument, out_log)
+        raise SystemExit(classname + ': Unexisting %s folder' % argument)
+    file_extension = PurePath(path).suffix
+    if not is_valid_file(file_extension[1:], argument):
+        fu.log(classname + ': Format %s in %s file is not compatible' % (file_extension[1:], argument), out_log)
+        raise SystemExit(classname + ': Format %s in %s file is not compatible' % (file_extension[1:], argument))
+    return path
+
+def is_valid_file(ext, argument):
+    """ Checks if file format is compatible """
+    formats = {
+        'output_sdf_path': ['sdf'],
+        'output_pdb_path': ['pdb'],
+        'output_simulations': ['json'],
+        'output_simulation': ['zip'],
+        'output_pdb_zip_path': ['zip'],
+        'output_mutations_list_txt': ['txt'],
+    }
+    return ext in formats[argument]
 
 def download_pdb(pdb_code, api_id, out_log=None, global_log=None):
     """
@@ -61,7 +83,7 @@ def download_drugbank(drugbank_id, url="https://www.drugbank.ca/structures/small
 
 def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=None):
     """ Writes and filters a PDB """
-    fu.log("Writting pdb to: %s" % (os.path.abspath(output_pdb_path)), out_log, global_log)
+    fu.log("Writting pdb to: %s" % (output_pdb_path), out_log, global_log)
     with open(output_pdb_path, 'w') as output_pdb_file:
         if filt:
             fu.log("Filtering lines NOT starting with one of these words: %s" % str(filt), out_log, global_log)
@@ -73,7 +95,7 @@ def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=N
 
 def write_sdf(sdf_string, output_sdf_path, out_log=None, global_log=None):
     """ Writes a SDF """
-    fu.log("Writting sdf to: %s" % (os.path.abspath(output_sdf_path)), out_log, global_log)
+    fu.log("Writting sdf to: %s" % (output_sdf_path), out_log, global_log)
     with open(output_sdf_path, 'w') as output_sdf_file:
         output_sdf_file.write(sdf_string)
 
@@ -125,3 +147,69 @@ def get_variants(uniprot_id, url="http://mmb.irbbarcelona.org/api", out_log=None
 
     fu.log('Found: %d variants for uniprot id: %s' % (len(variants), uniprot_id), out_log, global_log)
     return variants if variants else []
+
+def write_json(json_string, output_json_path, out_log=None, global_log=None):
+    """ Writes a JSON """
+    fu.log("Writting json to: %s" % (output_json_path), out_log, global_log)
+    with open(output_json_path, 'w') as output_json_file:
+        output_json_file.write(json_string)
+
+def get_memprotmd_sim_list(out_log=None, global_log=None):
+    """ Returns all available membrane-protein systems (simulations) from the MemProtMD DB using its REST API """
+
+    fu.log('Getting all available membrane-protein systems (simulations) from the MemProtMD REST API', out_log, global_log)
+
+    url = "http://memprotmd.bioch.ox.ac.uk/api/simulations/all"
+    json_obj = requests.post(url).json()
+    json_string = json.dumps(json_obj, indent=4)
+
+    fu.log('Total number of simulations: %d' % (len(json_obj)), out_log, global_log)
+
+    return json_string
+
+def get_memprotmd_sim_search(collection_name, keyword, out_log=None, global_log=None):
+    """ Performs advanced searches in the MemProtMD DB using its REST API and a given keyword """
+
+    fu.log('Getting search results from the MemProtMD REST API. Collection name: %s, keyword: %s' % (collection_name, keyword), out_log, global_log)
+
+    url = "http://memprotmd.bioch.ox.ac.uk/api/search/advanced"
+    json_query = {
+        "collectionName" : collection_name,
+        "query" : {
+            "keywords" : keyword
+        },
+        "projection" : {
+            "simulations" : 1
+        },
+        "options" : {}
+    }
+
+    json_obj = requests.post(url, json=json_query).json()
+    json_string = json.dumps(json_obj, indent=4)
+
+    # get total number of simulation
+    list_kw = []
+    for sim_list in json_obj:
+        for sim in sim_list['simulations']:
+            list_kw.append(sim)
+
+    fu.log('Total number of simulations: %d' % (len(list_kw)), out_log, global_log)
+
+    return json_string
+
+def get_memprotmd_sim(pdb_code, output_file, out_log=None, global_log=None):
+
+    fu.log('Getting simulation file from pdb code %s' % (pdb_code), out_log, global_log)
+
+    url = "http://memprotmd.bioch.ox.ac.uk/data/memprotmd/simulations/"+ pdb_code + "_default_dppc/files/run/at.zip"
+    response = requests.get(url)
+
+    open(output_file, 'wb').write(response.content)
+    
+    fu.log("Saving output %s file" % (output_file), out_log, global_log)
+
+def check_mandatory_property(property, name, out_log, classname):
+    if not property:
+        fu.log(classname + ': Unexisting %s property, exiting' % name, out_log)
+        raise SystemExit(classname + ': Unexisting %s property' % name)
+    return property

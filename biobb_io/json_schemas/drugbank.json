@@ -8,7 +8,6 @@
     "info": {
         "wrapped_software": {
             "name": "Drugbank",
-            "version": ">1",
             "license": "Creative Commons"
         },
         "ontology": {
@@ -40,7 +39,7 @@
             "properties": {
                 "drugbank_id": {
                     "type": "string",
-                    "default": "DB00530",
+                    "default": null,
                     "wf_prop": false,
                     "description": "Drugbank component id."
                 },

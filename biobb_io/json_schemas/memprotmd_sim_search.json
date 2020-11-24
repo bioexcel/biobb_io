@@ -1,13 +1,13 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/pdb_variants",
-    "name": "biobb_io PdbVariants",
-    "title": "This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.",
-    "description": "Wrapper for the UNIPROT mirror of the MMB group REST API for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.",
+    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/memprotmd_sim_search",
+    "name": "biobb_io MemProtMDSimSearch",
+    "title": "This class is a wrapper of the MemProtMD to perform advanced searches in the MemProtMD DB using its REST API.",
+    "description": "Wrapper for the MemProtMD DB REST API to perform advanced searches.",
     "type": "object",
     "info": {
         "wrapped_software": {
-            "name": "UNIPROT",
+            "name": "MemProtMD DB",
             "license": "Creative Commons"
         },
         "ontology": {
@@ -16,32 +16,38 @@
         }
     },
     "required": [
-        "output_mutations_list_txt"
+        "output_simulations"
     ],
     "properties": {
-        "output_mutations_list_txt": {
+        "output_simulations": {
             "type": "string",
-            "description": "Path to the TXT file containing an ASCII comma separated values of the mutations",
+            "description": "Path to the output JSON file",
             "filetype": "output",
             "sample": null,
             "enum": [
-                ".*\\.txt$"
+                ".*\\.json$"
             ],
             "file_formats": [
                 {
-                    "extension": ".*\\.txt$",
-                    "description": "Path to the TXT file containing an ASCII comma separated values of the mutations"
+                    "extension": ".*\\.json$",
+                    "description": "Path to the output JSON file"
                 }
             ]
         },
         "properties": {
             "type": "object",
             "properties": {
-                "pdb_code": {
+                "collection_name": {
+                    "type": "string",
+                    "default": "refs",
+                    "wf_prop": false,
+                    "description": "Remove temporal files."
+                },
+                "keyword": {
                     "type": "string",
                     "default": null,
                     "wf_prop": false,
-                    "description": "RSCB PDB four letter code."
+                    "description": "Remove temporal files."
                 },
                 "remove_tmp": {
                     "type": "boolean",
