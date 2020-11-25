@@ -1,5 +1,6 @@
 {
-    "properties": {
-        "ligand_code": "12D"
-    }
+  "properties": {
+    "ligand_code": "IBP",
+    "api_id": "pdbe"
+  }
 }

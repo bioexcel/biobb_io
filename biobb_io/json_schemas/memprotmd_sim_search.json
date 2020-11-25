@@ -41,13 +41,167 @@
                     "type": "string",
                     "default": "refs",
                     "wf_prop": false,
-                    "description": "Remove temporal files."
+                    "description": "Name of the collection to query."
                 },
                 "keyword": {
                     "type": "string",
                     "default": null,
                     "wf_prop": false,
-                    "description": "Remove temporal files."
+                    "description": "String to search for in the database metadata. Examples are families like gpcr or porin. ",
+                    "enum": [
+                        "porin",
+                        "outer membrane protein",
+                        "membrane protein",
+                        "gpcr",
+                        "ion channels",
+                        "rhodopsin",
+                        "abc",
+                        "mip",
+                        "ligand-gated",
+                        "ammonia",
+                        "mapeg",
+                        "transmembrane",
+                        "protein",
+                        "kinase",
+                        "glycoprotein",
+                        "immunoglobulin",
+                        "integrin",
+                        "bnip3",
+                        "bcl-2",
+                        "atpase",
+                        "cytochrome",
+                        "nadp",
+                        "a4",
+                        "lysosome",
+                        "necrosis",
+                        "oxidoreductase",
+                        "ceramidase",
+                        "dehydrogenase",
+                        "mitochondrial",
+                        "plastid"
+                    ],
+                    "property_formats": [
+                        {
+                            "name": "porin",
+                            "description": null
+                        },
+                        {
+                            "name": "outer membrane protein",
+                            "description": null
+                        },
+                        {
+                            "name": "membrane protein",
+                            "description": null
+                        },
+                        {
+                            "name": "gpcr",
+                            "description": "7-transmembrane domain receptors transducing extracellular signals into cells"
+                        },
+                        {
+                            "name": "ion channels",
+                            "description": null
+                        },
+                        {
+                            "name": "rhodopsin",
+                            "description": "The most famous GPCRs"
+                        },
+                        {
+                            "name": "abc",
+                            "description": null
+                        },
+                        {
+                            "name": "mip",
+                            "description": "Major Intrinsic Protein (MIP)/FNT superfamily: specific for the transport of water and small neutral solutes"
+                        },
+                        {
+                            "name": "ligand-gated",
+                            "description": "Ligand-dependent signal conversion from chemical signals to electric signals"
+                        },
+                        {
+                            "name": "ammonia",
+                            "description": "Regulating transepithelial ammonia secretion"
+                        },
+                        {
+                            "name": "mapeg",
+                            "description": "Eicosanoid and Glutathione metabolism proteins"
+                        },
+                        {
+                            "name": "transmembrane",
+                            "description": "Heme biosynthesis"
+                        },
+                        {
+                            "name": "protein",
+                            "description": null
+                        },
+                        {
+                            "name": "kinase",
+                            "description": "Tyrosine-protein kinases: regulate central nervous system; gene transcription and cell differentiation"
+                        },
+                        {
+                            "name": "glycoprotein",
+                            "description": "Expression of TCR complex"
+                        },
+                        {
+                            "name": "immunoglobulin",
+                            "description": "Recognition; binding and adhesion process of cells"
+                        },
+                        {
+                            "name": "integrin",
+                            "description": "Bridges for cell-cell and cell-extracellular matrix interaction"
+                        },
+                        {
+                            "name": "bnip3",
+                            "description": "BNip3 protein family: protect cell from apoptosis"
+                        },
+                        {
+                            "name": "bcl-2",
+                            "description": "Regulating cell-death; either induce apoptotic or inhibit apoptosis"
+                        },
+                        {
+                            "name": "atpase",
+                            "description": "ATPase regulators; P-P-bond hydrolysis-driven transporter"
+                        },
+                        {
+                            "name": "cytochrome",
+                            "description": "Terminal oxidase enzyme in electron transfer chain"
+                        },
+                        {
+                            "name": "nadp",
+                            "description": "Transmembrane proteins with NAD(P)-binding Rossmann-fold domains: monoamine oxidase; deaminates norepinephrine; epinephrine; serotonin and dopamine"
+                        },
+                        {
+                            "name": "a4",
+                            "description": "Amyloid beta A4 protein; involved in alzheimer's diseases"
+                        },
+                        {
+                            "name": "lysosome",
+                            "description": "Lysosome-associated membrane glycoprotein: specific to lysosomes; CD107"
+                        },
+                        {
+                            "name": "necrosis",
+                            "description": "Tumor necrosis factor recepto: binding with TNF and NGF; interacting with a variety of signal molecules; highly associated with apoptosis"
+                        },
+                        {
+                            "name": "oxidoreductase",
+                            "description": "DHODH; biosynthesis of orotate"
+                        },
+                        {
+                            "name": "ceramidase",
+                            "description": "Neutral/alkaline ceramidase: converting sphingolipid to sphingosine"
+                        },
+                        {
+                            "name": "dehydrogenase",
+                            "description": "Aldehyde dehydrogenase:ALDH; Oxidation of aldehydes"
+                        },
+                        {
+                            "name": "mitochondrial",
+                            "description": null
+                        },
+                        {
+                            "name": "plastid",
+                            "description": null
+                        }
+                    ]
                 },
                 "remove_tmp": {
                     "type": "boolean",

@@ -1,37 +1,64 @@
 working_dir_path: /tmp/biobb/unitests
 
-pdb:
+drugbank:
   paths:
-    output_pdb_path: output_pdb_path.pdb
-    reference_output_pdb_path: file:test_reference_dir/api/pdb_1ubq.pdb
+    output_sdf_path: output_sdf_path.sdf
+    reference_output_sdf_path: file:test_reference_dir/api/output_drugbank.sdf
+  properties:
+    drugbank_id: DB00530
 
 ligand:
   paths:
     output_pdb_path: output_pdb_path.pdb
-    reference_output_pdb_path: file:test_reference_dir/api/ligand_12d.pdb
+    reference_output_pdb_path: file:test_reference_dir/api/output_ligand.pdb
   properties:
-    ligand_code: 12D
+    ligand_code: IBP
+    api_id: pdbe
 
-drugbank:
+memprotmd_sim:
   paths:
-    output_sdf_path: output_sdf_path.sdf
-    reference_output_sdf_path: file:test_reference_dir/api/output_sdf_path.sdf
+    output_simulation: output_simulation.zip
+    reference_output_simulation: file:test_reference_dir/api/output_sim.zip
   properties:
-    drugbank_id: DB00530
+    pdb_code: 1hzx
 
-pdb_url:
+memprotmd_sim_list:
+  paths:
+    output_simulations: output_simulations.json
+    reference_output_simulations: file:test_reference_dir/api/output_sim_list.json
   properties:
-    url: http://mmb.irbbarcelona.org/api/pdb/
+    remove_tmp: false
+
+memprotmd_sim_search:
+  paths:
+    output_simulations: output_simulations.json
+    reference_output_simulations: file:test_reference_dir/api/output_sim_search.json
+  properties:
+    collection_name: refs
+    keyword: porin
+
+pdb:
   paths:
     output_pdb_path: output_pdb_path.pdb
-    reference_output_pdb_path: file:test_reference_dir/api/pdb_1ubq.pdb
+    reference_output_pdb_path: file:test_reference_dir/api/output_pdb.pdb
+  properties:
+    pdb_code: 2VGB
+    filter: [ATOM, HETATM]
+    api_id: pdbe
 
 pdb_cluster_zip:
   paths:
     output_pdb_zip_path: output_pdb_zip_path.zip
-    reference_output_pdb_zip_path: file:test_reference_dir/api/reference_output_pdb_zip_path.zip
+    reference_output_pdb_zip_path: file:test_reference_dir/api/output_pdb_cluster.zip
+  properties:
+    pdb_code: 2vgb
+    filter: [ATOM, MODEL, ENDMDL]
+    cluster: 90
+    api_id: pdbe
 
 pdb_variants:
   paths:
     output_mutations_list_txt: output_mutations_list_txt.txt
-    reference_output_mutations_list_txt: file:test_reference_dir/api/output_mutations_list_txt.txt
+    reference_output_mutations_list_txt: file:test_reference_dir/api/output_pdb_variants.txt
+  properties:
+    pdb_code: 2vgb

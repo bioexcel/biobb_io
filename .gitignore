@@ -108,3 +108,5 @@ traj_comp.xtc
 .ipynb_checkpoints
 # pycharm
 .idea
+
+*.bk

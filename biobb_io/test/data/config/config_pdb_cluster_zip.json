@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "pdb_code": "2vgb",
+    "filter": [
+      "ATOM",
+      "MODEL",
+      "ENDMDL"
+    ],
+    "cluster": 90,
+    "api_id": "pdbe"
+  }
+}

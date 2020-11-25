@@ -1,0 +1,6 @@
+properties:
+  api_id: pdbe
+  filter:
+  - ATOM
+  - HETATM
+  pdb_code: 2VGB

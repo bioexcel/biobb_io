@@ -58,7 +58,31 @@
                     "type": "integer",
                     "default": 90,
                     "wf_prop": false,
-                    "description": "Cluster number for the :meth:`biobb_io.api.MmbPdb.get_pdb_cluster_zip` method."
+                    "description": "Sequence Similarity Cutoff. ",
+                    "enum": [
+                        50,
+                        70,
+                        90,
+                        95
+                    ],
+                    "property_formats": [
+                        {
+                            "name": 50,
+                            "description": "structures having less than 50% sequence identity to each other"
+                        },
+                        {
+                            "name": 70,
+                            "description": "structures having less than 70% sequence identity to each other"
+                        },
+                        {
+                            "name": 90,
+                            "description": "structures having less than 90% sequence identity to each other"
+                        },
+                        {
+                            "name": 95,
+                            "description": "structures having less than 95% sequence identity to each other"
+                        }
+                    ]
                 },
                 "api_id": {
                     "type": "string",

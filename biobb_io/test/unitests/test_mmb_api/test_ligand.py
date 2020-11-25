@@ -1,7 +1,7 @@
 from biobb_common.tools import test_fixtures as fx
 from biobb_io.api.ligand import Ligand
 
-class TestPdb():
+class TestLigand():
     def setUp(self):
         fx.test_setup(self,'ligand')
 

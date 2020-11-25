@@ -1,0 +1,8 @@
+properties:
+  api_id: pdbe
+  cluster: 90
+  filter:
+  - ATOM
+  - MODEL
+  - ENDMDL
+  pdb_code: 2vgb
