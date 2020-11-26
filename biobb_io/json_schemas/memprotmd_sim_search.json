@@ -23,14 +23,15 @@
             "type": "string",
             "description": "Path to the output JSON file",
             "filetype": "output",
-            "sample": null,
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_search.json",
             "enum": [
                 ".*\\.json$"
             ],
             "file_formats": [
                 {
                     "extension": ".*\\.json$",
-                    "description": "Path to the output JSON file"
+                    "description": "Path to the output JSON file",
+                    "edam": "format_3464"
                 }
             ]
         },

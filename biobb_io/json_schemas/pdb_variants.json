@@ -23,14 +23,15 @@
             "type": "string",
             "description": "Path to the TXT file containing an ASCII comma separated values of the mutations",
             "filetype": "output",
-            "sample": null,
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_variants.txt",
             "enum": [
                 ".*\\.txt$"
             ],
             "file_formats": [
                 {
                     "extension": ".*\\.txt$",
-                    "description": "Path to the TXT file containing an ASCII comma separated values of the mutations"
+                    "description": "Path to the TXT file containing an ASCII comma separated values of the mutations",
+                    "edam": "format_2330"
                 }
             ]
         },

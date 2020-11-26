@@ -14,7 +14,7 @@ class MemProtMDSimList():
     | Wrapper for the `MemProtMD DB REST API <http://memprotmd.bioch.ox.ac.uk/>`_ to get all available membrane-protein systems (simulations).
 
     Args:
-        output_simulations (str): Path to the output JSON file. File type: output. `Sample file <>`_. Accepted formats: json.
+        output_simulations (str): Path to the output JSON file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_list.json>`_. Accepted formats: json (edam:format_3464).
         properties (dic):
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.

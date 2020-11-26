@@ -23,14 +23,15 @@
             "type": "string",
             "description": "Path to the output PDB ligand file",
             "filetype": "output",
-            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_ligand.pdb",
             "enum": [
                 ".*\\.pdb$"
             ],
             "file_formats": [
                 {
                     "extension": ".*\\.pdb$",
-                    "description": "Path to the output PDB ligand file"
+                    "description": "Path to the output PDB ligand file",
+                    "edam": "format_1476"
                 }
             ]
         },

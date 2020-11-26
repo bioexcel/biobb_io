@@ -14,7 +14,7 @@ class Drugbank():
     | Download a single component in SDF format from the `Drugbank <https://www.drugbank.ca/>`_ REST API.
 
     Args:
-        output_sdf_path (str): Path to the output SDF component file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sdf_path.sdf>`_. Accepted formats: sdf.
+        output_sdf_path (str): Path to the output SDF component file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_drugbank.sdf>`_. Accepted formats: sdf (edam:format_3814).
         properties (dic):
             * **drugbank_id** (*str*) - (None) Drugbank component id.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.

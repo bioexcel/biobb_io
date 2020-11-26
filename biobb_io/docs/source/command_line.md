@@ -29,7 +29,7 @@ pdb_variants -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_mutations_list_txt** (*string*): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. [Sample file](None). Accepted formats: TXT
+* **output_mutations_list_txt** (*string*): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_variants.txt). Accepted formats: TXT
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
@@ -46,7 +46,7 @@ properties:
 ```
 #### Command line
 ```python
-pdb_variants --config config_pdb_variants.yml --output_mutations_list_txt output.txt
+pdb_variants --config config_pdb_variants.yml --output_mutations_list_txt output_pdb_variants.txt
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb_variants.json)
@@ -59,7 +59,7 @@ pdb_variants --config config_pdb_variants.yml --output_mutations_list_txt output
 ```
 #### Command line
 ```python
-pdb_variants --config config_pdb_variants.json --output_mutations_list_txt output.txt
+pdb_variants --config config_pdb_variants.json --output_mutations_list_txt output_pdb_variants.txt
 ```
 
 ## Pdb_cluster_zip
@@ -85,7 +85,7 @@ pdb_cluster_zip -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_pdb_zip_path** (*string*): Path to the ZIP or PDB file containing the output PDB files. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/reference_output_pdb_zip_path.zip). Accepted formats: PDB, ZIP
+* **output_pdb_zip_path** (*string*): Path to the ZIP or PDB file containing the output PDB files. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_cluster.zip). Accepted formats: PDB, ZIP
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
@@ -111,7 +111,7 @@ properties:
 ```
 #### Command line
 ```python
-pdb_cluster_zip --config config_pdb_cluster_zip.yml --output_pdb_zip_path reference_output_pdb_zip_path.zip
+pdb_cluster_zip --config config_pdb_cluster_zip.yml --output_pdb_zip_path output_pdb_cluster.zip
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb_cluster_zip.json)
@@ -131,7 +131,7 @@ pdb_cluster_zip --config config_pdb_cluster_zip.yml --output_pdb_zip_path refere
 ```
 #### Command line
 ```python
-pdb_cluster_zip --config config_pdb_cluster_zip.json --output_pdb_zip_path reference_output_pdb_zip_path.zip
+pdb_cluster_zip --config config_pdb_cluster_zip.json --output_pdb_zip_path output_pdb_cluster.zip
 ```
 
 ## Drugbank
@@ -157,7 +157,7 @@ drugbank -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_sdf_path** (*string*): Path to the output SDF component file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sdf_path.sdf). Accepted formats: SDF
+* **output_sdf_path** (*string*): Path to the output SDF component file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_drugbank.sdf). Accepted formats: SDF
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
@@ -174,7 +174,7 @@ properties:
 ```
 #### Command line
 ```python
-drugbank --config config_drugbank.yml --output_sdf_path output_sdf_path.sdf
+drugbank --config config_drugbank.yml --output_sdf_path output_drugbank.sdf
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_drugbank.json)
@@ -187,7 +187,7 @@ drugbank --config config_drugbank.yml --output_sdf_path output_sdf_path.sdf
 ```
 #### Command line
 ```python
-drugbank --config config_drugbank.json --output_sdf_path output_sdf_path.sdf
+drugbank --config config_drugbank.json --output_sdf_path output_drugbank.sdf
 ```
 
 ## Ligand
@@ -213,7 +213,7 @@ ligand -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_pdb_path** (*string*): Path to the output PDB ligand file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ligand_12d.pdb). Accepted formats: PDB
+* **output_pdb_path** (*string*): Path to the output PDB ligand file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_ligand.pdb). Accepted formats: PDB
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
@@ -232,7 +232,7 @@ properties:
 ```
 #### Command line
 ```python
-ligand --config config_ligand.yml --output_pdb_path ligand_12d.pdb
+ligand --config config_ligand.yml --output_pdb_path output_ligand.pdb
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ligand.json)
@@ -246,7 +246,7 @@ ligand --config config_ligand.yml --output_pdb_path ligand_12d.pdb
 ```
 #### Command line
 ```python
-ligand --config config_ligand.json --output_pdb_path ligand_12d.pdb
+ligand --config config_ligand.json --output_pdb_path output_ligand.pdb
 ```
 
 ## Memprotmd_sim_search
@@ -272,7 +272,7 @@ memprotmd_sim_search -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](None). Accepted formats: JSON
+* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_search.json). Accepted formats: JSON
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
@@ -291,7 +291,7 @@ properties:
 ```
 #### Command line
 ```python
-memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulations output.json
+memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulations output_sim_search.json
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_search.json)
@@ -305,7 +305,7 @@ memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulatio
 ```
 #### Command line
 ```python
-memprotmd_sim_search --config config_memprotmd_sim_search.json --output_simulations output.json
+memprotmd_sim_search --config config_memprotmd_sim_search.json --output_simulations output_sim_search.json
 ```
 
 ## Memprotmd_sim_list
@@ -331,7 +331,7 @@ memprotmd_sim_list -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](None). Accepted formats: JSON
+* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_list.json). Accepted formats: JSON
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
@@ -347,7 +347,7 @@ properties:
 ```
 #### Command line
 ```python
-memprotmd_sim_list --config config_memprotmd_sim_list.yml --output_simulations output.json
+memprotmd_sim_list --config config_memprotmd_sim_list.yml --output_simulations output_sim_list.json
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_list.json)
@@ -360,7 +360,7 @@ memprotmd_sim_list --config config_memprotmd_sim_list.yml --output_simulations o
 ```
 #### Command line
 ```python
-memprotmd_sim_list --config config_memprotmd_sim_list.json --output_simulations output.json
+memprotmd_sim_list --config config_memprotmd_sim_list.json --output_simulations output_sim_list.json
 ```
 
 ## Memprotmd_sim
@@ -386,7 +386,7 @@ memprotmd_sim -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_simulation** (*string*): Path to the output simulation in a ZIP file. File type: output. [Sample file](None). Accepted formats: ZIP
+* **output_simulation** (*string*): Path to the output simulation in a ZIP file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim.zip). Accepted formats: ZIP
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
@@ -403,7 +403,7 @@ properties:
 ```
 #### Command line
 ```python
-memprotmd_sim --config config_memprotmd_sim.yml --output_simulation output.zip
+memprotmd_sim --config config_memprotmd_sim.yml --output_simulation output_sim.zip
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim.json)
@@ -416,7 +416,7 @@ memprotmd_sim --config config_memprotmd_sim.yml --output_simulation output.zip
 ```
 #### Command line
 ```python
-memprotmd_sim --config config_memprotmd_sim.json --output_simulation output.zip
+memprotmd_sim --config config_memprotmd_sim.json --output_simulation output_sim.zip
 ```
 
 ## Pdb
@@ -431,7 +431,7 @@ pdb -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_pdb_path** (*string*): Path to the output PDB file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/pdb_1ubq.pdb). Accepted formats: PDB
+* **output_pdb_path** (*string*): Path to the output PDB file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb.pdb). Accepted formats: PDB
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
@@ -454,7 +454,7 @@ properties:
 ```
 #### Command line
 ```python
-pdb --config config_pdb.yml --output_pdb_path pdb_1ubq.pdb
+pdb --config config_pdb.yml --output_pdb_path output_pdb.pdb
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb.json)
@@ -472,5 +472,5 @@ pdb --config config_pdb.yml --output_pdb_path pdb_1ubq.pdb
 ```
 #### Command line
 ```python
-pdb --config config_pdb.json --output_pdb_path pdb_1ubq.pdb
+pdb --config config_pdb.json --output_pdb_path output_pdb.pdb
 ```
