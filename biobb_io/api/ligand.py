@@ -84,7 +84,7 @@ def main():
 
     #Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
-    required_args.add_argument('-o', '--output_pdb_path', required=True, help="Path to the output PDB ligand file.")
+    required_args.add_argument('-o', '--output_pdb_path', required=True, help="Path to the output PDB ligand file. Accepted formats: pdb (edam:format_1476).")
 
     args = parser.parse_args()
     config = args.config if args.config else None
