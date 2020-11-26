@@ -1,5 +1,18 @@
 # Biobb IO changelog
 
+## What's new in version [3.0.2](https://github.com/bioexcel/biobb_io/releases/tag/v3.0.2)?
+In version 3.0.2 there have been added the new tools for MemProtMD DB REST API. There have been also implemented the new version of docstrings, therefore the JSON Schemas have been modified.
+
+### New features
+
+* New MemProtMD DB REST API tools
+* New extended and improved JSON schemas (Galaxy and CWL-compliant)
+
+### Other changes
+
+* New docstrings
+
+
 ## What's new in version [3.0.1](https://github.com/bioexcel/biobb_io/releases/tag/v3.0.1)?
 In version 3.0.1 the dependency biobb_common has been updated to 3.0.1 version. New tool for downloading components from the Drugbank.
 
