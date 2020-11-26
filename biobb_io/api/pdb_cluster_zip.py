@@ -106,7 +106,7 @@ def main():
 
     #Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
-    required_args.add_argument('-o','--output_pdb_zip_path', required=True, help="Path to the ZIP or PDB file containing the output PDB files. Accepted formats: pdb (edam:format_1476), zip (edam:format_3987).")
+    required_args.add_argument('-o','--output_pdb_zip_path', required=True, help="Path to the ZIP or PDB file containing the output PDB files. Accepted formats: pdb, zip.")
 
     args = parser.parse_args()
     config = args.config if args.config else None

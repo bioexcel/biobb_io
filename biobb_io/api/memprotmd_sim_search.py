@@ -84,7 +84,7 @@ def main():
 
     # Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
-    required_args.add_argument('-o', '--output_simulations', required=True, help="Path to the output JSON file. Accepted formats: json (edam:format_3464).")
+    required_args.add_argument('-o', '--output_simulations', required=True, help="Path to the output JSON file. Accepted formats: json.")
 
     args = parser.parse_args()
     config = args.config if args.config else None
