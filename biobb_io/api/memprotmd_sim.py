@@ -15,7 +15,7 @@ class MemProtMDSim():
 
     Args:
         output_simulation (str): Path to the output simulation in a ZIP file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim.zip>`_. Accepted formats: zip (edam:format_3987).
-        properties (dic):
+        properties (dic - Python dictionary object containing the tool parameters, not input/output files):
             * **pdb_code** (*str*) - (None) RSCB PDB code.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.

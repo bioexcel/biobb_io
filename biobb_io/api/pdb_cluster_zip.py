@@ -16,7 +16,7 @@ class PdbClusterZip():
 
     Args:
         output_pdb_zip_path (str): Path to the ZIP or PDB file containing the output PDB files. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_cluster.zip>`_. Accepted formats: pdb (edam:format_1476), zip (edam:format_3987).
-        properties (dic):
+        properties (dic - Python dictionary object containing the tool parameters, not input/output files):
             * **pdb_code** (*str*) - (None) RSCB PDB code.
             * **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
             * **cluster** (*int*) - (90) Sequence Similarity Cutoff. Values: 50 (structures having less than 50% sequence identity to each other), 70 (structures having less than 70% sequence identity to each other), 90 (structures having less than 90% sequence identity to each other), 95 (structures having less than 95% sequence identity to each other).
