@@ -57,7 +57,16 @@ class PdbVariants():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes the variants of the selected `pdb_code` to `output_mutations_list_txt`"""
+        """Writes the variants of the selected `pdb_code` to `output_mutations_list_txt`
+
+        Examples:
+            This is a use example of how to use the PdbVariants module from Python
+
+            >>> from biobb_io.api.pdb_variants import PdbVariants
+            >>> prop = { 'pdb_code': '2VGB' }
+            >>> PdbVariants(output_mutations_list_txt='/path/to/newMutationsList.txt', properties=prop).launch()
+
+        """
         
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)

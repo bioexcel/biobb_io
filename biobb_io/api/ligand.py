@@ -57,7 +57,16 @@ class Ligand():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes the PDB file content of the first ligand_code to output_pdb_path."""
+        """Writes the PDB file content of the first ligand_code to output_pdb_path.
+
+        Examples:
+            This is a use example of how to use the Ligand module from Python
+
+            >>> from biobb_io.api.ligand import Ligand
+            >>> prop = { 'ligand_code': 'CPB', 'api_id': 'pdbe' }
+            >>> Ligand(output_pdb_path='/path/to/newLigand.pdb', properties=prop).launch()
+
+        """
 
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)

@@ -59,7 +59,16 @@ class Pdb():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes the PDB file content of the first pdb_code to output_pdb_path."""
+        """Writes the PDB file content of the first pdb_code to output_pdb_path.
+
+        Examples:
+            This is a use example of how to use the Pdb module from Python
+
+            >>> from biobb_io.api.pdb import Pdb
+            >>> prop = { 'pdb_code': '2VGB', 'filter': ['ATOM', 'MODEL', 'ENDMDL'], 'api_id': 'pdbe' }
+            >>> Pdb(output_pdb_path='/path/to/newStructure.pdb', properties=prop).launch()
+
+        """
         
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)

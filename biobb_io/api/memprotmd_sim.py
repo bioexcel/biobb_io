@@ -55,7 +55,16 @@ class MemProtMDSim():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes all the simulation in JSON format to the output_simulation file"""
+        """Writes all the simulation in JSON format to the output_simulation file
+
+        Examples:
+            This is a use example of how to use the MemProtMDSim module from Python
+
+            >>> from biobb_io.api.memprotmd_sim import MemProtMDSim
+            >>> prop = { 'pdb_code': '2VGB' }
+            >>> MemProtMDSim(output_simulation='/path/to/newSimulation.zip', properties=prop).launch()
+
+        """
         
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)

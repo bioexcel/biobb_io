@@ -57,7 +57,16 @@ class MemProtMDSimSearch():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes all the simulation in JSON format to the output_simulations file"""
+        """Writes all the simulation in JSON format to the output_simulations file
+
+        Examples:
+            This is a use example of how to use the MemProtMDSimSearch module from Python
+
+            >>> from biobb_io.api.memprotmd_sim_search import MemProtMDSimSearch
+            >>> prop = { 'collection_name': 'refs', 'keyword': 'porin' }
+            >>> MemProtMDSimSearch(output_simulations='/path/to/newSimulationSearch.json', properties=prop).launch()
+
+        """
         
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)

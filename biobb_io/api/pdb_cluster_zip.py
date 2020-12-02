@@ -62,9 +62,15 @@ class PdbClusterZip():
 
     @launchlogger
     def launch(self) -> int:
-        """
-        Writes each PDB file content of each pdb_code in the cluster
-        to a pdb_file then creates a zip_file output_pdb_zip_path.
+        """ Writes each PDB file content of each pdb_code in the cluster to a pdb_file then creates a zip_file output_pdb_zip_path.
+        
+        Examples:
+            This is a use example of how to use the PdbClusterZip module from Python
+
+            >>> from biobb_io.api.pdb_cluster_zip import PdbClusterZip
+            >>> prop = { 'pdb_code': '2VGB', 'filter': ['ATOM', 'MODEL', 'ENDMDL'], 'cluster': 90, 'api_id': 'pdbe' }
+            >>> PdbClusterZip(output_pdb_path='/path/to/newStructure.pdb', properties=prop).launch()
+
         """
         
         # Get local loggers from launchlogger decorator

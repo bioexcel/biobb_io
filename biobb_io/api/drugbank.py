@@ -55,7 +55,16 @@ class Drugbank():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes the SDF content of the first drugbank_id to output_sdf_path."""
+        """Writes the SDF content of the first drugbank_id to output_sdf_path.
+
+        Examples:
+            This is a use example of how to use the Drugbank module from Python
+
+            >>> from biobb_io.api.drugbank import Drugbank
+            >>> prop = { 'drugbank_id': 'DB00530' }
+            >>> Drugbank(output_sdf_path='/path/to/newComponent.sdf', properties=prop).launch()
+            
+        """
 
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
