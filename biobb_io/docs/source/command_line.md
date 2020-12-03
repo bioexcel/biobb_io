@@ -24,7 +24,7 @@ pdb_variants -h
     
     required arguments:
       -o OUTPUT_MUTATIONS_LIST_TXT, --output_mutations_list_txt OUTPUT_MUTATIONS_LIST_TXT
-                            Output variants list text file name
+                            Path to the TXT file containing an ASCII comma separated values of the mutations. Accepted formats: txt.
 ### I / O Arguments
 Syntax: input_argument (datatype) : Definition
 
@@ -80,7 +80,7 @@ pdb_cluster_zip -h
     
     required arguments:
       -o OUTPUT_PDB_ZIP_PATH, --output_pdb_zip_path OUTPUT_PDB_ZIP_PATH
-                            Output ZIP file name
+                            Path to the ZIP or PDB file containing the output PDB files. Accepted formats: pdb, zip.
 ### I / O Arguments
 Syntax: input_argument (datatype) : Definition
 
@@ -208,7 +208,7 @@ ligand -h
     
     required arguments:
       -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
-                            Path to the output PDB ligand file.
+                            Path to the output PDB ligand file. Accepted formats: pdb.
 ### I / O Arguments
 Syntax: input_argument (datatype) : Definition
 
@@ -267,7 +267,7 @@ memprotmd_sim_search -h
     
     required arguments:
       -o OUTPUT_SIMULATIONS, --output_simulations OUTPUT_SIMULATIONS
-                            Output file name
+                            Path to the output JSON file. Accepted formats: json.
 ### I / O Arguments
 Syntax: input_argument (datatype) : Definition
 
@@ -326,7 +326,7 @@ memprotmd_sim_list -h
     
     required arguments:
       -o OUTPUT_SIMULATIONS, --output_simulations OUTPUT_SIMULATIONS
-                            Output file name
+                            Path to the output JSON file. Accepted formats: json.
 ### I / O Arguments
 Syntax: input_argument (datatype) : Definition
 
