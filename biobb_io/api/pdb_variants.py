@@ -22,6 +22,16 @@ class PdbVariants():
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
+    Examples:
+            This is a use example of how to use the PdbVariants module from Python
+
+            from biobb_io.api.pdb_variants import pdb_variants
+            prop = { 
+                'pdb_code': '2VGB' 
+            }
+            pdb_variants(output_mutations_list_txt='/path/to/newMutationsList.txt', 
+                        properties=prop)
+
     Info:
         * wrapped_software:
             * name: UNIPROT
@@ -32,7 +42,8 @@ class PdbVariants():
 
     """
 
-    def __init__(self, output_mutations_list_txt, properties=None, **kwargs) -> None:
+    def __init__(self, output_mutations_list_txt, 
+                properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # IN OUT files
@@ -57,16 +68,7 @@ class PdbVariants():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes the variants of the selected `pdb_code` to `output_mutations_list_txt`
-
-        Examples:
-            This is a use example of how to use the PdbVariants module from Python
-
-            >>> from biobb_io.api.pdb_variants import PdbVariants
-            >>> prop = { 'pdb_code': '2VGB' }
-            >>> PdbVariants(output_mutations_list_txt='/path/to/newMutationsList.txt', properties=prop).launch()
-
-        """
+        """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` api.pdb_variants.PdbVariants object."""
         
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
@@ -111,7 +113,15 @@ class PdbVariants():
             mutations.sort()
             mut_file.write(",".join(mutations))
 
+def pdb_variants(output_mutations_list_txt: str, properties: dict = None, **kwargs) -> None:
+    """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` class and
+    execute the :meth:`launch() <api.pdb_variants.PdbVariants.launch> method."""
+
+    return PdbVariants(output_mutations_list_txt=output_mutations_list_txt,
+                        properties=properties).launch()
+
 def main():
+    """Command line execution of this building block. Please check the command line documentation."""
     parser = argparse.ArgumentParser(description="Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
@@ -124,7 +134,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    PdbVariants(output_mutations_list_txt=args.output_mutations_list_txt, properties=properties).launch()
+    PdbVariants(output_mutations_list_txt=args.output_mutations_list_txt, 
+                properties=properties).launch()
 
 if __name__ == '__main__':
     main()

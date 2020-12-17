@@ -21,6 +21,17 @@ class Ligand():
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
+    Examples:
+        This is a use example of how to use the building block from Python::
+
+            from biobb_io.api.ligand import ligand
+            prop = { 
+                'ligand_code': 'CPB', 
+                'api_id': 'pdbe' 
+            }
+            ligand(output_pdb_path='/path/to/newLigand.pdb', 
+                    properties=prop)
+
     Info:
         * wrapped_software:
             * name: Protein Data Bank
@@ -31,7 +42,8 @@ class Ligand():
 
     """
 
-    def __init__(self, output_pdb_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_pdb_path, 
+                properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Input/Output files
@@ -57,16 +69,7 @@ class Ligand():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes the PDB file content of the first ligand_code to output_pdb_path.
-
-        Examples:
-            This is a use example of how to use the Ligand module from Python
-
-            >>> from biobb_io.api.ligand import Ligand
-            >>> prop = { 'ligand_code': 'CPB', 'api_id': 'pdbe' }
-            >>> Ligand(output_pdb_path='/path/to/newLigand.pdb', properties=prop).launch()
-
-        """
+        """Execute the :class:`Ligand <api.ligand.Ligand>` api.ligand.Ligand object."""
 
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
@@ -86,8 +89,15 @@ class Ligand():
         pdb_string = download_ligand(self.ligand_code, self.api_id, out_log, self.global_log)
         write_pdb(pdb_string, self.output_pdb_path, None, out_log, self.global_log)
 
+def ligand(output_pdb_path: str, properties: dict = None, **kwargs) -> None:
+    """Execute the :class:`Ligand <api.ligand.Ligand>` class and
+    execute the :meth:`launch() <api.ligand.Ligand.launch> method."""
+
+    return Ligand(output_pdb_path=output_pdb_path,
+                    properties=properties).launch()
+
 def main():
-    """Command line interface."""
+    """Command line execution of this building block. Please check the command line documentation."""
     parser = argparse.ArgumentParser(description="Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB ligand.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
@@ -100,7 +110,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    Ligand(output_pdb_path=args.output_pdb_path, properties=properties).launch()
+    Ligand(output_pdb_path=args.output_pdb_path, 
+            properties=properties).launch()
 
 if __name__ == '__main__':
     main()

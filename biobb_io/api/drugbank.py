@@ -20,6 +20,16 @@ class Drugbank():
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
+    Examples:
+        This is a use example of how to use the building block from Python::
+
+            from biobb_io.api.drugbank import drugbank
+            prop = { 
+                'drugbank_id': 'DB00530' 
+            }
+            drugbank(output_sdf_path='/path/to/newComponent.sdf', 
+                    properties=prop)
+
     Info:
         * wrapped_software:
             * name: Drugbank
@@ -30,7 +40,8 @@ class Drugbank():
 
     """
 
-    def __init__(self, output_sdf_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_sdf_path, 
+                properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Input/Output files
@@ -55,16 +66,7 @@ class Drugbank():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes the SDF content of the first drugbank_id to output_sdf_path.
-
-        Examples:
-            This is a use example of how to use the Drugbank module from Python
-
-            >>> from biobb_io.api.drugbank import Drugbank
-            >>> prop = { 'drugbank_id': 'DB00530' }
-            >>> Drugbank(output_sdf_path='/path/to/newComponent.sdf', properties=prop).launch()
-            
-        """
+        """Execute the :class:`Drugbank <api.drugbank.Drugbank>` api.drugbank.Drugbank object."""
 
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
@@ -85,8 +87,15 @@ class Drugbank():
         sdf_string = download_drugbank(self.drugbank_id, url, out_log, self.global_log)
         write_sdf(sdf_string, self.output_sdf_path, out_log, self.global_log)
 
+def drugbank(output_sdf_path: str, properties: dict = None, **kwargs) -> None:
+    """Execute the :class:`Drugbank <api.drugbank.Drugbank>` class and
+    execute the :meth:`launch() <api.drugbank.Drugbank.launch> method."""
+
+    return Drugbank(output_sdf_path=output_sdf_path,
+                    properties=properties).launch()
+
 def main():
-    """Command line interface."""
+    """Command line execution of this building block. Please check the command line documentation."""
     parser = argparse.ArgumentParser(description="Download a component in SDF format from the Drugbank (https://www.drugbank.ca/).", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
@@ -99,7 +108,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    Drugbank(output_sdf_path=args.output_sdf_path, properties=properties).launch()
+    Drugbank(output_sdf_path=args.output_sdf_path, 
+            properties=properties).launch()
 
 if __name__ == '__main__':
     main()

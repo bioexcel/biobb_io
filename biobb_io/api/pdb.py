@@ -22,6 +22,18 @@ class Pdb():
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
+    Examples:
+        This is a use example of how to use the building block from Python::
+
+            from biobb_io.api.pdb import pdb
+            prop = { 
+                'pdb_code': '2VGB', 
+                'filter': ['ATOM', 'MODEL', 'ENDMDL'], 
+                'api_id': 'pdbe' 
+            }
+            pdb(output_pdb_path='/path/to/newStructure.pdb', 
+                properties=prop)
+
     Info:
         * wrapped_software:
             * name: Protein Data Bank
@@ -32,7 +44,8 @@ class Pdb():
 
     """
 
-    def __init__(self, output_pdb_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_pdb_path, 
+                properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Input/Output files
@@ -59,16 +72,7 @@ class Pdb():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes the PDB file content of the first pdb_code to output_pdb_path.
-
-        Examples:
-            This is a use example of how to use the Pdb module from Python
-
-            >>> from biobb_io.api.pdb import Pdb
-            >>> prop = { 'pdb_code': '2VGB', 'filter': ['ATOM', 'MODEL', 'ENDMDL'], 'api_id': 'pdbe' }
-            >>> Pdb(output_pdb_path='/path/to/newStructure.pdb', properties=prop).launch()
-
-        """
+        """Execute the :class:`Pdb <api.pdb.Pdb>` api.pdb.Pdb object."""
         
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
@@ -88,8 +92,15 @@ class Pdb():
         pdb_string = download_pdb(self.pdb_code, self.api_id, out_log, self.global_log)
         write_pdb(pdb_string, self.output_pdb_path, self.filter, out_log, self.global_log)
 
+def pdb(output_pdb_path: str, properties: dict = None, **kwargs) -> None:
+    """Execute the :class:`Pdb <api.pdb.Pdb>` class and
+    execute the :meth:`launch() <api.pdb.Pdb.launch> method."""
+
+    return Pdb(output_pdb_path=output_pdb_path,
+                properties=properties).launch()
+
 def main():
-    """Command line interface."""
+    """Command line execution of this building block. Please check the command line documentation."""
     parser = argparse.ArgumentParser(description="Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB structure.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
@@ -102,7 +113,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    Pdb(output_pdb_path=args.output_pdb_path, properties=properties).launch()
+    Pdb(output_pdb_path=args.output_pdb_path, 
+        properties=properties).launch()
 
 if __name__ == '__main__':
     main()

@@ -20,6 +20,16 @@ class MemProtMDSim():
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
+    Examples:
+        This is a use example of how to use the building block from Python::
+
+            from biobb_io.api.memprotmd_sim import memprotmd_sim
+            prop = { 
+                'pdb_code': '2VGB' 
+            }
+            memprotmd_sim(output_simulation='/path/to/newSimulation.zip', 
+                        properties=prop)
+
     Info:
         * wrapped_software:
             * name: MemProtMD DB
@@ -30,7 +40,8 @@ class MemProtMDSim():
 
     """
 
-    def __init__(self, output_simulation, properties=None, **kwargs) -> None:
+    def __init__(self, output_simulation, 
+                properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Input/Output files
@@ -55,16 +66,7 @@ class MemProtMDSim():
 
     @launchlogger
     def launch(self) -> int:
-        """Writes all the simulation in JSON format to the output_simulation file
-
-        Examples:
-            This is a use example of how to use the MemProtMDSim module from Python
-
-            >>> from biobb_io.api.memprotmd_sim import MemProtMDSim
-            >>> prop = { 'pdb_code': '2VGB' }
-            >>> MemProtMDSim(output_simulation='/path/to/newSimulation.zip', properties=prop).launch()
-
-        """
+        """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` api.memprotmd_sim.MemProtMDSim object."""
         
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
@@ -81,9 +83,15 @@ class MemProtMDSim():
         # get simulation files and save to output
         json_string = get_memprotmd_sim(self.pdb_code, self.output_simulation, out_log, self.global_log)
 
+def memprotmd_sim(output_simulation: str, properties: dict = None, **kwargs) -> None:
+    """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` class and
+    execute the :meth:`launch() <api.memprotmd_sim.MemProtMDSim.launch> method."""
+
+    return MemProtMDSim(output_simulation=output_simulation,
+                    properties=properties).launch()
 
 def main():
-    """Command line interface."""
+    """Command line execution of this building block. Please check the command line documentation."""
     parser = argparse.ArgumentParser(description="Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to download a simulation.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 

@@ -24,6 +24,19 @@ class PdbClusterZip():
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
+    Examples:
+        This is a use example of how to use the building block from Python::
+
+            from biobb_io.api.pdb_cluster_zip import pdb_cluster_zip
+            prop = { 
+                'pdb_code': '2VGB', 
+                'filter': ['ATOM', 'MODEL', 'ENDMDL'], 
+                'cluster': 90, 
+                'api_id': 'pdbe' 
+            }
+            pdb_cluster_zip(output_pdb_zip_path='/path/to/newStructures.zip', 
+                            properties=prop)
+
     Info:
         * wrapped_software:
             * name: Protein Data Bank
@@ -34,7 +47,8 @@ class PdbClusterZip():
 
     """
 
-    def __init__(self, output_pdb_zip_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_pdb_zip_path, 
+                properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # IN OUT files
@@ -62,16 +76,7 @@ class PdbClusterZip():
 
     @launchlogger
     def launch(self) -> int:
-        """ Writes each PDB file content of each pdb_code in the cluster to a pdb_file then creates a zip_file output_pdb_zip_path.
-        
-        Examples:
-            This is a use example of how to use the PdbClusterZip module from Python
-
-            >>> from biobb_io.api.pdb_cluster_zip import PdbClusterZip
-            >>> prop = { 'pdb_code': '2VGB', 'filter': ['ATOM', 'MODEL', 'ENDMDL'], 'cluster': 90, 'api_id': 'pdbe' }
-            >>> PdbClusterZip(output_pdb_path='/path/to/newStructure.pdb', properties=prop).launch()
-
-        """
+        """Execute the :class:`PdbClusterZip <api.pdb_cluster_zip.PdbClusterZip>` api.pdb_cluster_zip.PdbClusterZip object."""
         
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
@@ -106,7 +111,15 @@ class PdbClusterZip():
             fu.rm(unique_dir)
             fu.log('Removed temporary folder: %s' % unique_dir, out_log)
 
+def pdb_cluster_zip(output_pdb_zip_path: str, properties: dict = None, **kwargs) -> None:
+    """Execute the :class:`PdbClusterZip <api.pdb_cluster_zip.PdbClusterZip>` class and
+    execute the :meth:`launch() <api.pdb_cluster_zip.PdbClusterZip.launch> method."""
+
+    return PdbClusterZip(output_pdb_zip_path=output_pdb_zip_path,
+                        properties=properties).launch()
+
 def main():
+    """Command line execution of this building block. Please check the command line documentation."""
     parser = argparse.ArgumentParser(description="Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a PDB cluster.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
@@ -119,7 +132,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    PdbClusterZip(output_pdb_zip_path=args.output_pdb_zip_path, properties=properties).launch()
+    PdbClusterZip(output_pdb_zip_path=args.output_pdb_zip_path, 
+                properties=properties).launch()
 
 if __name__ == '__main__':
     main()
