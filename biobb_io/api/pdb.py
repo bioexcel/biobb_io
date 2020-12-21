@@ -94,7 +94,7 @@ class Pdb():
 
 def pdb(output_pdb_path: str, properties: dict = None, **kwargs) -> None:
     """Execute the :class:`Pdb <api.pdb.Pdb>` class and
-    execute the :meth:`launch() <api.pdb.Pdb.launch> method."""
+    execute the :meth:`launch() <api.pdb.Pdb.launch>` method."""
 
     return Pdb(output_pdb_path=output_pdb_path,
                 properties=properties).launch()

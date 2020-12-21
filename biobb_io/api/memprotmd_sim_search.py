@@ -91,7 +91,7 @@ class MemProtMDSimSearch():
 
 def memprotmd_sim_search(output_simulations: str, properties: dict = None, **kwargs) -> None:
     """Execute the :class:`MemProtMDSimSearch <api.memprotmd_sim_search.MemProtMDSimSearch>` class and
-    execute the :meth:`launch() <api.memprotmd_sim_search.MemProtMDSimSearch.launch> method."""
+    execute the :meth:`launch() <api.memprotmd_sim_search.MemProtMDSimSearch.launch>` method."""
 
     return MemProtMDSimSearch(output_simulations=output_simulations,
                     properties=properties).launch()

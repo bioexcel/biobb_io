@@ -85,7 +85,7 @@ class MemProtMDSim():
 
 def memprotmd_sim(output_simulation: str, properties: dict = None, **kwargs) -> None:
     """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` class and
-    execute the :meth:`launch() <api.memprotmd_sim.MemProtMDSim.launch> method."""
+    execute the :meth:`launch() <api.memprotmd_sim.MemProtMDSim.launch>` method."""
 
     return MemProtMDSim(output_simulation=output_simulation,
                     properties=properties).launch()

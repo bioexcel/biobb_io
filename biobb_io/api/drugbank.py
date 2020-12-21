@@ -89,7 +89,7 @@ class Drugbank():
 
 def drugbank(output_sdf_path: str, properties: dict = None, **kwargs) -> None:
     """Execute the :class:`Drugbank <api.drugbank.Drugbank>` class and
-    execute the :meth:`launch() <api.drugbank.Drugbank.launch> method."""
+    execute the :meth:`launch() <api.drugbank.Drugbank.launch>` method."""
 
     return Drugbank(output_sdf_path=output_sdf_path,
                     properties=properties).launch()

@@ -113,7 +113,7 @@ class PdbClusterZip():
 
 def pdb_cluster_zip(output_pdb_zip_path: str, properties: dict = None, **kwargs) -> None:
     """Execute the :class:`PdbClusterZip <api.pdb_cluster_zip.PdbClusterZip>` class and
-    execute the :meth:`launch() <api.pdb_cluster_zip.PdbClusterZip.launch> method."""
+    execute the :meth:`launch() <api.pdb_cluster_zip.PdbClusterZip.launch>` method."""
 
     return PdbClusterZip(output_pdb_zip_path=output_pdb_zip_path,
                         properties=properties).launch()

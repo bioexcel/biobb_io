@@ -115,7 +115,7 @@ class PdbVariants():
 
 def pdb_variants(output_mutations_list_txt: str, properties: dict = None, **kwargs) -> None:
     """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` class and
-    execute the :meth:`launch() <api.pdb_variants.PdbVariants.launch> method."""
+    execute the :meth:`launch() <api.pdb_variants.PdbVariants.launch>` method."""
 
     return PdbVariants(output_mutations_list_txt=output_mutations_list_txt,
                         properties=properties).launch()

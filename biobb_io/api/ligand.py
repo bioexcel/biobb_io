@@ -91,7 +91,7 @@ class Ligand():
 
 def ligand(output_pdb_path: str, properties: dict = None, **kwargs) -> None:
     """Execute the :class:`Ligand <api.ligand.Ligand>` class and
-    execute the :meth:`launch() <api.ligand.Ligand.launch> method."""
+    execute the :meth:`launch() <api.ligand.Ligand.launch>` method."""
 
     return Ligand(output_pdb_path=output_pdb_path,
                     properties=properties).launch()
