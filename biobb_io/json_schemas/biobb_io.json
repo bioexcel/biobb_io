@@ -4,7 +4,7 @@
     "github": "https://github.com/bioexcel/biobb_io",
     "readthedocs": "https://biobb-io.readthedocs.io/en/latest/",
     "conda": "https://anaconda.org/bioconda/biobb_io",
-    "docker": "https://quay.io/biocontainers/biobb_io:3.5.0--py_0",
+    "docker": "https://quay.io/biocontainers/biobb_io:3.5.0--py_1",
     "singularity": "https://www.singularity-hub.org/collections/2411/usage",
     "version": "3.5.0",
     "tools" : [
