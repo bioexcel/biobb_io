@@ -63,6 +63,20 @@
             "desc" : "This class is a wrapper of the MemProtMD to download a simulation using its REST API.",
             "exec" : "memprotmd_sim",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim"
+        }, 
+        {
+            "block" : "BindingSite", 
+            "tool" : "API Call", 
+            "desc" : "This class is a wrapper for the PDBe REST API Binding Sites endpoint.",
+            "exec" : "binding_site",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.binding_site"
+        }, 
+        {
+            "block" : "CanonicalFasta", 
+            "tool" : "API Call", 
+            "desc" : "This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.",
+            "exec" : "canonical_fasta",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.canonical_fasta"
         }
     ],
     "dep_pypi" : [

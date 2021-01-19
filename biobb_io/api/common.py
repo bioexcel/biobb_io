@@ -28,6 +28,8 @@ def is_valid_file(ext, argument):
         'output_simulation': ['zip'],
         'output_pdb_zip_path': ['zip'],
         'output_mutations_list_txt': ['txt'],
+        'output_json_path': ['json'],
+        'output_fasta_path': ['fasta']
     }
     return ext in formats[argument]
 
@@ -67,6 +69,20 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
     
     return text
 
+def download_fasta(pdb_code, api_id, out_log=None, global_log=None):
+    """
+    Returns:
+        String: Content of the fasta file.
+    """
+
+    if api_id == 'mmb':
+        url = "http://mmb.irbbarcelona.org/api/pdb/" + pdb_code + ".fasta"
+    elif api_id == 'pdb':
+        url = "https://www.rcsb.org/fasta/entry/" + pdb_code
+
+    fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
+    return requests.get(url, verify=False).content.decode('utf-8')
+
 def download_drugbank(drugbank_id, url="https://www.drugbank.ca/structures/small_molecule_drugs/%s.sdf?type=3d", out_log=None, global_log=None):
     """
     Returns:
@@ -80,6 +96,22 @@ def download_drugbank(drugbank_id, url="https://www.drugbank.ca/structures/small
     
     return text
 
+def download_binding_site(pdb_code, url="https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/%s", out_log=None, global_log=None):
+    """
+    Returns:
+        String: Content of the component file.
+    """
+    url = (url % pdb_code)
+
+    fu.log("Getting binding sites from: %s" % (url), out_log, global_log)
+
+    text = urllib.request.urlopen(url).read()
+    json_obj = json.loads(text)
+    json_string = json.dumps(json_obj, indent=4, sort_keys=True)
+    #json_string = json.dumps(text, indent=4)
+    
+    return json_string
+
 
 def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=None):
     """ Writes and filters a PDB """
@@ -92,6 +124,12 @@ def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=N
                     output_pdb_file.write(line)
         else:
             output_pdb_file.write(pdb_string)
+
+def write_fasta(fasta_string, output_fasta_path, out_log=None, global_log=None):
+    """ Writes a FASTA """
+    fu.log("Writting FASTA to: %s" % (output_fasta_path), out_log, global_log)
+    with open(output_fasta_path, 'w') as output_fasta_file:
+        output_fasta_file.write(fasta_string)
 
 def write_sdf(sdf_string, output_sdf_path, out_log=None, global_log=None):
     """ Writes a SDF """

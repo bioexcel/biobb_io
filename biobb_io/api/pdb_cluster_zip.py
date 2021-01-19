@@ -111,12 +111,14 @@ class PdbClusterZip():
             fu.rm(unique_dir)
             fu.log('Removed temporary folder: %s' % unique_dir, out_log)
 
-def pdb_cluster_zip(output_pdb_zip_path: str, properties: dict = None, **kwargs) -> None:
+        return 0
+
+def pdb_cluster_zip(output_pdb_zip_path: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`PdbClusterZip <api.pdb_cluster_zip.PdbClusterZip>` class and
     execute the :meth:`launch() <api.pdb_cluster_zip.PdbClusterZip.launch>` method."""
 
     return PdbClusterZip(output_pdb_zip_path=output_pdb_zip_path,
-                        properties=properties).launch()
+                        properties=properties, **kwargs).launch()
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -132,8 +134,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    PdbClusterZip(output_pdb_zip_path=args.output_pdb_zip_path, 
-                properties=properties).launch()
+    pdb_cluster_zip(output_pdb_zip_path=args.output_pdb_zip_path, 
+                properties=properties)
 
 if __name__ == '__main__':
     main()

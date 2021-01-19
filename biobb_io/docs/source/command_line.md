@@ -6,6 +6,65 @@ biobb_command [-h] --config CONFIG --input_file(s) <input_file(s)> --output_file
 -----------------
 
 
+## Canonical_fasta
+This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.
+### Get help
+Command:
+```python
+canonical_fasta -h
+```
+    usage: canonical_fasta [-h] [-c CONFIG] -o OUTPUT_FASTA_PATH
+    
+    This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_FASTA_PATH, --output_fasta_path OUTPUT_FASTA_PATH
+                            Path to the canonical FASTA file. Accepted formats: fasta.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_fasta_path** (*string*): Path to the canonical FASTA file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/canonical_fasta.fasta). Accepted formats: FASTA
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **pdb_code** (*string*): (None) RSCB PDB code..
+* **api_id** (*string*): (pdb) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_canonical_fasta.yml)
+```python
+properties:
+  api_id: pdb
+  pdb_code: 4i23
+
+```
+#### Command line
+```python
+canonical_fasta --config config_canonical_fasta.yml --output_fasta_path canonical_fasta.fasta
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_canonical_fasta.json)
+```python
+{
+  "properties": {
+    "pdb_code": "4i23",
+    "api_id": "pdb"
+  }
+}
+```
+#### Command line
+```python
+canonical_fasta --config config_canonical_fasta.json --output_fasta_path canonical_fasta.fasta
+```
+
 ## Pdb_variants
 This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
 ### Get help
@@ -306,6 +365,62 @@ memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulatio
 #### Command line
 ```python
 memprotmd_sim_search --config config_memprotmd_sim_search.json --output_simulations output_sim_search.json
+```
+
+## Binding_site
+This class is a wrapper for the PDBe REST API Binding Sites endpoint.
+### Get help
+Command:
+```python
+binding_site -h
+```
+    usage: binding_site [-h] [-c CONFIG] -o OUTPUT_JSON_PATH
+    
+    This class is a wrapper for the PDBe REST API Binding Sites endpoint
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_JSON_PATH, --output_json_path OUTPUT_JSON_PATH
+                            Path to the JSON file with the binding sites for the requested structure. Accepted formats: json.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_json_path** (*string*): Path to the JSON file with the binding sites for the requested structure. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_binding_site.json). Accepted formats: JSON
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **pdb_code** (*string*): (None) RSCB PDB code..
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_binding_site.yml)
+```python
+properties:
+  pdb_code: 4i23
+
+```
+#### Command line
+```python
+binding_site --config config_binding_site.yml --output_json_path output_binding_site.json
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_binding_site.json)
+```python
+{
+  "properties": {
+    "pdb_code": "4i23"
+  }
+}
+```
+#### Command line
+```python
+binding_site --config config_binding_site.json --output_json_path output_binding_site.json
 ```
 
 ## Memprotmd_sim_list

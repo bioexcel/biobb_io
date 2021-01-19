@@ -87,12 +87,14 @@ class Drugbank():
         sdf_string = download_drugbank(self.drugbank_id, url, out_log, self.global_log)
         write_sdf(sdf_string, self.output_sdf_path, out_log, self.global_log)
 
-def drugbank(output_sdf_path: str, properties: dict = None, **kwargs) -> None:
+        return 0
+
+def drugbank(output_sdf_path: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`Drugbank <api.drugbank.Drugbank>` class and
     execute the :meth:`launch() <api.drugbank.Drugbank.launch>` method."""
 
     return Drugbank(output_sdf_path=output_sdf_path,
-                    properties=properties).launch()
+                    properties=properties, **kwargs).launch()
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -108,8 +110,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    Drugbank(output_sdf_path=args.output_sdf_path, 
-            properties=properties).launch()
+    drugbank(output_sdf_path=args.output_sdf_path, 
+            properties=properties)
 
 if __name__ == '__main__':
     main()

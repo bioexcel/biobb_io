@@ -113,12 +113,14 @@ class PdbVariants():
             mutations.sort()
             mut_file.write(",".join(mutations))
 
-def pdb_variants(output_mutations_list_txt: str, properties: dict = None, **kwargs) -> None:
+        return 0
+
+def pdb_variants(output_mutations_list_txt: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` class and
     execute the :meth:`launch() <api.pdb_variants.PdbVariants.launch>` method."""
 
     return PdbVariants(output_mutations_list_txt=output_mutations_list_txt,
-                        properties=properties).launch()
+                        properties=properties, **kwargs).launch()
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -134,8 +136,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    PdbVariants(output_mutations_list_txt=args.output_mutations_list_txt, 
-                properties=properties).launch()
+    pdb_variants(output_mutations_list_txt=args.output_mutations_list_txt, 
+                properties=properties)
 
 if __name__ == '__main__':
     main()

@@ -89,12 +89,14 @@ class Ligand():
         pdb_string = download_ligand(self.ligand_code, self.api_id, out_log, self.global_log)
         write_pdb(pdb_string, self.output_pdb_path, None, out_log, self.global_log)
 
-def ligand(output_pdb_path: str, properties: dict = None, **kwargs) -> None:
+        return 0
+
+def ligand(output_pdb_path: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`Ligand <api.ligand.Ligand>` class and
     execute the :meth:`launch() <api.ligand.Ligand.launch>` method."""
 
     return Ligand(output_pdb_path=output_pdb_path,
-                    properties=properties).launch()
+                    properties=properties, **kwargs).launch()
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -110,8 +112,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    Ligand(output_pdb_path=args.output_pdb_path, 
-            properties=properties).launch()
+    ligand(output_pdb_path=args.output_pdb_path, 
+            properties=properties)
 
 if __name__ == '__main__':
     main()

@@ -62,3 +62,18 @@ pdb_variants:
     reference_output_mutations_list_txt: file:test_reference_dir/api/output_pdb_variants.txt
   properties:
     pdb_code: 2vgb
+
+binding_site:
+  paths:
+    output_json_path: output_json_path.json
+    reference_output_json_path: file:test_reference_dir/api/output_binding_site.json
+  properties:
+    pdb_code: 4i23
+
+canonical_fasta:
+  paths:
+    output_fasta_path: output_fasta_path.fasta
+    reference_output_fasta_path: file:test_reference_dir/api/canonical_fasta.fasta
+  properties:
+    pdb_code: 4i23
+    api_id: pdb

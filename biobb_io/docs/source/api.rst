@@ -67,3 +67,19 @@ api.pdb_variants module
     :members:
     :undoc-members:
     :show-inheritance:
+
+api.binding_site module
+---------------------------
+
+.. automodule:: api.binding_site
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+api.canonical_fasta module
+---------------------------
+
+.. automodule:: api.canonical_fasta
+    :members:
+    :undoc-members:
+    :show-inheritance:

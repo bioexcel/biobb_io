@@ -1,5 +1,5 @@
 from biobb_common.tools import test_fixtures as fx
-from biobb_io.api.pdb_variants import PdbVariants
+from biobb_io.api.pdb_variants import pdb_variants
 
 class TestMmbPdbVariants():
     def setUp(self):
@@ -7,7 +7,8 @@ class TestMmbPdbVariants():
 
     def tearDown(self):
         fx.test_teardown(self)
+        pass
 
     def test_get_pdb_zip(self):
-        PdbVariants(properties=self.properties, **self.paths).launch()
+        pdb_variants(properties=self.properties, **self.paths)
         assert fx.not_empty(self.paths['output_mutations_list_txt'])

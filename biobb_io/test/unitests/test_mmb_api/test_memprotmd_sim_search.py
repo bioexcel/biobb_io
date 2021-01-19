@@ -7,6 +7,7 @@ class TestMemProtMDSimSearch():
 
     def tearDown(self):
         fx.test_teardown(self)
+        pass
 
     def test_memprotmd_sim_search(self):
         MemProtMDSimSearch(properties=self.properties, **self.paths).launch()

@@ -89,12 +89,14 @@ class MemProtMDSimSearch():
         # write JSON file
         write_json(json_string, self.output_simulations, self.out_log, self.global_log)
 
-def memprotmd_sim_search(output_simulations: str, properties: dict = None, **kwargs) -> None:
+        return 0
+
+def memprotmd_sim_search(output_simulations: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`MemProtMDSimSearch <api.memprotmd_sim_search.MemProtMDSimSearch>` class and
     execute the :meth:`launch() <api.memprotmd_sim_search.MemProtMDSimSearch.launch>` method."""
 
     return MemProtMDSimSearch(output_simulations=output_simulations,
-                    properties=properties).launch()
+                    properties=properties, **kwargs).launch()
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -110,8 +112,8 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    MemProtMDSimSearch(output_simulations=args.output_simulations, 
-                        properties=properties).launch()
+    memprotmd_sim_search(output_simulations=args.output_simulations, 
+                        properties=properties)
 
 if __name__ == '__main__':
     main()
