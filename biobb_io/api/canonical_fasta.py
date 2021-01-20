@@ -83,12 +83,6 @@ class CanonicalFasta():
 
         check_mandatory_property(self.pdb_code, 'pdb_code', out_log, self.__class__.__name__)
 
-        # http://mmb.irbbarcelona.org/api/pdb/4i23.fasta
-        # https://www.rcsb.org/fasta/entry/4i23
-
-        #self.pdb_code = self.pdb_code.strip().lower()
-        #url = "https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/%s"
-
         self.pdb_code = self.pdb_code.strip().lower()
 
         # Downloading PDB file
