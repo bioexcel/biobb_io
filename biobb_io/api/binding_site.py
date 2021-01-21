@@ -86,6 +86,9 @@ class BindingSite():
         # get JSON object
         json_string = download_binding_site(self.pdb_code, url, out_log, self.global_log)
 
+        # get number of binding sites
+        fu.log('%d binding sites found' % (len(json.loads(json_string)[self.pdb_code])), self.out_log, self.global_log)
+
         # write JSON file
         write_json(json_string, self.output_json_path, self.out_log, self.global_log)
 
