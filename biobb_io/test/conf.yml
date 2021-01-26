@@ -76,4 +76,27 @@ canonical_fasta:
     reference_output_fasta_path: file:test_reference_dir/api/canonical_fasta.fasta
   properties:
     pdb_code: 4i23
-    api_id: pdb
+    api_id: pdbe
+
+mmcif:
+  paths:
+    output_mmcif_path: output_mmcif_path.mmcif
+    reference_output_mmcif_path: file:test_reference_dir/api/ref_output.mmcif
+  properties:
+    pdb_code: 2VGB
+    api_id: pdbe
+
+ideal_sdf:
+  paths:
+    output_sdf_path: output_sdf_path.sdf
+    reference_output_sdf_path: file:test_reference_dir/api/ref_output.sdf
+  properties:
+    ligand_code: HYZ
+    api_id: pdbe
+
+structure_info:
+  paths:
+    output_json_path: output_json_path.json
+    reference_output_json_path: file:test_reference_dir/api/ref_str_info.json
+  properties:
+    pdb_code: 2VGB

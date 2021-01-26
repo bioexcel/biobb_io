@@ -17,7 +17,7 @@ class CanonicalFasta():
         output_fasta_path (str): Path to the canonical FASTA file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/canonical_fasta.fasta>`_. Accepted formats: fasta (edam:format_1929).
         properties (dic - Python dictionary object containing the tool parameters, not input/output files):
             * **pdb_code** (*str*) - (None) RSCB PDB code.
-            * **api_id** (*str*) - ("pdb") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
+            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
@@ -51,7 +51,7 @@ class CanonicalFasta():
 
         # Properties specific for BB
         self.pdb_code = properties.get('pdb_code', None)
-        self.api_id = properties.get('api_id', 'pdb')
+        self.api_id = properties.get('api_id', 'pdbe')
         self.properties = properties
 
         # Properties common in all BB

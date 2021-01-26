@@ -1,5 +1,449 @@
 [
     {
+        "_id": "PDB|1a0s",
+        "simulations": [
+            "1a0s_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1a0t",
+        "simulations": [
+            "1a0t_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1bh3",
+        "simulations": [
+            "1bh3_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1bt9",
+        "simulations": [
+            "1bt9_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1gfm",
+        "simulations": [
+            "1gfm_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1gfn",
+        "simulations": [
+            "1gfn_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1gfo",
+        "simulations": [
+            "1gfo_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1gfp",
+        "simulations": [
+            "1gfp_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1gfq",
+        "simulations": [
+            "1gfq_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1hxt",
+        "simulations": [
+            "1hxt_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1hxu",
+        "simulations": [
+            "1hxu_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1hxx",
+        "simulations": [
+            "1hxx_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|1uun",
+        "simulations": [
+            "1uun_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2fgq",
+        "simulations": [
+            "2fgq_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2iwv",
+        "simulations": [
+            "2iwv_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2iww",
+        "simulations": [
+            "2iww_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2j4u",
+        "simulations": [
+            "2j4u_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2jk4",
+        "simulations": [
+            "2jk4_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2k4t",
+        "simulations": [
+            "2k4t_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2o4v",
+        "simulations": [
+            "2o4v_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2omf",
+        "simulations": [
+            "2omf_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2prn",
+        "simulations": [
+            "2prn_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2qtk",
+        "simulations": [
+            "2qtk_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2wjr",
+        "simulations": [
+            "2wjr_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2xe1",
+        "simulations": [
+            "2xe1_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2xe3",
+        "simulations": [
+            "2xe3_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2xe5",
+        "simulations": [
+            "2xe5_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2xg6",
+        "simulations": [
+            "2xg6_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|2zld",
+        "simulations": [
+            "2zld_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3a2s",
+        "simulations": [
+            "3a2s_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3c02",
+        "simulations": [
+            "3c02_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3emn",
+        "simulations": [
+            "3emn_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3fyx",
+        "simulations": [
+            "3fyx_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3hw9",
+        "simulations": [
+            "3hw9_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3hwb",
+        "simulations": [
+            "3hwb_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3k19",
+        "simulations": [
+            "3k19_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3k1b",
+        "simulations": [
+            "3k1b_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3m8b",
+        "simulations": [
+            "3m8b_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3m8d",
+        "simulations": [
+            "3m8d_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3nsg",
+        "simulations": [
+            "3nsg_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3o0e",
+        "simulations": [
+            "3o0e_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3prn",
+        "simulations": [
+            "3prn_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3vy8",
+        "simulations": [
+            "3vy8_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3vy9",
+        "simulations": [
+            "3vy9_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3vzt",
+        "simulations": [
+            "3vzt_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3vzu",
+        "simulations": [
+            "3vzu_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|3wi5",
+        "simulations": [
+            "3wi5_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|4bum",
+        "simulations": [
+            "4bum_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|4d5u",
+        "simulations": [
+            "4d5u_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|4fqe",
+        "simulations": [
+            "4fqe_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|4jfb",
+        "simulations": [
+            "4jfb_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|4lse",
+        "simulations": [
+            "4lse_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|4lsf",
+        "simulations": [
+            "4lsf_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|4lsh",
+        "simulations": [
+            "4lsh_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|4lsi",
+        "simulations": [
+            "4lsi_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5fvn",
+        "simulations": [
+            "5fvn_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5ldt",
+        "simulations": [
+            "5ldt_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5ldv",
+        "simulations": [
+            "5ldv_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5mdo",
+        "simulations": [
+            "5mdo_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5o77",
+        "simulations": [
+            "5o77_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5o78",
+        "simulations": [
+            "5o78_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5o79",
+        "simulations": [
+            "5o79_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5o9c",
+        "simulations": [
+            "5o9c_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5oyk",
+        "simulations": [
+            "5oyk_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|5prn",
+        "simulations": [
+            "5prn_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|6ehb",
+        "simulations": [
+            "6ehb_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|6ehc",
+        "simulations": [
+            "6ehc_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|6ehd",
+        "simulations": [
+            "6ehd_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|6ehe",
+        "simulations": [
+            "6ehe_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|6ehf",
+        "simulations": [
+            "6ehf_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|6prn",
+        "simulations": [
+            "6prn_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|6tzk",
+        "simulations": [
+            "6tzk_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|7prn",
+        "simulations": [
+            "7prn_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|8prn",
+        "simulations": [
+            "8prn_default_dppc"
+        ]
+    },
+    {
         "_id": "UniProt|L0RVU0",
         "simulations": [
             "5mdo_default_dppc",
@@ -7,6 +451,17 @@
             "5mdq_default_dppc",
             "5mdr_default_dppc",
             "5mds_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P02943",
+        "simulations": [
+            "1af6_default_dppc",
+            "1mal_default_dppc",
+            "1mpm_default_dppc",
+            "1mpn_default_dppc",
+            "1mpo_default_dppc",
+            "1mpq_default_dppc"
         ]
     },
     {
@@ -66,19 +521,6 @@
         ]
     },
     {
-        "_id": "UniProt|P76045",
-        "simulations": [
-            "2f1c_default_dppc",
-            "2iwv_default_dppc",
-            "2iww_default_dppc",
-            "2jqy_default_dppc",
-            "2wvp_default_dppc",
-            "2x9k_default_dppc",
-            "5mwv_default_dppc",
-            "6oqh_default_dppc"
-        ]
-    },
-    {
         "_id": "UniProt|P0A910",
         "simulations": [
             "1bxw_default_dppc",
@@ -86,7 +528,8 @@
             "1qjp_default_dppc",
             "2ge4_default_dppc",
             "2jmm_default_dppc",
-            "6itc_default_dppc"
+            "6itc_default_dppc",
+            "6lyr_default_dppc"
         ]
     },
     {
@@ -119,6 +562,25 @@
         ]
     },
     {
+        "_id": "UniProt|M4GGR4",
+        "simulations": [
+            "3vzu_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P05695",
+        "simulations": [
+            "2o4v_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P77211",
+        "simulations": [
+            "3pik_default_dppc",
+            "4k7r_default_dppc"
+        ]
+    },
+    {
         "_id": "UniProt|P21796",
         "simulations": [
             "2jk4_default_dppc",
@@ -132,6 +594,50 @@
         ]
     },
     {
+        "_id": "UniProt|P06129",
+        "simulations": [
+            "1nqe_default_dppc",
+            "1nqf_default_dppc",
+            "1nqg_default_dppc",
+            "1nqh_default_dppc",
+            "2gsk_default_dppc",
+            "2guf_default_dppc",
+            "2ysu_default_dppc",
+            "3m8b_default_dppc",
+            "3m8d_default_dppc",
+            "3rgm_default_dppc",
+            "3rgn_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P24305",
+        "simulations": [
+            "1e54_default_dppc",
+            "2fgq_default_dppc",
+            "2fgr_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P02932",
+        "simulations": [
+            "1pho_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|Q5RT80",
+        "simulations": [
+            "3a2s_default_dppc",
+            "3vzt_default_dppc",
+            "3vzw_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|D6QLY1",
+        "simulations": [
+            "6rck_default_dppc"
+        ]
+    },
+    {
         "_id": "UniProt|A5VZA8",
         "simulations": [
             "4gey_default_dppc",
@@ -139,9 +645,89 @@
         ]
     },
     {
+        "_id": "UniProt|Q934G3",
+        "simulations": [
+            "4fqe_default_dppc",
+            "4pr7_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|A0A0H3FYJ7",
+        "simulations": [
+            "5o78_default_dppc"
+        ]
+    },
+    {
         "_id": "UniProt|Q8CVW1",
         "simulations": [
             "2xe1_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P0C6Q6",
+        "simulations": [
+            "5onu_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|Q3YL97",
+        "simulations": [
+            "6wim_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P76045",
+        "simulations": [
+            "2f1c_default_dppc",
+            "2iwv_default_dppc",
+            "2iww_default_dppc",
+            "2jqy_default_dppc",
+            "2wvp_default_dppc",
+            "2x9k_default_dppc",
+            "5mwv_default_dppc",
+            "6oqh_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|D6QLY0",
+        "simulations": [
+            "5o79_default_dppc",
+            "6rd3_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P30690",
+        "simulations": [
+            "3wi5_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P06996",
+        "simulations": [
+            "2j1n_default_dppc",
+            "2j4u_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P31243",
+        "simulations": [
+            "2por_default_dppc",
+            "3por_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|Q9ALY0",
+        "simulations": [
+            "5o9c_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|Q9K597",
+        "simulations": [
+            "2xe2_default_dppc",
+            "2xe3_default_dppc",
+            "2xe5_default_dppc",
+            "2xg6_default_dppc"
         ]
     },
     {
@@ -184,141 +770,6 @@
         ]
     },
     {
-        "_id": "UniProt|P02943",
-        "simulations": [
-            "1af6_default_dppc",
-            "1mal_default_dppc",
-            "1mpm_default_dppc",
-            "1mpn_default_dppc",
-            "1mpo_default_dppc",
-            "1mpq_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P05695",
-        "simulations": [
-            "2o4v_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P77211",
-        "simulations": [
-            "3pik_default_dppc",
-            "4k7r_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|M4GGR4",
-        "simulations": [
-            "3vzu_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P06129",
-        "simulations": [
-            "1nqe_default_dppc",
-            "1nqf_default_dppc",
-            "1nqg_default_dppc",
-            "1nqh_default_dppc",
-            "2gsk_default_dppc",
-            "2guf_default_dppc",
-            "2ysu_default_dppc",
-            "3m8b_default_dppc",
-            "3m8d_default_dppc",
-            "3rgm_default_dppc",
-            "3rgn_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P24305",
-        "simulations": [
-            "1e54_default_dppc",
-            "2fgq_default_dppc",
-            "2fgr_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P02932",
-        "simulations": [
-            "1pho_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|Q5RT80",
-        "simulations": [
-            "3a2s_default_dppc",
-            "3vzt_default_dppc",
-            "3vzw_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|Q934G3",
-        "simulations": [
-            "4fqe_default_dppc",
-            "4pr7_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|A0A0H3FYJ7",
-        "simulations": [
-            "5o78_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P0C6Q6",
-        "simulations": [
-            "5onu_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|D6QLY0",
-        "simulations": [
-            "5o79_default_dppc",
-            "6rd3_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|D6QLY1",
-        "simulations": [
-            "6rck_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P30690",
-        "simulations": [
-            "3wi5_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P06996",
-        "simulations": [
-            "2j1n_default_dppc",
-            "2j4u_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P31243",
-        "simulations": [
-            "2por_default_dppc",
-            "3por_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|Q9ALY0",
-        "simulations": [
-            "5o9c_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|Q9K597",
-        "simulations": [
-            "2xe2_default_dppc",
-            "2xe3_default_dppc",
-            "2xe5_default_dppc",
-            "2xg6_default_dppc"
-        ]
-    },
-    {
         "_id": "UniProt|P24391",
         "simulations": [
             "5o8o_default_dppc"
@@ -338,9 +789,23 @@
         ]
     },
     {
+        "_id": "UniProt|P32722",
+        "simulations": [
+            "2odj_default_dppc",
+            "3sy7_default_dppc",
+            "4foz_default_dppc"
+        ]
+    },
+    {
         "_id": "UniProt|Q48473",
         "simulations": [
             "1osm_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|O96008",
+        "simulations": [
+            "7ck6_default_dppc"
         ]
     },
     {
@@ -386,14 +851,6 @@
         ]
     },
     {
-        "_id": "UniProt|P32722",
-        "simulations": [
-            "2odj_default_dppc",
-            "3sy7_default_dppc",
-            "4foz_default_dppc"
-        ]
-    },
-    {
         "_id": "UniProt|Q93K99",
         "simulations": [
             "5fvn_default_dppc"
@@ -403,6 +860,12 @@
         "_id": "UniProt|O86021",
         "simulations": [
             "5oyk_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P23644",
+        "simulations": [
+            "6ucu_default_dppc"
         ]
     }
 ]

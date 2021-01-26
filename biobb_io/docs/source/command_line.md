@@ -35,14 +35,14 @@ Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
 * **pdb_code** (*string*): (None) RSCB PDB code..
-* **api_id** (*string*): (pdb) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
 * **remove_tmp** (*boolean*): (True) Remove temporal files..
 * **restart** (*boolean*): (False) Do not execute if output files exist..
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_canonical_fasta.yml)
 ```python
 properties:
-  api_id: pdb
+  api_id: pdbe
   pdb_code: 4i23
 
 ```
@@ -56,7 +56,7 @@ canonical_fasta --config config_canonical_fasta.yml --output_fasta_path canonica
 {
   "properties": {
     "pdb_code": "4i23",
-    "api_id": "pdb"
+    "api_id": "pdbe"
   }
 }
 ```
@@ -191,6 +191,65 @@ pdb_cluster_zip --config config_pdb_cluster_zip.yml --output_pdb_zip_path output
 #### Command line
 ```python
 pdb_cluster_zip --config config_pdb_cluster_zip.json --output_pdb_zip_path output_pdb_cluster.zip
+```
+
+## Mmcif
+This class is a wrapper for downloading a MMCIF structure from the Protein Data Bank.
+### Get help
+Command:
+```python
+mmcif -h
+```
+    usage: mmcif [-h] [-c CONFIG] -o OUTPUT_MMCIF_PATH
+    
+    This class is a wrapper for downloading a MMCIF structure from the Protein Data Bank.
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_MMCIF_PATH, --output_mmcif_path OUTPUT_MMCIF_PATH
+                            Path to the output MMCIF file. Accepted formats: cif, mmcif.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_mmcif_path** (*string*): Path to the output MMCIF file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ref_output.mmcif). Accepted formats: CIF, MMCIF
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **pdb_code** (*string*): (None) RSCB PDB code..
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the MMCIF structure will be downloaded. .
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_mmcif.yml)
+```python
+properties:
+  api_id: pdbe
+  pdb_code: 2VGB
+
+```
+#### Command line
+```python
+mmcif --config config_mmcif.yml --output_mmcif_path ref_output.mmcif
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_mmcif.json)
+```python
+{
+  "properties": {
+    "pdb_code": "2VGB",
+    "api_id": "pdbe"
+  }
+}
+```
+#### Command line
+```python
+mmcif --config config_mmcif.json --output_mmcif_path ref_output.mmcif
 ```
 
 ## Drugbank
@@ -365,6 +424,65 @@ memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulatio
 #### Command line
 ```python
 memprotmd_sim_search --config config_memprotmd_sim_search.json --output_simulations output_sim_search.json
+```
+
+## Ideal_sdf
+This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.
+### Get help
+Command:
+```python
+ideal_sdf -h
+```
+    usage: ideal_sdf [-h] [-c CONFIG] -o OUTPUT_SDF_PATH
+    
+    This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_SDF_PATH, --output_sdf_path OUTPUT_SDF_PATH
+                            Path to the output SDF file. Accepted formats: sdf.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_sdf_path** (*string*): Path to the output SDF file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ref_output.sdf). Accepted formats: SDF
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **ligand_code** (*string*): (None) RSCB PDB ligand code..
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the SDF structure will be downloaded. .
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ideal_sdf.yml)
+```python
+properties:
+  api_id: pdbe
+  ligand_code: HYZ
+
+```
+#### Command line
+```python
+ideal_sdf --config config_ideal_sdf.yml --output_sdf_path ref_output.sdf
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ideal_sdf.json)
+```python
+{
+  "properties": {
+    "ligand_code": "HYZ",
+    "api_id": "pdbe"
+  }
+}
+```
+#### Command line
+```python
+ideal_sdf --config config_ideal_sdf.json --output_sdf_path ref_output.sdf
 ```
 
 ## Binding_site
@@ -588,4 +706,60 @@ pdb --config config_pdb.yml --output_pdb_path output_pdb.pdb
 #### Command line
 ```python
 pdb --config config_pdb.json --output_pdb_path output_pdb.pdb
+```
+
+## Structure_info
+This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.
+### Get help
+Command:
+```python
+structure_info -h
+```
+    usage: structure_info [-h] [-c CONFIG] -o OUTPUT_JSON_PATH
+    
+    This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_JSON_PATH, --output_json_path OUTPUT_JSON_PATH
+                            Path to the output JSON file with all the structure information. Accepted formats: json.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_json_path** (*string*): Path to the output JSON file with all the structure information. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ref_str_info.json). Accepted formats: JSON
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **pdb_code** (*string*): (None) RSCB PDB structure code..
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_structure_info.yml)
+```python
+properties:
+  pdb_code: 2VGB
+
+```
+#### Command line
+```python
+structure_info --config config_structure_info.yml --output_json_path ref_str_info.json
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_structure_info.json)
+```python
+{
+  "properties": {
+    "pdb_code": "2VGB"
+  }
+}
+```
+#### Command line
+```python
+structure_info --config config_structure_info.json --output_json_path ref_str_info.json
 ```

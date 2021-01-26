@@ -77,6 +77,27 @@
             "desc" : "This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.",
             "exec" : "canonical_fasta",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.canonical_fasta"
+        }, 
+        {
+            "block" : "Mmcif", 
+            "tool" : "API Call", 
+            "desc" : "This class is a wrapper for downloading a MMCIF structure from the Protein Data Bank.",
+            "exec" : "mmcif",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.mmcif"
+        }, 
+        {
+            "block" : "IdealSdf", 
+            "tool" : "API Call", 
+            "desc" : "This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.",
+            "exec" : "ideal_sdf",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.ideal_sdf"
+        }, 
+        {
+            "block" : "StructureInfo", 
+            "tool" : "API Call", 
+            "desc" : "This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.",
+            "exec" : "structure_info",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.structure_info"
         }
     ],
     "dep_pypi" : [

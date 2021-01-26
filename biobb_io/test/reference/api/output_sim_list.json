@@ -89,11 +89,11 @@
     },
     {
         "_id": "7cyn_default_dppc",
+        "db": "PDB",
+        "accession": "7cyn",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "7cyn",
         "composition": {
             "DPPC": 100
         }
@@ -1067,6 +1067,17 @@
         }
     },
     {
+        "_id": "7jz2_default_dppc",
+        "db": "PDB",
+        "accession": "7jz2",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "6i6b_default_dppc",
         "db": "PDB",
         "accession": "6i6b",
@@ -1345,6 +1356,17 @@
         "_id": "2b76_default_dppc",
         "db": "PDB",
         "accession": "2b76",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7bty_default_dppc",
+        "db": "PDB",
+        "accession": "7bty",
         "sim_validate": {
             "n_frames": 4001
         },
@@ -4356,6 +4378,17 @@
         }
     },
     {
+        "_id": "6yup_default_dppc",
+        "db": "PDB",
+        "accession": "6yup",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "6li1_default_dppc",
         "db": "PDB",
         "accession": "6li1",
@@ -7227,6 +7260,17 @@
         }
     },
     {
+        "_id": "6w1m_default_dppc",
+        "db": "PDB",
+        "accession": "6w1m",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "6coy_default_dppc",
         "db": "PDB",
         "accession": "6coy",
@@ -8657,6 +8701,17 @@
         }
     },
     {
+        "_id": "6lys_default_dppc",
+        "db": "PDB",
+        "accession": "6lys",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "4q2g_default_dppc",
         "db": "PDB",
         "accession": "4q2g",
@@ -8833,6 +8888,17 @@
         }
     },
     {
+        "_id": "7btx_default_dppc",
+        "db": "PDB",
+        "accession": "7btx",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "7d06_default_dppc",
         "db": "PDB",
         "accession": "7d06",
@@ -8889,11 +8955,11 @@
     },
     {
         "_id": "7b3j_default_dppc",
+        "db": "PDB",
+        "accession": "7b3j",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "7b3j",
         "composition": {
             "DPPC": 100
         }
@@ -9824,11 +9890,11 @@
     },
     {
         "_id": "6lyr_default_dppc",
+        "db": "PDB",
+        "accession": "6lyr",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "6lyr",
         "composition": {
             "DPPC": 100
         }
@@ -10989,6 +11055,17 @@
         }
     },
     {
+        "_id": "7btw_default_dppc",
+        "db": "PDB",
+        "accession": "7btw",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "6ujw_default_dppc",
         "db": "PDB",
         "accession": "6ujw",
@@ -11925,11 +12002,11 @@
     },
     {
         "_id": "7cyg_default_dppc",
+        "db": "PDB",
+        "accession": "7cyg",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "7cyg",
         "composition": {
             "DPPC": 100
         }
@@ -12147,6 +12224,17 @@
         "_id": "6bqg_default_dppc",
         "db": "PDB",
         "accession": "6bqg",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7lci_default_dppc",
+        "db": "PDB",
+        "accession": "7lci",
         "sim_validate": {
             "n_frames": 4001
         },
@@ -15433,6 +15521,17 @@
         }
     },
     {
+        "_id": "7lcj_default_dppc",
+        "db": "PDB",
+        "accession": "7lcj",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "4u5b_default_dppc",
         "db": "PDB",
         "accession": "4u5b",
@@ -17078,6 +17177,17 @@
         "sim_validate": {
             "n_frames": 4001
         },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6zqj_default_dppc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "db": "PDB",
+        "accession": "6zqj",
         "composition": {
             "DPPC": 100
         }
@@ -20043,11 +20153,11 @@
     },
     {
         "_id": "6l6n_default_dppc",
+        "db": "PDB",
+        "accession": "6l6n",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "6l6n",
         "composition": {
             "DPPC": 100
         }
@@ -20144,6 +20254,17 @@
         "_id": "6prc_default_dppc",
         "db": "PDB",
         "accession": "6prc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6yv1_default_dppc",
+        "db": "PDB",
+        "accession": "6yv1",
         "sim_validate": {
             "n_frames": 4001
         },
@@ -20494,11 +20615,11 @@
     },
     {
         "_id": "6wvd_default_dppc",
+        "db": "PDB",
+        "accession": "6wvd",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "6wvd",
         "composition": {
             "DPPC": 100
         }
@@ -20895,6 +21016,17 @@
         "sim_validate": {
             "n_frames": 4001
         },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7jrg_default_dppc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "db": "PDB",
+        "accession": "7jrg",
         "composition": {
             "DPPC": 100
         }
@@ -21770,11 +21902,11 @@
     },
     {
         "_id": "7k2t_default_dppc",
+        "db": "PDB",
+        "accession": "7k2t",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "7k2t",
         "composition": {
             "DPPC": 100
         }
@@ -23609,6 +23741,17 @@
         "_id": "4ysz_default_dppc",
         "db": "PDB",
         "accession": "4ysz",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6w1y_default_dppc",
+        "db": "PDB",
+        "accession": "6w1y",
         "sim_validate": {
             "n_frames": 4001
         },
@@ -27390,6 +27533,17 @@
         }
     },
     {
+        "_id": "7jz3_default_dppc",
+        "db": "PDB",
+        "accession": "7jz3",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "1c17_default_dppc",
         "db": "PDB",
         "accession": "1c17",
@@ -30856,11 +31010,11 @@
     },
     {
         "_id": "7b3k_default_dppc",
+        "db": "PDB",
+        "accession": "7b3k",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "7b3k",
         "composition": {
             "DPPC": 100
         }
@@ -32736,6 +32890,17 @@
         }
     },
     {
+        "_id": "6m49_default_dppc",
+        "db": "PDB",
+        "accession": "6m49",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "3ze3_default_dppc",
         "db": "PDB",
         "accession": "3ze3",
@@ -34552,11 +34717,11 @@
     },
     {
         "_id": "6plx_default_dppc",
+        "db": "PDB",
+        "accession": "6plx",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "6plx",
         "composition": {
             "DPPC": 100
         }
@@ -34574,11 +34739,11 @@
     },
     {
         "_id": "6ply_default_dppc",
+        "db": "PDB",
+        "accession": "6ply",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "6ply",
         "composition": {
             "DPPC": 100
         }
@@ -37433,6 +37598,17 @@
         }
     },
     {
+        "_id": "7jro_default_dppc",
+        "db": "PDB",
+        "accession": "7jro",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "6mvw_default_dppc",
         "db": "PDB",
         "accession": "6mvw",
@@ -38028,11 +38204,11 @@
     },
     {
         "_id": "7cyk_default_dppc",
+        "db": "PDB",
+        "accession": "7cyk",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "7cyk",
         "composition": {
             "DPPC": 100
         }
@@ -39062,11 +39238,11 @@
     },
     {
         "_id": "7ky5_default_dppc",
+        "db": "PDB",
+        "accession": "7ky5",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "7ky5",
         "composition": {
             "DPPC": 100
         }
@@ -39392,11 +39568,11 @@
     },
     {
         "_id": "6lyq_default_dppc",
+        "db": "PDB",
+        "accession": "6lyq",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "6lyq",
         "composition": {
             "DPPC": 100
         }
@@ -40470,11 +40646,11 @@
     },
     {
         "_id": "6wve_default_dppc",
+        "db": "PDB",
+        "accession": "6wve",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "6wve",
         "composition": {
             "DPPC": 100
         }
@@ -40569,11 +40745,11 @@
     },
     {
         "_id": "6wvf_default_dppc",
+        "db": "PDB",
+        "accession": "6wvf",
         "sim_validate": {
             "n_frames": 4001
         },
-        "db": "PDB",
-        "accession": "6wvf",
         "composition": {
             "DPPC": 100
         }
@@ -42375,6 +42551,17 @@
         "_id": "3pik_default_dppc",
         "db": "PDB",
         "accession": "3pik",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6w1j_default_dppc",
+        "db": "PDB",
+        "accession": "6w1j",
         "sim_validate": {
             "n_frames": 4001
         },
@@ -47245,6 +47432,17 @@
         }
     },
     {
+        "_id": "6y47_default_dppc",
+        "db": "PDB",
+        "accession": "6y47",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "3gd8_default_dppc",
         "db": "PDB",
         "accession": "3gd8",
@@ -51524,6 +51722,17 @@
         }
     },
     {
+        "_id": "6yuz_default_dppc",
+        "db": "PDB",
+        "accession": "6yuz",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "5w63_default_dppc",
         "db": "PDB",
         "accession": "5w63",
@@ -51813,6 +52022,17 @@
         "_id": "4w6v_default_dppc",
         "db": "PDB",
         "accession": "4w6v",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7lck_default_dppc",
+        "db": "PDB",
+        "accession": "7lck",
         "sim_validate": {
             "n_frames": 4001
         },

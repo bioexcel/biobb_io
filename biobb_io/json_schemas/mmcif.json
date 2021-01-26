@@ -1,9 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/canonical_fasta",
-    "name": "biobb_io CanonicalFasta",
-    "title": "This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.",
-    "description": "Wrapper for the Protein Data Bank and the MMB PDB mirror for downloading a single FASTA structure.",
+    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/mmcif",
+    "name": "biobb_io Mmcif",
+    "title": "This class is a wrapper for downloading a MMCIF structure from the Protein Data Bank.",
+    "description": "Wrapper for the Protein Data Bank in Europe, the Protein Data Bank and the MMB PDB mirror for downloading a single MMCIF structure.",
     "type": "object",
     "info": {
         "wrapped_software": {
@@ -16,22 +16,28 @@
         }
     },
     "required": [
-        "output_fasta_path"
+        "output_mmcif_path"
     ],
     "properties": {
-        "output_fasta_path": {
+        "output_mmcif_path": {
             "type": "string",
-            "description": "Path to the canonical FASTA file",
+            "description": "Path to the output MMCIF file",
             "filetype": "output",
-            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/canonical_fasta.fasta",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ref_output.mmcif",
             "enum": [
-                ".*\\.fasta$"
+                ".*\\.cif$",
+                ".*\\.mmcif$"
             ],
             "file_formats": [
                 {
-                    "extension": ".*\\.fasta$",
-                    "description": "Path to the canonical FASTA file",
-                    "edam": "format_1929"
+                    "extension": ".*\\.cif$",
+                    "description": "Path to the output MMCIF file",
+                    "edam": "format_1477"
+                },
+                {
+                    "extension": ".*\\.mmcif$",
+                    "description": "Path to the output MMCIF file",
+                    "edam": "format_1477"
                 }
             ]
         },
@@ -48,7 +54,7 @@
                     "type": "string",
                     "default": "pdbe",
                     "wf_prop": false,
-                    "description": "Identifier of the PDB REST API from which the PDB structure will be downloaded. ",
+                    "description": "Identifier of the PDB REST API from which the MMCIF structure will be downloaded. ",
                     "enum": [
                         "pdbe",
                         "pdb",

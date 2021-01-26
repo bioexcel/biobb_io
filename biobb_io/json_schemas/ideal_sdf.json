@@ -1,9 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/canonical_fasta",
-    "name": "biobb_io CanonicalFasta",
-    "title": "This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.",
-    "description": "Wrapper for the Protein Data Bank and the MMB PDB mirror for downloading a single FASTA structure.",
+    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/ideal_sdf",
+    "name": "biobb_io IdealSdf",
+    "title": "This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.",
+    "description": "Wrapper for the Protein Data Bank in Europe and the Protein Data Bank for downloading a single ideal SDF ligand.",
     "type": "object",
     "info": {
         "wrapped_software": {
@@ -16,43 +16,42 @@
         }
     },
     "required": [
-        "output_fasta_path"
+        "output_sdf_path"
     ],
     "properties": {
-        "output_fasta_path": {
+        "output_sdf_path": {
             "type": "string",
-            "description": "Path to the canonical FASTA file",
+            "description": "Path to the output SDF file",
             "filetype": "output",
-            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/canonical_fasta.fasta",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ref_output.sdf",
             "enum": [
-                ".*\\.fasta$"
+                ".*\\.sdf$"
             ],
             "file_formats": [
                 {
-                    "extension": ".*\\.fasta$",
-                    "description": "Path to the canonical FASTA file",
-                    "edam": "format_1929"
+                    "extension": ".*\\.sdf$",
+                    "description": "Path to the output SDF file",
+                    "edam": "format_3814"
                 }
             ]
         },
         "properties": {
             "type": "object",
             "properties": {
-                "pdb_code": {
+                "ligand_code": {
                     "type": "string",
                     "default": null,
                     "wf_prop": false,
-                    "description": "RSCB PDB code."
+                    "description": "RSCB PDB ligand code."
                 },
                 "api_id": {
                     "type": "string",
                     "default": "pdbe",
                     "wf_prop": false,
-                    "description": "Identifier of the PDB REST API from which the PDB structure will be downloaded. ",
+                    "description": "Identifier of the PDB REST API from which the SDF structure will be downloaded. ",
                     "enum": [
                         "pdbe",
-                        "pdb",
-                        "mmb"
+                        "pdb"
                     ],
                     "property_formats": [
                         {
@@ -62,10 +61,6 @@
                         {
                             "name": "pdb",
                             "description": "RCSB PDB REST API"
-                        },
-                        {
-                            "name": "mmb",
-                            "description": "MMB PDB mirror API"
                         }
                     ]
                 },
