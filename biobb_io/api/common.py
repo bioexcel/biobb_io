@@ -145,9 +145,6 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
         text = urllib.request.urlopen(url).read().decode('utf-8')
 
     fu.log("Downloading: %s from: %s" % (ligand_code, url), out_log, global_log)
-
-    # removing useless empty lines at the end of the file
-    text = os.linesep.join([s for s in text.splitlines() if s])
     
     return text
 
