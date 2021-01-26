@@ -83,3 +83,27 @@ api.canonical_fasta module
     :members:
     :undoc-members:
     :show-inheritance:
+
+api.mmcif module
+---------------------------
+
+.. automodule:: api.mmcif
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+api.ideal_sdf module
+---------------------------
+
+.. automodule:: api.ideal_sdf
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+api.structure_info module
+---------------------------
+
+.. automodule:: api.structure_info
+    :members:
+    :undoc-members:
+    :show-inheritance:
