@@ -1,5 +1,16 @@
 # Biobb IO changelog
 
+## What's new in version [3.5.1](https://github.com/bioexcel/biobb_io/releases/tag/v3.5.1)?
+In version 3.5.1 there have been added the new tools for binding sites, canonical FASTA, download structure in mmcif format, download ideal sdf for ligands and download structure info in JSON format.
+
+### New features
+
+* New BindingSite tool for searching binding sites through the PDBe REST API
+* New CanonicalFasta for downloading the canonical FASTA of a structure from the Protein Data Bank
+* New Mmcif tool for downloading a structure in MMCIF format 
+* New IdealSdf tool for downloading a ligand in SDF format
+* New StructureInfo tool for getting all the available info of a structure in JSON format
+
 ## What's new in version [3.5.0](https://github.com/bioexcel/biobb_io/releases/tag/v3.5.0)?
 In version 3.5.0 the dependency biobb_common has been updated to 3.5.1 version. Also, there have been added the new tools for MemProtMD DB REST API. There have been also implemented the new version of docstrings, therefore the JSON Schemas have been modified.
 
