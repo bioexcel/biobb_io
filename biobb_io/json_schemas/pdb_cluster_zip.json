@@ -21,22 +21,16 @@
     "properties": {
         "output_pdb_zip_path": {
             "type": "string",
-            "description": "Path to the ZIP or PDB file containing the output PDB files",
+            "description": "Path to the ZIP file containing the output PDB files",
             "filetype": "output",
             "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_cluster.zip",
             "enum": [
-                ".*\\.pdb$",
                 ".*\\.zip$"
             ],
             "file_formats": [
                 {
-                    "extension": ".*\\.pdb$",
-                    "description": "Path to the ZIP or PDB file containing the output PDB files",
-                    "edam": "format_1476"
-                },
-                {
                     "extension": ".*\\.zip$",
-                    "description": "Path to the ZIP or PDB file containing the output PDB files",
+                    "description": "Path to the ZIP file containing the output PDB files",
                     "edam": "format_3987"
                 }
             ]
