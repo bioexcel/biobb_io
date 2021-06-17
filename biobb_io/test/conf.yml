@@ -63,7 +63,7 @@ pdb_variants:
   properties:
     pdb_code: 2vgb
 
-binding_site:
+api_binding_site:
   paths:
     output_json_path: output_json_path.json
     reference_output_json_path: file:test_reference_dir/api/output_binding_site.json

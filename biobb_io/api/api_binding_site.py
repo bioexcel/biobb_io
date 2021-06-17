@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
-"""Module containing the BindingSite class and the command line interface."""
+"""Module containing the ApiBindingSite class and the command line interface."""
 import argparse
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import *
 
-class BindingSite():
+class ApiBindingSite():
     """
-    | biobb_io BindingSite
+    | biobb_io ApiBindingSite
     | This class is a wrapper for the `PDBe REST API <https://www.ebi.ac.uk/pdbe/api/doc/#pdb_apidiv_call_16_calltitle>`_ Binding Sites endpoint.
     | This call provides details on binding sites in the entry as per STRUCT_SITE records in PDB files, such as ligand, residues in the site, description of the site, etc.
 
@@ -23,11 +23,11 @@ class BindingSite():
     Examples:
         This is a use example of how to use the building block from Python::
 
-            from biobb_io.api.binding_site import binding_site
+            from biobb_io.api.api_binding_site import api_binding_site
             prop = { 
                 'pdb_code': '4i23' 
             }
-            binding_site(output_json_path='/path/to/newBindingSites.json', 
+            api_binding_site(output_json_path='/path/to/newBindingSites.json', 
                     properties=prop)
 
     Info:
@@ -66,7 +66,7 @@ class BindingSite():
 
     @launchlogger
     def launch(self) -> int:
-        """Execute the :class:`BindingSite <api.binding_site.BindingSite>` api.binding_site.BindingSite object."""
+        """Execute the :class:`ApiBindingSite <api.api_binding_site.ApiBindingSite>` api.api_binding_site.ApiBindingSite object."""
 
         # Get local loggers from launchlogger decorator
         out_log = getattr(self, 'out_log', None)
@@ -94,11 +94,11 @@ class BindingSite():
 
         return 0
 
-def binding_site(output_json_path: str, properties: dict = None, **kwargs) -> int:
-    """Execute the :class:`BindingSite <api.binding_site.BindingSite>` class and
-    execute the :meth:`launch() <api.binding_site.BindingSite.launch>` method."""
+def api_binding_site(output_json_path: str, properties: dict = None, **kwargs) -> int:
+    """Execute the :class:`ApiBindingSite <api.api_binding_site.ApiBindingSite>` class and
+    execute the :meth:`launch() <api.api_binding_site.ApiBindingSite.launch>` method."""
 
-    return BindingSite(output_json_path=output_json_path,
+    return ApiBindingSite(output_json_path=output_json_path,
                     properties=properties, **kwargs).launch()
 
 def main():
@@ -115,7 +115,7 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     #Specific call of each building block
-    binding_site(output_json_path=args.output_json_path, 
+    api_binding_site(output_json_path=args.output_json_path, 
             properties=properties)
 
 if __name__ == '__main__':

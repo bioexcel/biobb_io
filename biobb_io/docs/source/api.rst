@@ -68,10 +68,10 @@ api.pdb_variants module
     :undoc-members:
     :show-inheritance:
 
-api.binding_site module
+api.api_binding_site module
 ---------------------------
 
-.. automodule:: api.binding_site
+.. automodule:: api.api_binding_site
     :members:
     :undoc-members:
     :show-inheritance:
