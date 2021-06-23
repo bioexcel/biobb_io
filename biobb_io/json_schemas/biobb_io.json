@@ -4,9 +4,9 @@
     "github": "https://github.com/bioexcel/biobb_io",
     "readthedocs": "https://biobb-io.readthedocs.io/en/latest/",
     "conda": "https://anaconda.org/bioconda/biobb_io",
-    "docker": "https://quay.io/biocontainers/biobb_io:3.5.1--py_0",
+    "docker": "https://quay.io/biocontainers/biobb_io:3.5.2--py_0",
     "singularity": "https://www.singularity-hub.org/collections/2411/usage",
-    "version": "3.5.1",
+    "version": "3.5.2",
     "tools" : [
         {
             "block" : "Drugbank", 
@@ -65,11 +65,11 @@
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim"
         }, 
         {
-            "block" : "BindingSite", 
+            "block" : "ApiBindingSite", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for the PDBe REST API Binding Sites endpoint.",
-            "exec" : "binding_site",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.binding_site"
+            "exec" : "api_binding_site",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.api_binding_site"
         }, 
         {
             "block" : "CanonicalFasta", 

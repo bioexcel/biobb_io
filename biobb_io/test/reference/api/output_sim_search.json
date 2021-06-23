@@ -432,6 +432,18 @@
         ]
     },
     {
+        "_id": "PDB|6zhp",
+        "simulations": [
+            "6zhp_default_dppc"
+        ]
+    },
+    {
+        "_id": "PDB|6zhv",
+        "simulations": [
+            "6zhv_default_dppc"
+        ]
+    },
+    {
         "_id": "PDB|7prn",
         "simulations": [
             "7prn_default_dppc"
@@ -826,6 +838,12 @@
         "_id": "UniProt|F2VN85",
         "simulations": [
             "5nup_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|C6K7N1",
+        "simulations": [
+            "7jz3_default_dppc"
         ]
     },
     {

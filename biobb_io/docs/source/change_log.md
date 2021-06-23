@@ -1,5 +1,13 @@
 # Biobb IO changelog
 
+## What's new in version [3.5.2](https://github.com/bioexcel/biobb_io/releases/tag/v3.5.2)?
+In version 3.5.2 there have been small changes.
+
+### New features
+
+* Modified BindingSite tool name to ApiBindingSite for the sake of avoiding possible conflicts with other tools.
+* Modified some broken links of the PDBe REST API.
+
 ## What's new in version [3.5.1](https://github.com/bioexcel/biobb_io/releases/tag/v3.5.1)?
 In version 3.5.1 there have been added the new tools for binding sites, canonical FASTA, download structure in mmcif format, download ideal sdf for ligands and download structure info in JSON format.
 
