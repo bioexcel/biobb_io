@@ -1,5 +1,12 @@
 # Biobb IO changelog
 
+## What's new in version [3.6.0](https://github.com/bioexcel/biobb_io/releases/tag/v3.6.0)?
+In version 3.6.0 the dependency biobb_common has been updated to 3.6.0 version. 
+
+### New features
+
+* Update to biobb_common 3.6.0 (general)
+
 ## What's new in version [3.5.2](https://github.com/bioexcel/biobb_io/releases/tag/v3.5.2)?
 In version 3.5.2 there have been small changes.
 
