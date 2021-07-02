@@ -43,13 +43,13 @@ Using DOCKER:
 * Installation:
 
 
-        docker pull quay.io/biocontainers/biobb_io:3.6.0--py_0
+        docker pull quay.io/biocontainers/biobb_io:3.6.0--pyhdfd78af_0
 
 
 * Usage:
 
 
-        docker run quay.io/biocontainers/biobb_io:3.6.0--py_0 <command>
+        docker run quay.io/biocontainers/biobb_io:3.6.0--pyhdfd78af_0 <command>
 
 
 The command list and specification can be found at the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html).
