@@ -43,7 +43,6 @@ Using DOCKER:
 
 
         docker pull quay.io/biocontainers/biobb_io:3.6.0--pyhdfd78af_0
-s
 
 * Usage:
 
