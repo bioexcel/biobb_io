@@ -4,12 +4,14 @@
 import re
 import argparse
 import requests
+from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import *
 
-class PdbVariants():
+
+class PdbVariants(BiobbObject):
     """
     | biobb_io PdbVariants
     | This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
@@ -46,58 +48,54 @@ class PdbVariants():
                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
-        # IN OUT files
-        self.output_mutations_list_txt = output_mutations_list_txt
+        # Call parent class constructor
+        super().__init__(properties)
+
+        # Input/Output files
+        self.io_dict = { 
+            "out": { "output_mutations_list_txt": output_mutations_list_txt } 
+        }
 
         # Properties specific for BB
         self.pdb_code = properties.get('pdb_code', None)
         self.properties = properties
 
-        # Common in all BB
-        self.global_log = properties.get('global_log', None)
-        self.can_write_console_log = properties.get('can_write_console_log', True)
-        self.prefix = properties.get('prefix', None)
-        self.step = properties.get('step', None)
-        self.path = properties.get('path', '')
-        self.remove_tmp = properties.get('remove_tmp', True)
-        self.restart = properties.get('restart', False)
+        # Check the properties
+        self.check_properties(properties)
 
     def check_data_params(self, out_log, err_log):
         """ Checks all the input/output paths and parameters """
-        self.output_mutations_list_txt = check_output_path(self.output_mutations_list_txt, "output_mutations_list_txt", False, out_log, self.__class__.__name__)
+        self.output_mutations_list_txt = check_output_path(self.io_dict["out"]["output_mutations_list_txt"], "output_mutations_list_txt", False, out_log, self.__class__.__name__)
 
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` api.pdb_variants.PdbVariants object."""
         
-        # Get local loggers from launchlogger decorator
-        out_log = getattr(self, 'out_log', None)
-        err_log = getattr(self, 'err_log', None)
-
         # check input/output paths and parameters
-        self.check_data_params(out_log, err_log)
+        self.check_data_params(self.out_log, self.err_log)
 
-        # Check the properties
-        fu.check_properties(self, self.properties)
+        # Setup Biobb
+        if self.check_restart(): return 0
+        self.stage_files()
 
-        check_mandatory_property(self.pdb_code, 'pdb_code', out_log, self.__class__.__name__)
+        check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
 
         self.pdb_code = self.pdb_code.strip().lower()
 
         url = 'http://mmb.irbbarcelona.org/api'
-        uniprot_id = get_uniprot(self.pdb_code, url, out_log, self.global_log)
+        uniprot_id = get_uniprot(self.pdb_code, url, self.out_log, self.global_log)
         url_mapPDBRes = (url+"/uniprot/"+uniprot_id+"/mapPDBRes?pdbId="+self.pdb_code)
         pattern = re.compile((r"p.(?P<wt>[a-zA-Z]{3})(?P<resnum>\d+)(?P<mt>[a-zA-Z]{3})"))
 
-        fu.log('Fetching variants for uniprot_id: %s and pdb_code: %s' % (uniprot_id, self.pdb_code), out_log, self.global_log)
+        fu.log('Fetching variants for uniprot_id: %s and pdb_code: %s' % (uniprot_id, self.pdb_code), self.out_log, self.global_log)
         unfiltered_dic = requests.get(url_mapPDBRes, verify=False).json()
         if not unfiltered_dic:
-            fu.log("No mutation found", out_log, self.global_log)
+            fu.log("No mutation found", self.out_log, self.global_log)
             return None
 
         mapdic = requests.get(url_mapPDBRes, verify=False).json()
         mutations = []
-        uniprot_var_list = get_variants(uniprot_id, url, out_log, self.global_log)
+        uniprot_var_list = get_variants(uniprot_id, url, self.out_log, self.global_log)
         for var in uniprot_var_list:
             uni_mut = pattern.match(var).groupdict()
             for k in mapdic.keys():
@@ -106,8 +104,8 @@ class PdbVariants():
                         resnum = int(uni_mut['resnum']) + int(fragment['pdb_start']) - int(fragment['unp_start'])
                         mutations.append(k[-1]+'.'+uni_mut['wt']+str(resnum)+uni_mut['mt'])
 
-        fu.log('Found %d mutations mapped to PDB: %s' % (len(mutations), self.pdb_code), out_log, self.global_log)
-        fu.log('Writting mutations to: %s' % self.output_mutations_list_txt, out_log, self.global_log)
+        fu.log('Found %d mutations mapped to PDB: %s' % (len(mutations), self.pdb_code), self.out_log, self.global_log)
+        fu.log('Writting mutations to: %s' % self.output_mutations_list_txt, self.out_log, self.global_log)
 
         with open(self.output_mutations_list_txt, 'w') as mut_file:
             mutations.sort()

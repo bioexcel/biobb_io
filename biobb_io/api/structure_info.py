@@ -2,12 +2,14 @@
 
 """Module containing the StructureInfo class and the command line interface."""
 import argparse
+from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import *
 
-class StructureInfo():
+
+class StructureInfo(BiobbObject):
     """
     | biobb_io StructureInfo
     | This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.
@@ -44,48 +46,44 @@ class StructureInfo():
                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
+         # Call parent class constructor
+        super().__init__(properties)
+
         # Input/Output files
-        self.output_json_path = output_json_path
+        self.io_dict = { 
+            "out": { "output_json_path": output_json_path } 
+        }
 
         # Properties specific for BB
         self.pdb_code = properties.get('pdb_code', None)
         self.properties = properties
 
-        # Properties common in all BB
-        self.can_write_console_log = properties.get('can_write_console_log', True)
-        self.global_log = properties.get('global_log', None)
-        self.prefix = properties.get('prefix', None)
-        self.step = properties.get('step', None)
-        self.path = properties.get('path', '')
-        self.remove_tmp = properties.get('remove_tmp', True)
-        self.restart = properties.get('restart', False)
+        # Check the properties
+        self.check_properties(properties)
 
     def check_data_params(self, out_log, err_log):
         """ Checks all the input/output paths and parameters """
-        self.output_json_path = check_output_path(self.output_json_path, "output_json_path", False, out_log, self.__class__.__name__)
+        self.output_json_path = check_output_path(self.io_dict["out"]["output_json_path"], "output_json_path", False, out_log, self.__class__.__name__)
 
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`StructureInfo <api.structure_info.StructureInfo>` api.structure_info.StructureInfo object."""
         
-        # Get local loggers from launchlogger decorator
-        out_log = getattr(self, 'out_log', None)
-        err_log = getattr(self, 'err_log', None)
-
         # check input/output paths and parameters
-        self.check_data_params(out_log, err_log)
+        self.check_data_params(self.out_log, self.err_log)
 
-        # Check the properties
-        fu.check_properties(self, self.properties)
+        # Setup Biobb
+        if self.check_restart(): return 0
+        self.stage_files()
 
-        check_mandatory_property(self.pdb_code, 'pdb_code', out_log, self.__class__.__name__)
+        check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
 
         self.pdb_code = self.pdb_code.strip().lower()
         url = "http://mmb.irbbarcelona.org/api/pdb/%s.json"
 
         # Downloading PDB file
-        json_string = download_str_info(self.pdb_code, url, out_log, self.global_log)
-        write_json(json_string, self.output_json_path, out_log, self.global_log)
+        json_string = download_str_info(self.pdb_code, url, self.out_log, self.global_log)
+        write_json(json_string, self.output_json_path, self.out_log, self.global_log)
 
         return 0
 

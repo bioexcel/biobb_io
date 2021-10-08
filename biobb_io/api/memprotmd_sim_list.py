@@ -2,12 +2,14 @@
 
 """Module containing the MemProtMDSimList class and the command line interface."""
 import argparse
+from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import  settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import *
 
-class MemProtMDSimList():
+
+class MemProtMDSimList(BiobbObject):
     """
     | biobb_io MemProtMDSimList
     | This class is a wrapper of the MemProtMD to get all available membrane-protein systems from its REST API.
@@ -41,41 +43,37 @@ class MemProtMDSimList():
                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
+        # Call parent class constructor
+        super().__init__(properties)
+
         # Input/Output files
-        self.output_simulations = output_simulations
+        self.io_dict = { 
+            "out": { "output_simulations": output_simulations } 
+        }
 
         # Properties specific for BB
         self.properties = properties
 
-        # Properties common in all BB
-        self.can_write_console_log = properties.get('can_write_console_log', True)
-        self.global_log = properties.get('global_log', None)
-        self.prefix = properties.get('prefix', None)
-        self.step = properties.get('step', None)
-        self.path = properties.get('path', '')
-        self.remove_tmp = properties.get('remove_tmp', True)
-        self.restart = properties.get('restart', False)
+        # Check the properties
+        self.check_properties(properties)
 
     def check_data_params(self, out_log, err_log):
         """ Checks all the input/output paths and parameters """
-        self.output_simulations = check_output_path(self.output_simulations, "output_simulations", False, out_log, self.__class__.__name__)
+        self.output_simulations = check_output_path(self.io_dict["out"]["output_simulations"], "output_simulations", False, out_log, self.__class__.__name__)
 
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`MemProtMDSimList <api.memprotmd_sim_list.MemProtMDSimList>` api.memprotmd_sim_list.MemProtMDSimList object."""
         
-        # Get local loggers from launchlogger decorator
-        out_log = getattr(self, 'out_log', None)
-        err_log = getattr(self, 'err_log', None)
-
         # check input/output paths and parameters
-        self.check_data_params(out_log, err_log)
+        self.check_data_params(self.out_log, self.err_log)
 
-        # Check the properties
-        fu.check_properties(self, self.properties)
+        # Setup Biobb
+        if self.check_restart(): return 0
+        self.stage_files()
 
         # get JSON object
-        json_string = get_memprotmd_sim_list(out_log, self.global_log)
+        json_string = get_memprotmd_sim_list(self.out_log, self.global_log)
 
         # write JSON file
         write_json(json_string, self.output_simulations, self.out_log, self.global_log)

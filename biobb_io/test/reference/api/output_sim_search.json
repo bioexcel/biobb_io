@@ -558,15 +558,6 @@
         ]
     },
     {
-        "_id": "UniProt|E3U904",
-        "simulations": [
-            "4d64_default_dppc",
-            "5nxn_default_dppc",
-            "5nxr_default_dppc",
-            "5nxu_default_dppc"
-        ]
-    },
-    {
         "_id": "UniProt|P69856",
         "simulations": [
             "2wjq_default_dppc",
@@ -574,9 +565,12 @@
         ]
     },
     {
-        "_id": "UniProt|M4GGR4",
+        "_id": "UniProt|E3U904",
         "simulations": [
-            "3vzu_default_dppc"
+            "4d64_default_dppc",
+            "5nxn_default_dppc",
+            "5nxr_default_dppc",
+            "5nxu_default_dppc"
         ]
     },
     {
@@ -618,7 +612,8 @@
             "3m8b_default_dppc",
             "3m8d_default_dppc",
             "3rgm_default_dppc",
-            "3rgn_default_dppc"
+            "3rgn_default_dppc",
+            "7nsu_default_dppc"
         ]
     },
     {
@@ -778,7 +773,11 @@
             "4lsi_default_dppc",
             "5nuo_default_dppc",
             "5nuq_default_dppc",
-            "5nur_default_dppc"
+            "5nur_default_dppc",
+            "6zhp_default_dppc",
+            "6zhv_default_dppc",
+            "7nst_default_dppc",
+            "7nsu_default_dppc"
         ]
     },
     {
@@ -817,7 +816,8 @@
     {
         "_id": "UniProt|O96008",
         "simulations": [
-            "7ck6_default_dppc"
+            "7ck6_default_dppc",
+            "7cp9_default_dppc"
         ]
     },
     {
@@ -838,6 +838,12 @@
         "_id": "UniProt|F2VN85",
         "simulations": [
             "5nup_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|M4GGR4",
+        "simulations": [
+            "3vzu_default_dppc"
         ]
     },
     {
@@ -883,7 +889,9 @@
     {
         "_id": "UniProt|P23644",
         "simulations": [
-            "6ucu_default_dppc"
+            "6ucu_default_dppc",
+            "7e4h_default_dppc",
+            "7e4i_default_dppc"
         ]
     }
 ]
