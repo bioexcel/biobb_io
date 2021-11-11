@@ -7,97 +7,111 @@
     "docker": "https://quay.io/biocontainers/biobb_io:3.7.0--pyhdfd78af_0",
     "singularity": "https://www.singularity-hub.org/collections/2411/usage",
     "version": "3.7.0",
+    "rest": true,
     "tools" : [
         {
             "block" : "Drugbank", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for the Drugbank REST API.",
             "exec" : "drugbank",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#api-drugbank-module"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#api-drugbank-module",
+            "rest": true
         },
         {
             "block" : "Ligand", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for downloading a PDB ligand from the Protein Data Bank.",
             "exec" : "ligand",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.ligand"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.ligand",
+            "rest": true
         },
         {
             "block" : "Pdb", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for downloading a PDB structure from the Protein Data Bank.",
             "exec" : "pdb",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb",
+            "rest": true
         }, 
         {
             "block" : "PdbVariants", 
             "tool" : "API Call", 
             "desc" : "This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.",
             "exec" : "pdb_variants",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb_variants"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb_variants",
+            "rest": true
         }, 
         {
             "block" : "PdbClusterZip", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for downloading a PDB cluster from the Protein Data Bank.",
             "exec" : "pdb_cluster_zip",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb_cluster_zip"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb_cluster_zip",
+            "rest": true
         }, 
         {
             "block" : "MemProtMDSimList", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper of the MemProtMD to get all available membrane-protein systems from its REST API.",
             "exec" : "memprotmd_sim_list",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim_list"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim_list",
+            "rest": true
         }, 
         {
             "block" : "MemProtMDSimSearch", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper of the MemProtMD to perform advanced searches in the MemProtMD DB using its REST API.",
             "exec" : "memprotmd_sim_search",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim_search"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim_search",
+            "rest": true
         }, 
         {
             "block" : "MemProtMDSim", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper of the MemProtMD to download a simulation using its REST API.",
             "exec" : "memprotmd_sim",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.memprotmd_sim",
+            "rest": true
         }, 
         {
             "block" : "ApiBindingSite", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for the PDBe REST API Binding Sites endpoint.",
             "exec" : "api_binding_site",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.api_binding_site"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.api_binding_site",
+            "rest": true
         }, 
         {
             "block" : "CanonicalFasta", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.",
             "exec" : "canonical_fasta",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.canonical_fasta"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.canonical_fasta",
+            "rest": true
         }, 
         {
             "block" : "Mmcif", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for downloading a MMCIF structure from the Protein Data Bank.",
             "exec" : "mmcif",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.mmcif"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.mmcif",
+            "rest": true
         }, 
         {
             "block" : "IdealSdf", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.",
             "exec" : "ideal_sdf",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.ideal_sdf"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.ideal_sdf",
+            "rest": true
         }, 
         {
             "block" : "StructureInfo", 
             "tool" : "API Call", 
             "desc" : "This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.",
             "exec" : "structure_info",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.structure_info"
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.structure_info",
+            "rest": true
         }
     ],
     "dep_pypi" : [
