@@ -48,7 +48,7 @@ def download_pdb(pdb_code, api_id, out_log=None, global_log=None):
         url = "https://www.ebi.ac.uk/pdbe/entry-files/download/pdb" + pdb_code + ".ent"
 
     fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
-    return requests.get(url, verify=False).content.decode('utf-8')
+    return requests.get(url).content.decode('utf-8')
 
 def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
     """
