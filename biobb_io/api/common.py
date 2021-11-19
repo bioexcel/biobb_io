@@ -41,7 +41,7 @@ def download_pdb(pdb_code, api_id, out_log=None, global_log=None):
     """
 
     if api_id == 'mmb':
-        url = "http://mmb.irbbarcelona.org/api/pdb/" + pdb_code + "/coords/?"
+        url = "https://mmb.irbbarcelona.org/api/pdb/" + pdb_code + "/coords/?"
     elif api_id == 'pdb':
         url = "https://files.rcsb.org/download/" + pdb_code + ".pdb"
     elif api_id == 'pdbe':
