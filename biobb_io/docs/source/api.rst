@@ -4,6 +4,14 @@ configuration package
 Submodules
 ----------
 
+api.alphafold module
+------------------
+
+.. automodule:: api.alphafold
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 api.drugbank module
 ------------------
 
