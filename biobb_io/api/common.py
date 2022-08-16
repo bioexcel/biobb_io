@@ -2,6 +2,7 @@
 import os
 import json
 import requests
+import re
 import urllib.request
 from pathlib import Path, PurePath
 from biobb_common.tools import file_utils as fu
@@ -47,8 +48,25 @@ def download_pdb(pdb_code, api_id, out_log=None, global_log=None):
     elif api_id == 'pdbe':
         url = "https://www.ebi.ac.uk/pdbe/entry-files/download/pdb" + pdb_code + ".ent"
 
-    fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
+    fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url).content.decode('utf-8')
+
+def download_af(uniprot_code, out_log=None, global_log=None, classname=None):
+    """
+    Returns:
+        String: Content of the pdb file.
+    """
+
+    url = "https://alphafold.ebi.ac.uk/files/AF-" + uniprot_code + "-F1-model_v3.pdb"
+
+    fu.log("Downloading %s from: %s" % (uniprot_code, url), out_log, global_log)
+
+    r = requests.get(url)
+    if(r.status_code == 404):
+        fu.log(classname + ': Incorrect Uniprot Code: %s' % (uniprot_code), out_log)
+        raise SystemExit(classname + ': Incorrect Uniprot Code: %s' % (uniprot_code))
+
+    return r.content.decode('utf-8')
 
 def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
     """
@@ -63,7 +81,7 @@ def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
     elif api_id == 'pdbe':
         url = "https://www.ebi.ac.uk/pdbe/entry-files/download/" + pdb_code + ".cif"
 
-    fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
+    fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url, verify=False).content.decode('utf-8')
 
 def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
@@ -79,7 +97,7 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
         url="ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/{0}/{1}/{1}_ideal.pdb".format(ligand_code.upper()[0], ligand_code.upper(), ligand_code.upper())
         text = urllib.request.urlopen(url).read().decode('utf-8')
 
-    fu.log("Downloading: %s from: %s" % (ligand_code, url), out_log, global_log)
+    fu.log("Downloading %s from: %s" % (ligand_code, url), out_log, global_log)
 
     # removing useless empty lines at the end of the file
     text = os.linesep.join([s for s in text.splitlines() if s])
@@ -99,7 +117,7 @@ def download_fasta(pdb_code, api_id, out_log=None, global_log=None):
     elif api_id == 'pdbe':
         url = "https://www.ebi.ac.uk/pdbe/entry/pdb/" + pdb_code + "/fasta"
 
-    fu.log("Downloading: %s from: %s" % (pdb_code, url), out_log, global_log)
+    fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url, verify=False).content.decode('utf-8')
 
 def download_drugbank(drugbank_id, url="https://www.drugbank.ca/structures/small_molecule_drugs/%s.sdf?type=3d", out_log=None, global_log=None):
@@ -109,7 +127,7 @@ def download_drugbank(drugbank_id, url="https://www.drugbank.ca/structures/small
     """
     url = (url % drugbank_id)
 
-    fu.log("Downloading: %s from: %s" % (drugbank_id, url), out_log, global_log)
+    fu.log("Downloading %s from: %s" % (drugbank_id, url), out_log, global_log)
 
     text = requests.get(url, verify=False).content.decode('utf-8')
     
@@ -144,7 +162,7 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
         url="ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/{0}/{1}/{1}_ideal.sdf".format(ligand_code.upper()[0], ligand_code.upper(), ligand_code.upper())
         text = urllib.request.urlopen(url).read().decode('utf-8')
 
-    fu.log("Downloading: %s from: %s" % (ligand_code, url), out_log, global_log)
+    fu.log("Downloading %s from: %s" % (ligand_code, url), out_log, global_log)
     
     return text
 
@@ -311,3 +329,14 @@ def check_mandatory_property(property, name, out_log, classname):
         fu.log(classname + ': Unexisting %s property, exiting' % name, out_log)
         raise SystemExit(classname + ': Unexisting %s property' % name)
     return property
+
+def check_uniprot_code(code, out_log, classname):
+    """ Checks uniprot code """
+
+    pattern = re.compile((r"[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}"))
+
+    if not pattern.match(code):
+        fu.log(classname + ': Incorrect uniprot code for %s' % code, out_log)
+        raise SystemExit(classname + ': Incorrect uniprot code for %s' % code)
+
+    return True

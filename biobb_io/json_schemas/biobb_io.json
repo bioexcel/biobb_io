@@ -32,6 +32,14 @@
             "exec" : "pdb",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.pdb",
             "rest": true
+        },
+        {
+            "block" : "AlphaFold", 
+            "tool" : "API Call", 
+            "desc" : "This class is a wrapper for downloading a PDB structure from the AlphaFold Protein Structure Database.",
+            "exec" : "alphafold",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.alphafold",
+            "rest": false
         }, 
         {
             "block" : "PdbVariants", 

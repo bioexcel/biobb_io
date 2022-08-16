@@ -46,6 +46,13 @@ pdb:
     filter: [ATOM, HETATM]
     api_id: mmb
 
+alphafold:
+  paths:
+    output_pdb_path: output_pdb_path.pdb
+    reference_output_pdb_path: file:test_reference_dir/api/output_alphafold.pdb
+  properties:
+    uniprot_code: P00489
+
 pdb_cluster_zip:
   paths:
     output_pdb_zip_path: output_pdb_zip_path.zip
