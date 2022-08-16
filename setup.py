@@ -22,6 +22,7 @@ setuptools.setup(
     python_requires='==3.7.*',
     entry_points={
         "console_scripts": [
+            "alphafold = biobb_io.api.alphafold:main",
             "api_binding_site = biobb_io.api.api_binding_site:main",
             "canonical_fasta = biobb_io.api.canonical_fasta:main",
             "drugbank = biobb_io.api.drugbank:main",
