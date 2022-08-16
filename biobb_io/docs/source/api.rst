@@ -5,7 +5,7 @@ Submodules
 ----------
 
 api.alphafold module
-------------------
+---------------------
 
 .. automodule:: api.alphafold
     :members:
@@ -13,7 +13,7 @@ api.alphafold module
     :show-inheritance:
 
 api.drugbank module
-------------------
+-------------------
 
 .. automodule:: api.drugbank
     :members:
@@ -29,7 +29,7 @@ api.ligand module
     :show-inheritance:
 
 api.memprotmd_sim module
-------------------
+-------------------------
 
 .. automodule:: api.memprotmd_sim
     :members:
@@ -37,7 +37,7 @@ api.memprotmd_sim module
     :show-inheritance:
 
 api.memprotmd_sim_list module
-------------------
+-------------------------------
 
 .. automodule:: api.memprotmd_sim_list
     :members:
@@ -45,7 +45,7 @@ api.memprotmd_sim_list module
     :show-inheritance:
 
 api.memprotmd_sim_search module
-------------------
+--------------------------------
 
 .. automodule:: api.memprotmd_sim_search
     :members:
@@ -77,7 +77,7 @@ api.pdb_variants module
     :show-inheritance:
 
 api.api_binding_site module
----------------------------
+----------------------------
 
 .. automodule:: api.api_binding_site
     :members:
