@@ -466,17 +466,6 @@
         ]
     },
     {
-        "_id": "UniProt|P02943",
-        "simulations": [
-            "1af6_default_dppc",
-            "1mal_default_dppc",
-            "1mpm_default_dppc",
-            "1mpn_default_dppc",
-            "1mpo_default_dppc",
-            "1mpq_default_dppc"
-        ]
-    },
-    {
         "_id": "UniProt|P26466",
         "simulations": [
             "1mpr_default_dppc",
@@ -487,6 +476,12 @@
         "_id": "UniProt|A0A0M7H8A9",
         "simulations": [
             "6ene_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|A0A1P8FCM7",
+        "simulations": [
+            "5o77_default_dppc"
         ]
     },
     {
@@ -533,6 +528,62 @@
         ]
     },
     {
+        "_id": "UniProt|P76045",
+        "simulations": [
+            "2f1c_default_dppc",
+            "2iwv_default_dppc",
+            "2iww_default_dppc",
+            "2jqy_default_dppc",
+            "2wvp_default_dppc",
+            "2x9k_default_dppc",
+            "5mwv_default_dppc",
+            "6oqh_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P0A264",
+        "simulations": [
+            "3upg_default_dppc",
+            "3uu2_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|E3U904",
+        "simulations": [
+            "4d64_default_dppc",
+            "5nxn_default_dppc",
+            "5nxr_default_dppc",
+            "5nxu_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P69856",
+        "simulations": [
+            "2wjq_default_dppc",
+            "2wjr_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P21796",
+        "simulations": [
+            "2jk4_default_dppc",
+            "2k4t_default_dppc",
+            "5xdn_default_dppc",
+            "5xdo_default_dppc",
+            "6g6u_default_dppc",
+            "6g73_default_dppc",
+            "6tiq_default_dppc",
+            "6tir_default_dppc",
+            "7qi2_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|Q8CVW1",
+        "simulations": [
+            "2xe1_default_dppc"
+        ]
+    },
+    {
         "_id": "UniProt|P0A910",
         "simulations": [
             "1bxw_default_dppc",
@@ -545,32 +596,14 @@
         ]
     },
     {
-        "_id": "UniProt|W1E8X3",
+        "_id": "UniProt|P02943",
         "simulations": [
-            "5o77_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P0A264",
-        "simulations": [
-            "3upg_default_dppc",
-            "3uu2_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P69856",
-        "simulations": [
-            "2wjq_default_dppc",
-            "2wjr_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|E3U904",
-        "simulations": [
-            "4d64_default_dppc",
-            "5nxn_default_dppc",
-            "5nxr_default_dppc",
-            "5nxu_default_dppc"
+            "1af6_default_dppc",
+            "1mal_default_dppc",
+            "1mpm_default_dppc",
+            "1mpn_default_dppc",
+            "1mpo_default_dppc",
+            "1mpq_default_dppc"
         ]
     },
     {
@@ -587,16 +620,9 @@
         ]
     },
     {
-        "_id": "UniProt|P21796",
+        "_id": "UniProt|P02932",
         "simulations": [
-            "2jk4_default_dppc",
-            "2k4t_default_dppc",
-            "5xdn_default_dppc",
-            "5xdo_default_dppc",
-            "6g6u_default_dppc",
-            "6g73_default_dppc",
-            "6tiq_default_dppc",
-            "6tir_default_dppc"
+            "1pho_default_dppc"
         ]
     },
     {
@@ -625,12 +651,6 @@
         ]
     },
     {
-        "_id": "UniProt|P02932",
-        "simulations": [
-            "1pho_default_dppc"
-        ]
-    },
-    {
         "_id": "UniProt|Q5RT80",
         "simulations": [
             "3a2s_default_dppc",
@@ -639,9 +659,10 @@
         ]
     },
     {
-        "_id": "UniProt|D6QLY1",
+        "_id": "UniProt|D6QLY0",
         "simulations": [
-            "6rck_default_dppc"
+            "5o79_default_dppc",
+            "6rd3_default_dppc"
         ]
     },
     {
@@ -665,12 +686,6 @@
         ]
     },
     {
-        "_id": "UniProt|Q8CVW1",
-        "simulations": [
-            "2xe1_default_dppc"
-        ]
-    },
-    {
         "_id": "UniProt|P0C6Q6",
         "simulations": [
             "5onu_default_dppc"
@@ -683,23 +698,9 @@
         ]
     },
     {
-        "_id": "UniProt|P76045",
+        "_id": "UniProt|D6QLY1",
         "simulations": [
-            "2f1c_default_dppc",
-            "2iwv_default_dppc",
-            "2iww_default_dppc",
-            "2jqy_default_dppc",
-            "2wvp_default_dppc",
-            "2x9k_default_dppc",
-            "5mwv_default_dppc",
-            "6oqh_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|D6QLY0",
-        "simulations": [
-            "5o79_default_dppc",
-            "6rd3_default_dppc"
+            "6rck_default_dppc"
         ]
     },
     {
@@ -800,14 +801,6 @@
         ]
     },
     {
-        "_id": "UniProt|P32722",
-        "simulations": [
-            "2odj_default_dppc",
-            "3sy7_default_dppc",
-            "4foz_default_dppc"
-        ]
-    },
-    {
         "_id": "UniProt|Q48473",
         "simulations": [
             "1osm_default_dppc"
@@ -832,6 +825,14 @@
         "_id": "UniProt|A0QR29",
         "simulations": [
             "1uun_default_dppc"
+        ]
+    },
+    {
+        "_id": "UniProt|P23644",
+        "simulations": [
+            "6ucu_default_dppc",
+            "7e4h_default_dppc",
+            "7e4i_default_dppc"
         ]
     },
     {
@@ -875,6 +876,14 @@
         ]
     },
     {
+        "_id": "UniProt|P32722",
+        "simulations": [
+            "2odj_default_dppc",
+            "3sy7_default_dppc",
+            "4foz_default_dppc"
+        ]
+    },
+    {
         "_id": "UniProt|Q93K99",
         "simulations": [
             "5fvn_default_dppc"
@@ -884,14 +893,6 @@
         "_id": "UniProt|O86021",
         "simulations": [
             "5oyk_default_dppc"
-        ]
-    },
-    {
-        "_id": "UniProt|P23644",
-        "simulations": [
-            "6ucu_default_dppc",
-            "7e4h_default_dppc",
-            "7e4i_default_dppc"
         ]
     }
 ]
