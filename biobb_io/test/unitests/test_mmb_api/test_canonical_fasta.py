@@ -2,10 +2,10 @@ from biobb_common.tools import test_fixtures as fx
 from biobb_io.api.canonical_fasta import canonical_fasta
 
 class TestCanonicalFasta():
-    def setUp(self):
+    def setup_class(self):
         fx.test_setup(self,'canonical_fasta')
 
-    def tearDown(self):
+    def teardown_class(self):
         fx.test_teardown(self)
         pass
 

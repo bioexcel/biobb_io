@@ -2,10 +2,10 @@ from biobb_common.tools import test_fixtures as fx
 from biobb_io.api.drugbank import drugbank
 
 class TestDrugbank():
-    def setUp(self):
+    def setup_class(self):
         fx.test_setup(self,'drugbank')
 
-    def tearDown(self):
+    def teardown_class(self):
         fx.test_teardown(self)
         pass
 
