@@ -5,7 +5,7 @@
     "readthedocs": "https://biobb-io.readthedocs.io/en/latest/",
     "conda": "https://anaconda.org/bioconda/biobb_io",
     "docker": "https://quay.io/biocontainers/biobb_io:3.8.0--pyhdfd78af_0",
-    "singularity": "https://www.singularity-hub.org/collections/2411/usage",
+    "singularity": "https://depot.galaxyproject.org/singularity/biobb_io:3.8.0--pyhdfd78af_0",
     "version": "3.8.0",
     "rest": true,
     "tools" : [
