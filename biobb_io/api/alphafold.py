@@ -48,6 +48,7 @@ class AlphaFold(BiobbObject):
 
         # Call parent class constructor
         super().__init__(properties)
+        self.locals_var_dict = locals().copy()
 
         # Input/Output files
         self.io_dict = { 
@@ -60,6 +61,7 @@ class AlphaFold(BiobbObject):
 
         # Check the properties
         self.check_properties(properties)
+        self.check_arguments()
 
     def check_data_params(self, out_log, err_log):
         """ Checks all the input/output paths and parameters """
@@ -74,7 +76,7 @@ class AlphaFold(BiobbObject):
 
         # Setup Biobb
         if self.check_restart(): return 0
-        self.stage_files()
+        #self.stage_files()
 
         check_mandatory_property(self.uniprot_code, 'uniprot_code', self.out_log, self.__class__.__name__)
 
@@ -85,6 +87,8 @@ class AlphaFold(BiobbObject):
         # Downloading PDB file
         pdb_string = download_af(self.uniprot_code, self.out_log, self.global_log, self.__class__.__name__)
         write_pdb(pdb_string, self.output_pdb_path, None, self.out_log, self.global_log)
+
+        self.check_arguments(output_files_created=True, raise_exception=False)
 
         return 0
 

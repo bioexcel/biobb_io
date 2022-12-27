@@ -48,6 +48,7 @@ class MemProtMDSim(BiobbObject):
 
         # Call parent class constructor
         super().__init__(properties)
+        self.locals_var_dict = locals().copy()
 
         # Input/Output files
         self.io_dict = { 
@@ -60,6 +61,7 @@ class MemProtMDSim(BiobbObject):
 
         # Check the properties
         self.check_properties(properties)
+        self.check_arguments()
 
     def check_data_params(self, out_log, err_log):
         """ Checks all the input/output paths and parameters """
@@ -74,12 +76,14 @@ class MemProtMDSim(BiobbObject):
 
         # Setup Biobb
         if self.check_restart(): return 0
-        self.stage_files()
+        #self.stage_files()
 
         check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
 
         # get simulation files and save to output
         json_string = get_memprotmd_sim(self.pdb_code, self.output_simulation, self.out_log, self.global_log)
+
+        self.check_arguments(output_files_created=True, raise_exception=False)
 
         return 0
 

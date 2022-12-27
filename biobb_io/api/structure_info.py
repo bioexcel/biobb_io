@@ -48,6 +48,7 @@ class StructureInfo(BiobbObject):
 
          # Call parent class constructor
         super().__init__(properties)
+        self.locals_var_dict = locals().copy()
 
         # Input/Output files
         self.io_dict = { 
@@ -60,6 +61,7 @@ class StructureInfo(BiobbObject):
 
         # Check the properties
         self.check_properties(properties)
+        self.check_arguments()
 
     def check_data_params(self, out_log, err_log):
         """ Checks all the input/output paths and parameters """
@@ -74,7 +76,7 @@ class StructureInfo(BiobbObject):
 
         # Setup Biobb
         if self.check_restart(): return 0
-        self.stage_files()
+        #self.stage_files()
 
         check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
 
@@ -84,6 +86,8 @@ class StructureInfo(BiobbObject):
         # Downloading PDB file
         json_string = download_str_info(self.pdb_code, url, self.out_log, self.global_log)
         write_json(json_string, self.output_json_path, self.out_log, self.global_log)
+
+        self.check_arguments(output_files_created=True, raise_exception=False)
 
         return 0
 
