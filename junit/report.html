@@ -253,7 +253,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>report.html</h1>
-    <p>Report generated on 11-Apr-2023 at 15:27:45 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
+    <p>Report generated on 11-Apr-2023 at 15:29:02 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -261,18 +261,18 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <td>true</td></tr>
       <tr>
         <td>Packages</td>
-        <td>{"pluggy": "1.0.0", "pytest": "7.3.0"}</td></tr>
+        <td>{"pluggy": "1.0.0", "pytest": "7.2.0"}</td></tr>
       <tr>
         <td>Platform</td>
-        <td>Linux-5.4.0-139-generic-x86_64-with-glibc2.10</td></tr>
+        <td>Linux-5.4.0-139-generic-x86_64-with-debian-bullseye-sid</td></tr>
       <tr>
         <td>Plugins</td>
         <td>{"cov": "4.0.0", "html": "3.2.0", "metadata": "2.0.4"}</td></tr>
       <tr>
         <td>Python</td>
-        <td>3.8.16</td></tr></table>
+        <td>3.7.12</td></tr></table>
     <h2>Summary</h2>
-    <p>14 tests ran in 30.07 seconds. </p>
+    <p>14 tests ran in 34.36 seconds. </p>
     <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">14 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
@@ -288,13 +288,13 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_alphafold.py::TestAlphaFold::test_alphafold</td>
-          <td class="col-duration">0.50</td>
+          <td class="col-duration">0.46</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:15,448 [MainThread  ] [INFO ]  Executing biobb_io.api.alphafold Version: 4.0.0
-2023-04-11 15:27:15,448 [MainThread  ] [INFO ]  Downloading P00489 from: https://alphafold.ebi.ac.uk/files/AF-P00489-F1-model_v3.pdb
-2023-04-11 15:27:15,574 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests_33/alphafold/output_pdb_path.pdb
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:28,070 [MainThread  ] [INFO ]  Executing biobb_io.api.alphafold Version: 4.0.0
+2023-04-11 15:28:28,071 [MainThread  ] [INFO ]  Downloading P00489 from: https://alphafold.ebi.ac.uk/files/AF-P00489-F1-model_v3.pdb
+2023-04-11 15:28:28,202 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests_33/alphafold/output_pdb_path.pdb
 Checking if empty file: /tmp/biobb/unitests_33/alphafold/output_pdb_path.pdb
 Checking RMSD between:
      PDB_A: /tmp/biobb/unitests_33/alphafold/output_pdb_path.pdb
@@ -314,14 +314,14 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_api_binding_site.py::TestApiBindingSite::test_api_binding_site</td>
-          <td class="col-duration">0.64</td>
+          <td class="col-duration">0.31</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:15,967 [MainThread  ] [INFO ]  Executing biobb_io.api.api_binding_site Version: 4.0.0
-2023-04-11 15:27:15,967 [MainThread  ] [INFO ]  Getting binding sites from: https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/4i23
-2023-04-11 15:27:16,588 [MainThread  ] [INFO ]  1 binding sites found
-2023-04-11 15:27:16,588 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_33/api_binding_site/output_json_path.json
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:28,552 [MainThread  ] [INFO ]  Executing biobb_io.api.api_binding_site Version: 4.0.0
+2023-04-11 15:28:28,552 [MainThread  ] [INFO ]  Getting binding sites from: https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/4i23
+2023-04-11 15:28:28,846 [MainThread  ] [INFO ]  1 binding sites found
+2023-04-11 15:28:28,847 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_33/api_binding_site/output_json_path.json
 Checking if empty file: /tmp/biobb/unitests_33/api_binding_site/output_json_path.json
 Comparing: 
         File_A: /tmp/biobb/unitests_33/api_binding_site/output_json_path.json
@@ -338,13 +338,13 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_canonical_fasta.py::TestCanonicalFasta::test_canonical_fasta</td>
-          <td class="col-duration">0.27</td>
+          <td class="col-duration">0.28</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:16,609 [MainThread  ] [INFO ]  Executing biobb_io.api.canonical_fasta Version: 4.0.0
-2023-04-11 15:27:16,609 [MainThread  ] [INFO ]  Downloading 4i23 from: https://www.ebi.ac.uk/pdbe/entry/pdb/4i23/fasta
-2023-04-11 15:27:16,868 [MainThread  ] [INFO ]  Writting FASTA to: /tmp/biobb/unitests_33/canonical_fasta/output_fasta_path.fasta
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:28,864 [MainThread  ] [INFO ]  Executing biobb_io.api.canonical_fasta Version: 4.0.0
+2023-04-11 15:28:28,864 [MainThread  ] [INFO ]  Downloading 4i23 from: https://www.ebi.ac.uk/pdbe/entry/pdb/4i23/fasta
+2023-04-11 15:28:29,134 [MainThread  ] [INFO ]  Writting FASTA to: /tmp/biobb/unitests_33/canonical_fasta/output_fasta_path.fasta
 Checking if empty file: /tmp/biobb/unitests_33/canonical_fasta/output_fasta_path.fasta
 Comparing: 
         File_A: /tmp/biobb/unitests_33/canonical_fasta/output_fasta_path.fasta
@@ -360,13 +360,13 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_drugbank.py::TestDrugbank::test_drugbank</td>
-          <td class="col-duration">0.59</td>
+          <td class="col-duration">0.64</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:16,890 [MainThread  ] [INFO ]  Executing biobb_io.api.drugbank Version: 4.0.0
-2023-04-11 15:27:16,890 [MainThread  ] [INFO ]  Downloading db00530 from: https://www.drugbank.ca/structures/small_molecule_drugs/db00530.sdf?type=3d
-2023-04-11 15:27:17,464 [MainThread  ] [INFO ]  Writting sdf to: /tmp/biobb/unitests_33/drugbank/output_sdf_path.sdf
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:29,158 [MainThread  ] [INFO ]  Executing biobb_io.api.drugbank Version: 4.0.0
+2023-04-11 15:28:29,158 [MainThread  ] [INFO ]  Downloading db00530 from: https://www.drugbank.ca/structures/small_molecule_drugs/db00530.sdf?type=3d
+2023-04-11 15:28:29,784 [MainThread  ] [INFO ]  Writting sdf to: /tmp/biobb/unitests_33/drugbank/output_sdf_path.sdf
 Checking if empty file: /tmp/biobb/unitests_33/drugbank/output_sdf_path.sdf
 Comparing: 
         File_A: /tmp/biobb/unitests_33/drugbank/output_sdf_path.sdf
@@ -386,9 +386,9 @@ Removing: /tmp/biobb/unitests_33
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:17,484 [MainThread  ] [INFO ]  Executing biobb_io.api.ideal_sdf Version: 4.0.0
-2023-04-11 15:27:17,937 [MainThread  ] [INFO ]  Downloading HYZ from: ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/H/HYZ/HYZ_ideal.sdf
-2023-04-11 15:27:17,938 [MainThread  ] [INFO ]  Writting sdf to: /tmp/biobb/unitests_33/ideal_sdf/output_sdf_path.sdf
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:29,804 [MainThread  ] [INFO ]  Executing biobb_io.api.ideal_sdf Version: 4.0.0
+2023-04-11 15:28:30,263 [MainThread  ] [INFO ]  Downloading HYZ from: ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/H/HYZ/HYZ_ideal.sdf
+2023-04-11 15:28:30,263 [MainThread  ] [INFO ]  Writting sdf to: /tmp/biobb/unitests_33/ideal_sdf/output_sdf_path.sdf
 Checking if empty file: /tmp/biobb/unitests_33/ideal_sdf/output_sdf_path.sdf
 Comparing: 
         File_A: /tmp/biobb/unitests_33/ideal_sdf/output_sdf_path.sdf
@@ -404,13 +404,13 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_ligand.py::TestLigand::test_ligand</td>
-          <td class="col-duration">0.47</td>
+          <td class="col-duration">0.46</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:17,958 [MainThread  ] [INFO ]  Executing biobb_io.api.ligand Version: 4.0.0
-2023-04-11 15:27:18,409 [MainThread  ] [INFO ]  Downloading ibp from: ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/I/IBP/IBP_ideal.pdb
-2023-04-11 15:27:18,409 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests_33/ligand/output_pdb_path.pdb
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:30,282 [MainThread  ] [INFO ]  Executing biobb_io.api.ligand Version: 4.0.0
+2023-04-11 15:28:30,735 [MainThread  ] [INFO ]  Downloading ibp from: ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/I/IBP/IBP_ideal.pdb
+2023-04-11 15:28:30,735 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests_33/ligand/output_pdb_path.pdb
 Checking if empty file: /tmp/biobb/unitests_33/ligand/output_pdb_path.pdb
 Comparing: 
         File_A: /tmp/biobb/unitests_33/ligand/output_pdb_path.pdb
@@ -426,13 +426,13 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim.py::TestMemProtMDSim::test_memprotmd_sim</td>
-          <td class="col-duration">0.83</td>
+          <td class="col-duration">0.73</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:18,433 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim Version: 4.0.0
-2023-04-11 15:27:18,433 [MainThread  ] [INFO ]  Getting simulation file from pdb code 1hzx
-2023-04-11 15:27:19,245 [MainThread  ] [INFO ]  Saving output /tmp/biobb/unitests_33/memprotmd_sim/output_simulation.zip file
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:30,754 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim Version: 4.0.0
+2023-04-11 15:28:30,754 [MainThread  ] [INFO ]  Getting simulation file from pdb code 1hzx
+2023-04-11 15:28:31,473 [MainThread  ] [INFO ]  Saving output /tmp/biobb/unitests_33/memprotmd_sim/output_simulation.zip file
 Checking if empty file: /tmp/biobb/unitests_33/memprotmd_sim/output_simulation.zip
 <br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests_33/memprotmd_sim/memprotmd_sim_log.out:file_utils.py:346 Executing biobb_io.api.memprotmd_sim Version: 4.0.0
 INFO     /tmp/biobb/unitests_33/memprotmd_sim/memprotmd_sim_log.out:file_utils.py:346 Getting simulation file from pdb code 1hzx
@@ -443,14 +443,14 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim_list.py::TestMemProtMDSimList::test_memprotmd_sim_list</td>
-          <td class="col-duration">0.59</td>
+          <td class="col-duration">0.47</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:19,268 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim_list Version: 4.0.0
-2023-04-11 15:27:19,268 [MainThread  ] [INFO ]  Getting all available membrane-protein systems (simulations) from the MemProtMD REST API
-2023-04-11 15:27:19,827 [MainThread  ] [INFO ]  Total number of simulations: 6476
-2023-04-11 15:27:19,830 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_33/memprotmd_sim_list/output_simulations.json
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:31,493 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim_list Version: 4.0.0
+2023-04-11 15:28:31,493 [MainThread  ] [INFO ]  Getting all available membrane-protein systems (simulations) from the MemProtMD REST API
+2023-04-11 15:28:31,938 [MainThread  ] [INFO ]  Total number of simulations: 6476
+2023-04-11 15:28:31,940 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_33/memprotmd_sim_list/output_simulations.json
 Checking if empty file: /tmp/biobb/unitests_33/memprotmd_sim_list/output_simulations.json
 Comparing: 
         File_A: /tmp/biobb/unitests_33/memprotmd_sim_list/output_simulations.json
@@ -467,14 +467,14 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim_search.py::TestMemProtMDSimSearch::test_memprotmd_sim_search</td>
-          <td class="col-duration">0.24</td>
+          <td class="col-duration">0.23</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:19,859 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim_search Version: 4.0.0
-2023-04-11 15:27:19,859 [MainThread  ] [INFO ]  Getting search results from the MemProtMD REST API. Collection name: refs, keyword: porin
-2023-04-11 15:27:20,087 [MainThread  ] [INFO ]  Total number of simulations: 251
-2023-04-11 15:27:20,087 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_33/memprotmd_sim_search/output_simulations.json
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:31,967 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim_search Version: 4.0.0
+2023-04-11 15:28:31,967 [MainThread  ] [INFO ]  Getting search results from the MemProtMD REST API. Collection name: refs, keyword: porin
+2023-04-11 15:28:32,185 [MainThread  ] [INFO ]  Total number of simulations: 251
+2023-04-11 15:28:32,185 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_33/memprotmd_sim_search/output_simulations.json
 Checking if empty file: /tmp/biobb/unitests_33/memprotmd_sim_search/output_simulations.json
 Comparing: 
         File_A: /tmp/biobb/unitests_33/memprotmd_sim_search/output_simulations.json
@@ -495,9 +495,9 @@ Removing: /tmp/biobb/unitests_33
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:20,107 [MainThread  ] [INFO ]  Executing biobb_io.api.mmcif Version: 4.0.0
-2023-04-11 15:27:20,107 [MainThread  ] [INFO ]  Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/2vgb.cif
-2023-04-11 15:27:20,955 [MainThread  ] [INFO ]  Writting mmcif to: /tmp/biobb/unitests_33/mmcif/output_mmcif_path.mmcif
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:32,206 [MainThread  ] [INFO ]  Executing biobb_io.api.mmcif Version: 4.0.0
+2023-04-11 15:28:32,206 [MainThread  ] [INFO ]  Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/2vgb.cif
+2023-04-11 15:28:33,054 [MainThread  ] [INFO ]  Writting mmcif to: /tmp/biobb/unitests_33/mmcif/output_mmcif_path.mmcif
 Checking if empty file: /tmp/biobb/unitests_33/mmcif/output_mmcif_path.mmcif
 Comparing: 
         File_A: /tmp/biobb/unitests_33/mmcif/output_mmcif_path.mmcif
@@ -513,14 +513,14 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_pdb.py::TestPdb::test_pdb</td>
-          <td class="col-duration">1.09</td>
+          <td class="col-duration">0.95</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:20,991 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb Version: 4.0.0
-2023-04-11 15:27:20,991 [MainThread  ] [INFO ]  Downloading 2vgb from: https://mmb.irbbarcelona.org/api/pdb/2vgb/coords/?
-2023-04-11 15:27:21,179 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests_33/pdb/output_pdb_path.pdb
-2023-04-11 15:27:21,180 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;HETATM&#x27;]
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:33,085 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb Version: 4.0.0
+2023-04-11 15:28:33,085 [MainThread  ] [INFO ]  Downloading 2vgb from: https://mmb.irbbarcelona.org/api/pdb/2vgb/coords/?
+2023-04-11 15:28:33,256 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests_33/pdb/output_pdb_path.pdb
+2023-04-11 15:28:33,256 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;HETATM&#x27;]
 Checking if empty file: /tmp/biobb/unitests_33/pdb/output_pdb_path.pdb
 Checking RMSD between:
      PDB_A: /tmp/biobb/unitests_33/pdb/output_pdb_path.pdb
@@ -541,43 +541,43 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_pdb_cluster_zip.py::TestPdbClusterZip::test_pdb_cluster_zip</td>
-          <td class="col-duration">17.88</td>
+          <td class="col-duration">22.72</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:22,081 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb_cluster_zip Version: 4.0.0
-2023-04-11 15:27:29,486 [MainThread  ] [INFO ]  Cluster: 90 of pdb_code: 2vgb
- List: {&#x27;2vgi&#x27;, &#x27;2vgb&#x27;, &#x27;4ima&#x27;, &#x27;2vgf&#x27;, &#x27;4ip7&#x27;, &#x27;2vgg&#x27;}
-2023-04-11 15:27:29,487 [MainThread  ] [INFO ]  Downloading 2vgi from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgi.ent
-2023-04-11 15:27:30,113 [MainThread  ] [INFO ]  Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/2vgi.pdb
-2023-04-11 15:27:30,113 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-04-11 15:27:30,129 [MainThread  ] [INFO ]  Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgb.ent
-2023-04-11 15:27:30,927 [MainThread  ] [INFO ]  Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/2vgb.pdb
-2023-04-11 15:27:30,927 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-04-11 15:27:30,943 [MainThread  ] [INFO ]  Downloading 4ima from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ima.ent
-2023-04-11 15:27:31,738 [MainThread  ] [INFO ]  Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/4ima.pdb
-2023-04-11 15:27:31,738 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-04-11 15:27:31,755 [MainThread  ] [INFO ]  Downloading 2vgf from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgf.ent
-2023-04-11 15:27:32,553 [MainThread  ] [INFO ]  Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/2vgf.pdb
-2023-04-11 15:27:32,553 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-04-11 15:27:32,569 [MainThread  ] [INFO ]  Downloading 4ip7 from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ip7.ent
-2023-04-11 15:27:33,654 [MainThread  ] [INFO ]  Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/4ip7.pdb
-2023-04-11 15:27:33,654 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-04-11 15:27:33,684 [MainThread  ] [INFO ]  Downloading 2vgg from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgg.ent
-2023-04-11 15:27:34,620 [MainThread  ] [INFO ]  Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/2vgg.pdb
-2023-04-11 15:27:34,628 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-04-11 15:27:34,662 [MainThread  ] [INFO ]  Adding:
-2023-04-11 15:27:34,662 [MainThread  ] [INFO ]  [&#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/2vgb.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/2vgf.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/2vgg.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/2vgi.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/4ima.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/4ip7.pdb&#x27;]
-2023-04-11 15:27:34,662 [MainThread  ] [INFO ]  to: /tmp/biobb/unitests_33/pdb_cluster_zip/output_pdb_zip_path.zip
-2023-04-11 15:27:34,664 [MainThread  ] [INFO ]  Removed: [&#x27;c2987831-f669-47b3-8bbd-7adf5347e46d&#x27;]
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:34,040 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb_cluster_zip Version: 4.0.0
+2023-04-11 15:28:41,325 [MainThread  ] [INFO ]  Cluster: 90 of pdb_code: 2vgb
+ List: {&#x27;2vgf&#x27;, &#x27;4ip7&#x27;, &#x27;2vgb&#x27;, &#x27;4ima&#x27;, &#x27;2vgi&#x27;, &#x27;2vgg&#x27;}
+2023-04-11 15:28:41,326 [MainThread  ] [INFO ]  Downloading 2vgf from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgf.ent
+2023-04-11 15:28:42,140 [MainThread  ] [INFO ]  Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgf.pdb
+2023-04-11 15:28:42,140 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+2023-04-11 15:28:42,156 [MainThread  ] [INFO ]  Downloading 4ip7 from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ip7.ent
+2023-04-11 15:28:46,901 [MainThread  ] [INFO ]  Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/4ip7.pdb
+2023-04-11 15:28:46,901 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+2023-04-11 15:28:46,955 [MainThread  ] [INFO ]  Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgb.ent
+2023-04-11 15:28:48,618 [MainThread  ] [INFO ]  Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgb.pdb
+2023-04-11 15:28:48,618 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+2023-04-11 15:28:48,645 [MainThread  ] [INFO ]  Downloading 4ima from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ima.ent
+2023-04-11 15:28:49,834 [MainThread  ] [INFO ]  Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/4ima.pdb
+2023-04-11 15:28:49,835 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+2023-04-11 15:28:49,851 [MainThread  ] [INFO ]  Downloading 2vgi from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgi.ent
+2023-04-11 15:28:50,931 [MainThread  ] [INFO ]  Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgi.pdb
+2023-04-11 15:28:50,931 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+2023-04-11 15:28:50,946 [MainThread  ] [INFO ]  Downloading 2vgg from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgg.ent
+2023-04-11 15:28:52,085 [MainThread  ] [INFO ]  Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgg.pdb
+2023-04-11 15:28:52,144 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+2023-04-11 15:28:52,177 [MainThread  ] [INFO ]  Adding:
+2023-04-11 15:28:52,177 [MainThread  ] [INFO ]  [&#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgb.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgf.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgg.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgi.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/4ima.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/4ip7.pdb&#x27;]
+2023-04-11 15:28:52,177 [MainThread  ] [INFO ]  to: /tmp/biobb/unitests_33/pdb_cluster_zip/output_pdb_zip_path.zip
+2023-04-11 15:28:52,179 [MainThread  ] [INFO ]  Removed: [&#x27;fdd7c162-d1e4-4861-a218-d760e58bdfb9&#x27;]
 Checking if empty file: /tmp/biobb/unitests_33/pdb_cluster_zip/output_pdb_zip_path.zip
 This is a ZIP comparison!
 Unzipping:
 Creating a unique_dir for: /tmp/biobb/unitests_33/pdb_cluster_zip/output_pdb_zip_path.zip
 Creating a unique_dir for: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_pdb_cluster.zip
 Checking RMSD between:
-     PDB_A: 3f91a05a-d0a4-4ae2-b088-6264fdd03536/2vgb.pdb
-     PDB_B: 60f68e78-9171-4553-b674-20172c75a371/2vgb.pdb
+     PDB_A: f16ca5ff-0d8f-46ce-b2dd-367b83ec599a/2vgb.pdb
+     PDB_B: 6040a0a6-ea7e-4c6e-9045-0864d3e7a76f/2vgb.pdb
      Ignoring HETAMT in RMSD
      Ignoring Hydrogen atoms in RMSD
      Atoms ALIGNED in PDB_A: 15423
@@ -585,8 +585,8 @@ Checking RMSD between:
      RMS: 1.77264637045069e-14
      RMS_CUTOFF: 1
 Checking RMSD between:
-     PDB_A: 3f91a05a-d0a4-4ae2-b088-6264fdd03536/2vgf.pdb
-     PDB_B: 60f68e78-9171-4553-b674-20172c75a371/2vgf.pdb
+     PDB_A: f16ca5ff-0d8f-46ce-b2dd-367b83ec599a/2vgf.pdb
+     PDB_B: 6040a0a6-ea7e-4c6e-9045-0864d3e7a76f/2vgf.pdb
      Ignoring HETAMT in RMSD
      Ignoring Hydrogen atoms in RMSD
      Atoms ALIGNED in PDB_A: 15426
@@ -594,8 +594,8 @@ Checking RMSD between:
      RMS: 1.2179843649478495e-14
      RMS_CUTOFF: 1
 Checking RMSD between:
-     PDB_A: 3f91a05a-d0a4-4ae2-b088-6264fdd03536/2vgg.pdb
-     PDB_B: 60f68e78-9171-4553-b674-20172c75a371/2vgg.pdb
+     PDB_A: f16ca5ff-0d8f-46ce-b2dd-367b83ec599a/2vgg.pdb
+     PDB_B: 6040a0a6-ea7e-4c6e-9045-0864d3e7a76f/2vgg.pdb
      Ignoring HETAMT in RMSD
      Ignoring Hydrogen atoms in RMSD
      Atoms ALIGNED in PDB_A: 15181
@@ -603,8 +603,8 @@ Checking RMSD between:
      RMS: 1.929195311697596e-14
      RMS_CUTOFF: 1
 Checking RMSD between:
-     PDB_A: 3f91a05a-d0a4-4ae2-b088-6264fdd03536/2vgi.pdb
-     PDB_B: 60f68e78-9171-4553-b674-20172c75a371/2vgi.pdb
+     PDB_A: f16ca5ff-0d8f-46ce-b2dd-367b83ec599a/2vgi.pdb
+     PDB_B: 6040a0a6-ea7e-4c6e-9045-0864d3e7a76f/2vgi.pdb
      Ignoring HETAMT in RMSD
      Ignoring Hydrogen atoms in RMSD
      Atoms ALIGNED in PDB_A: 15218
@@ -612,8 +612,8 @@ Checking RMSD between:
      RMS: 1.514857390367371e-14
      RMS_CUTOFF: 1
 Checking RMSD between:
-     PDB_A: 3f91a05a-d0a4-4ae2-b088-6264fdd03536/4ima.pdb
-     PDB_B: 60f68e78-9171-4553-b674-20172c75a371/4ima.pdb
+     PDB_A: f16ca5ff-0d8f-46ce-b2dd-367b83ec599a/4ima.pdb
+     PDB_B: 6040a0a6-ea7e-4c6e-9045-0864d3e7a76f/4ima.pdb
      Ignoring HETAMT in RMSD
      Ignoring Hydrogen atoms in RMSD
      Atoms ALIGNED in PDB_A: 15095
@@ -621,8 +621,8 @@ Checking RMSD between:
      RMS: 1.7749092573013617e-14
      RMS_CUTOFF: 1
 Checking RMSD between:
-     PDB_A: 3f91a05a-d0a4-4ae2-b088-6264fdd03536/4ip7.pdb
-     PDB_B: 60f68e78-9171-4553-b674-20172c75a371/4ip7.pdb
+     PDB_A: f16ca5ff-0d8f-46ce-b2dd-367b83ec599a/4ip7.pdb
+     PDB_B: 6040a0a6-ea7e-4c6e-9045-0864d3e7a76f/4ip7.pdb
      Ignoring HETAMT in RMSD
      Ignoring Hydrogen atoms in RMSD
      Atoms ALIGNED in PDB_A: 15291
@@ -631,45 +631,45 @@ Checking RMSD between:
      RMS_CUTOFF: 1
 <br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Executing biobb_io.api.pdb_cluster_zip Version: 4.0.0
 INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:common.py:229 Cluster: 90 of pdb_code: 2vgb
- List: {&#x27;2vgi&#x27;, &#x27;2vgb&#x27;, &#x27;4ima&#x27;, &#x27;2vgf&#x27;, &#x27;4ip7&#x27;, &#x27;2vgg&#x27;}
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Downloading 2vgi from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgi.ent
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/2vgi.pdb
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgb.ent
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/2vgb.pdb
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Downloading 4ima from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ima.ent
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/4ima.pdb
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+ List: {&#x27;2vgf&#x27;, &#x27;4ip7&#x27;, &#x27;2vgb&#x27;, &#x27;4ima&#x27;, &#x27;2vgi&#x27;, &#x27;2vgg&#x27;}
 INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Downloading 2vgf from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgf.ent
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/2vgf.pdb
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgf.pdb
 INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
 INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Downloading 4ip7 from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ip7.ent
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/4ip7.pdb
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/4ip7.pdb
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgb.ent
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgb.pdb
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Downloading 4ima from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ima.ent
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/4ima.pdb
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Downloading 2vgi from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgi.ent
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgi.pdb
 INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
 INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Downloading 2vgg from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgg.ent
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: c2987831-f669-47b3-8bbd-7adf5347e46d/2vgg.pdb
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Writting pdb to: fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgg.pdb
 INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
 INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:137 Adding:
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:138 [&#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/2vgb.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/2vgf.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/2vgg.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/2vgi.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/4ima.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/c2987831-f669-47b3-8bbd-7adf5347e46d/4ip7.pdb&#x27;]
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:138 [&#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgb.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgf.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgg.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/2vgi.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/4ima.pdb&#x27;, &#x27;/tmp/biobb/unitests_33/pdb_cluster_zip/fdd7c162-d1e4-4861-a218-d760e58bdfb9/4ip7.pdb&#x27;]
 INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:139 to: /tmp/biobb/unitests_33/pdb_cluster_zip/output_pdb_zip_path.zip
-INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Removed: [&#x27;c2987831-f669-47b3-8bbd-7adf5347e46d&#x27;]<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
+INFO     /tmp/biobb/unitests_33/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:346 Removed: [&#x27;fdd7c162-d1e4-4861-a218-d760e58bdfb9&#x27;]<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
 Removing: /tmp/biobb/unitests_33
 <br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_pdb_variants.py::TestMmbPdbVariants::test_get_pdb_zip</td>
-          <td class="col-duration">1.68</td>
+          <td class="col-duration">1.62</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:39,971 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb_variants Version: 4.0.0
-2023-04-11 15:27:40,077 [MainThread  ] [INFO ]  PDB code: 2vgb correspond to uniprot id: P30613
-2023-04-11 15:27:40,077 [MainThread  ] [INFO ]  Fetching variants for uniprot_id: P30613 and pdb_code: 2vgb
-2023-04-11 15:27:41,633 [MainThread  ] [INFO ]  Found: 102 variants for uniprot id: P30613
-2023-04-11 15:27:41,634 [MainThread  ] [INFO ]  Found 399 mutations mapped to PDB: 2vgb
-2023-04-11 15:27:41,634 [MainThread  ] [INFO ]  Writting mutations to: /tmp/biobb/unitests_33/pdb_variants/output_mutations_list_txt.txt
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:56,763 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb_variants Version: 4.0.0
+2023-04-11 15:28:56,829 [MainThread  ] [INFO ]  PDB code: 2vgb correspond to uniprot id: P30613
+2023-04-11 15:28:56,829 [MainThread  ] [INFO ]  Fetching variants for uniprot_id: P30613 and pdb_code: 2vgb
+2023-04-11 15:28:58,373 [MainThread  ] [INFO ]  Found: 102 variants for uniprot id: P30613
+2023-04-11 15:28:58,374 [MainThread  ] [INFO ]  Found 399 mutations mapped to PDB: 2vgb
+2023-04-11 15:28:58,374 [MainThread  ] [INFO ]  Writting mutations to: /tmp/biobb/unitests_33/pdb_variants/output_mutations_list_txt.txt
 Checking if empty file: /tmp/biobb/unitests_33/pdb_variants/output_mutations_list_txt.txt
 <br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests_33/pdb_variants/pdb_variants_log.out:file_utils.py:346 Executing biobb_io.api.pdb_variants Version: 4.0.0
 INFO     /tmp/biobb/unitests_33/pdb_variants/pdb_variants_log.out:common.py:245 PDB code: 2vgb correspond to uniprot id: P30613
@@ -683,13 +683,13 @@ Removing: /tmp/biobb/unitests_33
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_structure_info.py::TestStructureInfo::test_structure_info</td>
-          <td class="col-duration">3.33</td>
+          <td class="col-duration">3.49</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:27:41,662 [MainThread  ] [INFO ]  Executing biobb_io.api.structure_info Version: 4.0.0
-2023-04-11 15:27:41,662 [MainThread  ] [INFO ]  Getting structure info from: http://mmb.irbbarcelona.org/api/pdb/2vgb.json
-2023-04-11 15:27:44,950 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_33/structure_info/output_json_path.json
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-04-11 15:28:58,394 [MainThread  ] [INFO ]  Executing biobb_io.api.structure_info Version: 4.0.0
+2023-04-11 15:28:58,394 [MainThread  ] [INFO ]  Getting structure info from: http://mmb.irbbarcelona.org/api/pdb/2vgb.json
+2023-04-11 15:29:01,852 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_33/structure_info/output_json_path.json
 Checking if empty file: /tmp/biobb/unitests_33/structure_info/output_json_path.json
 Comparing: 
         File_A: /tmp/biobb/unitests_33/structure_info/output_json_path.json
