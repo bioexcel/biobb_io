@@ -6,7 +6,7 @@
 14    E202 whitespace before '}'
 6     E203 whitespace before ':'
 4     E225 missing whitespace around operator
-17    E231 missing whitespace after ','
+16    E231 missing whitespace after ','
 33    E265 block comment should start with '# '
 14    E271 multiple spaces after keyword
 1     E275 missing whitespace after keyword
