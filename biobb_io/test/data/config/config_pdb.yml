@@ -1,6 +1,0 @@
-properties:
-  api_id: mmb
-  filter:
-  - ATOM
-  - HETATM
-  pdb_code: 2VGB

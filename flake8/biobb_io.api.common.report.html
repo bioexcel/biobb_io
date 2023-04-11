@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: biobb_io/api/common.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="biobb_io.api.common.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               biobb_io/api/common.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F523">
+               <span class="count sev-1">
+                  2
+               </span>
+               <strong>F523:</strong> '...'.format(...) has unused arguments at position(s): 2
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="biobb_io.api.common.source.html#l97">
+                  <tt><i>97</i>         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">_ideal.pdb&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l162">
+                  <tt><i>162</i>         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">_ideal.sdf&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  24
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="biobb_io.api.common.source.html#l10">
+                  <tt><i>10</i> <span class="k">def</span> <span class="nf">check_output_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">argument</span><span class="p">,</span> <span class="n">optional</span><span class="p">,</span> <span class="n">out_log</span><span class="p">,</span> <span class="n">classname</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l23">
+                  <tt><i>23</i> <span class="k">def</span> <span class="nf">is_valid_file</span><span class="p">(</span><span class="n">ext</span><span class="p">,</span> <span class="n">argument</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l38">
+                  <tt><i>38</i> <span class="k">def</span> <span class="nf">download_pdb</span><span class="p">(</span><span class="n">pdb_code</span><span class="p">,</span> <span class="n">api_id</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l54">
+                  <tt><i>54</i> <span class="k">def</span> <span class="nf">download_af</span><span class="p">(</span><span class="n">uniprot_code</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">classname</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l71">
+                  <tt><i>71</i> <span class="k">def</span> <span class="nf">download_mmcif</span><span class="p">(</span><span class="n">pdb_code</span><span class="p">,</span> <span class="n">api_id</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l87">
+                  <tt><i>87</i> <span class="k">def</span> <span class="nf">download_ligand</span><span class="p">(</span><span class="n">ligand_code</span><span class="p">,</span> <span class="n">api_id</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l107">
+                  <tt><i>107</i> <span class="k">def</span> <span class="nf">download_fasta</span><span class="p">(</span><span class="n">pdb_code</span><span class="p">,</span> <span class="n">api_id</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l123">
+                  <tt><i>123</i> <span class="k">def</span> <span class="nf">download_drugbank</span><span class="p">(</span><span class="n">drugbank_id</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://www.drugbank.ca/structures/small_molecule_drugs/</span><span class="si">%s</span><span class="s2">.sdf?type=3d&quot;</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l136">
+                  <tt><i>136</i> <span class="k">def</span> <span class="nf">download_binding_site</span><span class="p">(</span><span class="n">pdb_code</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l152">
+                  <tt><i>152</i> <span class="k">def</span> <span class="nf">download_ideal_sdf</span><span class="p">(</span><span class="n">ligand_code</span><span class="p">,</span> <span class="n">api_id</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l169">
+                  <tt><i>169</i> <span class="k">def</span> <span class="nf">download_str_info</span><span class="p">(</span><span class="n">pdb_code</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://mmb.irbbarcelona.org/api/pdb/</span><span class="si">%s</span><span class="s2">.json&quot;</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l185">
+                  <tt><i>185</i> <span class="k">def</span> <span class="nf">write_pdb</span><span class="p">(</span><span class="n">pdb_string</span><span class="p">,</span> <span class="n">output_pdb_path</span><span class="p">,</span> <span class="n">filt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l197">
+                  <tt><i>197</i> <span class="k">def</span> <span class="nf">write_mmcif</span><span class="p">(</span><span class="n">mmcif_string</span><span class="p">,</span> <span class="n">output_mmcif_path</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l203">
+                  <tt><i>203</i> <span class="k">def</span> <span class="nf">write_fasta</span><span class="p">(</span><span class="n">fasta_string</span><span class="p">,</span> <span class="n">output_fasta_path</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l209">
+                  <tt><i>209</i> <span class="k">def</span> <span class="nf">write_sdf</span><span class="p">(</span><span class="n">sdf_string</span><span class="p">,</span> <span class="n">output_sdf_path</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l215">
+                  <tt><i>215</i> <span class="k">def</span> <span class="nf">get_cluster_pdb_codes</span><span class="p">(</span><span class="n">pdb_code</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l235">
+                  <tt><i>235</i> <span class="k">def</span> <span class="nf">get_uniprot</span><span class="p">(</span><span class="n">pdb_code</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l251">
+                  <tt><i>251</i> <span class="k">def</span> <span class="nf">get_variants</span><span class="p">(</span><span class="n">uniprot_id</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://mmb.irbbarcelona.org/api&quot;</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l264">
+                  <tt><i>264</i> <span class="k">def</span> <span class="nf">write_json</span><span class="p">(</span><span class="n">json_string</span><span class="p">,</span> <span class="n">output_json_path</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l270">
+                  <tt><i>270</i> <span class="k">def</span> <span class="nf">get_memprotmd_sim_list</span><span class="p">(</span><span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l283">
+                  <tt><i>283</i> <span class="k">def</span> <span class="nf">get_memprotmd_sim_search</span><span class="p">(</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l313">
+                  <tt><i>313</i> <span class="k">def</span> <span class="nf">get_memprotmd_sim</span><span class="p">(</span><span class="n">pdb_code</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">out_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l325">
+                  <tt><i>325</i> <span class="k">def</span> <span class="nf">check_mandatory_property</span><span class="p">(</span><span class="nb">property</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">out_log</span><span class="p">,</span> <span class="n">classname</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l333">
+                  <tt><i>333</i> <span class="k">def</span> <span class="nf">check_uniprot_code</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">out_log</span><span class="p">,</span> <span class="n">classname</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E203">
+               <span class="count sev-2">
+                  6
+               </span>
+               <strong>E203:</strong> whitespace before ':'
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="biobb_io.api.common.source.html#l290">
+                  <tt><i>290</i>         <span class="s2">&quot;collectionName&quot;</span> <span class="p">:</span> <span class="n">collection_name</span><span class="p">,</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l291">
+                  <tt><i>291</i>         <span class="s2">&quot;query&quot;</span> <span class="p">:</span> <span class="p">{</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l292">
+                  <tt><i>292</i>             <span class="s2">&quot;keywords&quot;</span> <span class="p">:</span> <span class="n">keyword</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l294">
+                  <tt><i>294</i>         <span class="s2">&quot;projection&quot;</span> <span class="p">:</span> <span class="p">{</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l295">
+                  <tt><i>295</i>             <span class="s2">&quot;simulations&quot;</span> <span class="p">:</span> <span class="mi">1</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l297">
+                  <tt><i>297</i>         <span class="s2">&quot;options&quot;</span> <span class="p">:</span> <span class="p">{}</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  6
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="biobb_io.api.common.source.html#l104">
+                  <tt><i>104</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l133">
+                  <tt><i>133</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l149">
+                  <tt><i>149</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l166">
+                  <tt><i>166</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l182">
+                  <tt><i>182</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l322">
+                  <tt><i>322</i>     </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E225">
+               <span class="count sev-2">
+                  4
+               </span>
+               <strong>E225:</strong> missing whitespace around operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="biobb_io.api.common.source.html#l97">
+                  <tt><i>97</i>         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">_ideal.pdb&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l162">
+                  <tt><i>162</i>         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">_ideal.sdf&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">ligand_code</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l220">
+                  <tt><i>220</i>     <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://mmb.irbbarcelona.org/api/pdb/&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l318">
+                  <tt><i>318</i>     <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://memprotmd.bioch.ox.ac.uk/data/memprotmd/simulations/&quot;</span><span class="o">+</span> <span class="n">pdb_code</span> <span class="o">+</span> <span class="s2">&quot;_default_dppc/files/run/at.zip&quot;</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E265">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>E265:</strong> block comment should start with '# '
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="biobb_io.api.common.source.html#l148">
+                  <tt><i>148</i>     <span class="c1">#json_string = json.dumps(text, indent=4)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="biobb_io.api.common.source.html#l181">
+                  <tt><i>181</i>     <span class="c1">#json_string = json.dumps(text, indent=4)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E275">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E275:</strong> missing whitespace after keyword
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="biobb_io.api.common.source.html#l65">
+                  <tt><i>65</i>     <span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W291">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W291:</strong> trailing whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="biobb_io.api.common.source.html#l11">
+                  <tt><i>11</i> <span class="w">    </span><span class="sd">&quot;&quot;&quot; Checks output file &quot;&quot;&quot;</span> </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W292">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W292:</strong> no newline at end of file
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="biobb_io.api.common.source.html#l342">
+                  <tt><i>342</i>     <span class="k">return</span> <span class="kc">True</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>
