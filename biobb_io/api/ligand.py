@@ -3,10 +3,9 @@
 """Module containing the Ligand class and the command line interface."""
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
-from biobb_common.tools import file_utils as fu
+from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import *
+from biobb_io.api.common import check_output_path, check_mandatory_property, download_ligand, write_pdb
 
 
 class Ligand(BiobbObject):
@@ -27,11 +26,11 @@ class Ligand(BiobbObject):
         This is a use example of how to use the building block from Python::
 
             from biobb_io.api.ligand import ligand
-            prop = { 
-                'ligand_code': 'CPB', 
-                'api_id': 'pdbe' 
+            prop = {
+                'ligand_code': 'CPB',
+                'api_id': 'pdbe'
             }
-            ligand(output_pdb_path='/path/to/newLigand.pdb', 
+            ligand(output_pdb_path='/path/to/newLigand.pdb',
                     properties=prop)
 
     Info:
@@ -44,8 +43,8 @@ class Ligand(BiobbObject):
 
     """
 
-    def __init__(self, output_pdb_path, 
-                properties=None, **kwargs) -> None:
+    def __init__(self, output_pdb_path,
+                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -53,8 +52,8 @@ class Ligand(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = { 
-            "out": { "output_pdb_path": output_pdb_path } 
+        self.io_dict = {
+            "out": {"output_pdb_path": output_pdb_path}
         }
 
         # Properties specific for BB
@@ -65,7 +64,7 @@ class Ligand(BiobbObject):
         # Check the properties
         self.check_properties(properties)
         self.check_arguments()
-        
+
     def check_data_params(self, out_log, err_log):
         """ Checks all the input/output paths and parameters """
         self.output_pdb_path = check_output_path(self.io_dict["out"]["output_pdb_path"], "output_pdb_path", False, out_log, self.__class__.__name__)
@@ -78,14 +77,14 @@ class Ligand(BiobbObject):
         self.check_data_params(self.out_log, self.err_log)
 
         # Setup Biobb
-        if self.check_restart(): return 0
-        #self.stage_files()
+        if self.check_restart():
+            return 0
 
         check_mandatory_property(self.ligand_code, 'ligand_code', self.out_log, self.__class__.__name__)
 
         self.ligand_code = self.ligand_code.strip().lower()
 
-        #Downloading PDB file
+        # Downloading PDB file
         pdb_string = download_ligand(self.ligand_code, self.api_id, self.out_log, self.global_log)
         write_pdb(pdb_string, self.output_pdb_path, None, self.out_log, self.global_log)
 
@@ -93,19 +92,21 @@ class Ligand(BiobbObject):
 
         return 0
 
+
 def ligand(output_pdb_path: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`Ligand <api.ligand.Ligand>` class and
     execute the :meth:`launch() <api.ligand.Ligand.launch>` method."""
 
     return Ligand(output_pdb_path=output_pdb_path,
-                    properties=properties, **kwargs).launch()
+                  properties=properties, **kwargs).launch()
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
     parser = argparse.ArgumentParser(description="Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB ligand.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
-    #Specific args of each building block
+    # Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
     required_args.add_argument('-o', '--output_pdb_path', required=True, help="Path to the output PDB ligand file. Accepted formats: pdb.")
 
@@ -113,9 +114,10 @@ def main():
     config = args.config if args.config else None
     properties = settings.ConfReader(config=config).get_prop_dic()
 
-    #Specific call of each building block
-    ligand(output_pdb_path=args.output_pdb_path, 
-            properties=properties)
+    # Specific call of each building block
+    ligand(output_pdb_path=args.output_pdb_path,
+           properties=properties)
+
 
 if __name__ == '__main__':
     main()

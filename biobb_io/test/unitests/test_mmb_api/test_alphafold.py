@@ -1,9 +1,10 @@
 from biobb_common.tools import test_fixtures as fx
 from biobb_io.api.alphafold import alphafold
 
+
 class TestAlphaFold():
     def setup_class(self):
-        fx.test_setup(self,'alphafold')
+        fx.test_setup(self, 'alphafold')
 
     def teardown_class(self):
         fx.test_teardown(self)

@@ -3,10 +3,9 @@
 """Module containing the MemProtMDSimList class and the command line interface."""
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
-from biobb_common.tools import file_utils as fu
+from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import *
+from biobb_io.api.common import check_output_path, get_memprotmd_sim_list, write_json
 
 
 class MemProtMDSimList(BiobbObject):
@@ -26,7 +25,7 @@ class MemProtMDSimList(BiobbObject):
 
             from biobb_io.api.memprotmd_sim_list import memprotmd_sim_list
             prop = { }
-            memprotmd_sim_list(output_simulations='/path/to/newSimulationList.json', 
+            memprotmd_sim_list(output_simulations='/path/to/newSimulationList.json',
                                 properties=prop)
 
     Info:
@@ -39,8 +38,8 @@ class MemProtMDSimList(BiobbObject):
 
     """
 
-    def __init__(self, output_simulations, 
-                properties=None, **kwargs) -> None:
+    def __init__(self, output_simulations,
+                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -48,8 +47,8 @@ class MemProtMDSimList(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = { 
-            "out": { "output_simulations": output_simulations } 
+        self.io_dict = {
+            "out": {"output_simulations": output_simulations}
         }
 
         # Properties specific for BB
@@ -66,13 +65,13 @@ class MemProtMDSimList(BiobbObject):
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`MemProtMDSimList <api.memprotmd_sim_list.MemProtMDSimList>` api.memprotmd_sim_list.MemProtMDSimList object."""
-        
+
         # check input/output paths and parameters
         self.check_data_params(self.out_log, self.err_log)
 
         # Setup Biobb
-        if self.check_restart(): return 0
-        #self.stage_files()
+        if self.check_restart():
+            return 0
 
         # get JSON object
         json_string = get_memprotmd_sim_list(self.out_log, self.global_log)
@@ -84,12 +83,14 @@ class MemProtMDSimList(BiobbObject):
 
         return 0
 
+
 def memprotmd_sim_list(output_simulations: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`MemProtMDSimList <api.memprotmd_sim_list.MemProtMDSimList>` class and
     execute the :meth:`launch() <api.memprotmd_sim_list.MemProtMDSimList.launch>` method."""
 
     return MemProtMDSimList(output_simulations=output_simulations,
-                    properties=properties, **kwargs).launch()
+                            properties=properties, **kwargs).launch()
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -106,6 +107,7 @@ def main():
 
     # Specific call of each building block
     memprotmd_sim_list(output_simulations=args.output_simulations, properties=properties)
+
 
 if __name__ == '__main__':
     main()

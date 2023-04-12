@@ -1,9 +1,10 @@
 from biobb_common.tools import test_fixtures as fx
 from biobb_io.api.mmcif import mmcif
 
+
 class TestMmcif():
     def setup_class(self):
-        fx.test_setup(self,'mmcif')
+        fx.test_setup(self, 'mmcif')
 
     def teardown_class(self):
         fx.test_teardown(self)

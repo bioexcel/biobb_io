@@ -3,10 +3,9 @@
 """Module containing the Mmcif class and the command line interface."""
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
-from biobb_common.tools import file_utils as fu
+from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import *
+from biobb_io.api.common import check_output_path, check_mandatory_property, download_mmcif, write_mmcif
 
 
 class Mmcif(BiobbObject):
@@ -27,11 +26,11 @@ class Mmcif(BiobbObject):
         This is a use example of how to use the building block from Python::
 
             from biobb_io.api.mmcif import mmcif
-            prop = { 
-                'pdb_code': '2VGB', 
-                'api_id': 'pdbe' 
+            prop = {
+                'pdb_code': '2VGB',
+                'api_id': 'pdbe'
             }
-            mmcif(output_mmcif_path='/path/to/newStructure.mmcif', 
+            mmcif(output_mmcif_path='/path/to/newStructure.mmcif',
                 properties=prop)
 
     Info:
@@ -44,8 +43,8 @@ class Mmcif(BiobbObject):
 
     """
 
-    def __init__(self, output_mmcif_path, 
-                properties=None, **kwargs) -> None:
+    def __init__(self, output_mmcif_path,
+                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -53,8 +52,8 @@ class Mmcif(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = { 
-            "out": { "output_mmcif_path": output_mmcif_path } 
+        self.io_dict = {
+            "out": {"output_mmcif_path": output_mmcif_path}
         }
 
         # Properties specific for BB
@@ -73,13 +72,13 @@ class Mmcif(BiobbObject):
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`Mmcif <api.mmcif.Mmcif>` api.mmcif.Mmcif object."""
-        
+
         # check input/output paths and parameters
         self.check_data_params(self.out_log, self.err_log)
 
         # Setup Biobb
-        if self.check_restart(): return 0
-        #self.stage_files()
+        if self.check_restart():
+            return 0
 
         check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
 
@@ -93,12 +92,14 @@ class Mmcif(BiobbObject):
 
         return 0
 
+
 def mmcif(output_mmcif_path: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`Mmcif <api.mmcif.Mmcif>` class and
     execute the :meth:`launch() <api.mmcif.Mmcif.launch>` method."""
 
     return Mmcif(output_mmcif_path=output_mmcif_path,
-                properties=properties, **kwargs).launch()
+                 properties=properties, **kwargs).launch()
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -114,8 +115,9 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    mmcif(output_mmcif_path=args.output_mmcif_path, 
-        properties=properties)
+    mmcif(output_mmcif_path=args.output_mmcif_path,
+          properties=properties)
+
 
 if __name__ == '__main__':
     main()

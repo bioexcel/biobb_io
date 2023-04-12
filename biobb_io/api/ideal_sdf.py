@@ -3,10 +3,9 @@
 """Module containing the IdealSdf class and the command line interface."""
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
-from biobb_common.tools import file_utils as fu
+from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import *
+from biobb_io.api.common import check_output_path, check_mandatory_property, download_ideal_sdf, write_sdf
 
 
 class IdealSdf(BiobbObject):
@@ -27,11 +26,11 @@ class IdealSdf(BiobbObject):
         This is a use example of how to use the building block from Python::
 
             from biobb_io.api.ideal_sdf import ideal_sdf
-            prop = { 
-                'ligand_code': 'HYZ', 
-                'api_id': 'pdbe' 
+            prop = {
+                'ligand_code': 'HYZ',
+                'api_id': 'pdbe'
             }
-            ideal_sdf(output_sdf_path='/path/to/newStructure.sdf', 
+            ideal_sdf(output_sdf_path='/path/to/newStructure.sdf',
                         properties=prop)
 
     Info:
@@ -44,8 +43,8 @@ class IdealSdf(BiobbObject):
 
     """
 
-    def __init__(self, output_sdf_path, 
-                properties=None, **kwargs) -> None:
+    def __init__(self, output_sdf_path,
+                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -53,8 +52,8 @@ class IdealSdf(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = { 
-            "out": { "output_sdf_path": output_sdf_path } 
+        self.io_dict = {
+            "out": {"output_sdf_path": output_sdf_path}
         }
 
         # Properties specific for BB
@@ -73,13 +72,13 @@ class IdealSdf(BiobbObject):
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`IdealSdf <api.ideal_sdf.IdealSdf>` api.ideal_sdf.IdealSdf object."""
-        
+
         # check input/output paths and parameters
         self.check_data_params(self.out_log, self.err_log)
 
         # Setup Biobb
-        if self.check_restart(): return 0
-        #self.stage_files()
+        if self.check_restart():
+            return 0
 
         check_mandatory_property(self.ligand_code, 'ligand_code', self.out_log, self.__class__.__name__)
 
@@ -93,12 +92,14 @@ class IdealSdf(BiobbObject):
 
         return 0
 
+
 def ideal_sdf(output_sdf_path: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`IdealSdf <api.ideal_sdf.IdealSdf>` class and
     execute the :meth:`launch() <api.ideal_sdf.IdealSdf.launch>` method."""
 
     return IdealSdf(output_sdf_path=output_sdf_path,
-                properties=properties, **kwargs).launch()
+                    properties=properties, **kwargs).launch()
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -114,8 +115,9 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    ideal_sdf(output_sdf_path=args.output_sdf_path, 
-        properties=properties)
+    ideal_sdf(output_sdf_path=args.output_sdf_path,
+              properties=properties)
+
 
 if __name__ == '__main__':
     main()

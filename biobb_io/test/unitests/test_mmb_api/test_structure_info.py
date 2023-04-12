@@ -1,9 +1,10 @@
 from biobb_common.tools import test_fixtures as fx
 from biobb_io.api.structure_info import structure_info
 
+
 class TestStructureInfo():
     def setup_class(self):
-        fx.test_setup(self,'structure_info')
+        fx.test_setup(self, 'structure_info')
 
     def teardown_class(self):
         fx.test_teardown(self)

@@ -1,9 +1,10 @@
 from biobb_common.tools import test_fixtures as fx
 from biobb_io.api.pdb_cluster_zip import pdb_cluster_zip
 
+
 class TestPdbClusterZip():
     def setup_class(self):
-        fx.test_setup(self,'pdb_cluster_zip')
+        fx.test_setup(self, 'pdb_cluster_zip')
 
     def teardown_class(self):
         fx.test_teardown(self)

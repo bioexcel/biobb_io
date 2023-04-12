@@ -3,10 +3,9 @@
 """Module containing the Pdb class and the command line interface."""
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
-from biobb_common.tools import file_utils as fu
+from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import *
+from biobb_io.api.common import check_mandatory_property, check_output_path, download_pdb, write_pdb
 
 
 class Pdb(BiobbObject):
@@ -28,12 +27,12 @@ class Pdb(BiobbObject):
         This is a use example of how to use the building block from Python::
 
             from biobb_io.api.pdb import pdb
-            prop = { 
-                'pdb_code': '2VGB', 
-                'filter': ['ATOM', 'MODEL', 'ENDMDL'], 
-                'api_id': 'pdbe' 
+            prop = {
+                'pdb_code': '2VGB',
+                'filter': ['ATOM', 'MODEL', 'ENDMDL'],
+                'api_id': 'pdbe'
             }
-            pdb(output_pdb_path='/path/to/newStructure.pdb', 
+            pdb(output_pdb_path='/path/to/newStructure.pdb',
                 properties=prop)
 
     Info:
@@ -46,8 +45,8 @@ class Pdb(BiobbObject):
 
     """
 
-    def __init__(self, output_pdb_path, 
-                properties=None, **kwargs) -> None:
+    def __init__(self, output_pdb_path,
+                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -55,8 +54,8 @@ class Pdb(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = { 
-            "out": { "output_pdb_path": output_pdb_path } 
+        self.io_dict = {
+            "out": {"output_pdb_path": output_pdb_path}
         }
 
         # Properties specific for BB
@@ -76,13 +75,13 @@ class Pdb(BiobbObject):
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`Pdb <api.pdb.Pdb>` api.pdb.Pdb object."""
-        
+
         # check input/output paths and parameters
         self.check_data_params(self.out_log, self.err_log)
 
         # Setup Biobb
-        if self.check_restart(): return 0
-        #self.stage_files()
+        if self.check_restart():
+            return 0
 
         check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
 
@@ -96,12 +95,14 @@ class Pdb(BiobbObject):
 
         return 0
 
+
 def pdb(output_pdb_path: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`Pdb <api.pdb.Pdb>` class and
     execute the :meth:`launch() <api.pdb.Pdb.launch>` method."""
 
     return Pdb(output_pdb_path=output_pdb_path,
-                properties=properties, **kwargs).launch()
+               properties=properties, **kwargs).launch()
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -117,8 +118,9 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    pdb(output_pdb_path=args.output_pdb_path, 
+    pdb(output_pdb_path=args.output_pdb_path,
         properties=properties)
+
 
 if __name__ == '__main__':
     main()

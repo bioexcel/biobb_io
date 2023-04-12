@@ -3,10 +3,9 @@
 """Module containing the MemProtMDSim class and the command line interface."""
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
-from biobb_common.tools import file_utils as fu
+from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import *
+from biobb_io.api.common import check_output_path, check_mandatory_property, get_memprotmd_sim
 
 
 class MemProtMDSim(BiobbObject):
@@ -26,10 +25,10 @@ class MemProtMDSim(BiobbObject):
         This is a use example of how to use the building block from Python::
 
             from biobb_io.api.memprotmd_sim import memprotmd_sim
-            prop = { 
-                'pdb_code': '2VGB' 
+            prop = {
+                'pdb_code': '2VGB'
             }
-            memprotmd_sim(output_simulation='/path/to/newSimulation.zip', 
+            memprotmd_sim(output_simulation='/path/to/newSimulation.zip',
                         properties=prop)
 
     Info:
@@ -42,8 +41,8 @@ class MemProtMDSim(BiobbObject):
 
     """
 
-    def __init__(self, output_simulation, 
-                properties=None, **kwargs) -> None:
+    def __init__(self, output_simulation,
+                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -51,8 +50,8 @@ class MemProtMDSim(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = { 
-            "out": { "output_simulation": output_simulation } 
+        self.io_dict = {
+            "out": {"output_simulation": output_simulation}
         }
 
         # Properties specific for BB
@@ -70,29 +69,31 @@ class MemProtMDSim(BiobbObject):
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` api.memprotmd_sim.MemProtMDSim object."""
-        
+
         # check input/output paths and parameters
         self.check_data_params(self.out_log, self.err_log)
 
         # Setup Biobb
-        if self.check_restart(): return 0
-        #self.stage_files()
+        if self.check_restart():
+            return 0
 
         check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
 
         # get simulation files and save to output
-        json_string = get_memprotmd_sim(self.pdb_code, self.output_simulation, self.out_log, self.global_log)
+        get_memprotmd_sim(self.pdb_code, self.output_simulation, self.out_log, self.global_log)
 
         self.check_arguments(output_files_created=True, raise_exception=False)
 
         return 0
+
 
 def memprotmd_sim(output_simulation: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` class and
     execute the :meth:`launch() <api.memprotmd_sim.MemProtMDSim.launch>` method."""
 
     return MemProtMDSim(output_simulation=output_simulation,
-                    properties=properties, **kwargs).launch()
+                        properties=properties, **kwargs).launch()
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -108,8 +109,9 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    memprotmd_sim(output_simulation=args.output_simulation, 
-                    properties=properties)
+    memprotmd_sim(output_simulation=args.output_simulation,
+                  properties=properties)
+
 
 if __name__ == '__main__':
     main()

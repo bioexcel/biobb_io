@@ -3,10 +3,9 @@
 """Module containing the MemProtMDSimSearch class and the command line interface."""
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
-from biobb_common.tools import file_utils as fu
+from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import *
+from biobb_io.api.common import check_output_path, get_memprotmd_sim_search, write_json
 
 
 class MemProtMDSimSearch(BiobbObject):
@@ -27,11 +26,11 @@ class MemProtMDSimSearch(BiobbObject):
         This is a use example of how to use the building block from Python::
 
             from biobb_io.api.memprotmd_sim_search import memprotmd_sim_search
-            prop = { 
-                'collection_name': 'refs', 
-                'keyword': 'porin' 
+            prop = {
+                'collection_name': 'refs',
+                'keyword': 'porin'
             }
-            memprotmd_sim_search(output_simulations='/path/to/newSimulationSearch.json', 
+            memprotmd_sim_search(output_simulations='/path/to/newSimulationSearch.json',
                                 properties=prop).launch()
 
     Info:
@@ -44,8 +43,8 @@ class MemProtMDSimSearch(BiobbObject):
 
     """
 
-    def __init__(self, output_simulations, 
-                properties=None, **kwargs) -> None:
+    def __init__(self, output_simulations,
+                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -53,8 +52,8 @@ class MemProtMDSimSearch(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = { 
-            "out": { "output_simulations": output_simulations } 
+        self.io_dict = {
+            "out": {"output_simulations": output_simulations}
         }
 
         # Properties specific for BB
@@ -73,13 +72,13 @@ class MemProtMDSimSearch(BiobbObject):
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`MemProtMDSimSearch <api.memprotmd_sim_search.MemProtMDSimSearch>` api.memprotmd_sim_search.MemProtMDSimSearch object."""
-        
+
         # check input/output paths and parameters
         self.check_data_params(self.out_log, self.err_log)
 
         # Setup Biobb
-        if self.check_restart(): return 0
-        #self.stage_files()
+        if self.check_restart():
+            return 0
 
         self.keyword = self.keyword.strip().lower()
 
@@ -93,12 +92,14 @@ class MemProtMDSimSearch(BiobbObject):
 
         return 0
 
+
 def memprotmd_sim_search(output_simulations: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`MemProtMDSimSearch <api.memprotmd_sim_search.MemProtMDSimSearch>` class and
     execute the :meth:`launch() <api.memprotmd_sim_search.MemProtMDSimSearch.launch>` method."""
 
     return MemProtMDSimSearch(output_simulations=output_simulations,
-                    properties=properties, **kwargs).launch()
+                              properties=properties, **kwargs).launch()
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -114,8 +115,9 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    memprotmd_sim_search(output_simulations=args.output_simulations, 
-                        properties=properties)
+    memprotmd_sim_search(output_simulations=args.output_simulations,
+                         properties=properties)
+
 
 if __name__ == '__main__':
     main()

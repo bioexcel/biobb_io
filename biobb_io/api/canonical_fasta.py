@@ -3,10 +3,9 @@
 """Module containing the CanonicalFasta class and the command line interface."""
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
-from biobb_common.tools import file_utils as fu
+from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import *
+from biobb_io.api.common import check_output_path, check_mandatory_property, download_fasta, write_fasta
 
 
 class CanonicalFasta(BiobbObject):
@@ -27,11 +26,11 @@ class CanonicalFasta(BiobbObject):
         This is a use example of how to use the building block from Python::
 
             from biobb_io.api.canonical_fasta import canonical_fasta
-            prop = { 
+            prop = {
                 'pdb_code': '4i23',
                 'api_id': 'pdb'
             }
-            canonical_fasta(output_fasta_path='/path/to/newFasta.fasta', 
+            canonical_fasta(output_fasta_path='/path/to/newFasta.fasta',
                     properties=prop)
 
     Info:
@@ -44,8 +43,8 @@ class CanonicalFasta(BiobbObject):
 
     """
 
-    def __init__(self, output_fasta_path, 
-                properties=None, **kwargs) -> None:
+    def __init__(self, output_fasta_path,
+                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -53,8 +52,8 @@ class CanonicalFasta(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = { 
-            "out": { "output_fasta_path": output_fasta_path } 
+        self.io_dict = {
+            "out": {"output_fasta_path": output_fasta_path}
         }
 
         # Properties specific for BB
@@ -65,7 +64,7 @@ class CanonicalFasta(BiobbObject):
         # Check the properties
         self.check_properties(properties)
         self.check_arguments()
-        
+
     def check_data_params(self, out_log, err_log):
         """ Checks all the input/output paths and parameters """
         self.output_fasta_path = check_output_path(self.io_dict["out"]["output_fasta_path"], "output_fasta_path", False, out_log, self.__class__.__name__)
@@ -78,8 +77,8 @@ class CanonicalFasta(BiobbObject):
         self.check_data_params(self.out_log, self.err_log)
 
         # Setup Biobb
-        if self.check_restart(): return 0
-        #self.stage_files()
+        if self.check_restart():
+            return 0
 
         check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
 
@@ -93,19 +92,21 @@ class CanonicalFasta(BiobbObject):
 
         return 0
 
+
 def canonical_fasta(output_fasta_path: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`CanonicalFasta <api.canonical_fasta.CanonicalFasta>` class and
     execute the :meth:`launch() <api.canonical_fasta.CanonicalFasta.launch>` method."""
 
     return CanonicalFasta(output_fasta_path=output_fasta_path,
-                    properties=properties, **kwargs).launch()
+                          properties=properties, **kwargs).launch()
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
     parser = argparse.ArgumentParser(description="This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
 
-    #Specific args of each building block
+    # Specific args of each building block
     required_args = parser.add_argument_group('required arguments')
     required_args.add_argument('-o', '--output_fasta_path', required=True, help="Path to the canonical FASTA file. Accepted formats: fasta.")
 
@@ -113,9 +114,10 @@ def main():
     config = args.config if args.config else None
     properties = settings.ConfReader(config=config).get_prop_dic()
 
-    #Specific call of each building block
-    canonical_fasta(output_fasta_path=args.output_fasta_path, 
-            properties=properties)
+    # Specific call of each building block
+    canonical_fasta(output_fasta_path=args.output_fasta_path,
+                    properties=properties)
+
 
 if __name__ == '__main__':
     main()

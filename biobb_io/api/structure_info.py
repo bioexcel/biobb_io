@@ -3,10 +3,9 @@
 """Module containing the StructureInfo class and the command line interface."""
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
-from biobb_common.tools import file_utils as fu
+from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import *
+from biobb_io.api.common import check_mandatory_property, check_output_path, download_str_info, write_json
 
 
 class StructureInfo(BiobbObject):
@@ -26,10 +25,10 @@ class StructureInfo(BiobbObject):
         This is a use example of how to use the building block from Python::
 
             from biobb_io.api.structure_info import structure_info
-            prop = { 
+            prop = {
                 'pdb_code': '2vgb'
             }
-            structure_info(output_json_path='/path/to/newStructure.sdf', 
+            structure_info(output_json_path='/path/to/newStructure.sdf',
                         properties=prop)
 
     Info:
@@ -42,17 +41,17 @@ class StructureInfo(BiobbObject):
 
     """
 
-    def __init__(self, output_json_path, 
-                properties=None, **kwargs) -> None:
+    def __init__(self, output_json_path,
+                 properties=None, **kwargs) -> None:
         properties = properties or {}
 
-         # Call parent class constructor
+        # Call parent class constructor
         super().__init__(properties)
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = { 
-            "out": { "output_json_path": output_json_path } 
+        self.io_dict = {
+            "out": {"output_json_path": output_json_path}
         }
 
         # Properties specific for BB
@@ -70,13 +69,13 @@ class StructureInfo(BiobbObject):
     @launchlogger
     def launch(self) -> int:
         """Execute the :class:`StructureInfo <api.structure_info.StructureInfo>` api.structure_info.StructureInfo object."""
-        
+
         # check input/output paths and parameters
         self.check_data_params(self.out_log, self.err_log)
 
         # Setup Biobb
-        if self.check_restart(): return 0
-        #self.stage_files()
+        if self.check_restart():
+            return 0
 
         check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
 
@@ -91,12 +90,14 @@ class StructureInfo(BiobbObject):
 
         return 0
 
+
 def structure_info(output_json_path: str, properties: dict = None, **kwargs) -> int:
     """Execute the :class:`StructureInfo <api.structure_info.StructureInfo>` class and
     execute the :meth:`launch() <api.structure_info.StructureInfo.launch>` method."""
 
     return StructureInfo(output_json_path=output_json_path,
-                properties=properties, **kwargs).launch()
+                         properties=properties, **kwargs).launch()
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
@@ -112,8 +113,9 @@ def main():
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    structure_info(output_json_path=args.output_json_path, 
-        properties=properties)
+    structure_info(output_json_path=args.output_json_path,
+                   properties=properties)
+
 
 if __name__ == '__main__':
     main()
