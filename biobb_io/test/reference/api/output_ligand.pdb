@@ -1,7 +1,7 @@
 HEADER    Ideal coordinates
  for PDB-CCD IBP
 COMPND    IBP
-AUTHOR    pdbccdutils 0.7.1
+AUTHOR    pdbccdutils 0.7.2
 AUTHOR    RDKit 2022.09.5
 HETATM    1 C1   IBP A   1      -0.364  -0.176  -3.442  1.00 20.00           C  
 HETATM    2 C2   IBP A   1      -0.931  -0.349   2.970  1.00 20.00           C  
