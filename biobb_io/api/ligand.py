@@ -18,7 +18,7 @@ class Ligand(BiobbObject):
         output_pdb_path (str): Path to the output PDB ligand file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_ligand.pdb>`_. Accepted formats: pdb (edam:format_1476).
         properties (dic - Python dictionary object containing the tool parameters, not input/output files):
             * **ligand_code** (*str*) - (None) RSCB PDB ligand code.
-            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
+            * **api_id** (*str*) - ("mmb") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
@@ -28,7 +28,7 @@ class Ligand(BiobbObject):
             from biobb_io.api.ligand import ligand
             prop = {
                 'ligand_code': 'CPB',
-                'api_id': 'pdbe'
+                'api_id': 'mmb'
             }
             ligand(output_pdb_path='/path/to/newLigand.pdb',
                     properties=prop)
@@ -57,7 +57,7 @@ class Ligand(BiobbObject):
         }
 
         # Properties specific for BB
-        self.api_id = properties.get('api_id', 'pdbe')
+        self.api_id = properties.get('api_id', 'mmb')
         self.ligand_code = properties.get('ligand_code', None)
         self.properties = properties
 
