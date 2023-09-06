@@ -1,5 +1,3063 @@
 [
     {
+        "_id": "7ca3_default_dppc",
+        "db": "PDB",
+        "accession": "7ca3",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6yt4_default_dppc",
+        "db": "PDB",
+        "accession": "6yt4",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7niv_default_dppc",
+        "db": "PDB",
+        "accession": "7niv",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3kso_default_dppc",
+        "db": "PDB",
+        "accession": "3kso",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4q9j_default_dppc",
+        "db": "PDB",
+        "accession": "4q9j",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6w0a_default_dppc",
+        "db": "PDB",
+        "accession": "6w0a",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7dgd_default_dppc",
+        "db": "PDB",
+        "accession": "7dgd",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6y9b_default_dppc",
+        "db": "PDB",
+        "accession": "6y9b",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5doq_default_dppc",
+        "db": "PDB",
+        "accession": "5doq",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6hd1_default_dppc",
+        "db": "PDB",
+        "accession": "6hd1",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7ddl_default_dppc",
+        "db": "PDB",
+        "accession": "7ddl",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5xas_default_dppc",
+        "db": "PDB",
+        "accession": "5xas",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6z8y_default_dppc",
+        "db": "PDB",
+        "accession": "6z8y",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6s7p_default_dppc",
+        "db": "PDB",
+        "accession": "6s7p",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6z38_default_dppc",
+        "db": "PDB",
+        "accession": "6z38",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3pf1_default_dppc",
+        "db": "PDB",
+        "accession": "3pf1",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7rjb_default_dppc",
+        "db": "PDB",
+        "accession": "7rjb",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6qcy_default_dppc",
+        "db": "PDB",
+        "accession": "6qcy",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6dg7_default_dppc",
+        "db": "PDB",
+        "accession": "6dg7",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6w5v_default_dppc",
+        "db": "PDB",
+        "accession": "6w5v",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7kyp_default_dppc",
+        "db": "PDB",
+        "accession": "7kyp",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5jdn_default_dppc",
+        "db": "PDB",
+        "accession": "5jdn",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4n75_default_dppc",
+        "db": "PDB",
+        "accession": "4n75",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6ssw_default_dppc",
+        "db": "PDB",
+        "accession": "6ssw",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6pa0_default_dppc",
+        "db": "PDB",
+        "accession": "6pa0",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2na7_default_dppc",
+        "db": "PDB",
+        "accession": "2na7",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7wyy_default_dppc",
+        "db": "PDB",
+        "accession": "7wyy",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6kjv_default_dppc",
+        "db": "PDB",
+        "accession": "6kjv",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6v4k_default_dppc",
+        "db": "PDB",
+        "accession": "6v4k",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7s4k_default_dppc",
+        "db": "PDB",
+        "accession": "7s4k",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5l2a_default_dppc",
+        "db": "PDB",
+        "accession": "5l2a",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6lw5_default_dppc",
+        "db": "PDB",
+        "accession": "6lw5",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5svt_default_dppc",
+        "db": "PDB",
+        "accession": "5svt",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5xjm_default_dppc",
+        "db": "PDB",
+        "accession": "5xjm",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6uzz_default_dppc",
+        "db": "PDB",
+        "accession": "6uzz",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5gth_default_dppc",
+        "db": "PDB",
+        "accession": "5gth",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6ffc_default_dppc",
+        "db": "PDB",
+        "accession": "6ffc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6tpj_default_dppc",
+        "db": "PDB",
+        "accession": "6tpj",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4hfe_default_dppc",
+        "db": "PDB",
+        "accession": "4hfe",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7jnc_default_dppc",
+        "db": "PDB",
+        "accession": "7jnc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5eac_default_dppc",
+        "db": "PDB",
+        "accession": "5eac",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6rdp_default_dppc",
+        "db": "PDB",
+        "accession": "6rdp",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3ehz_default_dppc",
+        "db": "PDB",
+        "accession": "3ehz",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2eau_default_dppc",
+        "db": "PDB",
+        "accession": "2eau",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6ied_default_dppc",
+        "db": "PDB",
+        "accession": "6ied",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2w1p_default_dppc",
+        "db": "PDB",
+        "accession": "2w1p",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4qid_default_dppc",
+        "db": "PDB",
+        "accession": "4qid",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7qn5_default_dppc",
+        "db": "PDB",
+        "accession": "7qn5",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6rz9_default_dppc",
+        "db": "PDB",
+        "accession": "6rz9",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2xq6_default_dppc",
+        "db": "PDB",
+        "accession": "2xq6",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6pus_default_dppc",
+        "db": "PDB",
+        "accession": "6pus",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3k1b_default_dppc",
+        "db": "PDB",
+        "accession": "3k1b",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6d27_default_dppc",
+        "db": "PDB",
+        "accession": "6d27",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5wj5_default_dppc",
+        "db": "PDB",
+        "accession": "5wj5",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4ryi_default_dppc",
+        "db": "PDB",
+        "accession": "4ryi",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4qnc_default_dppc",
+        "db": "PDB",
+        "accession": "4qnc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6hyv_default_dppc",
+        "db": "PDB",
+        "accession": "6hyv",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1e54_default_dppc",
+        "db": "PDB",
+        "accession": "1e54",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4ja3_default_dppc",
+        "db": "PDB",
+        "accession": "4ja3",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6ivq_default_dppc",
+        "db": "PDB",
+        "accession": "6ivq",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7bc6_default_dppc",
+        "db": "PDB",
+        "accession": "7bc6",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4lds_default_dppc",
+        "db": "PDB",
+        "accession": "4lds",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2pil_default_dppc",
+        "db": "PDB",
+        "accession": "2pil",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6rv2_default_dppc",
+        "db": "PDB",
+        "accession": "6rv2",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3wqj_default_dppc",
+        "db": "PDB",
+        "accession": "3wqj",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7vgu_default_dppc",
+        "db": "PDB",
+        "accession": "7vgu",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7s4i_default_dppc",
+        "db": "PDB",
+        "accession": "7s4i",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4md2_default_dppc",
+        "db": "PDB",
+        "accession": "4md2",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6bo9_default_dppc",
+        "db": "PDB",
+        "accession": "6bo9",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2beg_default_dppc",
+        "db": "PDB",
+        "accession": "2beg",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6wkn_default_dppc",
+        "db": "PDB",
+        "accession": "6wkn",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5azc_default_dppc",
+        "db": "PDB",
+        "accession": "5azc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2wli_default_dppc",
+        "db": "PDB",
+        "accession": "2wli",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6x3z_default_dppc",
+        "db": "PDB",
+        "accession": "6x3z",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7qey_default_dppc",
+        "db": "PDB",
+        "accession": "7qey",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6ol0_default_dppc",
+        "db": "PDB",
+        "accession": "6ol0",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6ssr_default_dppc",
+        "db": "PDB",
+        "accession": "6ssr",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3usm_default_dppc",
+        "db": "PDB",
+        "accession": "3usm",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3jaf_default_dppc",
+        "db": "PDB",
+        "accession": "3jaf",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7ky9_default_dppc",
+        "db": "PDB",
+        "accession": "7ky9",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3pcq_default_dppc",
+        "db": "PDB",
+        "accession": "3pcq",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6n27_default_dppc",
+        "db": "PDB",
+        "accession": "6n27",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5o79_default_dppc",
+        "db": "PDB",
+        "accession": "5o79",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7dxd_default_dppc",
+        "db": "PDB",
+        "accession": "7dxd",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3ag3_default_dppc",
+        "db": "PDB",
+        "accession": "3ag3",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5zin_default_dppc",
+        "db": "PDB",
+        "accession": "5zin",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4p2z_default_dppc",
+        "db": "PDB",
+        "accession": "4p2z",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4gp4_default_dppc",
+        "db": "PDB",
+        "accession": "4gp4",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1ntz_default_dppc",
+        "db": "PDB",
+        "accession": "1ntz",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6nbh_default_dppc",
+        "db": "PDB",
+        "accession": "6nbh",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7xjh_default_dppc",
+        "db": "PDB",
+        "accession": "7xjh",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4ilc_default_dppc",
+        "db": "PDB",
+        "accession": "4ilc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3ipd_default_dppc",
+        "db": "PDB",
+        "accession": "3ipd",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2gr8_default_dppc",
+        "db": "PDB",
+        "accession": "2gr8",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6e7y_default_dppc",
+        "db": "PDB",
+        "accession": "6e7y",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4xnw_default_dppc",
+        "db": "PDB",
+        "accession": "4xnw",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5wue_default_dppc",
+        "db": "PDB",
+        "accession": "5wue",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7dqk_default_dppc",
+        "db": "PDB",
+        "accession": "7dqk",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2bcc_default_dppc",
+        "db": "PDB",
+        "accession": "2bcc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7mij_default_dppc",
+        "db": "PDB",
+        "accession": "7mij",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4g80_default_dppc",
+        "db": "PDB",
+        "accession": "4g80",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6h7l_default_dppc",
+        "db": "PDB",
+        "accession": "6h7l",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4lxj_default_dppc",
+        "db": "PDB",
+        "accession": "4lxj",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5eg1_default_dppc",
+        "db": "PDB",
+        "accession": "5eg1",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6s3l_default_dppc",
+        "db": "PDB",
+        "accession": "6s3l",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5u1d_default_dppc",
+        "db": "PDB",
+        "accession": "5u1d",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3vms_default_dppc",
+        "db": "PDB",
+        "accession": "3vms",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1mpf_default_dppc",
+        "db": "PDB",
+        "accession": "1mpf",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7vdl_default_dppc",
+        "db": "PDB",
+        "accession": "7vdl",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7w72_default_dppc",
+        "db": "PDB",
+        "accession": "7w72",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7t6n_default_dppc",
+        "db": "PDB",
+        "accession": "7t6n",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6ujr_default_dppc",
+        "db": "PDB",
+        "accession": "6ujr",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7pd8_default_dppc",
+        "db": "PDB",
+        "accession": "7pd8",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3haq_default_dppc",
+        "db": "PDB",
+        "accession": "3haq",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4fso_default_dppc",
+        "db": "PDB",
+        "accession": "4fso",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7tyy_default_dppc",
+        "db": "PDB",
+        "accession": "7tyy",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5weo_default_dppc",
+        "db": "PDB",
+        "accession": "5weo",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3m4d_default_dppc",
+        "db": "PDB",
+        "accession": "3m4d",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4mrp_default_dppc",
+        "db": "PDB",
+        "accession": "4mrp",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1fep_default_dppc",
+        "db": "PDB",
+        "accession": "1fep",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6ps3_default_dppc",
+        "db": "PDB",
+        "accession": "6ps3",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6ral_default_dppc",
+        "db": "PDB",
+        "accession": "6ral",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2muv_default_dppc",
+        "db": "PDB",
+        "accession": "2muv",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2uxm_default_dppc",
+        "db": "PDB",
+        "accession": "2uxm",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5x9h_default_dppc",
+        "db": "PDB",
+        "accession": "5x9h",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5xj6_default_dppc",
+        "db": "PDB",
+        "accession": "5xj6",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1by5_default_dppc",
+        "db": "PDB",
+        "accession": "1by5",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7jlq_default_dppc",
+        "db": "PDB",
+        "accession": "7jlq",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2mjz_default_dppc",
+        "db": "PDB",
+        "accession": "2mjz",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7f8j_default_dppc",
+        "db": "PDB",
+        "accession": "7f8j",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6x9h_default_dppc",
+        "db": "PDB",
+        "accession": "6x9h",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6kkl_default_dppc",
+        "db": "PDB",
+        "accession": "6kkl",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5mwv_default_dppc",
+        "db": "PDB",
+        "accession": "5mwv",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6bd4_default_dppc",
+        "db": "PDB",
+        "accession": "6bd4",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4tll_default_dppc",
+        "db": "PDB",
+        "accession": "4tll",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3ohn_default_dppc",
+        "db": "PDB",
+        "accession": "3ohn",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4fa7_default_dppc",
+        "db": "PDB",
+        "accession": "4fa7",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7pxe_default_dppc",
+        "db": "PDB",
+        "accession": "7pxe",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5g2d_default_dppc",
+        "db": "PDB",
+        "accession": "5g2d",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5z62_default_dppc",
+        "db": "PDB",
+        "accession": "5z62",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1kzu_default_dppc",
+        "db": "PDB",
+        "accession": "1kzu",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6iv3_default_dppc",
+        "db": "PDB",
+        "accession": "6iv3",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7t6m_default_dppc",
+        "db": "PDB",
+        "accession": "7t6m",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7onl_default_dppc",
+        "db": "PDB",
+        "accession": "7onl",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5iu8_default_dppc",
+        "db": "PDB",
+        "accession": "5iu8",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3v89_default_dppc",
+        "db": "PDB",
+        "accession": "3v89",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6wk9_default_dppc",
+        "db": "PDB",
+        "accession": "6wk9",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4ifm_default_dppc",
+        "db": "PDB",
+        "accession": "4ifm",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3pjs_default_dppc",
+        "db": "PDB",
+        "accession": "3pjs",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5fl7_default_dppc",
+        "db": "PDB",
+        "accession": "5fl7",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4mm7_default_dppc",
+        "db": "PDB",
+        "accession": "4mm7",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6bo4_default_dppc",
+        "db": "PDB",
+        "accession": "6bo4",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4il4_default_dppc",
+        "db": "PDB",
+        "accession": "4il4",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4rl8_default_dppc",
+        "db": "PDB",
+        "accession": "4rl8",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2k1k_default_dppc",
+        "db": "PDB",
+        "accession": "2k1k",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6f2w_default_dppc",
+        "db": "PDB",
+        "accession": "6f2w",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6plr_default_dppc",
+        "db": "PDB",
+        "accession": "6plr",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7rxb_default_dppc",
+        "db": "PDB",
+        "accession": "7rxb",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3ne2_default_dppc",
+        "db": "PDB",
+        "accession": "3ne2",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4fpd_default_dppc",
+        "db": "PDB",
+        "accession": "4fpd",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5kkh_default_dppc",
+        "db": "PDB",
+        "accession": "5kkh",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6lgv_default_dppc",
+        "db": "PDB",
+        "accession": "6lgv",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2wvp_default_dppc",
+        "db": "PDB",
+        "accession": "2wvp",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7e84_default_dppc",
+        "db": "PDB",
+        "accession": "7e84",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6zg7_default_dppc",
+        "db": "PDB",
+        "accession": "6zg7",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4g7s_default_dppc",
+        "db": "PDB",
+        "accession": "4g7s",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7l31_default_dppc",
+        "db": "PDB",
+        "accession": "7l31",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5u9w_default_dppc",
+        "db": "PDB",
+        "accession": "5u9w",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2n5s_default_dppc",
+        "db": "PDB",
+        "accession": "2n5s",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3qbk_default_dppc",
+        "db": "PDB",
+        "accession": "3qbk",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5lri_default_dppc",
+        "db": "PDB",
+        "accession": "5lri",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5j4n_default_dppc",
+        "db": "PDB",
+        "accession": "5j4n",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5te5_default_dppc",
+        "db": "PDB",
+        "accession": "5te5",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7bh2_default_dppc",
+        "db": "PDB",
+        "accession": "7bh2",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5ara_default_dppc",
+        "db": "PDB",
+        "accession": "5ara",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4uxz_default_dppc",
+        "db": "PDB",
+        "accession": "4uxz",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4kkc_default_dppc",
+        "db": "PDB",
+        "accession": "4kkc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5oxn_default_dppc",
+        "db": "PDB",
+        "accession": "5oxn",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6xjv_default_dppc",
+        "db": "PDB",
+        "accession": "6xjv",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2hyd_default_dppc",
+        "db": "PDB",
+        "accession": "2hyd",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5d58_default_dppc",
+        "db": "PDB",
+        "accession": "5d58",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3lrc_default_dppc",
+        "db": "PDB",
+        "accession": "3lrc",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4chw_default_dppc",
+        "db": "PDB",
+        "accession": "4chw",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6i53_default_dppc",
+        "db": "PDB",
+        "accession": "6i53",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7rz7_default_dppc",
+        "db": "PDB",
+        "accession": "7rz7",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6njm_default_dppc",
+        "db": "PDB",
+        "accession": "6njm",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3f5w_default_dppc",
+        "db": "PDB",
+        "accession": "3f5w",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6rko_default_dppc",
+        "db": "PDB",
+        "accession": "6rko",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3gp6_default_dppc",
+        "db": "PDB",
+        "accession": "3gp6",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2hdi_default_dppc",
+        "db": "PDB",
+        "accession": "2hdi",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6tk2_default_dppc",
+        "db": "PDB",
+        "accession": "6tk2",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2lcx_default_dppc",
+        "db": "PDB",
+        "accession": "2lcx",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3p03_default_dppc",
+        "db": "PDB",
+        "accession": "3p03",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4ayw_default_dppc",
+        "db": "PDB",
+        "accession": "4ayw",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7e9t_default_dppc",
+        "db": "PDB",
+        "accession": "7e9t",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1x0i_default_dppc",
+        "db": "PDB",
+        "accession": "1x0i",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6fo0_default_dppc",
+        "db": "PDB",
+        "accession": "6fo0",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7v3z_default_dppc",
+        "db": "PDB",
+        "accession": "7v3z",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3m7e_default_dppc",
+        "db": "PDB",
+        "accession": "3m7e",
+        "sim_validate": {
+            "n_frames": 3501
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6z8t_default_dppc",
+        "db": "PDB",
+        "accession": "6z8t",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6cno_default_dppc",
+        "db": "PDB",
+        "accession": "6cno",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6urt_default_dppc",
+        "db": "PDB",
+        "accession": "6urt",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5mx2_default_dppc",
+        "db": "PDB",
+        "accession": "5mx2",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5khs_default_dppc",
+        "db": "PDB",
+        "accession": "5khs",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6be1_default_dppc",
+        "db": "PDB",
+        "accession": "6be1",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2n4x_default_dppc",
+        "db": "PDB",
+        "accession": "2n4x",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6pbe_default_dppc",
+        "db": "PDB",
+        "accession": "6pbe",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2gnu_default_dppc",
+        "db": "PDB",
+        "accession": "2gnu",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5xnn_default_dppc",
+        "db": "PDB",
+        "accession": "5xnn",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2hit_default_dppc",
+        "db": "PDB",
+        "accession": "2hit",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5h2h_default_dppc",
+        "db": "PDB",
+        "accession": "5h2h",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3wvf_default_dppc",
+        "db": "PDB",
+        "accession": "3wvf",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1hxu_default_dppc",
+        "db": "PDB",
+        "accession": "1hxu",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6dmy_default_dppc",
+        "db": "PDB",
+        "accession": "6dmy",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2zt9_default_dppc",
+        "db": "PDB",
+        "accession": "2zt9",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7n75_default_dppc",
+        "db": "PDB",
+        "accession": "7n75",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6o1v_default_dppc",
+        "db": "PDB",
+        "accession": "6o1v",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2l6x_default_dppc",
+        "db": "PDB",
+        "accession": "2l6x",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7t56_default_dppc",
+        "db": "PDB",
+        "accession": "7t56",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2yvx_default_dppc",
+        "db": "PDB",
+        "accession": "2yvx",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1w5c_default_dppc",
+        "db": "PDB",
+        "accession": "1w5c",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3sfe_default_dppc",
+        "db": "PDB",
+        "accession": "3sfe",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6e7z_default_dppc",
+        "db": "PDB",
+        "accession": "6e7z",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5mg3_default_dppc",
+        "db": "PDB",
+        "accession": "5mg3",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6qvb_default_dppc",
+        "db": "PDB",
+        "accession": "6qvb",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6g7i_default_dppc",
+        "db": "PDB",
+        "accession": "6g7i",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7dw9_default_dppc",
+        "db": "PDB",
+        "accession": "7dw9",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7f6i_default_dppc",
+        "db": "PDB",
+        "accession": "7f6i",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7rpm_default_dppc",
+        "db": "PDB",
+        "accession": "7rpm",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7wc6_default_dppc",
+        "db": "PDB",
+        "accession": "7wc6",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7ki0_default_dppc",
+        "db": "PDB",
+        "accession": "7ki0",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2kwx_default_dppc",
+        "db": "PDB",
+        "accession": "2kwx",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5ax0_default_dppc",
+        "db": "PDB",
+        "accession": "5ax0",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3ddl_default_dppc",
+        "db": "PDB",
+        "accession": "3ddl",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6jye_default_dppc",
+        "db": "PDB",
+        "accession": "6jye",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7sk0_default_dppc",
+        "db": "PDB",
+        "accession": "7sk0",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7aar_default_dppc",
+        "db": "PDB",
+        "accession": "7aar",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2zxe_default_dppc",
+        "db": "PDB",
+        "accession": "2zxe",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5f8u_default_dppc",
+        "db": "PDB",
+        "accession": "5f8u",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7o8z_default_dppc",
+        "db": "PDB",
+        "accession": "7o8z",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7f8n_default_dppc",
+        "db": "PDB",
+        "accession": "7f8n",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7s9d_default_dppc",
+        "db": "PDB",
+        "accession": "7s9d",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7p3w_default_dppc",
+        "db": "PDB",
+        "accession": "7p3w",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7b0r_default_dppc",
+        "db": "PDB",
+        "accession": "7b0r",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6xeu_default_dppc",
+        "db": "PDB",
+        "accession": "6xeu",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5l1h_default_dppc",
+        "db": "PDB",
+        "accession": "5l1h",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6uva_default_dppc",
+        "db": "PDB",
+        "accession": "6uva",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5kai_default_dppc",
+        "db": "PDB",
+        "accession": "5kai",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "3ag1_default_dppc",
+        "db": "PDB",
+        "accession": "3ag1",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6jo0_default_dppc",
+        "db": "PDB",
+        "accession": "6jo0",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7t6t_default_dppc",
+        "db": "PDB",
+        "accession": "7t6t",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7k7a_default_dppc",
+        "db": "PDB",
+        "accession": "7k7a",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5m8k_default_dppc",
+        "db": "PDB",
+        "accession": "5m8k",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5a6g_default_dppc",
+        "db": "PDB",
+        "accession": "5a6g",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2nr9_default_dppc",
+        "db": "PDB",
+        "accession": "2nr9",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1oqw_default_dppc",
+        "db": "PDB",
+        "accession": "1oqw",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4d5d_default_dppc",
+        "db": "PDB",
+        "accession": "4d5d",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6q8x_default_dppc",
+        "db": "PDB",
+        "accession": "6q8x",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5h1r_default_dppc",
+        "db": "PDB",
+        "accession": "5h1r",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7ew0_default_dppc",
+        "db": "PDB",
+        "accession": "7ew0",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6hjy_default_dppc",
+        "db": "PDB",
+        "accession": "6hjy",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6i97_default_dppc",
+        "db": "PDB",
+        "accession": "6i97",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7b5d_default_dppc",
+        "db": "PDB",
+        "accession": "7b5d",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6y59_default_dppc",
+        "db": "PDB",
+        "accession": "6y59",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5kbs_default_dppc",
+        "db": "PDB",
+        "accession": "5kbs",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6v4s_default_dppc",
+        "db": "PDB",
+        "accession": "6v4s",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6iyu_default_dppc",
+        "db": "PDB",
+        "accession": "6iyu",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7o7f_default_dppc",
+        "db": "PDB",
+        "accession": "7o7f",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4zw9_default_dppc",
+        "db": "PDB",
+        "accession": "4zw9",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "2na6_default_dppc",
+        "db": "PDB",
+        "accession": "2na6",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6jy7_default_dppc",
+        "db": "PDB",
+        "accession": "6jy7",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4tnh_default_dppc",
+        "db": "PDB",
+        "accession": "4tnh",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "6z99_default_dppc",
+        "db": "PDB",
+        "accession": "6z99",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4b61_default_dppc",
+        "db": "PDB",
+        "accession": "4b61",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "4zll_default_dppc",
+        "db": "PDB",
+        "accession": "4zll",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "7piv_default_dppc",
+        "db": "PDB",
+        "accession": "7piv",
+        "sim_validate": {
+            "n_frames": 801
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "5v57_default_dppc",
+        "db": "PDB",
+        "accession": "5v57",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
+        "_id": "1tlw_default_dppc",
+        "db": "PDB",
+        "accession": "1tlw",
+        "sim_validate": {
+            "n_frames": 4001
+        },
+        "composition": {
+            "DPPC": 100
+        }
+    },
+    {
         "_id": "7z0a_default_dppc",
         "db": "PDB",
         "accession": "7z0a",
@@ -68181,1689 +71239,6 @@
         "_id": "5x9h_default_dppc",
         "db": "PDB",
         "accession": "5x9h",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5xj6_default_dppc",
-        "db": "PDB",
-        "accession": "5xj6",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "1by5_default_dppc",
-        "db": "PDB",
-        "accession": "1by5",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7jlq_default_dppc",
-        "db": "PDB",
-        "accession": "7jlq",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2mjz_default_dppc",
-        "db": "PDB",
-        "accession": "2mjz",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7f8j_default_dppc",
-        "db": "PDB",
-        "accession": "7f8j",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6x9h_default_dppc",
-        "db": "PDB",
-        "accession": "6x9h",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6kkl_default_dppc",
-        "db": "PDB",
-        "accession": "6kkl",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5mwv_default_dppc",
-        "db": "PDB",
-        "accession": "5mwv",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6bd4_default_dppc",
-        "db": "PDB",
-        "accession": "6bd4",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4tll_default_dppc",
-        "db": "PDB",
-        "accession": "4tll",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3ohn_default_dppc",
-        "db": "PDB",
-        "accession": "3ohn",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4fa7_default_dppc",
-        "db": "PDB",
-        "accession": "4fa7",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7pxe_default_dppc",
-        "db": "PDB",
-        "accession": "7pxe",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5g2d_default_dppc",
-        "db": "PDB",
-        "accession": "5g2d",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5z62_default_dppc",
-        "db": "PDB",
-        "accession": "5z62",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "1kzu_default_dppc",
-        "db": "PDB",
-        "accession": "1kzu",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6iv3_default_dppc",
-        "db": "PDB",
-        "accession": "6iv3",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7t6m_default_dppc",
-        "db": "PDB",
-        "accession": "7t6m",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7onl_default_dppc",
-        "db": "PDB",
-        "accession": "7onl",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5iu8_default_dppc",
-        "db": "PDB",
-        "accession": "5iu8",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3v89_default_dppc",
-        "db": "PDB",
-        "accession": "3v89",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6wk9_default_dppc",
-        "db": "PDB",
-        "accession": "6wk9",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4ifm_default_dppc",
-        "db": "PDB",
-        "accession": "4ifm",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3pjs_default_dppc",
-        "db": "PDB",
-        "accession": "3pjs",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5fl7_default_dppc",
-        "db": "PDB",
-        "accession": "5fl7",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4mm7_default_dppc",
-        "db": "PDB",
-        "accession": "4mm7",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6bo4_default_dppc",
-        "db": "PDB",
-        "accession": "6bo4",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4il4_default_dppc",
-        "db": "PDB",
-        "accession": "4il4",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4rl8_default_dppc",
-        "db": "PDB",
-        "accession": "4rl8",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2k1k_default_dppc",
-        "db": "PDB",
-        "accession": "2k1k",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6f2w_default_dppc",
-        "db": "PDB",
-        "accession": "6f2w",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6plr_default_dppc",
-        "db": "PDB",
-        "accession": "6plr",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7rxb_default_dppc",
-        "db": "PDB",
-        "accession": "7rxb",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3ne2_default_dppc",
-        "db": "PDB",
-        "accession": "3ne2",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4fpd_default_dppc",
-        "db": "PDB",
-        "accession": "4fpd",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5kkh_default_dppc",
-        "db": "PDB",
-        "accession": "5kkh",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6lgv_default_dppc",
-        "db": "PDB",
-        "accession": "6lgv",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2wvp_default_dppc",
-        "db": "PDB",
-        "accession": "2wvp",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7e84_default_dppc",
-        "db": "PDB",
-        "accession": "7e84",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6zg7_default_dppc",
-        "db": "PDB",
-        "accession": "6zg7",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4g7s_default_dppc",
-        "db": "PDB",
-        "accession": "4g7s",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7l31_default_dppc",
-        "db": "PDB",
-        "accession": "7l31",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5u9w_default_dppc",
-        "db": "PDB",
-        "accession": "5u9w",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2n5s_default_dppc",
-        "db": "PDB",
-        "accession": "2n5s",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3qbk_default_dppc",
-        "db": "PDB",
-        "accession": "3qbk",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5lri_default_dppc",
-        "db": "PDB",
-        "accession": "5lri",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5j4n_default_dppc",
-        "db": "PDB",
-        "accession": "5j4n",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5te5_default_dppc",
-        "db": "PDB",
-        "accession": "5te5",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7bh2_default_dppc",
-        "db": "PDB",
-        "accession": "7bh2",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5ara_default_dppc",
-        "db": "PDB",
-        "accession": "5ara",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4uxz_default_dppc",
-        "db": "PDB",
-        "accession": "4uxz",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4kkc_default_dppc",
-        "db": "PDB",
-        "accession": "4kkc",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5oxn_default_dppc",
-        "db": "PDB",
-        "accession": "5oxn",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6xjv_default_dppc",
-        "db": "PDB",
-        "accession": "6xjv",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2hyd_default_dppc",
-        "db": "PDB",
-        "accession": "2hyd",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5d58_default_dppc",
-        "db": "PDB",
-        "accession": "5d58",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3lrc_default_dppc",
-        "db": "PDB",
-        "accession": "3lrc",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4chw_default_dppc",
-        "db": "PDB",
-        "accession": "4chw",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6i53_default_dppc",
-        "db": "PDB",
-        "accession": "6i53",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7rz7_default_dppc",
-        "db": "PDB",
-        "accession": "7rz7",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6njm_default_dppc",
-        "db": "PDB",
-        "accession": "6njm",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3f5w_default_dppc",
-        "db": "PDB",
-        "accession": "3f5w",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6rko_default_dppc",
-        "db": "PDB",
-        "accession": "6rko",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3gp6_default_dppc",
-        "db": "PDB",
-        "accession": "3gp6",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2hdi_default_dppc",
-        "db": "PDB",
-        "accession": "2hdi",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6tk2_default_dppc",
-        "db": "PDB",
-        "accession": "6tk2",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2lcx_default_dppc",
-        "db": "PDB",
-        "accession": "2lcx",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3p03_default_dppc",
-        "db": "PDB",
-        "accession": "3p03",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4ayw_default_dppc",
-        "db": "PDB",
-        "accession": "4ayw",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7e9t_default_dppc",
-        "db": "PDB",
-        "accession": "7e9t",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "1x0i_default_dppc",
-        "db": "PDB",
-        "accession": "1x0i",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6fo0_default_dppc",
-        "db": "PDB",
-        "accession": "6fo0",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7v3z_default_dppc",
-        "db": "PDB",
-        "accession": "7v3z",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3m7e_default_dppc",
-        "db": "PDB",
-        "accession": "3m7e",
-        "sim_validate": {
-            "n_frames": 3501
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6z8t_default_dppc",
-        "db": "PDB",
-        "accession": "6z8t",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6cno_default_dppc",
-        "db": "PDB",
-        "accession": "6cno",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6urt_default_dppc",
-        "db": "PDB",
-        "accession": "6urt",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5mx2_default_dppc",
-        "db": "PDB",
-        "accession": "5mx2",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5khs_default_dppc",
-        "db": "PDB",
-        "accession": "5khs",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6be1_default_dppc",
-        "db": "PDB",
-        "accession": "6be1",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2n4x_default_dppc",
-        "db": "PDB",
-        "accession": "2n4x",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6pbe_default_dppc",
-        "db": "PDB",
-        "accession": "6pbe",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2gnu_default_dppc",
-        "db": "PDB",
-        "accession": "2gnu",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5xnn_default_dppc",
-        "db": "PDB",
-        "accession": "5xnn",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2hit_default_dppc",
-        "db": "PDB",
-        "accession": "2hit",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5h2h_default_dppc",
-        "db": "PDB",
-        "accession": "5h2h",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3wvf_default_dppc",
-        "db": "PDB",
-        "accession": "3wvf",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "1hxu_default_dppc",
-        "db": "PDB",
-        "accession": "1hxu",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6dmy_default_dppc",
-        "db": "PDB",
-        "accession": "6dmy",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2zt9_default_dppc",
-        "db": "PDB",
-        "accession": "2zt9",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7n75_default_dppc",
-        "db": "PDB",
-        "accession": "7n75",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6o1v_default_dppc",
-        "db": "PDB",
-        "accession": "6o1v",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2l6x_default_dppc",
-        "db": "PDB",
-        "accession": "2l6x",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7t56_default_dppc",
-        "db": "PDB",
-        "accession": "7t56",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2yvx_default_dppc",
-        "db": "PDB",
-        "accession": "2yvx",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "1w5c_default_dppc",
-        "db": "PDB",
-        "accession": "1w5c",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3sfe_default_dppc",
-        "db": "PDB",
-        "accession": "3sfe",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6e7z_default_dppc",
-        "db": "PDB",
-        "accession": "6e7z",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5mg3_default_dppc",
-        "db": "PDB",
-        "accession": "5mg3",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6qvb_default_dppc",
-        "db": "PDB",
-        "accession": "6qvb",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6g7i_default_dppc",
-        "db": "PDB",
-        "accession": "6g7i",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7dw9_default_dppc",
-        "db": "PDB",
-        "accession": "7dw9",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7f6i_default_dppc",
-        "db": "PDB",
-        "accession": "7f6i",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7rpm_default_dppc",
-        "db": "PDB",
-        "accession": "7rpm",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7wc6_default_dppc",
-        "db": "PDB",
-        "accession": "7wc6",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7ki0_default_dppc",
-        "db": "PDB",
-        "accession": "7ki0",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2kwx_default_dppc",
-        "db": "PDB",
-        "accession": "2kwx",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5ax0_default_dppc",
-        "db": "PDB",
-        "accession": "5ax0",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3ddl_default_dppc",
-        "db": "PDB",
-        "accession": "3ddl",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6jye_default_dppc",
-        "db": "PDB",
-        "accession": "6jye",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7sk0_default_dppc",
-        "db": "PDB",
-        "accession": "7sk0",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7aar_default_dppc",
-        "db": "PDB",
-        "accession": "7aar",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2zxe_default_dppc",
-        "db": "PDB",
-        "accession": "2zxe",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5f8u_default_dppc",
-        "db": "PDB",
-        "accession": "5f8u",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7o8z_default_dppc",
-        "db": "PDB",
-        "accession": "7o8z",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7f8n_default_dppc",
-        "db": "PDB",
-        "accession": "7f8n",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7s9d_default_dppc",
-        "db": "PDB",
-        "accession": "7s9d",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7p3w_default_dppc",
-        "db": "PDB",
-        "accession": "7p3w",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7b0r_default_dppc",
-        "db": "PDB",
-        "accession": "7b0r",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6xeu_default_dppc",
-        "db": "PDB",
-        "accession": "6xeu",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5l1h_default_dppc",
-        "db": "PDB",
-        "accession": "5l1h",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6uva_default_dppc",
-        "db": "PDB",
-        "accession": "6uva",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5kai_default_dppc",
-        "db": "PDB",
-        "accession": "5kai",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "3ag1_default_dppc",
-        "db": "PDB",
-        "accession": "3ag1",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6jo0_default_dppc",
-        "db": "PDB",
-        "accession": "6jo0",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7t6t_default_dppc",
-        "db": "PDB",
-        "accession": "7t6t",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7k7a_default_dppc",
-        "db": "PDB",
-        "accession": "7k7a",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5m8k_default_dppc",
-        "db": "PDB",
-        "accession": "5m8k",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5a6g_default_dppc",
-        "db": "PDB",
-        "accession": "5a6g",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2nr9_default_dppc",
-        "db": "PDB",
-        "accession": "2nr9",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "1oqw_default_dppc",
-        "db": "PDB",
-        "accession": "1oqw",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4d5d_default_dppc",
-        "db": "PDB",
-        "accession": "4d5d",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6q8x_default_dppc",
-        "db": "PDB",
-        "accession": "6q8x",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5h1r_default_dppc",
-        "db": "PDB",
-        "accession": "5h1r",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7ew0_default_dppc",
-        "db": "PDB",
-        "accession": "7ew0",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6hjy_default_dppc",
-        "db": "PDB",
-        "accession": "6hjy",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6i97_default_dppc",
-        "db": "PDB",
-        "accession": "6i97",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7b5d_default_dppc",
-        "db": "PDB",
-        "accession": "7b5d",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6y59_default_dppc",
-        "db": "PDB",
-        "accession": "6y59",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5kbs_default_dppc",
-        "db": "PDB",
-        "accession": "5kbs",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6v4s_default_dppc",
-        "db": "PDB",
-        "accession": "6v4s",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6iyu_default_dppc",
-        "db": "PDB",
-        "accession": "6iyu",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7o7f_default_dppc",
-        "db": "PDB",
-        "accession": "7o7f",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4zw9_default_dppc",
-        "db": "PDB",
-        "accession": "4zw9",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "2na6_default_dppc",
-        "db": "PDB",
-        "accession": "2na6",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6jy7_default_dppc",
-        "db": "PDB",
-        "accession": "6jy7",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4tnh_default_dppc",
-        "db": "PDB",
-        "accession": "4tnh",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "6z99_default_dppc",
-        "db": "PDB",
-        "accession": "6z99",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4b61_default_dppc",
-        "db": "PDB",
-        "accession": "4b61",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "4zll_default_dppc",
-        "db": "PDB",
-        "accession": "4zll",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "7piv_default_dppc",
-        "db": "PDB",
-        "accession": "7piv",
-        "sim_validate": {
-            "n_frames": 801
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "5v57_default_dppc",
-        "db": "PDB",
-        "accession": "5v57",
-        "sim_validate": {
-            "n_frames": 4001
-        },
-        "composition": {
-            "DPPC": 100
-        }
-    },
-    {
-        "_id": "1tlw_default_dppc",
-        "db": "PDB",
-        "accession": "1tlw",
         "sim_validate": {
             "n_frames": 4001
         },
