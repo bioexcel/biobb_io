@@ -1,4 +1,4 @@
-<script type="application/ld+json">
+[
   {
     "@context": "http://schema.org",
     "@type": "SoftwareApplication",
@@ -9,9 +9,7 @@
     "citation": "http://www.ncbi.nlm.nih.gov/pubmed/37953279",
     "license": "other",
     "softwareVersion": "6.0"
-  }
-</script>
-<script type="application/ld+json">
+  },
   {
     "@context": "http://schema.org",
     "@type": "SoftwareApplication",
@@ -22,9 +20,7 @@
     "citation": "https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkab1061/6430488",
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "softwareVersion": "2.3.2"
-  }
-</script>
-<script type="application/ld+json">
+  },
   {
     "@context": "http://schema.org",
     "@type": "SoftwareApplication",
@@ -35,9 +31,7 @@
     "citation": "http://dx.doi.org/10.1093/nar/gkz990",
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "softwareVersion": "1.0"
-  }
-</script>
-<script type="application/ld+json">
+  },
   {
     "@context": "http://schema.org",
     "@type": "SoftwareApplication",
@@ -48,9 +42,7 @@
     "citation": "https://doi.org/10.1093/nar/28.1.235",
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "softwareVersion": "3.1"
-  }
-</script>
-<script type="application/ld+json">
+  },
   {
     "@context": "http://schema.org",
     "@type": "SoftwareApplication",
@@ -61,9 +53,7 @@
     "citation": "http://dx.doi.org/10.1093/nar/gky1047",
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "softwareVersion": "1.0"
-  }
-</script>
-<script type="application/ld+json">
+  },
   {
     "@context": "http://schema.org",
     "@type": "SoftwareApplication",
@@ -75,4 +65,4 @@
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "softwareVersion": "1.0"
   }
-</script>
+]
