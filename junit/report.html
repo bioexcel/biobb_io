@@ -2,661 +2,769 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title>report.html</title>
-    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
-  <body onLoad="init()">
-    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/. */
-
-
-function toArray(iter) {
-    if (iter === null) {
-        return null;
-    }
-    return Array.prototype.slice.call(iter);
-}
-
-function find(selector, elem) { // eslint-disable-line no-redeclare
-    if (!elem) {
-        elem = document;
-    }
-    return elem.querySelector(selector);
-}
-
-function findAll(selector, elem) {
-    if (!elem) {
-        elem = document;
-    }
-    return toArray(elem.querySelectorAll(selector));
-}
-
-function sortColumn(elem) {
-    toggleSortStates(elem);
-    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
-    let key;
-    if (elem.classList.contains('result')) {
-        key = keyResult;
-    } else if (elem.classList.contains('links')) {
-        key = keyLink;
-    } else {
-        key = keyAlpha;
-    }
-    sortTable(elem, key(colIndex));
-}
-
-function showAllExtras() { // eslint-disable-line no-unused-vars
-    findAll('.col-result').forEach(showExtras);
-}
-
-function hideAllExtras() { // eslint-disable-line no-unused-vars
-    findAll('.col-result').forEach(hideExtras);
-}
-
-function showExtras(colresultElem) {
-    const extras = colresultElem.parentNode.nextElementSibling;
-    const expandcollapse = colresultElem.firstElementChild;
-    extras.classList.remove('collapsed');
-    expandcollapse.classList.remove('expander');
-    expandcollapse.classList.add('collapser');
-}
-
-function hideExtras(colresultElem) {
-    const extras = colresultElem.parentNode.nextElementSibling;
-    const expandcollapse = colresultElem.firstElementChild;
-    extras.classList.add('collapsed');
-    expandcollapse.classList.remove('collapser');
-    expandcollapse.classList.add('expander');
-}
-
-function showFilters() {
-    let visibleString = getQueryParameter('visible') || 'all';
-    visibleString = visibleString.toLowerCase();
-    const checkedItems = visibleString.split(',');
-
-    const filterItems = document.getElementsByClassName('filter');
-    for (let i = 0; i < filterItems.length; i++) {
-        filterItems[i].hidden = false;
-
-        if (visibleString != 'all') {
-            filterItems[i].checked = checkedItems.includes(filterItems[i].getAttribute('data-test-result'));
-            filterTable(filterItems[i]);
-        }
-    }
-}
-
-function addCollapse() {
-    // Add links for show/hide all
-    const resulttable = find('table#results-table');
-    const showhideall = document.createElement('p');
-    showhideall.innerHTML = '<a href="javascript:showAllExtras()">Show all details</a> / ' +
-                            '<a href="javascript:hideAllExtras()">Hide all details</a>';
-    resulttable.parentElement.insertBefore(showhideall, resulttable);
-
-    // Add show/hide link to each result
-    findAll('.col-result').forEach(function(elem) {
-        const collapsed = getQueryParameter('collapsed') || 'Passed';
-        const extras = elem.parentNode.nextElementSibling;
-        const expandcollapse = document.createElement('span');
-        if (extras.classList.contains('collapsed')) {
-            expandcollapse.classList.add('expander');
-        } else if (collapsed.includes(elem.innerHTML)) {
-            extras.classList.add('collapsed');
-            expandcollapse.classList.add('expander');
-        } else {
-            expandcollapse.classList.add('collapser');
-        }
-        elem.appendChild(expandcollapse);
-
-        elem.addEventListener('click', function(event) {
-            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
-                showExtras(event.currentTarget);
-            } else {
-                hideExtras(event.currentTarget);
-            }
-        });
-    });
-}
-
-function getQueryParameter(name) {
-    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}
-
-function init () { // eslint-disable-line no-unused-vars
-    resetSortHeaders();
-
-    addCollapse();
-
-    showFilters();
-
-    sortColumn(find('.initial-sort'));
-
-    findAll('.sortable').forEach(function(elem) {
-        elem.addEventListener('click',
-            function() {
-                sortColumn(elem);
-            }, false);
-    });
-}
-
-function sortTable(clicked, keyFunc) {
-    const rows = findAll('.results-table-row');
-    const reversed = !clicked.classList.contains('asc');
-    const sortedRows = sort(rows, keyFunc, reversed);
-    /* Whole table is removed here because browsers acts much slower
-     * when appending existing elements.
-     */
-    const thead = document.getElementById('results-table-head');
-    document.getElementById('results-table').remove();
-    const parent = document.createElement('table');
-    parent.id = 'results-table';
-    parent.appendChild(thead);
-    sortedRows.forEach(function(elem) {
-        parent.appendChild(elem);
-    });
-    document.getElementsByTagName('BODY')[0].appendChild(parent);
-}
-
-function sort(items, keyFunc, reversed) {
-    const sortArray = items.map(function(item, i) {
-        return [keyFunc(item), i];
-    });
-
-    sortArray.sort(function(a, b) {
-        const keyA = a[0];
-        const keyB = b[0];
-
-        if (keyA == keyB) return 0;
-
-        if (reversed) {
-            return keyA < keyB ? 1 : -1;
-        } else {
-            return keyA > keyB ? 1 : -1;
-        }
-    });
-
-    return sortArray.map(function(item) {
-        const index = item[1];
-        return items[index];
-    });
-}
-
-function keyAlpha(colIndex) {
-    return function(elem) {
-        return elem.childNodes[1].childNodes[colIndex].firstChild.data.toLowerCase();
-    };
-}
-
-function keyLink(colIndex) {
-    return function(elem) {
-        const dataCell = elem.childNodes[1].childNodes[colIndex].firstChild;
-        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
-    };
-}
-
-function keyResult(colIndex) {
-    return function(elem) {
-        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
-            'Skipped', 'Passed'];
-        return strings.indexOf(elem.childNodes[1].childNodes[colIndex].firstChild.data);
-    };
-}
-
-function resetSortHeaders() {
-    findAll('.sort-icon').forEach(function(elem) {
-        elem.parentNode.removeChild(elem);
-    });
-    findAll('.sortable').forEach(function(elem) {
-        const icon = document.createElement('div');
-        icon.className = 'sort-icon';
-        icon.textContent = 'vvv';
-        elem.insertBefore(icon, elem.firstChild);
-        elem.classList.remove('desc', 'active');
-        elem.classList.add('asc', 'inactive');
-    });
-}
-
-function toggleSortStates(elem) {
-    //if active, toggle between asc and desc
-    if (elem.classList.contains('active')) {
-        elem.classList.toggle('asc');
-        elem.classList.toggle('desc');
-    }
-
-    //if inactive, reset all other functions and add ascending active
-    if (elem.classList.contains('inactive')) {
-        resetSortHeaders();
-        elem.classList.remove('inactive');
-        elem.classList.add('active');
-    }
-}
-
-function isAllRowsHidden(value) {
-    return value.hidden == false;
-}
-
-function filterTable(elem) { // eslint-disable-line no-unused-vars
-    const outcomeAtt = 'data-test-result';
-    const outcome = elem.getAttribute(outcomeAtt);
-    const classOutcome = outcome + ' results-table-row';
-    const outcomeRows = document.getElementsByClassName(classOutcome);
-
-    for(let i = 0; i < outcomeRows.length; i++){
-        outcomeRows[i].hidden = !elem.checked;
-    }
-
-    const rows = findAll('.results-table-row').filter(isAllRowsHidden);
-    const allRowsHidden = rows.length == 0 ? true : false;
-    const notFoundMessage = document.getElementById('not-found-message');
-    notFoundMessage.hidden = !allRowsHidden;
-}
-</script>
-    <h1>report.html</h1>
-    <p>Report generated on 07-Sep-2023 at 10:41:11 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
-    <h2>Summary</h2>
-    <p>13 tests ran in 46.37 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">13 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
-    <h2>Results</h2>
+    <title id="head-title">report.html</title>
+      <link href="assets/style.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <h1 id="title">report.html</h1>
+    <p>Report generated on 07-May-2024 at 14:23:24 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
+        v4.1.1</p>
+    <div id="environment-header">
+      <h2>Environment</h2>
+    </div>
+    <table id="environment"></table>
+    <!-- TEMPLATES -->
+      <template id="template_environment_row">
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </template>
+    <template id="template_results-table__body--empty">
+      <tbody class="results-table-row">
+        <tr id="not-found-message">
+          <td colspan="4">No results found. Check the filters.</th>
+        </tr>
+    </template>
+    <template id="template_results-table__tbody">
+      <tbody class="results-table-row">
+        <tr class="collapsible">
+        </tr>
+        <tr class="extras-row">
+          <td class="extra" colspan="4">
+            <div class="extraHTML"></div>
+            <div class="media">
+              <div class="media-container">
+                  <div class="media-container__nav--left"><</div>
+                  <div class="media-container__viewport">
+                    <img src="" />
+                    <video controls>
+                      <source src="" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="media-container__nav--right">></div>
+                </div>
+                <div class="media__name"></div>
+                <div class="media__counter"></div>
+            </div>
+            <div class="logwrapper">
+              <div class="logexpander"></div>
+              <div class="log"></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </template>
+    <!-- END TEMPLATES -->
+    <div class="summary">
+      <div class="summary__data">
+        <h2>Summary</h2>
+        <div class="additional-summary prefix">
+        </div>
+        <p class="run-count">13 tests took 00:01:24.</p>
+        <p class="filter">(Un)check the boxes to filter the results.</p>
+        <div class="summary__reload">
+          <div class="summary__reload__button hidden" onclick="location.reload()">
+            <div>There are still tests running. <br />Reload this page to get the latest results!</div>
+          </div>
+        </div>
+        <div class="summary__spacer"></div>
+        <div class="controls">
+          <div class="filters">
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="failed" disabled/>
+            <span class="failed">0 Failed,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="passed" />
+            <span class="passed">13 Passed,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="skipped" disabled/>
+            <span class="skipped">0 Skipped,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="xfailed" disabled/>
+            <span class="xfailed">0 Expected failures,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="xpassed" disabled/>
+            <span class="xpassed">0 Unexpected passes,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="error" disabled/>
+            <span class="error">0 Errors,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="rerun" disabled/>
+            <span class="rerun">0 Reruns</span>
+          </div>
+          <div class="collapse">
+            <button id="show_all_details">Show all details</button>&nbsp;/&nbsp;<button id="hide_all_details">Hide all details</button>
+          </div>
+        </div>
+      </div>
+      <div class="additional-summary summary">
+      </div>
+      <div class="additional-summary postfix">
+      </div>
+    </div>
     <table id="results-table">
       <thead id="results-table-head">
         <tr>
-          <th class="sortable result initial-sort" col="result">Result</th>
-          <th class="sortable" col="name">Test</th>
-          <th class="sortable" col="duration">Duration</th>
-          <th class="sortable links" col="links">Links</th></tr>
-        <tr hidden="true" id="not-found-message">
-          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_alphafold.py::TestAlphaFold::test_alphafold</td>
-          <td class="col-duration">0.48</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:25,715 [MainThread  ] [INFO ]  Executing biobb_io.api.alphafold Version: 4.1.0
-2023-09-07 10:40:25,715 [MainThread  ] [INFO ]  Downloading P00489 from: https://alphafold.ebi.ac.uk/files/AF-P00489-F1-model_v3.pdb
-2023-09-07 10:40:25,818 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests/alphafold/output_pdb_path.pdb
-Checking if empty file: /tmp/biobb/unitests/alphafold/output_pdb_path.pdb
-Checking RMSD between:
-     PDB_A: /tmp/biobb/unitests/alphafold/output_pdb_path.pdb
-     PDB_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_alphafold.pdb
-     Ignoring HETAMT in RMSD
-     Ignoring Hydrogen atoms in RMSD
-     Atoms ALIGNED in PDB_A: 6860
-     Atoms ALIGNED in PDB_B: 6860
-     RMS: 9.343211792654216e-15
-     RMS_CUTOFF: 1
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/alphafold/alphafold_log.out:file_utils.py:390 Executing biobb_io.api.alphafold Version: 4.1.0
-INFO     /tmp/biobb/unitests/alphafold/alphafold_log.out:file_utils.py:390 Downloading P00489 from: https://alphafold.ebi.ac.uk/files/AF-P00489-F1-model_v3.pdb
-INFO     /tmp/biobb/unitests/alphafold/alphafold_log.out:file_utils.py:390 Writting pdb to: /tmp/biobb/unitests/alphafold/output_pdb_path.pdb<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_api_binding_site.py::TestApiBindingSite::test_api_binding_site</td>
-          <td class="col-duration">0.31</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:26,218 [MainThread  ] [INFO ]  Executing biobb_io.api.api_binding_site Version: 4.1.0
-2023-09-07 10:40:26,219 [MainThread  ] [INFO ]  Getting binding sites from: https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/4i23
-2023-09-07 10:40:26,513 [MainThread  ] [INFO ]  1 binding sites found
-2023-09-07 10:40:26,513 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests/api_binding_site/output_json_path.json
-Checking if empty file: /tmp/biobb/unitests/api_binding_site/output_json_path.json
-Comparing: 
-        File_A: /tmp/biobb/unitests/api_binding_site/output_json_path.json
-        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_binding_site.json
-        File_A hash: b&#x27;\x8f\x13:\xb8\x9a\xa3\xd4\xc7w\x00|v\xa4\xb9\xef\x96X\xa5`#\x87P)\xa8[\xe9\x0b[\xe0D\xcc\x06&#x27;
-        File_B hash: b&#x27;\x8f\x13:\xb8\x9a\xa3\xd4\xc7w\x00|v\xa4\xb9\xef\x96X\xa5`#\x87P)\xa8[\xe9\x0b[\xe0D\xcc\x06&#x27;
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/api_binding_site/api_binding_site_log.out:file_utils.py:390 Executing biobb_io.api.api_binding_site Version: 4.1.0
-INFO     /tmp/biobb/unitests/api_binding_site/api_binding_site_log.out:file_utils.py:390 Getting binding sites from: https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/4i23
-INFO     /tmp/biobb/unitests/api_binding_site/api_binding_site_log.out:file_utils.py:390 1 binding sites found
-INFO     /tmp/biobb/unitests/api_binding_site/api_binding_site_log.out:file_utils.py:390 Writting json to: /tmp/biobb/unitests/api_binding_site/output_json_path.json<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_canonical_fasta.py::TestCanonicalFasta::test_canonical_fasta</td>
-          <td class="col-duration">5.30</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:26,533 [MainThread  ] [INFO ]  Executing biobb_io.api.canonical_fasta Version: 4.1.0
-2023-09-07 10:40:26,533 [MainThread  ] [INFO ]  Downloading 4i23 from: https://www.ebi.ac.uk/pdbe/entry/pdb/4i23/fasta
-2023-09-07 10:40:31,788 [MainThread  ] [INFO ]  Writting FASTA to: /tmp/biobb/unitests/canonical_fasta/output_fasta_path.fasta
-Checking if empty file: /tmp/biobb/unitests/canonical_fasta/output_fasta_path.fasta
-Comparing: 
-        File_A: /tmp/biobb/unitests/canonical_fasta/output_fasta_path.fasta
-        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/canonical_fasta.fasta
-        File_A hash: b&#x27;C9\xff\xac\xb0\xc3k\xadw\xda\xb6\xe7\x85\xc7\x96;m\xedzs\xf7\x17\xd6\xf0h\xa1\xc8P\x94S\x1d\x16&#x27;
-        File_B hash: b&#x27;C9\xff\xac\xb0\xc3k\xadw\xda\xb6\xe7\x85\xc7\x96;m\xedzs\xf7\x17\xd6\xf0h\xa1\xc8P\x94S\x1d\x16&#x27;
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/canonical_fasta/canonical_fasta_log.out:file_utils.py:390 Executing biobb_io.api.canonical_fasta Version: 4.1.0
-INFO     /tmp/biobb/unitests/canonical_fasta/canonical_fasta_log.out:file_utils.py:390 Downloading 4i23 from: https://www.ebi.ac.uk/pdbe/entry/pdb/4i23/fasta
-INFO     /tmp/biobb/unitests/canonical_fasta/canonical_fasta_log.out:file_utils.py:390 Writting FASTA to: /tmp/biobb/unitests/canonical_fasta/output_fasta_path.fasta<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_drugbank.py::TestDrugbank::test_drugbank</td>
-          <td class="col-duration">0.47</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:31,841 [MainThread  ] [INFO ]  Executing biobb_io.api.drugbank Version: 4.1.0
-2023-09-07 10:40:31,841 [MainThread  ] [INFO ]  Downloading db00530 from: https://www.drugbank.ca/structures/small_molecule_drugs/db00530.sdf?type=3d
-2023-09-07 10:40:32,299 [MainThread  ] [INFO ]  Writting sdf to: /tmp/biobb/unitests/drugbank/output_sdf_path.sdf
-Checking if empty file: /tmp/biobb/unitests/drugbank/output_sdf_path.sdf
-Comparing: 
-        File_A: /tmp/biobb/unitests/drugbank/output_sdf_path.sdf
-        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_drugbank.sdf
-        File_A hash: b&#x27;\x92F\xda=\xd2\xce\xddwH\x0eX\xc9\xcaNI|y\x1d\x82\n\xdb\xff\x95u}W\xe1\xd0\xb7\xf1\x13\xd0&#x27;
-        File_B hash: b&#x27;\x92F\xda=\xd2\xce\xddwH\x0eX\xc9\xcaNI|y\x1d\x82\n\xdb\xff\x95u}W\xe1\xd0\xb7\xf1\x13\xd0&#x27;
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/drugbank/drugbank_log.out:file_utils.py:390 Executing biobb_io.api.drugbank Version: 4.1.0
-INFO     /tmp/biobb/unitests/drugbank/drugbank_log.out:file_utils.py:390 Downloading db00530 from: https://www.drugbank.ca/structures/small_molecule_drugs/db00530.sdf?type=3d
-INFO     /tmp/biobb/unitests/drugbank/drugbank_log.out:file_utils.py:390 Writting sdf to: /tmp/biobb/unitests/drugbank/output_sdf_path.sdf<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_ideal_sdf.py::TestIdealSdf::test_ideal_sdf</td>
-          <td class="col-duration">0.44</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:32,320 [MainThread  ] [INFO ]  Executing biobb_io.api.ideal_sdf Version: 4.1.0
-2023-09-07 10:40:32,746 [MainThread  ] [INFO ]  Downloading HYZ from: ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/H/HYZ/HYZ_ideal.sdf
-2023-09-07 10:40:32,747 [MainThread  ] [INFO ]  Writting sdf to: /tmp/biobb/unitests/ideal_sdf/output_sdf_path.sdf
-Checking if empty file: /tmp/biobb/unitests/ideal_sdf/output_sdf_path.sdf
-Comparing: 
-        File_A: /tmp/biobb/unitests/ideal_sdf/output_sdf_path.sdf
-        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/ref_output.sdf
-        File_A hash: b&quot;\xd9g\xfb\xc4\x027\x8fV\x02\xc1l\xc0\xa4\x1b&#x27;\x07\xb1?^\xc1\xa2\x8d&gt;\xc2+\xf5\xd2\xdfB\xd6v\xce&quot;
-        File_B hash: b&quot;\xd9g\xfb\xc4\x027\x8fV\x02\xc1l\xc0\xa4\x1b&#x27;\x07\xb1?^\xc1\xa2\x8d&gt;\xc2+\xf5\xd2\xdfB\xd6v\xce&quot;
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/ideal_sdf/ideal_sdf_log.out:file_utils.py:390 Executing biobb_io.api.ideal_sdf Version: 4.1.0
-INFO     /tmp/biobb/unitests/ideal_sdf/ideal_sdf_log.out:file_utils.py:390 Downloading HYZ from: ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/H/HYZ/HYZ_ideal.sdf
-INFO     /tmp/biobb/unitests/ideal_sdf/ideal_sdf_log.out:file_utils.py:390 Writting sdf to: /tmp/biobb/unitests/ideal_sdf/output_sdf_path.sdf<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_ligand.py::TestLigand::test_ligand</td>
-          <td class="col-duration">0.43</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:32,767 [MainThread  ] [INFO ]  Executing biobb_io.api.ligand Version: 4.1.0
-2023-09-07 10:40:33,186 [MainThread  ] [INFO ]  Downloading ibp from: ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/I/IBP/IBP_ideal.pdb
-2023-09-07 10:40:33,186 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests/ligand/output_pdb_path.pdb
-Checking if empty file: /tmp/biobb/unitests/ligand/output_pdb_path.pdb
-Comparing: 
-        File_A: /tmp/biobb/unitests/ligand/output_pdb_path.pdb
-        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_ligand.pdb
-        File_A hash: b&#x27;\x90\xfb^O\x99&amp;L\xd9RH$\xb8R\xcf\xbb[\\\x10\xa9\xa9\x1f2\n[Rsf\xb2\xee\xdd\x127&#x27;
-        File_B hash: b&#x27;\x90\xfb^O\x99&amp;L\xd9RH$\xb8R\xcf\xbb[\\\x10\xa9\xa9\x1f2\n[Rsf\xb2\xee\xdd\x127&#x27;
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/ligand/ligand_log.out:file_utils.py:390 Executing biobb_io.api.ligand Version: 4.1.0
-INFO     /tmp/biobb/unitests/ligand/ligand_log.out:file_utils.py:390 Downloading ibp from: ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/I/IBP/IBP_ideal.pdb
-INFO     /tmp/biobb/unitests/ligand/ligand_log.out:file_utils.py:390 Writting pdb to: /tmp/biobb/unitests/ligand/output_pdb_path.pdb<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim.py::TestMemProtMDSim::test_memprotmd_sim</td>
-          <td class="col-duration">1.28</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:33,206 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim Version: 4.1.0
-2023-09-07 10:40:33,206 [MainThread  ] [INFO ]  Getting simulation file from pdb code 1hzx
-2023-09-07 10:40:34,469 [MainThread  ] [INFO ]  Saving output /tmp/biobb/unitests/memprotmd_sim/output_simulation.zip file
-Checking if empty file: /tmp/biobb/unitests/memprotmd_sim/output_simulation.zip
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/memprotmd_sim/memprotmd_sim_log.out:file_utils.py:390 Executing biobb_io.api.memprotmd_sim Version: 4.1.0
-INFO     /tmp/biobb/unitests/memprotmd_sim/memprotmd_sim_log.out:file_utils.py:390 Getting simulation file from pdb code 1hzx
-INFO     /tmp/biobb/unitests/memprotmd_sim/memprotmd_sim_log.out:file_utils.py:390 Saving output /tmp/biobb/unitests/memprotmd_sim/output_simulation.zip file<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim_search.py::TestMemProtMDSimSearch::test_memprotmd_sim_search</td>
-          <td class="col-duration">0.22</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:34,489 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim_search Version: 4.1.0
-2023-09-07 10:40:34,489 [MainThread  ] [INFO ]  Getting search results from the MemProtMD REST API. Collection name: refs, keyword: porin
-2023-09-07 10:40:34,698 [MainThread  ] [INFO ]  Total number of simulations: 251
-2023-09-07 10:40:34,698 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests/memprotmd_sim_search/output_simulations.json
-Checking if empty file: /tmp/biobb/unitests/memprotmd_sim_search/output_simulations.json
-Comparing: 
-        File_A: /tmp/biobb/unitests/memprotmd_sim_search/output_simulations.json
-        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_sim_search.json
-        File_A hash: b&#x27;5\x08\x00W\xfe\x15\xc9^!|\xe0\xc1\xd1\xf01\x80\xc3\xbaG\xe4\xc0\x02GN\x12Y\x08I\x86|\x85\xed&#x27;
-        File_B hash: b&#x27;5\x08\x00W\xfe\x15\xc9^!|\xe0\xc1\xd1\xf01\x80\xc3\xbaG\xe4\xc0\x02GN\x12Y\x08I\x86|\x85\xed&#x27;
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/memprotmd_sim_search/memprotmd_sim_search_log.out:file_utils.py:390 Executing biobb_io.api.memprotmd_sim_search Version: 4.1.0
-INFO     /tmp/biobb/unitests/memprotmd_sim_search/memprotmd_sim_search_log.out:file_utils.py:390 Getting search results from the MemProtMD REST API. Collection name: refs, keyword: porin
-INFO     /tmp/biobb/unitests/memprotmd_sim_search/memprotmd_sim_search_log.out:file_utils.py:390 Total number of simulations: 251
-INFO     /tmp/biobb/unitests/memprotmd_sim_search/memprotmd_sim_search_log.out:file_utils.py:390 Writting json to: /tmp/biobb/unitests/memprotmd_sim_search/output_simulations.json<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_mmcif.py::TestMmcif::test_mmcif</td>
-          <td class="col-duration">5.90</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:34,718 [MainThread  ] [INFO ]  Executing biobb_io.api.mmcif Version: 4.1.0
-2023-09-07 10:40:34,719 [MainThread  ] [INFO ]  Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/2vgb.cif
-2023-09-07 10:40:40,592 [MainThread  ] [INFO ]  Writting mmcif to: /tmp/biobb/unitests/mmcif/output_mmcif_path.mmcif
-Checking if empty file: /tmp/biobb/unitests/mmcif/output_mmcif_path.mmcif
-Comparing: 
-        File_A: /tmp/biobb/unitests/mmcif/output_mmcif_path.mmcif
-        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/ref_output.mmcif
-        File_A hash: b&quot;\x98\xd6\x15-|\xdb\xe30\xef\xe1#Y\xa4\xf9C\xbb+\x8e9&#x27;;\x87\x05\xcc\xb8\x0f\xa6\xf5\xca4\xf3\x83&quot;
-        File_B hash: b&quot;\x98\xd6\x15-|\xdb\xe30\xef\xe1#Y\xa4\xf9C\xbb+\x8e9&#x27;;\x87\x05\xcc\xb8\x0f\xa6\xf5\xca4\xf3\x83&quot;
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/mmcif/mmcif_log.out:file_utils.py:390 Executing biobb_io.api.mmcif Version: 4.1.0
-INFO     /tmp/biobb/unitests/mmcif/mmcif_log.out:file_utils.py:390 Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/2vgb.cif
-INFO     /tmp/biobb/unitests/mmcif/mmcif_log.out:file_utils.py:390 Writting mmcif to: /tmp/biobb/unitests/mmcif/output_mmcif_path.mmcif<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_pdb.py::TestPdb::test_pdb</td>
-          <td class="col-duration">1.08</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:40,623 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb Version: 4.1.0
-2023-09-07 10:40:40,623 [MainThread  ] [INFO ]  Downloading 2vgb from: https://mmb.irbbarcelona.org/api/pdb/2vgb/coords/?
-2023-09-07 10:40:40,802 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests/pdb/output_pdb_path.pdb
-2023-09-07 10:40:40,802 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;HETATM&#x27;]
-Checking if empty file: /tmp/biobb/unitests/pdb/output_pdb_path.pdb
-Checking RMSD between:
-     PDB_A: /tmp/biobb/unitests/pdb/output_pdb_path.pdb
-     PDB_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_pdb.pdb
-     Ignoring HETAMT in RMSD
-     Ignoring Hydrogen atoms in RMSD
-     Atoms ALIGNED in PDB_A: 15488
-     Atoms ALIGNED in PDB_B: 15488
-     RMS: 1.871093208699659e-14
-     RMS_CUTOFF: 1
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/pdb/pdb_log.out:file_utils.py:390 Executing biobb_io.api.pdb Version: 4.1.0
-INFO     /tmp/biobb/unitests/pdb/pdb_log.out:file_utils.py:390 Downloading 2vgb from: https://mmb.irbbarcelona.org/api/pdb/2vgb/coords/?
-INFO     /tmp/biobb/unitests/pdb/pdb_log.out:file_utils.py:390 Writting pdb to: /tmp/biobb/unitests/pdb/output_pdb_path.pdb
-INFO     /tmp/biobb/unitests/pdb/pdb_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;HETATM&#x27;]<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_pdb_cluster_zip.py::TestPdbClusterZip::test_pdb_cluster_zip</td>
-          <td class="col-duration">19.64</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:40:41,706 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb_cluster_zip Version: 4.1.0
-2023-09-07 10:40:46,709 [MainThread  ] [INFO ]  Cluster: 90 of pdb_code: 2vgb
- List: {&#x27;2vgb&#x27;, &#x27;4ima&#x27;, &#x27;2vgf&#x27;, &#x27;2vgi&#x27;, &#x27;2vgg&#x27;, &#x27;4ip7&#x27;}
-2023-09-07 10:40:46,709 [MainThread  ] [INFO ]  Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgb.ent
-2023-09-07 10:40:47,432 [MainThread  ] [INFO ]  Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgb.pdb
-2023-09-07 10:40:47,432 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-09-07 10:40:47,448 [MainThread  ] [INFO ]  Downloading 4ima from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ima.ent
-2023-09-07 10:40:48,187 [MainThread  ] [INFO ]  Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/4ima.pdb
-2023-09-07 10:40:48,187 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-09-07 10:40:48,204 [MainThread  ] [INFO ]  Downloading 2vgf from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgf.ent
-2023-09-07 10:40:48,871 [MainThread  ] [INFO ]  Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgf.pdb
-2023-09-07 10:40:48,872 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-09-07 10:40:48,888 [MainThread  ] [INFO ]  Downloading 2vgi from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgi.ent
-2023-09-07 10:40:49,567 [MainThread  ] [INFO ]  Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgi.pdb
-2023-09-07 10:40:49,568 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-09-07 10:40:49,584 [MainThread  ] [INFO ]  Downloading 2vgg from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgg.ent
-2023-09-07 10:40:55,327 [MainThread  ] [INFO ]  Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgg.pdb
-2023-09-07 10:40:55,328 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-09-07 10:40:55,346 [MainThread  ] [INFO ]  Downloading 4ip7 from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ip7.ent
-2023-09-07 10:40:56,170 [MainThread  ] [INFO ]  Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/4ip7.pdb
-2023-09-07 10:40:56,170 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-2023-09-07 10:40:56,214 [MainThread  ] [INFO ]  Adding:
-2023-09-07 10:40:56,214 [MainThread  ] [INFO ]  [&#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgb.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgf.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgg.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgi.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/4ima.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/4ip7.pdb&#x27;]
-2023-09-07 10:40:56,215 [MainThread  ] [INFO ]  to: /tmp/biobb/unitests/pdb_cluster_zip/output_pdb_zip_path.zip
-2023-09-07 10:40:56,216 [MainThread  ] [INFO ]  Removed: [&#x27;5923f390-c8f6-4fb5-9009-1f1f5bfa3535&#x27;]
-Checking if empty file: /tmp/biobb/unitests/pdb_cluster_zip/output_pdb_zip_path.zip
-This is a ZIP comparison!
-Unzipping:
-Creating a unique_dir for: /tmp/biobb/unitests/pdb_cluster_zip/output_pdb_zip_path.zip
-Creating a unique_dir for: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_pdb_cluster.zip
-Checking RMSD between:
-     PDB_A: ae9c945a-e201-4bfb-9db9-965ad372dc63/2vgb.pdb
-     PDB_B: 648901cb-cf7e-4582-b721-4583b5138aef/2vgb.pdb
-     Ignoring HETAMT in RMSD
-     Ignoring Hydrogen atoms in RMSD
-     Atoms ALIGNED in PDB_A: 15423
-     Atoms ALIGNED in PDB_B: 15423
-     RMS: 8.991193166475726e-15
-     RMS_CUTOFF: 1
-Checking RMSD between:
-     PDB_A: ae9c945a-e201-4bfb-9db9-965ad372dc63/2vgf.pdb
-     PDB_B: 648901cb-cf7e-4582-b721-4583b5138aef/2vgf.pdb
-     Ignoring HETAMT in RMSD
-     Ignoring Hydrogen atoms in RMSD
-     Atoms ALIGNED in PDB_A: 15426
-     Atoms ALIGNED in PDB_B: 15426
-     RMS: 1.438935308919575e-14
-     RMS_CUTOFF: 1
-Checking RMSD between:
-     PDB_A: ae9c945a-e201-4bfb-9db9-965ad372dc63/2vgg.pdb
-     PDB_B: 648901cb-cf7e-4582-b721-4583b5138aef/2vgg.pdb
-     Ignoring HETAMT in RMSD
-     Ignoring Hydrogen atoms in RMSD
-     Atoms ALIGNED in PDB_A: 15181
-     Atoms ALIGNED in PDB_B: 15181
-     RMS: 2.850965768274829e-14
-     RMS_CUTOFF: 1
-Checking RMSD between:
-     PDB_A: ae9c945a-e201-4bfb-9db9-965ad372dc63/2vgi.pdb
-     PDB_B: 648901cb-cf7e-4582-b721-4583b5138aef/2vgi.pdb
-     Ignoring HETAMT in RMSD
-     Ignoring Hydrogen atoms in RMSD
-     Atoms ALIGNED in PDB_A: 15218
-     Atoms ALIGNED in PDB_B: 15218
-     RMS: 1.862757598492494e-14
-     RMS_CUTOFF: 1
-Checking RMSD between:
-     PDB_A: ae9c945a-e201-4bfb-9db9-965ad372dc63/4ima.pdb
-     PDB_B: 648901cb-cf7e-4582-b721-4583b5138aef/4ima.pdb
-     Ignoring HETAMT in RMSD
-     Ignoring Hydrogen atoms in RMSD
-     Atoms ALIGNED in PDB_A: 15095
-     Atoms ALIGNED in PDB_B: 15095
-     RMS: 1.4574209792358166e-14
-     RMS_CUTOFF: 1
-Checking RMSD between:
-     PDB_A: ae9c945a-e201-4bfb-9db9-965ad372dc63/4ip7.pdb
-     PDB_B: 648901cb-cf7e-4582-b721-4583b5138aef/4ip7.pdb
-     Ignoring HETAMT in RMSD
-     Ignoring Hydrogen atoms in RMSD
-     Atoms ALIGNED in PDB_A: 15291
-     Atoms ALIGNED in PDB_B: 15291
-     RMS: 1.3193904618819586e-14
-     RMS_CUTOFF: 1
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Executing biobb_io.api.pdb_cluster_zip Version: 4.1.0
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:common.py:245 Cluster: 90 of pdb_code: 2vgb
- List: {&#x27;2vgb&#x27;, &#x27;4ima&#x27;, &#x27;2vgf&#x27;, &#x27;2vgi&#x27;, &#x27;2vgg&#x27;, &#x27;4ip7&#x27;}
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgb.ent
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgb.pdb
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 4ima from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ima.ent
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/4ima.pdb
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 2vgf from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgf.ent
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgf.pdb
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 2vgi from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgi.ent
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgi.pdb
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 2vgg from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgg.ent
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgg.pdb
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 4ip7 from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ip7.ent
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 5923f390-c8f6-4fb5-9009-1f1f5bfa3535/4ip7.pdb
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&#x27;ATOM&#x27;, &#x27;MODEL&#x27;, &#x27;ENDMDL&#x27;]
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:147 Adding:
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:148 [&#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgb.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgf.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgg.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/2vgi.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/4ima.pdb&#x27;, &#x27;/tmp/biobb/unitests/pdb_cluster_zip/5923f390-c8f6-4fb5-9009-1f1f5bfa3535/4ip7.pdb&#x27;]
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:149 to: /tmp/biobb/unitests/pdb_cluster_zip/output_pdb_zip_path.zip
-INFO     /tmp/biobb/unitests/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Removed: [&#x27;5923f390-c8f6-4fb5-9009-1f1f5bfa3535&#x27;]<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_pdb_variants.py::TestMmbPdbVariants::test_get_pdb_zip</td>
-          <td class="col-duration">1.64</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:41:01,352 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb_variants Version: 4.1.0
-2023-09-07 10:41:01,423 [MainThread  ] [INFO ]  PDB code: 2vgb correspond to uniprot id: P30613
-2023-09-07 10:41:01,424 [MainThread  ] [INFO ]  Fetching variants for uniprot_id: P30613 and pdb_code: 2vgb
-2023-09-07 10:41:02,982 [MainThread  ] [INFO ]  Found: 102 variants for uniprot id: P30613
-2023-09-07 10:41:02,984 [MainThread  ] [INFO ]  Found 399 mutations mapped to PDB: 2vgb
-2023-09-07 10:41:02,984 [MainThread  ] [INFO ]  Writting mutations to: /tmp/biobb/unitests/pdb_variants/output_mutations_list_txt.txt
-Checking if empty file: /tmp/biobb/unitests/pdb_variants/output_mutations_list_txt.txt
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/pdb_variants/pdb_variants_log.out:file_utils.py:390 Executing biobb_io.api.pdb_variants Version: 4.1.0
-INFO     /tmp/biobb/unitests/pdb_variants/pdb_variants_log.out:common.py:262 PDB code: 2vgb correspond to uniprot id: P30613
-INFO     /tmp/biobb/unitests/pdb_variants/pdb_variants_log.out:file_utils.py:390 Fetching variants for uniprot_id: P30613 and pdb_code: 2vgb
-INFO     /tmp/biobb/unitests/pdb_variants/pdb_variants_log.out:file_utils.py:390 Found: 102 variants for uniprot id: P30613
-INFO     /tmp/biobb/unitests/pdb_variants/pdb_variants_log.out:file_utils.py:390 Found 399 mutations mapped to PDB: 2vgb
-INFO     /tmp/biobb/unitests/pdb_variants/pdb_variants_log.out:file_utils.py:390 Writting mutations to: /tmp/biobb/unitests/pdb_variants/output_mutations_list_txt.txt<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">biobb_io/test/unitests/test_mmb_api/test_structure_info.py::TestStructureInfo::test_structure_info</td>
-          <td class="col-duration">8.54</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2023-09-07 10:41:03,003 [MainThread  ] [INFO ]  Executing biobb_io.api.structure_info Version: 4.1.0
-2023-09-07 10:41:03,003 [MainThread  ] [INFO ]  Getting structure info from: http://mmb.irbbarcelona.org/api/pdb/2vgb.json
-2023-09-07 10:41:11,516 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests/structure_info/output_json_path.json
-Checking if empty file: /tmp/biobb/unitests/structure_info/output_json_path.json
-Comparing: 
-        File_A: /tmp/biobb/unitests/structure_info/output_json_path.json
-        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/ref_str_info.json
-        File_A hash: b&#x27;1\x8c\x9e\xcd[\xf1\xa3|\x1a\xbf\xd2\x9a\x900\xc2\xfe\x12%w\xca\xfd\x85630\x96\x04\xc4w@\xb5\xdb&#x27;
-        File_B hash: b&#x27;1\x8c\x9e\xcd[\xf1\xa3|\x1a\xbf\xd2\x9a\x900\xc2\xfe\x12%w\xca\xfd\x85630\x96\x04\xc4w@\xb5\xdb&#x27;
-<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     /tmp/biobb/unitests/structure_info/structure_info_log.out:file_utils.py:390 Executing biobb_io.api.structure_info Version: 4.1.0
-INFO     /tmp/biobb/unitests/structure_info/structure_info_log.out:file_utils.py:390 Getting structure info from: http://mmb.irbbarcelona.org/api/pdb/2vgb.json
-INFO     /tmp/biobb/unitests/structure_info/structure_info_log.out:file_utils.py:390 Writting json to: /tmp/biobb/unitests/structure_info/output_json_path.json<br/> ----------------------------Captured stdout teardown---------------------------- <br/>
-Removing: /tmp/biobb/unitests
-<br/></div></td></tr></tbody></table></body></html>
+          <th class="sortable" data-column-type="result">Result</th>
+          <th class="sortable" data-column-type="testId">Test</th>
+          <th class="sortable" data-column-type="duration">Duration</th>
+          <th>Links</th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+  <footer>
+    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.10.14&#34;, &#34;Platform&#34;: &#34;Linux-5.4.0-159-generic-x86_64-with-glibc2.31&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.2.0&#34;, &#34;pluggy&#34;: &#34;1.5.0&#34;}, &#34;Plugins&#34;: {&#34;metadata&#34;: &#34;3.1.1&#34;, &#34;html&#34;: &#34;4.1.1&#34;, &#34;cov&#34;: &#34;5.0.0&#34;}, &#34;CI&#34;: &#34;true&#34;}, &#34;tests&#34;: {&#34;biobb_io/test/unitests/test_mmb_api/test_alphafold.py::TestAlphaFold::test_alphafold&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_alphafold.py::TestAlphaFold::test_alphafold&#34;, &#34;duration&#34;: &#34;999 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_alphafold.py::TestAlphaFold::test_alphafold&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;999 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:00,204 [MainThread  ] [INFO ]  Executing biobb_io.api.alphafold Version: 4.1.0\n2024-05-07 14:22:00,205 [MainThread  ] [INFO ]  Downloading P00489 from: https://alphafold.ebi.ac.uk/files/AF-P00489-F1-model_v3.pdb\n2024-05-07 14:22:00,531 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests_21/alphafold/output_pdb_path.pdb\nChecking if empty file: /tmp/biobb/unitests_21/alphafold/output_pdb_path.pdb\nChecking RMSD between:\n     PDB_A: /tmp/biobb/unitests_21/alphafold/output_pdb_path.pdb\n     PDB_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_alphafold.pdb\n     Ignoring HETAMT in RMSD\n     Ignoring Hydrogen atoms in RMSD\n     Atoms ALIGNED in PDB_A: 6860\n     Atoms ALIGNED in PDB_B: 6860\n     RMS: 9.343211792654216e-15\n     RMS_CUTOFF: 1\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/alphafold/alphafold_log.out:file_utils.py:390 Executing biobb_io.api.alphafold Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/alphafold/alphafold_log.out:file_utils.py:390 Downloading P00489 from: https://alphafold.ebi.ac.uk/files/AF-P00489-F1-model_v3.pdb\nINFO     /tmp/biobb/unitests_21/alphafold/alphafold_log.out:file_utils.py:390 Writting pdb to: /tmp/biobb/unitests_21/alphafold/output_pdb_path.pdb\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_api_binding_site.py::TestApiBindingSite::test_api_binding_site&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_api_binding_site.py::TestApiBindingSite::test_api_binding_site&#34;, &#34;duration&#34;: &#34;290 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_api_binding_site.py::TestApiBindingSite::test_api_binding_site&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;290 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:01,216 [MainThread  ] [INFO ]  Executing biobb_io.api.api_binding_site Version: 4.1.0\n2024-05-07 14:22:01,217 [MainThread  ] [INFO ]  Getting binding sites from: https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/4i23\n2024-05-07 14:22:01,486 [MainThread  ] [INFO ]  1 binding sites found\n2024-05-07 14:22:01,486 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_21/api_binding_site/output_json_path.json\nChecking if empty file: /tmp/biobb/unitests_21/api_binding_site/output_json_path.json\nComparing: \n        File_A: /tmp/biobb/unitests_21/api_binding_site/output_json_path.json\n        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_binding_site.json\n        File_A hash: b&amp;quot;\\x06$\\xf3\\x1ah+\\xf3^7\\x8f\\x1f\\x81\\xea&amp;#x27;\\xc7a?\\x19\\xd4\\x807nQ\\xa8&amp;gt;j\\xe8\\xdd\\xc9\\xf6Y\\x84&amp;quot;\n        File_B hash: b&amp;quot;\\x06$\\xf3\\x1ah+\\xf3^7\\x8f\\x1f\\x81\\xea&amp;#x27;\\xc7a?\\x19\\xd4\\x807nQ\\xa8&amp;gt;j\\xe8\\xdd\\xc9\\xf6Y\\x84&amp;quot;\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/api_binding_site/api_binding_site_log.out:file_utils.py:390 Executing biobb_io.api.api_binding_site Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/api_binding_site/api_binding_site_log.out:file_utils.py:390 Getting binding sites from: https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/4i23\nINFO     /tmp/biobb/unitests_21/api_binding_site/api_binding_site_log.out:file_utils.py:390 1 binding sites found\nINFO     /tmp/biobb/unitests_21/api_binding_site/api_binding_site_log.out:file_utils.py:390 Writting json to: /tmp/biobb/unitests_21/api_binding_site/output_json_path.json\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_canonical_fasta.py::TestCanonicalFasta::test_canonical_fasta&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_canonical_fasta.py::TestCanonicalFasta::test_canonical_fasta&#34;, &#34;duration&#34;: &#34;00:00:05&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_canonical_fasta.py::TestCanonicalFasta::test_canonical_fasta&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:05&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:01,509 [MainThread  ] [INFO ]  Executing biobb_io.api.canonical_fasta Version: 4.1.0\n2024-05-07 14:22:01,509 [MainThread  ] [INFO ]  Downloading 4i23 from: https://www.ebi.ac.uk/pdbe/entry/pdb/4i23/fasta\n2024-05-07 14:22:06,776 [MainThread  ] [INFO ]  Writting FASTA to: /tmp/biobb/unitests_21/canonical_fasta/output_fasta_path.fasta\nChecking if empty file: /tmp/biobb/unitests_21/canonical_fasta/output_fasta_path.fasta\nComparing: \n        File_A: /tmp/biobb/unitests_21/canonical_fasta/output_fasta_path.fasta\n        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/canonical_fasta.fasta\n        File_A hash: b&amp;#x27;C9\\xff\\xac\\xb0\\xc3k\\xadw\\xda\\xb6\\xe7\\x85\\xc7\\x96;m\\xedzs\\xf7\\x17\\xd6\\xf0h\\xa1\\xc8P\\x94S\\x1d\\x16&amp;#x27;\n        File_B hash: b&amp;#x27;C9\\xff\\xac\\xb0\\xc3k\\xadw\\xda\\xb6\\xe7\\x85\\xc7\\x96;m\\xedzs\\xf7\\x17\\xd6\\xf0h\\xa1\\xc8P\\x94S\\x1d\\x16&amp;#x27;\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/canonical_fasta/canonical_fasta_log.out:file_utils.py:390 Executing biobb_io.api.canonical_fasta Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/canonical_fasta/canonical_fasta_log.out:file_utils.py:390 Downloading 4i23 from: https://www.ebi.ac.uk/pdbe/entry/pdb/4i23/fasta\nINFO     /tmp/biobb/unitests_21/canonical_fasta/canonical_fasta_log.out:file_utils.py:390 Writting FASTA to: /tmp/biobb/unitests_21/canonical_fasta/output_fasta_path.fasta\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_drugbank.py::TestDrugbank::test_drugbank&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_drugbank.py::TestDrugbank::test_drugbank&#34;, &#34;duration&#34;: &#34;686 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_drugbank.py::TestDrugbank::test_drugbank&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;686 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:06,847 [MainThread  ] [INFO ]  Executing biobb_io.api.drugbank Version: 4.1.0\n2024-05-07 14:22:06,847 [MainThread  ] [INFO ]  Downloading db00530 from: https://www.drugbank.ca/structures/small_molecule_drugs/db00530.sdf?type=3d\n2024-05-07 14:22:07,510 [MainThread  ] [INFO ]  Writting sdf to: /tmp/biobb/unitests_21/drugbank/output_sdf_path.sdf\nChecking if empty file: /tmp/biobb/unitests_21/drugbank/output_sdf_path.sdf\nComparing: \n        File_A: /tmp/biobb/unitests_21/drugbank/output_sdf_path.sdf\n        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_drugbank.sdf\n        File_A hash: b&amp;#x27;\\x92F\\xda=\\xd2\\xce\\xddwH\\x0eX\\xc9\\xcaNI|y\\x1d\\x82\\n\\xdb\\xff\\x95u}W\\xe1\\xd0\\xb7\\xf1\\x13\\xd0&amp;#x27;\n        File_B hash: b&amp;#x27;\\x92F\\xda=\\xd2\\xce\\xddwH\\x0eX\\xc9\\xcaNI|y\\x1d\\x82\\n\\xdb\\xff\\x95u}W\\xe1\\xd0\\xb7\\xf1\\x13\\xd0&amp;#x27;\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/drugbank/drugbank_log.out:file_utils.py:390 Executing biobb_io.api.drugbank Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/drugbank/drugbank_log.out:file_utils.py:390 Downloading db00530 from: https://www.drugbank.ca/structures/small_molecule_drugs/db00530.sdf?type=3d\nINFO     /tmp/biobb/unitests_21/drugbank/drugbank_log.out:file_utils.py:390 Writting sdf to: /tmp/biobb/unitests_21/drugbank/output_sdf_path.sdf\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_ideal_sdf.py::TestIdealSdf::test_ideal_sdf&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_ideal_sdf.py::TestIdealSdf::test_ideal_sdf&#34;, &#34;duration&#34;: &#34;219 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_ideal_sdf.py::TestIdealSdf::test_ideal_sdf&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;219 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:07,531 [MainThread  ] [INFO ]  Executing biobb_io.api.ideal_sdf Version: 4.1.0\n2024-05-07 14:22:07,731 [MainThread  ] [INFO ]  Downloading HYZ from: https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/HYZ_ideal.sdf\n2024-05-07 14:22:07,731 [MainThread  ] [INFO ]  Writting sdf to: /tmp/biobb/unitests_21/ideal_sdf/output_sdf_path.sdf\nChecking if empty file: /tmp/biobb/unitests_21/ideal_sdf/output_sdf_path.sdf\nComparing: \n        File_A: /tmp/biobb/unitests_21/ideal_sdf/output_sdf_path.sdf\n        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/ref_output.sdf\n        File_A hash: b&amp;quot;\\xd9g\\xfb\\xc4\\x027\\x8fV\\x02\\xc1l\\xc0\\xa4\\x1b&amp;#x27;\\x07\\xb1?^\\xc1\\xa2\\x8d&amp;gt;\\xc2+\\xf5\\xd2\\xdfB\\xd6v\\xce&amp;quot;\n        File_B hash: b&amp;quot;\\xd9g\\xfb\\xc4\\x027\\x8fV\\x02\\xc1l\\xc0\\xa4\\x1b&amp;#x27;\\x07\\xb1?^\\xc1\\xa2\\x8d&amp;gt;\\xc2+\\xf5\\xd2\\xdfB\\xd6v\\xce&amp;quot;\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/ideal_sdf/ideal_sdf_log.out:file_utils.py:390 Executing biobb_io.api.ideal_sdf Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/ideal_sdf/ideal_sdf_log.out:file_utils.py:390 Downloading HYZ from: https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/HYZ_ideal.sdf\nINFO     /tmp/biobb/unitests_21/ideal_sdf/ideal_sdf_log.out:file_utils.py:390 Writting sdf to: /tmp/biobb/unitests_21/ideal_sdf/output_sdf_path.sdf\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_ligand.py::TestLigand::test_ligand&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_ligand.py::TestLigand::test_ligand&#34;, &#34;duration&#34;: &#34;00:00:05&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_ligand.py::TestLigand::test_ligand&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:05&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:07,751 [MainThread  ] [INFO ]  Executing biobb_io.api.ligand Version: 4.1.0\n2024-05-07 14:22:12,966 [MainThread  ] [INFO ]  Downloading ibp from: https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/IBP_ideal.pdb\n2024-05-07 14:22:13,157 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests_21/ligand/output_pdb_path.pdb\nChecking if empty file: /tmp/biobb/unitests_21/ligand/output_pdb_path.pdb\nComparing: \n        File_A: /tmp/biobb/unitests_21/ligand/output_pdb_path.pdb\n        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_ligand.pdb\n        File_A hash: b&amp;#x27;\\xc2j\\x99Ne\\xed\\xba\\xad\\x91\\x06\\xed\\xc8\\x1e\\xc3\\xcd\\xaaUh\\x18\\xe1F\\xa1gW\\xdax\\xcd\\xdbPb&amp;gt;&amp;gt;&amp;#x27;\n        File_B hash: b&amp;#x27;\\xc2j\\x99Ne\\xed\\xba\\xad\\x91\\x06\\xed\\xc8\\x1e\\xc3\\xcd\\xaaUh\\x18\\xe1F\\xa1gW\\xdax\\xcd\\xdbPb&amp;gt;&amp;gt;&amp;#x27;\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/ligand/ligand_log.out:file_utils.py:390 Executing biobb_io.api.ligand Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/ligand/ligand_log.out:file_utils.py:390 Downloading ibp from: https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/IBP_ideal.pdb\nINFO     /tmp/biobb/unitests_21/ligand/ligand_log.out:file_utils.py:390 Writting pdb to: /tmp/biobb/unitests_21/ligand/output_pdb_path.pdb\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim.py::TestMemProtMDSim::test_memprotmd_sim&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim.py::TestMemProtMDSim::test_memprotmd_sim&#34;, &#34;duration&#34;: &#34;739 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim.py::TestMemProtMDSim::test_memprotmd_sim&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;739 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:13,179 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim Version: 4.1.0\n2024-05-07 14:22:13,179 [MainThread  ] [INFO ]  Getting simulation file from pdb code 1hzx\n2024-05-07 14:22:13,897 [MainThread  ] [INFO ]  Saving output /tmp/biobb/unitests_21/memprotmd_sim/output_simulation.zip file\nChecking if empty file: /tmp/biobb/unitests_21/memprotmd_sim/output_simulation.zip\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/memprotmd_sim/memprotmd_sim_log.out:file_utils.py:390 Executing biobb_io.api.memprotmd_sim Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/memprotmd_sim/memprotmd_sim_log.out:file_utils.py:390 Getting simulation file from pdb code 1hzx\nINFO     /tmp/biobb/unitests_21/memprotmd_sim/memprotmd_sim_log.out:file_utils.py:390 Saving output /tmp/biobb/unitests_21/memprotmd_sim/output_simulation.zip file\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim_search.py::TestMemProtMDSimSearch::test_memprotmd_sim_search&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim_search.py::TestMemProtMDSimSearch::test_memprotmd_sim_search&#34;, &#34;duration&#34;: &#34;294 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_memprotmd_sim_search.py::TestMemProtMDSimSearch::test_memprotmd_sim_search&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;294 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:13,921 [MainThread  ] [INFO ]  Executing biobb_io.api.memprotmd_sim_search Version: 4.1.0\n2024-05-07 14:22:13,921 [MainThread  ] [INFO ]  Getting search results from the MemProtMD REST API. Collection name: refs, keyword: porin\n2024-05-07 14:22:14,194 [MainThread  ] [INFO ]  Total number of simulations: 253\n2024-05-07 14:22:14,194 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_21/memprotmd_sim_search/output_simulations.json\nChecking if empty file: /tmp/biobb/unitests_21/memprotmd_sim_search/output_simulations.json\nComparing: \n        File_A: /tmp/biobb/unitests_21/memprotmd_sim_search/output_simulations.json\n        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_sim_search.json\n        File_A hash: b&amp;#x27;\\xee\\xbdPD\\x9a\\x97\\xa9T\\xb8~\\xb1*#\\x15\\xe4J\\xb8\\xec3{\\xa5\\xcaj\\x13\\xaf\\xc2\\x9a\\xa1s\\xcfY\\xa2&amp;#x27;\n        File_B hash: b&amp;#x27;\\xee\\xbdPD\\x9a\\x97\\xa9T\\xb8~\\xb1*#\\x15\\xe4J\\xb8\\xec3{\\xa5\\xcaj\\x13\\xaf\\xc2\\x9a\\xa1s\\xcfY\\xa2&amp;#x27;\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/memprotmd_sim_search/memprotmd_sim_search_log.out:file_utils.py:390 Executing biobb_io.api.memprotmd_sim_search Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/memprotmd_sim_search/memprotmd_sim_search_log.out:file_utils.py:390 Getting search results from the MemProtMD REST API. Collection name: refs, keyword: porin\nINFO     /tmp/biobb/unitests_21/memprotmd_sim_search/memprotmd_sim_search_log.out:file_utils.py:390 Total number of simulations: 253\nINFO     /tmp/biobb/unitests_21/memprotmd_sim_search/memprotmd_sim_search_log.out:file_utils.py:390 Writting json to: /tmp/biobb/unitests_21/memprotmd_sim_search/output_simulations.json\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_mmcif.py::TestMmcif::test_mmcif&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_mmcif.py::TestMmcif::test_mmcif&#34;, &#34;duration&#34;: &#34;798 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_mmcif.py::TestMmcif::test_mmcif&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;798 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:14,217 [MainThread  ] [INFO ]  Executing biobb_io.api.mmcif Version: 4.1.0\n2024-05-07 14:22:14,217 [MainThread  ] [INFO ]  Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/2vgb.cif\n2024-05-07 14:22:14,983 [MainThread  ] [INFO ]  Writting mmcif to: /tmp/biobb/unitests_21/mmcif/output_mmcif_path.mmcif\nChecking if empty file: /tmp/biobb/unitests_21/mmcif/output_mmcif_path.mmcif\nComparing: \n        File_A: /tmp/biobb/unitests_21/mmcif/output_mmcif_path.mmcif\n        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/ref_output.mmcif\n        File_A hash: b&amp;#x27;\\xa6\\xcd\\xc2\\x98\\x96\\xb1\\xb8\\x19Y\\xbd;\\xa6W\\x03\\xb8\\xf5\\xde\\xe8\\xd8}\\xb4F\\x0eN\\x06\\x1c\\xa5\\xef\\r\\x89\\xc2q&amp;#x27;\n        File_B hash: b&amp;#x27;\\xa6\\xcd\\xc2\\x98\\x96\\xb1\\xb8\\x19Y\\xbd;\\xa6W\\x03\\xb8\\xf5\\xde\\xe8\\xd8}\\xb4F\\x0eN\\x06\\x1c\\xa5\\xef\\r\\x89\\xc2q&amp;#x27;\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/mmcif/mmcif_log.out:file_utils.py:390 Executing biobb_io.api.mmcif Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/mmcif/mmcif_log.out:file_utils.py:390 Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/2vgb.cif\nINFO     /tmp/biobb/unitests_21/mmcif/mmcif_log.out:file_utils.py:390 Writting mmcif to: /tmp/biobb/unitests_21/mmcif/output_mmcif_path.mmcif\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_pdb.py::TestPdb::test_pdb&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_pdb.py::TestPdb::test_pdb&#34;, &#34;duration&#34;: &#34;00:00:34&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_pdb.py::TestPdb::test_pdb&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:34&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:15,019 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb Version: 4.1.0\n2024-05-07 14:22:15,019 [MainThread  ] [INFO ]  Downloading 2vgb from: https://mmb.irbbarcelona.org/api/pdb/2vgb/coords/?\n2024-05-07 14:22:47,839 [MainThread  ] [INFO ]  Writting pdb to: /tmp/biobb/unitests_21/pdb/output_pdb_path.pdb\n2024-05-07 14:22:47,839 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;HETATM&amp;#x27;]\nChecking if empty file: /tmp/biobb/unitests_21/pdb/output_pdb_path.pdb\nChecking RMSD between:\n     PDB_A: /tmp/biobb/unitests_21/pdb/output_pdb_path.pdb\n     PDB_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_pdb.pdb\n     Ignoring HETAMT in RMSD\n     Ignoring Hydrogen atoms in RMSD\n     Atoms ALIGNED in PDB_A: 15488\n     Atoms ALIGNED in PDB_B: 15488\n     RMS: 1.871093208699659e-14\n     RMS_CUTOFF: 1\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/pdb/pdb_log.out:file_utils.py:390 Executing biobb_io.api.pdb Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/pdb/pdb_log.out:file_utils.py:390 Downloading 2vgb from: https://mmb.irbbarcelona.org/api/pdb/2vgb/coords/?\nINFO     /tmp/biobb/unitests_21/pdb/pdb_log.out:file_utils.py:390 Writting pdb to: /tmp/biobb/unitests_21/pdb/output_pdb_path.pdb\nINFO     /tmp/biobb/unitests_21/pdb/pdb_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;HETATM&amp;#x27;]\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_pdb_cluster_zip.py::TestPdbClusterZip::test_pdb_cluster_zip&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_pdb_cluster_zip.py::TestPdbClusterZip::test_pdb_cluster_zip&#34;, &#34;duration&#34;: &#34;00:00:25&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_pdb_cluster_zip.py::TestPdbClusterZip::test_pdb_cluster_zip&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:25&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:22:48,643 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb_cluster_zip Version: 4.1.0\n2024-05-07 14:22:59,688 [MainThread  ] [INFO ]  Cluster: 90 of pdb_code: 2vgb\n List: {&amp;#x27;2vgf&amp;#x27;, &amp;#x27;2vgi&amp;#x27;, &amp;#x27;4ima&amp;#x27;, &amp;#x27;2vgb&amp;#x27;, &amp;#x27;4ip7&amp;#x27;, &amp;#x27;2vgg&amp;#x27;}\n2024-05-07 14:22:59,688 [MainThread  ] [INFO ]  Downloading 2vgf from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgf.ent\n2024-05-07 14:23:00,435 [MainThread  ] [INFO ]  Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgf.pdb\n2024-05-07 14:23:00,500 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\n2024-05-07 14:23:00,516 [MainThread  ] [INFO ]  Downloading 2vgi from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgi.ent\n2024-05-07 14:23:01,069 [MainThread  ] [INFO ]  Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgi.pdb\n2024-05-07 14:23:01,070 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\n2024-05-07 14:23:01,086 [MainThread  ] [INFO ]  Downloading 4ima from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ima.ent\n2024-05-07 14:23:01,745 [MainThread  ] [INFO ]  Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/4ima.pdb\n2024-05-07 14:23:01,745 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\n2024-05-07 14:23:01,764 [MainThread  ] [INFO ]  Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgb.ent\n2024-05-07 14:23:02,507 [MainThread  ] [INFO ]  Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgb.pdb\n2024-05-07 14:23:02,507 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\n2024-05-07 14:23:02,524 [MainThread  ] [INFO ]  Downloading 4ip7 from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ip7.ent\n2024-05-07 14:23:08,475 [MainThread  ] [INFO ]  Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/4ip7.pdb\n2024-05-07 14:23:08,476 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\n2024-05-07 14:23:08,507 [MainThread  ] [INFO ]  Downloading 2vgg from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgg.ent\n2024-05-07 14:23:09,313 [MainThread  ] [INFO ]  Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgg.pdb\n2024-05-07 14:23:09,314 [MainThread  ] [INFO ]  Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\n2024-05-07 14:23:09,346 [MainThread  ] [INFO ]  Adding:\n2024-05-07 14:23:09,346 [MainThread  ] [INFO ]  [&amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgb.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgf.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgg.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgi.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/4ima.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/4ip7.pdb&amp;#x27;]\n2024-05-07 14:23:09,347 [MainThread  ] [INFO ]  to: /tmp/biobb/unitests_21/pdb_cluster_zip/output_pdb_zip_path.zip\n2024-05-07 14:23:09,348 [MainThread  ] [INFO ]  Removed: [&amp;#x27;1aed6719-5e61-4b39-8374-c7e2c3777bca&amp;#x27;]\nChecking if empty file: /tmp/biobb/unitests_21/pdb_cluster_zip/output_pdb_zip_path.zip\nThis is a ZIP comparison!\nUnzipping:\nCreating a unique_dir for: /tmp/biobb/unitests_21/pdb_cluster_zip/output_pdb_zip_path.zip\nCreating a unique_dir for: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/output_pdb_cluster.zip\nChecking RMSD between:\n     PDB_A: e84d4885-570d-4150-8e47-b220bf88a779/2vgb.pdb\n     PDB_B: 926f85bc-eb21-4906-ae68-9d2bf95f4a4e/2vgb.pdb\n     Ignoring HETAMT in RMSD\n     Ignoring Hydrogen atoms in RMSD\n     Atoms ALIGNED in PDB_A: 15423\n     Atoms ALIGNED in PDB_B: 15423\n     RMS: 8.991193166475726e-15\n     RMS_CUTOFF: 1\nChecking RMSD between:\n     PDB_A: e84d4885-570d-4150-8e47-b220bf88a779/2vgf.pdb\n     PDB_B: 926f85bc-eb21-4906-ae68-9d2bf95f4a4e/2vgf.pdb\n     Ignoring HETAMT in RMSD\n     Ignoring Hydrogen atoms in RMSD\n     Atoms ALIGNED in PDB_A: 15426\n     Atoms ALIGNED in PDB_B: 15426\n     RMS: 1.438935308919575e-14\n     RMS_CUTOFF: 1\nChecking RMSD between:\n     PDB_A: e84d4885-570d-4150-8e47-b220bf88a779/2vgg.pdb\n     PDB_B: 926f85bc-eb21-4906-ae68-9d2bf95f4a4e/2vgg.pdb\n     Ignoring HETAMT in RMSD\n     Ignoring Hydrogen atoms in RMSD\n     Atoms ALIGNED in PDB_A: 15181\n     Atoms ALIGNED in PDB_B: 15181\n     RMS: 2.850965768274829e-14\n     RMS_CUTOFF: 1\nChecking RMSD between:\n     PDB_A: e84d4885-570d-4150-8e47-b220bf88a779/2vgi.pdb\n     PDB_B: 926f85bc-eb21-4906-ae68-9d2bf95f4a4e/2vgi.pdb\n     Ignoring HETAMT in RMSD\n     Ignoring Hydrogen atoms in RMSD\n     Atoms ALIGNED in PDB_A: 15218\n     Atoms ALIGNED in PDB_B: 15218\n     RMS: 1.862757598492494e-14\n     RMS_CUTOFF: 1\nChecking RMSD between:\n     PDB_A: e84d4885-570d-4150-8e47-b220bf88a779/4ima.pdb\n     PDB_B: 926f85bc-eb21-4906-ae68-9d2bf95f4a4e/4ima.pdb\n     Ignoring HETAMT in RMSD\n     Ignoring Hydrogen atoms in RMSD\n     Atoms ALIGNED in PDB_A: 15095\n     Atoms ALIGNED in PDB_B: 15095\n     RMS: 1.4574209792358166e-14\n     RMS_CUTOFF: 1\nChecking RMSD between:\n     PDB_A: e84d4885-570d-4150-8e47-b220bf88a779/4ip7.pdb\n     PDB_B: 926f85bc-eb21-4906-ae68-9d2bf95f4a4e/4ip7.pdb\n     Ignoring HETAMT in RMSD\n     Ignoring Hydrogen atoms in RMSD\n     Atoms ALIGNED in PDB_A: 15291\n     Atoms ALIGNED in PDB_B: 15291\n     RMS: 1.3193904618819586e-14\n     RMS_CUTOFF: 1\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Executing biobb_io.api.pdb_cluster_zip Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:common.py:245 Cluster: 90 of pdb_code: 2vgb\n List: {&amp;#x27;2vgf&amp;#x27;, &amp;#x27;2vgi&amp;#x27;, &amp;#x27;4ima&amp;#x27;, &amp;#x27;2vgb&amp;#x27;, &amp;#x27;4ip7&amp;#x27;, &amp;#x27;2vgg&amp;#x27;}\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 2vgf from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgf.ent\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgf.pdb\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 2vgi from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgi.ent\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgi.pdb\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 4ima from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ima.ent\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/4ima.pdb\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 2vgb from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgb.ent\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgb.pdb\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 4ip7 from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb4ip7.ent\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/4ip7.pdb\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Downloading 2vgg from: https://www.ebi.ac.uk/pdbe/entry-files/download/pdb2vgg.ent\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Writting pdb to: 1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgg.pdb\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Filtering lines NOT starting with one of these words: [&amp;#x27;ATOM&amp;#x27;, &amp;#x27;MODEL&amp;#x27;, &amp;#x27;ENDMDL&amp;#x27;]\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:147 Adding:\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:148 [&amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgb.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgf.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgg.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/2vgi.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/4ima.pdb&amp;#x27;, &amp;#x27;/tmp/biobb/unitests_21/pdb_cluster_zip/1aed6719-5e61-4b39-8374-c7e2c3777bca/4ip7.pdb&amp;#x27;]\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:149 to: /tmp/biobb/unitests_21/pdb_cluster_zip/output_pdb_zip_path.zip\nINFO     /tmp/biobb/unitests_21/pdb_cluster_zip/pdb_cluster_zip_log.out:file_utils.py:390 Removed: [&amp;#x27;1aed6719-5e61-4b39-8374-c7e2c3777bca&amp;#x27;]\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_pdb_variants.py::TestMmbPdbVariants::test_get_pdb_zip&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_pdb_variants.py::TestMmbPdbVariants::test_get_pdb_zip&#34;, &#34;duration&#34;: &#34;00:00:02&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_pdb_variants.py::TestMmbPdbVariants::test_get_pdb_zip&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:02&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:23:13,852 [MainThread  ] [INFO ]  Executing biobb_io.api.pdb_variants Version: 4.1.0\n2024-05-07 14:23:13,905 [MainThread  ] [INFO ]  PDB code: 2vgb correspond to uniprot id: P30613\n2024-05-07 14:23:13,906 [MainThread  ] [INFO ]  Fetching variants for uniprot_id: P30613 and pdb_code: 2vgb\n2024-05-07 14:23:15,445 [MainThread  ] [INFO ]  Found: 102 variants for uniprot id: P30613\n2024-05-07 14:23:15,446 [MainThread  ] [INFO ]  Found 399 mutations mapped to PDB: 2vgb\n2024-05-07 14:23:15,446 [MainThread  ] [INFO ]  Writting mutations to: /tmp/biobb/unitests_21/pdb_variants/output_mutations_list_txt.txt\nChecking if empty file: /tmp/biobb/unitests_21/pdb_variants/output_mutations_list_txt.txt\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/pdb_variants/pdb_variants_log.out:file_utils.py:390 Executing biobb_io.api.pdb_variants Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/pdb_variants/pdb_variants_log.out:common.py:262 PDB code: 2vgb correspond to uniprot id: P30613\nINFO     /tmp/biobb/unitests_21/pdb_variants/pdb_variants_log.out:file_utils.py:390 Fetching variants for uniprot_id: P30613 and pdb_code: 2vgb\nINFO     /tmp/biobb/unitests_21/pdb_variants/pdb_variants_log.out:file_utils.py:390 Found: 102 variants for uniprot id: P30613\nINFO     /tmp/biobb/unitests_21/pdb_variants/pdb_variants_log.out:file_utils.py:390 Found 399 mutations mapped to PDB: 2vgb\nINFO     /tmp/biobb/unitests_21/pdb_variants/pdb_variants_log.out:file_utils.py:390 Writting mutations to: /tmp/biobb/unitests_21/pdb_variants/output_mutations_list_txt.txt\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}], &#34;biobb_io/test/unitests/test_mmb_api/test_structure_info.py::TestStructureInfo::test_structure_info&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;biobb_io/test/unitests/test_mmb_api/test_structure_info.py::TestStructureInfo::test_structure_info&#34;, &#34;duration&#34;: &#34;00:00:09&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;biobb_io/test/unitests/test_mmb_api/test_structure_info.py::TestStructureInfo::test_structure_info&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:09&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n2024-05-07 14:23:15,466 [MainThread  ] [INFO ]  Executing biobb_io.api.structure_info Version: 4.1.0\n2024-05-07 14:23:15,467 [MainThread  ] [INFO ]  Getting structure info from: http://mmb.irbbarcelona.org/api/pdb/2vgb.json\n2024-05-07 14:23:24,006 [MainThread  ] [INFO ]  Writting json to: /tmp/biobb/unitests_21/structure_info/output_json_path.json\nChecking if empty file: /tmp/biobb/unitests_21/structure_info/output_json_path.json\nComparing: \n        File_A: /tmp/biobb/unitests_21/structure_info/output_json_path.json\n        File_B: /home/user/actions-runner/_work/biobb_io/biobb_io/biobb_io/test/reference/api/ref_str_info.json\n        File_A hash: b&amp;#x27;1\\x8c\\x9e\\xcd[\\xf1\\xa3|\\x1a\\xbf\\xd2\\x9a\\x900\\xc2\\xfe\\x12%w\\xca\\xfd\\x85630\\x96\\x04\\xc4w@\\xb5\\xdb&amp;#x27;\n        File_B hash: b&amp;#x27;1\\x8c\\x9e\\xcd[\\xf1\\xa3|\\x1a\\xbf\\xd2\\x9a\\x900\\xc2\\xfe\\x12%w\\xca\\xfd\\x85630\\x96\\x04\\xc4w@\\xb5\\xdb&amp;#x27;\n\n------------------------------ Captured log call -------------------------------\nINFO     /tmp/biobb/unitests_21/structure_info/structure_info_log.out:file_utils.py:390 Executing biobb_io.api.structure_info Version: 4.1.0\nINFO     /tmp/biobb/unitests_21/structure_info/structure_info_log.out:file_utils.py:390 Getting structure info from: http://mmb.irbbarcelona.org/api/pdb/2vgb.json\nINFO     /tmp/biobb/unitests_21/structure_info/structure_info_log.out:file_utils.py:390 Writting json to: /tmp/biobb/unitests_21/structure_info/output_json_path.json\n\n--------------------------- Captured stdout teardown ---------------------------\n\nRemoving: /tmp/biobb/unitests_21\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;report.html&#34;}"></div>
+    <script>
+      (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+const { getCollapsedCategory, setCollapsedIds } = require('./storage.js')
+
+class DataManager {
+    setManager(data) {
+        const collapsedCategories = [...getCollapsedCategory(data.renderCollapsed)]
+        const collapsedIds = []
+        const tests = Object.values(data.tests).flat().map((test, index) => {
+            const collapsed = collapsedCategories.includes(test.result.toLowerCase())
+            const id = `test_${index}`
+            if (collapsed) {
+                collapsedIds.push(id)
+            }
+            return {
+                ...test,
+                id,
+                collapsed,
+            }
+        })
+        const dataBlob = { ...data, tests }
+        this.data = { ...dataBlob }
+        this.renderData = { ...dataBlob }
+        setCollapsedIds(collapsedIds)
+    }
+
+    get allData() {
+        return { ...this.data }
+    }
+
+    resetRender() {
+        this.renderData = { ...this.data }
+    }
+
+    setRender(data) {
+        this.renderData.tests = [...data]
+    }
+
+    toggleCollapsedItem(id) {
+        this.renderData.tests = this.renderData.tests.map((test) =>
+            test.id === id ? { ...test, collapsed: !test.collapsed } : test,
+        )
+    }
+
+    set allCollapsed(collapsed) {
+        this.renderData = { ...this.renderData, tests: [...this.renderData.tests.map((test) => (
+            { ...test, collapsed }
+        ))] }
+    }
+
+    get testSubset() {
+        return [...this.renderData.tests]
+    }
+
+    get environment() {
+        return this.renderData.environment
+    }
+
+    get initialSort() {
+        return this.data.initialSort
+    }
+}
+
+module.exports = {
+    manager: new DataManager(),
+}
+
+},{"./storage.js":8}],2:[function(require,module,exports){
+const mediaViewer = require('./mediaviewer.js')
+const templateEnvRow = document.getElementById('template_environment_row')
+const templateResult = document.getElementById('template_results-table__tbody')
+
+function htmlToElements(html) {
+    const temp = document.createElement('template')
+    temp.innerHTML = html
+    return temp.content.childNodes
+}
+
+const find = (selector, elem) => {
+    if (!elem) {
+        elem = document
+    }
+    return elem.querySelector(selector)
+}
+
+const findAll = (selector, elem) => {
+    if (!elem) {
+        elem = document
+    }
+    return [...elem.querySelectorAll(selector)]
+}
+
+const dom = {
+    getStaticRow: (key, value) => {
+        const envRow = templateEnvRow.content.cloneNode(true)
+        const isObj = typeof value === 'object' && value !== null
+        const values = isObj ? Object.keys(value).map((k) => `${k}: ${value[k]}`) : null
+
+        const valuesElement = htmlToElements(
+            values ? `<ul>${values.map((val) => `<li>${val}</li>`).join('')}<ul>` : `<div>${value}</div>`)[0]
+        const td = findAll('td', envRow)
+        td[0].textContent = key
+        td[1].appendChild(valuesElement)
+
+        return envRow
+    },
+    getResultTBody: ({ testId, id, log, extras, resultsTableRow, tableHtml, result, collapsed }) => {
+        const resultBody = templateResult.content.cloneNode(true)
+        resultBody.querySelector('tbody').classList.add(result.toLowerCase())
+        resultBody.querySelector('tbody').id = testId
+        resultBody.querySelector('.collapsible').dataset.id = id
+
+        resultsTableRow.forEach((html) => {
+            const t = document.createElement('template')
+            t.innerHTML = html
+            resultBody.querySelector('.collapsible').appendChild(t.content)
+        })
+
+        if (log) {
+            // Wrap lines starting with "E" with span.error to color those lines red
+            const wrappedLog = log.replace(/^E.*$/gm, (match) => `<span class="error">${match}</span>`)
+            resultBody.querySelector('.log').innerHTML = wrappedLog
+        } else {
+            resultBody.querySelector('.log').remove()
+        }
+
+        if (collapsed) {
+            resultBody.querySelector('.collapsible > td')?.classList.add('collapsed')
+            resultBody.querySelector('.extras-row').classList.add('hidden')
+        } else {
+            resultBody.querySelector('.collapsible > td')?.classList.remove('collapsed')
+        }
+
+        const media = []
+        extras?.forEach(({ name, format_type, content }) => {
+            if (['image', 'video'].includes(format_type)) {
+                media.push({ path: content, name, format_type })
+            }
+
+            if (format_type === 'html') {
+                resultBody.querySelector('.extraHTML').insertAdjacentHTML('beforeend', `<div>${content}</div>`)
+            }
+        })
+        mediaViewer.setup(resultBody, media)
+
+        // Add custom html from the pytest_html_results_table_html hook
+        tableHtml?.forEach((item) => {
+            resultBody.querySelector('td[class="extra"]').insertAdjacentHTML('beforeend', item)
+        })
+
+        return resultBody
+    },
+}
+
+module.exports = {
+    dom,
+    htmlToElements,
+    find,
+    findAll,
+}
+
+},{"./mediaviewer.js":6}],3:[function(require,module,exports){
+const { manager } = require('./datamanager.js')
+const { doSort } = require('./sort.js')
+const storageModule = require('./storage.js')
+
+const getFilteredSubSet = (filter) =>
+    manager.allData.tests.filter(({ result }) => filter.includes(result.toLowerCase()))
+
+const doInitFilter = () => {
+    const currentFilter = storageModule.getVisible()
+    const filteredSubset = getFilteredSubSet(currentFilter)
+    manager.setRender(filteredSubset)
+}
+
+const doFilter = (type, show) => {
+    if (show) {
+        storageModule.showCategory(type)
+    } else {
+        storageModule.hideCategory(type)
+    }
+
+    const currentFilter = storageModule.getVisible()
+    const filteredSubset = getFilteredSubSet(currentFilter)
+    manager.setRender(filteredSubset)
+
+    const sortColumn = storageModule.getSort()
+    doSort(sortColumn, true)
+}
+
+module.exports = {
+    doFilter,
+    doInitFilter,
+}
+
+},{"./datamanager.js":1,"./sort.js":7,"./storage.js":8}],4:[function(require,module,exports){
+const { redraw, bindEvents, renderStatic } = require('./main.js')
+const { doInitFilter } = require('./filter.js')
+const { doInitSort } = require('./sort.js')
+const { manager } = require('./datamanager.js')
+const data = JSON.parse(document.getElementById('data-container').dataset.jsonblob)
+
+function init() {
+    manager.setManager(data)
+    doInitFilter()
+    doInitSort()
+    renderStatic()
+    redraw()
+    bindEvents()
+}
+
+init()
+
+},{"./datamanager.js":1,"./filter.js":3,"./main.js":5,"./sort.js":7}],5:[function(require,module,exports){
+const { dom, find, findAll } = require('./dom.js')
+const { manager } = require('./datamanager.js')
+const { doSort } = require('./sort.js')
+const { doFilter } = require('./filter.js')
+const {
+    getVisible,
+    getCollapsedIds,
+    setCollapsedIds,
+    getSort,
+    getSortDirection,
+    possibleFilters,
+} = require('./storage.js')
+
+const removeChildren = (node) => {
+    while (node.firstChild) {
+        node.removeChild(node.firstChild)
+    }
+}
+
+const renderStatic = () => {
+    const renderEnvironmentTable = () => {
+        const environment = manager.environment
+        const rows = Object.keys(environment).map((key) => dom.getStaticRow(key, environment[key]))
+        const table = document.getElementById('environment')
+        removeChildren(table)
+        rows.forEach((row) => table.appendChild(row))
+    }
+    renderEnvironmentTable()
+}
+
+const addItemToggleListener = (elem) => {
+    elem.addEventListener('click', ({ target }) => {
+        const id = target.parentElement.dataset.id
+        manager.toggleCollapsedItem(id)
+
+        const collapsedIds = getCollapsedIds()
+        if (collapsedIds.includes(id)) {
+            const updated = collapsedIds.filter((item) => item !== id)
+            setCollapsedIds(updated)
+        } else {
+            collapsedIds.push(id)
+            setCollapsedIds(collapsedIds)
+        }
+        redraw()
+    })
+}
+
+const renderContent = (tests) => {
+    const sortAttr = getSort(manager.initialSort)
+    const sortAsc = JSON.parse(getSortDirection())
+    const rows = tests.map(dom.getResultTBody)
+    const table = document.getElementById('results-table')
+    const tableHeader = document.getElementById('results-table-head')
+
+    const newTable = document.createElement('table')
+    newTable.id = 'results-table'
+
+    // remove all sorting classes and set the relevant
+    findAll('.sortable', tableHeader).forEach((elem) => elem.classList.remove('asc', 'desc'))
+    tableHeader.querySelector(`.sortable[data-column-type="${sortAttr}"]`)?.classList.add(sortAsc ? 'desc' : 'asc')
+    newTable.appendChild(tableHeader)
+
+    if (!rows.length) {
+        const emptyTable = document.getElementById('template_results-table__body--empty').content.cloneNode(true)
+        newTable.appendChild(emptyTable)
+    } else {
+        rows.forEach((row) => {
+            if (!!row) {
+                findAll('.collapsible td:not(.col-links', row).forEach(addItemToggleListener)
+                find('.logexpander', row).addEventListener('click',
+                    (evt) => evt.target.parentNode.classList.toggle('expanded'),
+                )
+                newTable.appendChild(row)
+            }
+        })
+    }
+
+    table.replaceWith(newTable)
+}
+
+const renderDerived = () => {
+    const currentFilter = getVisible()
+    possibleFilters.forEach((result) => {
+        const input = document.querySelector(`input[data-test-result="${result}"]`)
+        input.checked = currentFilter.includes(result)
+    })
+}
+
+const bindEvents = () => {
+    const filterColumn = (evt) => {
+        const { target: element } = evt
+        const { testResult } = element.dataset
+
+        doFilter(testResult, element.checked)
+        const collapsedIds = getCollapsedIds()
+        const updated = manager.renderData.tests.map((test) => {
+            return {
+                ...test,
+                collapsed: collapsedIds.includes(test.id),
+            }
+        })
+        manager.setRender(updated)
+        redraw()
+    }
+
+    const header = document.getElementById('environment-header')
+    header.addEventListener('click', () => {
+        const table = document.getElementById('environment')
+        table.classList.toggle('hidden')
+        header.classList.toggle('collapsed')
+    })
+
+    findAll('input[name="filter_checkbox"]').forEach((elem) => {
+        elem.addEventListener('click', filterColumn)
+    })
+
+    findAll('.sortable').forEach((elem) => {
+        elem.addEventListener('click', (evt) => {
+            const { target: element } = evt
+            const { columnType } = element.dataset
+            doSort(columnType)
+            redraw()
+        })
+    })
+
+    document.getElementById('show_all_details').addEventListener('click', () => {
+        manager.allCollapsed = false
+        setCollapsedIds([])
+        redraw()
+    })
+    document.getElementById('hide_all_details').addEventListener('click', () => {
+        manager.allCollapsed = true
+        const allIds = manager.renderData.tests.map((test) => test.id)
+        setCollapsedIds(allIds)
+        redraw()
+    })
+}
+
+const redraw = () => {
+    const { testSubset } = manager
+
+    renderContent(testSubset)
+    renderDerived()
+}
+
+module.exports = {
+    redraw,
+    bindEvents,
+    renderStatic,
+}
+
+},{"./datamanager.js":1,"./dom.js":2,"./filter.js":3,"./sort.js":7,"./storage.js":8}],6:[function(require,module,exports){
+class MediaViewer {
+    constructor(assets) {
+        this.assets = assets
+        this.index = 0
+    }
+
+    nextActive() {
+        this.index = this.index === this.assets.length - 1 ? 0 : this.index + 1
+        return [this.activeFile, this.index]
+    }
+
+    prevActive() {
+        this.index = this.index === 0 ? this.assets.length - 1 : this.index -1
+        return [this.activeFile, this.index]
+    }
+
+    get currentIndex() {
+        return this.index
+    }
+
+    get activeFile() {
+        return this.assets[this.index]
+    }
+}
+
+
+const setup = (resultBody, assets) => {
+    if (!assets.length) {
+        resultBody.querySelector('.media').classList.add('hidden')
+        return
+    }
+
+    const mediaViewer = new MediaViewer(assets)
+    const container = resultBody.querySelector('.media-container')
+    const leftArrow = resultBody.querySelector('.media-container__nav--left')
+    const rightArrow = resultBody.querySelector('.media-container__nav--right')
+    const mediaName = resultBody.querySelector('.media__name')
+    const counter = resultBody.querySelector('.media__counter')
+    const imageEl = resultBody.querySelector('img')
+    const sourceEl = resultBody.querySelector('source')
+    const videoEl = resultBody.querySelector('video')
+
+    const setImg = (media, index) => {
+        if (media?.format_type === 'image') {
+            imageEl.src = media.path
+
+            imageEl.classList.remove('hidden')
+            videoEl.classList.add('hidden')
+        } else if (media?.format_type === 'video') {
+            sourceEl.src = media.path
+
+            videoEl.classList.remove('hidden')
+            imageEl.classList.add('hidden')
+        }
+
+        mediaName.innerText = media?.name
+        counter.innerText = `${index + 1} / ${assets.length}`
+    }
+    setImg(mediaViewer.activeFile, mediaViewer.currentIndex)
+
+    const moveLeft = () => {
+        const [media, index] = mediaViewer.prevActive()
+        setImg(media, index)
+    }
+    const doRight = () => {
+        const [media, index] = mediaViewer.nextActive()
+        setImg(media, index)
+    }
+    const openImg = () => {
+        window.open(mediaViewer.activeFile.path, '_blank')
+    }
+    if (assets.length === 1) {
+        container.classList.add('media-container--fullscreen')
+    } else {
+        leftArrow.addEventListener('click', moveLeft)
+        rightArrow.addEventListener('click', doRight)
+    }
+    imageEl.addEventListener('click', openImg)
+}
+
+module.exports = {
+    setup,
+}
+
+},{}],7:[function(require,module,exports){
+const { manager } = require('./datamanager.js')
+const storageModule = require('./storage.js')
+
+const genericSort = (list, key, ascending, customOrder) => {
+    let sorted
+    if (customOrder) {
+        sorted = list.sort((a, b) => {
+            const aValue = a.result.toLowerCase()
+            const bValue = b.result.toLowerCase()
+
+            const aIndex = customOrder.findIndex((item) => item.toLowerCase() === aValue)
+            const bIndex = customOrder.findIndex((item) => item.toLowerCase() === bValue)
+
+            // Compare the indices to determine the sort order
+            return aIndex - bIndex
+        })
+    } else {
+        sorted = list.sort((a, b) => a[key] === b[key] ? 0 : a[key] > b[key] ? 1 : -1)
+    }
+
+    if (ascending) {
+        sorted.reverse()
+    }
+    return sorted
+}
+
+const durationSort = (list, ascending) => {
+    const parseDuration = (duration) => {
+        if (duration.includes(':')) {
+            // If it's in the format "HH:mm:ss"
+            const [hours, minutes, seconds] = duration.split(':').map(Number)
+            return (hours * 3600 + minutes * 60 + seconds) * 1000
+        } else {
+            // If it's in the format "nnn ms"
+            return parseInt(duration)
+        }
+    }
+    const sorted = list.sort((a, b) => parseDuration(a['duration']) - parseDuration(b['duration']))
+    if (ascending) {
+        sorted.reverse()
+    }
+    return sorted
+}
+
+const doInitSort = () => {
+    const type = storageModule.getSort(manager.initialSort)
+    const ascending = storageModule.getSortDirection()
+    const list = manager.testSubset
+    const initialOrder = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed', 'Skipped', 'Passed']
+
+    storageModule.setSort(type)
+    storageModule.setSortDirection(ascending)
+
+    if (type?.toLowerCase() === 'original') {
+        manager.setRender(list)
+    } else {
+        let sortedList
+        switch (type) {
+        case 'duration':
+            sortedList = durationSort(list, ascending)
+            break
+        case 'result':
+            sortedList = genericSort(list, type, ascending, initialOrder)
+            break
+        default:
+            sortedList = genericSort(list, type, ascending)
+            break
+        }
+        manager.setRender(sortedList)
+    }
+}
+
+const doSort = (type, skipDirection) => {
+    const newSortType = storageModule.getSort(manager.initialSort) !== type
+    const currentAsc = storageModule.getSortDirection()
+    let ascending
+    if (skipDirection) {
+        ascending = currentAsc
+    } else {
+        ascending = newSortType ? false : !currentAsc
+    }
+    storageModule.setSort(type)
+    storageModule.setSortDirection(ascending)
+
+    const list = manager.testSubset
+    const sortedList = type === 'duration' ? durationSort(list, ascending) : genericSort(list, type, ascending)
+    manager.setRender(sortedList)
+}
+
+module.exports = {
+    doInitSort,
+    doSort,
+}
+
+},{"./datamanager.js":1,"./storage.js":8}],8:[function(require,module,exports){
+const possibleFilters = [
+    'passed',
+    'skipped',
+    'failed',
+    'error',
+    'xfailed',
+    'xpassed',
+    'rerun',
+]
+
+const getVisible = () => {
+    const url = new URL(window.location.href)
+    const settings = new URLSearchParams(url.search).get('visible')
+    const lower = (item) => {
+        const lowerItem = item.toLowerCase()
+        if (possibleFilters.includes(lowerItem)) {
+            return lowerItem
+        }
+        return null
+    }
+    return settings === null ?
+        possibleFilters :
+        [...new Set(settings?.split(',').map(lower).filter((item) => item))]
+}
+
+const hideCategory = (categoryToHide) => {
+    const url = new URL(window.location.href)
+    const visibleParams = new URLSearchParams(url.search).get('visible')
+    const currentVisible = visibleParams ? visibleParams.split(',') : [...possibleFilters]
+    const settings = [...new Set(currentVisible)].filter((f) => f !== categoryToHide).join(',')
+
+    url.searchParams.set('visible', settings)
+    window.history.pushState({}, null, unescape(url.href))
+}
+
+const showCategory = (categoryToShow) => {
+    if (typeof window === 'undefined') {
+        return
+    }
+    const url = new URL(window.location.href)
+    const currentVisible = new URLSearchParams(url.search).get('visible')?.split(',').filter(Boolean) ||
+        [...possibleFilters]
+    const settings = [...new Set([categoryToShow, ...currentVisible])]
+    const noFilter = possibleFilters.length === settings.length || !settings.length
+
+    noFilter ? url.searchParams.delete('visible') : url.searchParams.set('visible', settings.join(','))
+    window.history.pushState({}, null, unescape(url.href))
+}
+
+const getSort = (initialSort) => {
+    const url = new URL(window.location.href)
+    let sort = new URLSearchParams(url.search).get('sort')
+    if (!sort) {
+        sort = initialSort || 'result'
+    }
+    return sort
+}
+
+const setSort = (type) => {
+    const url = new URL(window.location.href)
+    url.searchParams.set('sort', type)
+    window.history.pushState({}, null, unescape(url.href))
+}
+
+const getCollapsedCategory = (renderCollapsed) => {
+    let categories
+    if (typeof window !== 'undefined') {
+        const url = new URL(window.location.href)
+        const collapsedItems = new URLSearchParams(url.search).get('collapsed')
+        switch (true) {
+        case !renderCollapsed && collapsedItems === null:
+            categories = ['passed']
+            break
+        case collapsedItems?.length === 0 || /^["']{2}$/.test(collapsedItems):
+            categories = []
+            break
+        case /^all$/.test(collapsedItems) || collapsedItems === null && /^all$/.test(renderCollapsed):
+            categories = [...possibleFilters]
+            break
+        default:
+            categories = collapsedItems?.split(',').map((item) => item.toLowerCase()) || renderCollapsed
+            break
+        }
+    } else {
+        categories = []
+    }
+    return categories
+}
+
+const getSortDirection = () => JSON.parse(sessionStorage.getItem('sortAsc')) || false
+const setSortDirection = (ascending) => sessionStorage.setItem('sortAsc', ascending)
+
+const getCollapsedIds = () => JSON.parse(sessionStorage.getItem('collapsedIds')) || []
+const setCollapsedIds = (list) => sessionStorage.setItem('collapsedIds', JSON.stringify(list))
+
+module.exports = {
+    getVisible,
+    hideCategory,
+    showCategory,
+    getCollapsedIds,
+    setCollapsedIds,
+    getSort,
+    setSort,
+    getSortDirection,
+    setSortDirection,
+    getCollapsedCategory,
+    possibleFilters,
+}
+
+},{}]},{},[4]);
+    </script>
+  </footer>
+</html>
