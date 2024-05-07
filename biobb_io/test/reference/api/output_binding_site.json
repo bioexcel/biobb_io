@@ -6,12 +6,12 @@
             "ligand_residues": [
                 {
                     "author_insertion_code": null,
-                    "author_residue_number": null,
-                    "chain_id": null,
-                    "chem_comp_id": null,
-                    "entity_id": null,
-                    "residue_number": null,
-                    "struct_asym_id": null
+                    "author_residue_number": 9001,
+                    "chain_id": "A",
+                    "chem_comp_id": "1C9",
+                    "entity_id": 2,
+                    "residue_number": 1,
+                    "struct_asym_id": "B"
                 }
             ],
             "site_id": "AC1",

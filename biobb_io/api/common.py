@@ -100,7 +100,7 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
         url = "http://mmb.irbbarcelona.org/api/pdbMonomer/" + ligand_code.lower()
         text = requests.get(url, verify=False).content.decode('utf-8')
     elif api_id == 'pdbe':
-        url = "ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/{0}/{1}/{1}_ideal.pdb".format(ligand_code.upper()[0], ligand_code.upper())
+        url = "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
         text = urllib.request.urlopen(url).read().decode('utf-8')
 
     fu.log("Downloading %s from: %s" % (ligand_code, url), out_log, global_log)
@@ -166,10 +166,10 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
     """
 
     if api_id == 'pdb':
-        url = "https://files.rcsb.org/ligands/view/" + ligand_code.upper() + "_ideal.sdf"
+        url = "https://files.rcsb.org/ligands/download/" + ligand_code.upper() + "_ideal.sdf"
         text = requests.get(url, verify=False).content.decode('utf-8')
     elif api_id == 'pdbe':
-        url = "ftp://ftp.ebi.ac.uk/pub/databases/msd/pdbechem_v2/{0}/{1}/{1}_ideal.sdf".format(ligand_code.upper()[0], ligand_code.upper())
+        url = "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.sdf"
         text = urllib.request.urlopen(url).read().decode('utf-8')
 
     fu.log("Downloading %s from: %s" % (ligand_code, url), out_log, global_log)
