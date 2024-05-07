@@ -1,5 +1,12 @@
 # Biobb IO changelog
 
+## What's new in version [4.1.1](https://github.com/bioexcel/biobb_io/releases/tag/v4.1.1)?
+In version 4.1.1 some end points have been fixed.
+
+### New features
+
+* Updated endpoints for downloading ligands for ligand and ideal sdf
+
 ## What's new in version [4.1.0](https://github.com/bioexcel/biobb_io/releases/tag/v4.1.0)?
 In version 4.1.0 the dependency biobb_common has been updated to 4.1.0 version.
 
