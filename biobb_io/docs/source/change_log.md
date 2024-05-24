@@ -1,5 +1,12 @@
 # Biobb IO changelog
 
+## What's new in version [4.2.0](https://github.com/bioexcel/biobb_io/releases/tag/v4.2.0)?
+In version 4.2.0 the dependency biobb_common has been updated to 4.2.0 version.
+
+### New features
+
+* Update to biobb_common 4.2.0 (general)
+
 ## What's new in version [4.1.1](https://github.com/bioexcel/biobb_io/releases/tag/v4.1.1)?
 In version 4.1.1 some end points have been fixed.
 
