@@ -627,7 +627,7 @@ Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
 * **ligand_code** (*string*): (None) RSCB PDB ligand code..
-* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
+* **api_id** (*string*): (mmb) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
 * **remove_tmp** (*boolean*): (True) Remove temporal files..
 * **restart** (*boolean*): (False) Do not execute if output files exist..
 ### YAML
