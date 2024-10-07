@@ -6,6 +6,7 @@ from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_mandatory_property, check_output_path, download_str_info, write_json
+from typing import Optional, Dict
 
 
 class StructureInfo(BiobbObject):
@@ -92,7 +93,7 @@ class StructureInfo(BiobbObject):
         return 0
 
 
-def structure_info(output_json_path: str, properties: dict = None, **kwargs) -> int:
+def structure_info(output_json_path: str, properties: Optional[Dict] = None, **kwargs) -> int:
     """Execute the :class:`StructureInfo <api.structure_info.StructureInfo>` class and
     execute the :meth:`launch() <api.structure_info.StructureInfo.launch>` method."""
 

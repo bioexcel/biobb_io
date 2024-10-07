@@ -8,6 +8,7 @@ from biobb_common.configuration import settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_mandatory_property, check_output_path, get_cluster_pdb_codes, download_pdb, write_pdb
+from typing import Optional, Dict
 
 
 class PdbClusterZip(BiobbObject):
@@ -108,7 +109,7 @@ class PdbClusterZip(BiobbObject):
         fu.zip_list(self.output_pdb_zip_path, file_list, out_log=self.out_log)
 
         self.tmp_files.extend([
-            self.stage_io_dict.get("unique_dir"),
+            self.stage_io_dict.get("unique_dir", ''),
             unique_dir
         ])
         self.remove_tmp_files()
@@ -118,7 +119,7 @@ class PdbClusterZip(BiobbObject):
         return 0
 
 
-def pdb_cluster_zip(output_pdb_zip_path: str, properties: dict = None, **kwargs) -> int:
+def pdb_cluster_zip(output_pdb_zip_path: str, properties: Optional[Dict] = None, **kwargs) -> int:
     """Execute the :class:`PdbClusterZip <api.pdb_cluster_zip.PdbClusterZip>` class and
     execute the :meth:`launch() <api.pdb_cluster_zip.PdbClusterZip.launch>` method."""
 

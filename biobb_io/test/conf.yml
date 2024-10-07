@@ -26,14 +26,14 @@ memprotmd_sim:
 memprotmd_sim_list:
   paths:
     output_simulations: output_simulations.json
-    reference_output_simulations: file:test_reference_dir/api/output_sim_list.json
+    reference_output_simulations: file:test_reference_dir/api/output_sim_list_schema_validator.json
   properties:
     remove_tmp: false
 
 memprotmd_sim_search:
   paths:
     output_simulations: output_simulations.json
-    reference_output_simulations: file:test_reference_dir/api/output_sim_search.json
+    reference_output_simulations: file:test_reference_dir/api/output_sim_search_schema_validator.json
   properties:
     collection_name: refs
     keyword: porin

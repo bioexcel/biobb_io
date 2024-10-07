@@ -9,6 +9,7 @@ from biobb_common.configuration import settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_mandatory_property, check_output_path, get_uniprot, get_variants
+from typing import Optional, Dict
 
 
 class PdbVariants(BiobbObject):
@@ -91,16 +92,20 @@ class PdbVariants(BiobbObject):
         pattern = re.compile((r"p.(?P<wt>[a-zA-Z]{3})(?P<resnum>\d+)(?P<mt>[a-zA-Z]{3})"))
 
         fu.log('Fetching variants for uniprot_id: %s and pdb_code: %s' % (uniprot_id, self.pdb_code), self.out_log, self.global_log)
-        unfiltered_dic = requests.get(url_mapPDBRes, verify=False).json()
+        unfiltered_dic = requests.get(url_mapPDBRes, verify=True).json()
         if not unfiltered_dic:
             fu.log("No mutation found", self.out_log, self.global_log)
-            return None
+            return 1
 
-        mapdic = requests.get(url_mapPDBRes, verify=False).json()
+        mapdic = requests.get(url_mapPDBRes, verify=True).json()
         mutations = []
         uniprot_var_list = get_variants(uniprot_id, url, self.out_log, self.global_log)
         for var in uniprot_var_list:
-            uni_mut = pattern.match(var).groupdict()
+            match = pattern.match(var)
+            if match:
+                uni_mut = match.groupdict()
+            else:
+                continue
             for k in mapdic.keys():
                 for fragment in mapdic[k]:
                     if int(fragment['unp_start']) <= int(uni_mut['resnum']) <= int(fragment['unp_end']):
@@ -109,6 +114,9 @@ class PdbVariants(BiobbObject):
 
         fu.log('Found %d mutations mapped to PDB: %s' % (len(mutations), self.pdb_code), self.out_log, self.global_log)
         fu.log('Writting mutations to: %s' % self.output_mutations_list_txt, self.out_log, self.global_log)
+
+        if not self.output_mutations_list_txt:
+            raise ValueError("Output mutations list file path is not specified.")
 
         with open(self.output_mutations_list_txt, 'w') as mut_file:
             mutations.sort()
@@ -119,7 +127,7 @@ class PdbVariants(BiobbObject):
         return 0
 
 
-def pdb_variants(output_mutations_list_txt: str, properties: dict = None, **kwargs) -> int:
+def pdb_variants(output_mutations_list_txt: str, properties: Optional[Dict] = None, **kwargs) -> int:
     """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` class and
     execute the :meth:`launch() <api.pdb_variants.PdbVariants.launch>` method."""
 

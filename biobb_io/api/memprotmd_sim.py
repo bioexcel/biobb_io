@@ -6,6 +6,7 @@ from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_output_path, check_mandatory_property, get_memprotmd_sim
+from typing import Optional, Dict
 
 
 class MemProtMDSim(BiobbObject):
@@ -88,7 +89,7 @@ class MemProtMDSim(BiobbObject):
         return 0
 
 
-def memprotmd_sim(output_simulation: str, properties: dict = None, **kwargs) -> int:
+def memprotmd_sim(output_simulation: str, properties: Optional[Dict] = None, **kwargs) -> int:
     """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` class and
     execute the :meth:`launch() <api.memprotmd_sim.MemProtMDSim.launch>` method."""
 

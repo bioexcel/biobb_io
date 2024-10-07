@@ -8,10 +8,10 @@ from pathlib import Path, PurePath
 from biobb_common.tools import file_utils as fu
 
 
-def check_output_path(path, argument, optional, out_log, classname):
+def check_output_path(path, argument, optional, out_log, classname) -> str:
     """ Checks output file """
     if optional and not path:
-        return None
+        return ""
     if PurePath(path).parent and not Path(PurePath(path).parent).exists():
         fu.log(classname + ': Unexisting %s folder, exiting' % argument, out_log)
         raise SystemExit(classname + ': Unexisting %s folder' % argument)
@@ -87,7 +87,7 @@ def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
         url = "https://www.ebi.ac.uk/pdbe/entry-files/download/" + pdb_code + ".cif"
 
     fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
-    return requests.get(url, verify=False).content.decode('utf-8')
+    return requests.get(url, verify=True).content.decode('utf-8')
 
 
 def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
@@ -98,7 +98,7 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
 
     if api_id == 'mmb':
         url = "http://mmb.irbbarcelona.org/api/pdbMonomer/" + ligand_code.lower()
-        text = requests.get(url, verify=False).content.decode('utf-8')
+        text = requests.get(url, verify=True).content.decode('utf-8')
     elif api_id == 'pdbe':
         url = "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
         text = urllib.request.urlopen(url).read().decode('utf-8')
@@ -125,7 +125,7 @@ def download_fasta(pdb_code, api_id, out_log=None, global_log=None):
         url = "https://www.ebi.ac.uk/pdbe/entry/pdb/" + pdb_code + "/fasta"
 
     fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
-    return requests.get(url, verify=False).content.decode('utf-8')
+    return requests.get(url, verify=True).content.decode('utf-8')
 
 
 def download_drugbank(drugbank_id, url="https://www.drugbank.ca/structures/small_molecule_drugs/%s.sdf?type=3d", out_log=None, global_log=None):
@@ -137,7 +137,7 @@ def download_drugbank(drugbank_id, url="https://www.drugbank.ca/structures/small
 
     fu.log("Downloading %s from: %s" % (drugbank_id, url), out_log, global_log)
 
-    text = requests.get(url, verify=False).content.decode('utf-8')
+    text = requests.get(url, verify=True).content.decode('utf-8')
 
     return text
 
@@ -167,7 +167,7 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
 
     if api_id == 'pdb':
         url = "https://files.rcsb.org/ligands/download/" + ligand_code.upper() + "_ideal.sdf"
-        text = requests.get(url, verify=False).content.decode('utf-8')
+        text = requests.get(url, verify=True).content.decode('utf-8')
     elif api_id == 'pdbe':
         url = "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.sdf"
         text = urllib.request.urlopen(url).read().decode('utf-8')
@@ -237,7 +237,7 @@ def get_cluster_pdb_codes(pdb_code, cluster, out_log=None, global_log=None):
     pdb_codes = set()
 
     url = url+pdb_code.lower()+'/clusters/cl-'+str(cluster)+".json"
-    cluster_list = json.loads(requests.get(url, verify=False).content.decode('utf-8'))['clusterMembers']
+    cluster_list = json.loads(requests.get(url, verify=True).content.decode('utf-8'))['clusterMembers']
     for elem in cluster_list:
         pdb_codes.add(elem['_id'].lower())
 
@@ -256,7 +256,7 @@ def get_uniprot(pdb_code, url, out_log=None, global_log=None):
         str: UNIPROT code.
     """
     url_uniprot_id = (url+"/pdb/"+pdb_code.lower()+"/entry/uniprotRefs/_id")
-    uniprot_id = requests.get(url_uniprot_id, verify=False).json()['uniprotRefs._id'][0]
+    uniprot_id = requests.get(url_uniprot_id, verify=True).json()['uniprotRefs._id'][0]
 
     if out_log:
         out_log.info('PDB code: '+pdb_code+' correspond to uniprot id: '+uniprot_id)
@@ -273,7 +273,7 @@ def get_variants(uniprot_id, url="http://mmb.irbbarcelona.org/api", out_log=None
         :obj:`list` of :obj:`str`: List of variants.
     """
     url_uniprot_mut = (url+"/uniprot/"+uniprot_id+"/entry/variants/vardata/mut/?varorig=humsavar")
-    variants = requests.get(url_uniprot_mut, verify=False).json()['variants.vardata.mut']
+    variants = requests.get(url_uniprot_mut, verify=True).json()['variants.vardata.mut']
     variants = variants if variants else []
 
     fu.log('Found: %d variants for uniprot id: %s' % (len(variants), uniprot_id), out_log, global_log)

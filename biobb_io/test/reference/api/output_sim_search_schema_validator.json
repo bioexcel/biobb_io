@@ -1,0 +1,24 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "_id": {
+                "type": "string",
+                "pattern": "^(PDB|UniProt)\\|[\\w]+$"
+            },
+            "simulations": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "minItems": 1
+            }
+        },
+        "required": [
+            "_id",
+            "simulations"
+        ],
+        "additionalProperties": false
+    }
+}

@@ -110,3 +110,6 @@ traj_comp.xtc
 .idea
 
 *.bk
+
+# MyPy cache
+.mypy_cache/

@@ -1,3 +1,4 @@
+# type: ignore
 from biobb_common.tools import test_fixtures as fx
 from biobb_io.api.pdb_cluster_zip import pdb_cluster_zip
 
