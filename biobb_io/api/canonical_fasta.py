@@ -2,11 +2,12 @@
 
 """Module containing the CanonicalFasta class and the command line interface."""
 import argparse
+from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_output_path, check_mandatory_property, download_fasta, write_fasta
-from typing import Optional, Dict
+from typing import Optional
 
 
 class CanonicalFasta(BiobbObject):
@@ -95,7 +96,7 @@ class CanonicalFasta(BiobbObject):
         return 0
 
 
-def canonical_fasta(output_fasta_path: str, properties: Optional[Dict] = None, **kwargs) -> int:
+def canonical_fasta(output_fasta_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`CanonicalFasta <api.canonical_fasta.CanonicalFasta>` class and
     execute the :meth:`launch() <api.canonical_fasta.CanonicalFasta.launch>` method."""
 

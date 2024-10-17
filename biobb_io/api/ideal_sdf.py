@@ -2,11 +2,12 @@
 
 """Module containing the IdealSdf class and the command line interface."""
 import argparse
+from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_output_path, check_mandatory_property, download_ideal_sdf, write_sdf
-from typing import Optional, Dict
+from typing import Optional
 
 
 class IdealSdf(BiobbObject):
@@ -95,7 +96,7 @@ class IdealSdf(BiobbObject):
         return 0
 
 
-def ideal_sdf(output_sdf_path: str, properties: Optional[Dict] = None, **kwargs) -> int:
+def ideal_sdf(output_sdf_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`IdealSdf <api.ideal_sdf.IdealSdf>` class and
     execute the :meth:`launch() <api.ideal_sdf.IdealSdf.launch>` method."""
 

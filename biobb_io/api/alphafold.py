@@ -2,11 +2,12 @@
 
 """Module containing the AlphaFold class and the command line interface."""
 import argparse
+from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_output_path, check_mandatory_property, check_uniprot_code, download_af, write_pdb
-from typing import Optional, Dict
+from typing import Optional
 
 
 class AlphaFold(BiobbObject):
@@ -94,7 +95,7 @@ class AlphaFold(BiobbObject):
         return 0
 
 
-def alphafold(output_pdb_path: str, properties: Optional[Dict] = None, **kwargs) -> int:
+def alphafold(output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`AlphaFold <api.alphafold.AlphaFold>` class and
     execute the :meth:`launch() <api.alphafold.AlphaFold.launch>` method."""
 

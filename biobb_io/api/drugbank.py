@@ -2,11 +2,12 @@
 
 """Module containing the Drugbank class and the command line interface."""
 import argparse
+from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_output_path, check_mandatory_property, download_drugbank, write_sdf
-from typing import Optional, Dict
+from typing import Optional
 
 
 class Drugbank(BiobbObject):
@@ -93,7 +94,7 @@ class Drugbank(BiobbObject):
         return 0
 
 
-def drugbank(output_sdf_path: str, properties: Optional[Dict] = None, **kwargs) -> int:
+def drugbank(output_sdf_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`Drugbank <api.drugbank.Drugbank>` class and
     execute the :meth:`launch() <api.drugbank.Drugbank.launch>` method."""
 

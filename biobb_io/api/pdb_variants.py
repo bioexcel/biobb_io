@@ -3,13 +3,14 @@
 """PdbVariants Module"""
 import re
 import argparse
+from typing import Optional
 import requests
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_mandatory_property, check_output_path, get_uniprot, get_variants
-from typing import Optional, Dict
+from typing import Optional
 
 
 class PdbVariants(BiobbObject):
@@ -33,7 +34,7 @@ class PdbVariants(BiobbObject):
             prop = {
                 'pdb_code': '2VGB'
             }
-            pdb_variants(output_mutations_list_txt='/path/to/newMutationsList.txt',
+            pdb_variants(output_mutations_list_txt='/path/to/newMutationslist.txt',
                         properties=prop)
 
     Info:
@@ -127,7 +128,7 @@ class PdbVariants(BiobbObject):
         return 0
 
 
-def pdb_variants(output_mutations_list_txt: str, properties: Optional[Dict] = None, **kwargs) -> int:
+def pdb_variants(output_mutations_list_txt: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` class and
     execute the :meth:`launch() <api.pdb_variants.PdbVariants.launch>` method."""
 

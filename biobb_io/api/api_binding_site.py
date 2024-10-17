@@ -2,13 +2,14 @@
 
 """Module containing the ApiBindingSite class and the command line interface."""
 import argparse
+from typing import Optional
 import json
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_output_path, check_mandatory_property, download_binding_site, write_json
-from typing import Optional, Dict
+from typing import Optional
 
 
 class ApiBindingSite(BiobbObject):
@@ -101,7 +102,7 @@ class ApiBindingSite(BiobbObject):
         return 0
 
 
-def api_binding_site(output_json_path: str, properties: Optional[Dict] = None, **kwargs) -> int:
+def api_binding_site(output_json_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`ApiBindingSite <api.api_binding_site.ApiBindingSite>` class and
     execute the :meth:`launch() <api.api_binding_site.ApiBindingSite.launch>` method."""
 

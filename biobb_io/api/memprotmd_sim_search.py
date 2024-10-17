@@ -2,11 +2,12 @@
 
 """Module containing the MemProtMDSimSearch class and the command line interface."""
 import argparse
+from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_output_path, get_memprotmd_sim_search, write_json
-from typing import Optional, Dict
+from typing import Optional
 
 
 class MemProtMDSimSearch(BiobbObject):
@@ -95,7 +96,7 @@ class MemProtMDSimSearch(BiobbObject):
         return 0
 
 
-def memprotmd_sim_search(output_simulations: str, properties: Optional[Dict] = None, **kwargs) -> int:
+def memprotmd_sim_search(output_simulations: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`MemProtMDSimSearch <api.memprotmd_sim_search.MemProtMDSimSearch>` class and
     execute the :meth:`launch() <api.memprotmd_sim_search.MemProtMDSimSearch.launch>` method."""
 

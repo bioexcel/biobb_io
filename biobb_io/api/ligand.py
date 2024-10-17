@@ -2,11 +2,12 @@
 
 """Module containing the Ligand class and the command line interface."""
 import argparse
+from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_output_path, check_mandatory_property, download_ligand, write_pdb
-from typing import Optional, Dict
+from typing import Optional
 
 
 class Ligand(BiobbObject):
@@ -95,7 +96,7 @@ class Ligand(BiobbObject):
         return 0
 
 
-def ligand(output_pdb_path: str, properties: Optional[Dict] = None, **kwargs) -> int:
+def ligand(output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`Ligand <api.ligand.Ligand>` class and
     execute the :meth:`launch() <api.ligand.Ligand.launch>` method."""
 

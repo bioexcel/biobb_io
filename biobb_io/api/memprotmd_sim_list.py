@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 
-"""Module containing the MemProtMDSimList class and the command line interface."""
+"""Module containing the MemProtMDSimlist class and the command line interface."""
 import argparse
+from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.configuration import settings
 from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import check_output_path, get_memprotmd_sim_list, write_json
-from typing import Optional, Dict
+from typing import Optional
 
 
-class MemProtMDSimList(BiobbObject):
+class MemProtMDSimlist(BiobbObject):
     """
-    | biobb_io MemProtMDSimList
+    | biobb_io MemProtMDSimlist
     | This class is a wrapper of the MemProtMD to get all available membrane-protein systems from its REST API.
     | Wrapper for the `MemProtMD DB REST API <http://memprotmd.bioch.ox.ac.uk/>`_ to get all available membrane-protein systems (simulations).
 
@@ -27,7 +28,7 @@ class MemProtMDSimList(BiobbObject):
 
             from biobb_io.api.memprotmd_sim_list import memprotmd_sim_list
             prop = { }
-            memprotmd_sim_list(output_simulations='/path/to/newSimulationList.json',
+            memprotmd_sim_list(output_simulations='/path/to/newSimulationlist.json',
                                 properties=prop)
 
     Info:
@@ -66,7 +67,7 @@ class MemProtMDSimList(BiobbObject):
 
     @launchlogger
     def launch(self) -> int:
-        """Execute the :class:`MemProtMDSimList <api.memprotmd_sim_list.MemProtMDSimList>` api.memprotmd_sim_list.MemProtMDSimList object."""
+        """Execute the :class:`MemProtMDSimlist <api.memprotmd_sim_list.MemProtMDSimlist>` api.memprotmd_sim_list.MemProtMDSimlist object."""
 
         # check input/output paths and parameters
         self.check_data_params(self.out_log, self.err_log)
@@ -86,11 +87,11 @@ class MemProtMDSimList(BiobbObject):
         return 0
 
 
-def memprotmd_sim_list(output_simulations: str, properties: Optional[Dict] = None, **kwargs) -> int:
-    """Execute the :class:`MemProtMDSimList <api.memprotmd_sim_list.MemProtMDSimList>` class and
-    execute the :meth:`launch() <api.memprotmd_sim_list.MemProtMDSimList.launch>` method."""
+def memprotmd_sim_list(output_simulations: str, properties: Optional[dict] = None, **kwargs) -> int:
+    """Execute the :class:`MemProtMDSimlist <api.memprotmd_sim_list.MemProtMDSimlist>` class and
+    execute the :meth:`launch() <api.memprotmd_sim_list.MemProtMDSimlist.launch>` method."""
 
-    return MemProtMDSimList(output_simulations=output_simulations,
+    return MemProtMDSimlist(output_simulations=output_simulations,
                             properties=properties, **kwargs).launch()
 
 
