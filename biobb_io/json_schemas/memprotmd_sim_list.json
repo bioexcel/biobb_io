@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/memprotmd_sim_list",
-    "name": "biobb_io MemProtMDSimlist",
+    "name": "biobb_io MemProtMDSimList",
     "title": "This class is a wrapper of the MemProtMD to get all available membrane-protein systems from its REST API.",
     "description": "Wrapper for the MemProtMD DB REST API to get all available membrane-protein systems (simulations).",
     "type": "object",
