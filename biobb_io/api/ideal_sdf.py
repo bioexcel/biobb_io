@@ -1,13 +1,20 @@
 #!/usr/bin/env python
 
 """Module containing the IdealSdf class and the command line interface."""
+
 import argparse
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+
 from biobb_common.configuration import settings
+from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import check_output_path, check_mandatory_property, download_ideal_sdf, write_sdf
-from typing import Optional
+
+from biobb_io.api.common import (
+    check_mandatory_property,
+    check_output_path,
+    download_ideal_sdf,
+    write_sdf,
+)
 
 
 class IdealSdf(BiobbObject):
@@ -46,8 +53,7 @@ class IdealSdf(BiobbObject):
 
     """
 
-    def __init__(self, output_sdf_path,
-                 properties=None, **kwargs) -> None:
+    def __init__(self, output_sdf_path, properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -55,13 +61,11 @@ class IdealSdf(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = {
-            "out": {"output_sdf_path": output_sdf_path}
-        }
+        self.io_dict = {"out": {"output_sdf_path": output_sdf_path}}
 
         # Properties specific for BB
-        self.api_id = properties.get('api_id', 'pdbe')
-        self.ligand_code = properties.get('ligand_code', None)
+        self.api_id = properties.get("api_id", "pdbe")
+        self.ligand_code = properties.get("ligand_code", None)
         self.properties = properties
 
         # Check the properties
@@ -69,8 +73,14 @@ class IdealSdf(BiobbObject):
         self.check_arguments()
 
     def check_data_params(self, out_log, err_log):
-        """ Checks all the input/output paths and parameters """
-        self.output_sdf_path = check_output_path(self.io_dict["out"]["output_sdf_path"], "output_sdf_path", False, out_log, self.__class__.__name__)
+        """Checks all the input/output paths and parameters"""
+        self.output_sdf_path = check_output_path(
+            self.io_dict["out"]["output_sdf_path"],
+            "output_sdf_path",
+            False,
+            out_log,
+            self.__class__.__name__,
+        )
 
     @launchlogger
     def launch(self) -> int:
@@ -83,12 +93,16 @@ class IdealSdf(BiobbObject):
         if self.check_restart():
             return 0
 
-        check_mandatory_property(self.ligand_code, 'ligand_code', self.out_log, self.__class__.__name__)
+        check_mandatory_property(
+            self.ligand_code, "ligand_code", self.out_log, self.__class__.__name__
+        )
 
         self.ligand_code = self.ligand_code.strip()
 
         # Downloading PDB file
-        sdf_string = download_ideal_sdf(self.ligand_code, self.api_id, self.out_log, self.global_log)
+        sdf_string = download_ideal_sdf(
+            self.ligand_code, self.api_id, self.out_log, self.global_log
+        )
         write_sdf(sdf_string, self.output_sdf_path, self.out_log, self.global_log)
 
         self.check_arguments(output_files_created=True, raise_exception=False)
@@ -100,27 +114,40 @@ def ideal_sdf(output_sdf_path: str, properties: Optional[dict] = None, **kwargs)
     """Execute the :class:`IdealSdf <api.ideal_sdf.IdealSdf>` class and
     execute the :meth:`launch() <api.ideal_sdf.IdealSdf.launch>` method."""
 
-    return IdealSdf(output_sdf_path=output_sdf_path,
-                    properties=properties, **kwargs).launch()
+    return IdealSdf(
+        output_sdf_path=output_sdf_path, properties=properties, **kwargs
+    ).launch()
 
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(description="This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
-    parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
+    parser = argparse.ArgumentParser(
+        description="This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.",
+        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
+    )
+    parser.add_argument(
+        "-c",
+        "--config",
+        required=False,
+        help="This file can be a YAML file, JSON file or JSON string",
+    )
 
     # Specific args of each building block
-    required_args = parser.add_argument_group('required arguments')
-    required_args.add_argument('-o', '--output_sdf_path', required=True, help="Path to the output SDF file. Accepted formats: sdf.")
+    required_args = parser.add_argument_group("required arguments")
+    required_args.add_argument(
+        "-o",
+        "--output_sdf_path",
+        required=True,
+        help="Path to the output SDF file. Accepted formats: sdf.",
+    )
 
     args = parser.parse_args()
     config = args.config if args.config else None
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    ideal_sdf(output_sdf_path=args.output_sdf_path,
-              properties=properties)
+    ideal_sdf(output_sdf_path=args.output_sdf_path, properties=properties)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

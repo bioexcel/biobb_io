@@ -1,13 +1,20 @@
 #!/usr/bin/env python
 
 """Module containing the Drugbank class and the command line interface."""
+
 import argparse
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+
 from biobb_common.configuration import settings
+from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import check_output_path, check_mandatory_property, download_drugbank, write_sdf
-from typing import Optional
+
+from biobb_io.api.common import (
+    check_mandatory_property,
+    check_output_path,
+    download_drugbank,
+    write_sdf,
+)
 
 
 class Drugbank(BiobbObject):
@@ -44,8 +51,7 @@ class Drugbank(BiobbObject):
 
     """
 
-    def __init__(self, output_sdf_path,
-                 properties=None, **kwargs) -> None:
+    def __init__(self, output_sdf_path, properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -53,12 +59,10 @@ class Drugbank(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = {
-            "out": {"output_sdf_path": output_sdf_path}
-        }
+        self.io_dict = {"out": {"output_sdf_path": output_sdf_path}}
 
         # Properties specific for BB
-        self.drugbank_id = properties.get('drugbank_id', None)
+        self.drugbank_id = properties.get("drugbank_id", None)
         self.properties = properties
 
         # Check the properties
@@ -66,8 +70,14 @@ class Drugbank(BiobbObject):
         self.check_arguments()
 
     def check_data_params(self, out_log, err_log):
-        """ Checks all the input/output paths and parameters """
-        self.output_sdf_path = check_output_path(self.io_dict["out"]["output_sdf_path"], "output_sdf_path", False, out_log, self.__class__.__name__)
+        """Checks all the input/output paths and parameters"""
+        self.output_sdf_path = check_output_path(
+            self.io_dict["out"]["output_sdf_path"],
+            "output_sdf_path",
+            False,
+            out_log,
+            self.__class__.__name__,
+        )
 
     @launchlogger
     def launch(self) -> int:
@@ -80,13 +90,17 @@ class Drugbank(BiobbObject):
         if self.check_restart():
             return 0
 
-        check_mandatory_property(self.drugbank_id, 'drugbank_id', self.out_log, self.__class__.__name__)
+        check_mandatory_property(
+            self.drugbank_id, "drugbank_id", self.out_log, self.__class__.__name__
+        )
 
         self.drugbank_id = self.drugbank_id.strip().lower()
         url = "https://www.drugbank.ca/structures/small_molecule_drugs/%s.sdf?type=3d"
 
         # Downloading SDF file
-        sdf_string = download_drugbank(self.drugbank_id, url, self.out_log, self.global_log)
+        sdf_string = download_drugbank(
+            self.drugbank_id, url, self.out_log, self.global_log
+        )
         write_sdf(sdf_string, self.output_sdf_path, self.out_log, self.global_log)
 
         self.check_arguments(output_files_created=True, raise_exception=False)
@@ -98,27 +112,40 @@ def drugbank(output_sdf_path: str, properties: Optional[dict] = None, **kwargs) 
     """Execute the :class:`Drugbank <api.drugbank.Drugbank>` class and
     execute the :meth:`launch() <api.drugbank.Drugbank.launch>` method."""
 
-    return Drugbank(output_sdf_path=output_sdf_path,
-                    properties=properties, **kwargs).launch()
+    return Drugbank(
+        output_sdf_path=output_sdf_path, properties=properties, **kwargs
+    ).launch()
 
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(description="Download a component in SDF format from the Drugbank (https://www.drugbank.ca/).", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
-    parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
+    parser = argparse.ArgumentParser(
+        description="Download a component in SDF format from the Drugbank (https://www.drugbank.ca/).",
+        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
+    )
+    parser.add_argument(
+        "-c",
+        "--config",
+        required=False,
+        help="This file can be a YAML file, JSON file or JSON string",
+    )
 
     # Specific args of each building block
-    required_args = parser.add_argument_group('required arguments')
-    required_args.add_argument('-o', '--output_sdf_path', required=True, help="Path to the output SDF component file. Accepted formats: sdf.")
+    required_args = parser.add_argument_group("required arguments")
+    required_args.add_argument(
+        "-o",
+        "--output_sdf_path",
+        required=True,
+        help="Path to the output SDF component file. Accepted formats: sdf.",
+    )
 
     args = parser.parse_args()
     config = args.config if args.config else None
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    drugbank(output_sdf_path=args.output_sdf_path,
-             properties=properties)
+    drugbank(output_sdf_path=args.output_sdf_path, properties=properties)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -3,7 +3,7 @@
 [![](https://img.shields.io/conda/vn/bioconda/biobb_io?label=Conda)](https://anaconda.org/bioconda/biobb_io)
 [![](https://img.shields.io/conda/dn/bioconda/biobb_io?label=Conda%20Downloads)](https://anaconda.org/bioconda/biobb_io)
 [![](https://img.shields.io/badge/Docker-Quay.io-blue)](https://quay.io/repository/biocontainers/biobb_io?tab=tags)
-[![](https://img.shields.io/badge/Singularity-GalaxyProject-blue)](https://depot.galaxyproject.org/singularity/biobb_io:4.2.0--pyhdfd78af_0)
+[![](https://img.shields.io/badge/Singularity-GalaxyProject-blue)](https://depot.galaxyproject.org/singularity/biobb_io:5.0.0--pyhdfd78af_0)
 
 [![](https://img.shields.io/badge/OS-Unix%20%7C%20MacOS-blue)](https://github.com/bioexcel/biobb_io)
 [![](https://img.shields.io/pypi/pyversions/biobb-io.svg?label=Python%20Versions)](https://pypi.org/project/biobb-io/)
@@ -41,7 +41,7 @@ The latest documentation of this package can be found in our readthedocs site:
 [latest API documentation](http://biobb-io.readthedocs.io/en/latest/).
 
 ### Version
-v4.2.0 2024.1
+v5.0.0 2024.2
 
 ### Installation
 Using PIP:
@@ -50,15 +50,15 @@ Using PIP:
 
 * Installation:
 
-        pip install "biobb_io==4.2.0"
-        
+        pip install "biobb_io==5.0.0"
+
 * Usage: [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html)
 
 Using ANACONDA:
 * Installation:
 
 
-        conda install -c bioconda "biobb_io==4.2.0"
+        conda install -c bioconda "biobb_io==5.0.0"
 
 
 * Usage: With conda installation BioBBs can be used with the [Python API documentation](https://biobb-io.readthedocs.io/en/latest/modules.html) and the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html)
@@ -67,12 +67,12 @@ Using DOCKER:
 * Installation:
 
 
-        docker pull quay.io/biocontainers/biobb_io:4.2.0--pyhdfd78af_0
+        docker pull quay.io/biocontainers/biobb_io:5.0.0--pyhdfd78af_0
 
 * Usage:
 
 
-        docker run quay.io/biocontainers/biobb_io:4.2.0--pyhdfd78af_0 <command>
+        docker run quay.io/biocontainers/biobb_io:5.0.0--pyhdfd78af_0 <command>
 
 
 The command list and specification can be found at the [Command Line documentation](https://biobb-io.readthedocs.io/en/latest/command_line.html).
@@ -84,7 +84,7 @@ Using SINGULARITY:
 * Installation:
 
 
-        singularity pull --name biobb_io.sif https://depot.galaxyproject.org/singularity/biobb_io:4.2.0--pyhdfd78af_0
+        singularity pull --name biobb_io.sif https://depot.galaxyproject.org/singularity/biobb_io:5.0.0--pyhdfd78af_0
 
 
 * Usage:

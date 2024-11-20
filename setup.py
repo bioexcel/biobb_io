@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="biobb_io",
-    version="4.2.0",
+    version="5.0.0",
     author="Biobb developers",
     author_email="pau.andrio@bsc.es",
     description="Biobb_io is the Biobb module collection to fetch data to be consumed by the rest of the Biobb building blocks.",
@@ -15,12 +15,12 @@ setuptools.setup(
     url="https://github.com/bioexcel/biobb_io",
     project_urls={
         "Documentation": "http://biobb-io.readthedocs.io/en/latest/",
-        "Bioexcel": "https://bioexcel.eu/"
+        "Bioexcel": "https://bioexcel.eu/",
     },
-    packages=setuptools.find_packages(exclude=['docs', 'test']),
-    package_data={'biobb_io': ['py.typed']},
-    install_requires=['biobb_common==4.2.0'],
-    python_requires='>=3.8',
+    packages=setuptools.find_packages(exclude=["docs", "test"]),
+    package_data={"biobb_io": ["py.typed"]},
+    install_requires=["biobb_common==5.0.0"],
+    python_requires=">=3.9",
     entry_points={
         "console_scripts": [
             "alphafold = biobb_io.api.alphafold:main",
@@ -36,17 +36,15 @@ setuptools.setup(
             "pdb_cluster_zip = biobb_io.api.pdb_cluster_zip:main",
             "pdb_variants = biobb_io.api.pdb_variants:main",
             "pdb = biobb_io.api.pdb:main",
-            "structure_info = biobb_io.api.structure_info:main"
+            "structure_info = biobb_io.api.structure_info:main",
         ]
     },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX",
-        "Operating System :: Unix"
+        "Operating System :: Unix",
     ],
 )

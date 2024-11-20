@@ -1,13 +1,19 @@
 #!/usr/bin/env python
 
 """Module containing the MemProtMDSim class and the command line interface."""
+
 import argparse
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+
 from biobb_common.configuration import settings
+from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
-from biobb_io.api.common import check_output_path, check_mandatory_property, get_memprotmd_sim
-from typing import Optional
+
+from biobb_io.api.common import (
+    check_mandatory_property,
+    check_output_path,
+    get_memprotmd_sim,
+)
 
 
 class MemProtMDSim(BiobbObject):
@@ -44,8 +50,7 @@ class MemProtMDSim(BiobbObject):
 
     """
 
-    def __init__(self, output_simulation,
-                 properties=None, **kwargs) -> None:
+    def __init__(self, output_simulation, properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -53,12 +58,10 @@ class MemProtMDSim(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = {
-            "out": {"output_simulation": output_simulation}
-        }
+        self.io_dict = {"out": {"output_simulation": output_simulation}}
 
         # Properties specific for BB
-        self.pdb_code = properties.get('pdb_code', None)
+        self.pdb_code = properties.get("pdb_code", None)
         self.properties = properties
 
         # Check the properties
@@ -66,8 +69,14 @@ class MemProtMDSim(BiobbObject):
         self.check_arguments()
 
     def check_data_params(self, out_log, err_log):
-        """ Checks all the input/output paths and parameters """
-        self.output_simulation = check_output_path(self.io_dict["out"]["output_simulation"], "output_simulation", False, out_log, self.__class__.__name__)
+        """Checks all the input/output paths and parameters"""
+        self.output_simulation = check_output_path(
+            self.io_dict["out"]["output_simulation"],
+            "output_simulation",
+            False,
+            out_log,
+            self.__class__.__name__,
+        )
 
     @launchlogger
     def launch(self) -> int:
@@ -80,41 +89,60 @@ class MemProtMDSim(BiobbObject):
         if self.check_restart():
             return 0
 
-        check_mandatory_property(self.pdb_code, 'pdb_code', self.out_log, self.__class__.__name__)
+        check_mandatory_property(
+            self.pdb_code, "pdb_code", self.out_log, self.__class__.__name__
+        )
 
         # get simulation files and save to output
-        get_memprotmd_sim(self.pdb_code, self.output_simulation, self.out_log, self.global_log)
+        get_memprotmd_sim(
+            self.pdb_code, self.output_simulation, self.out_log, self.global_log
+        )
 
         self.check_arguments(output_files_created=True, raise_exception=False)
 
         return 0
 
 
-def memprotmd_sim(output_simulation: str, properties: Optional[dict] = None, **kwargs) -> int:
+def memprotmd_sim(
+    output_simulation: str, properties: Optional[dict] = None, **kwargs
+) -> int:
     """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` class and
     execute the :meth:`launch() <api.memprotmd_sim.MemProtMDSim.launch>` method."""
 
-    return MemProtMDSim(output_simulation=output_simulation,
-                        properties=properties, **kwargs).launch()
+    return MemProtMDSim(
+        output_simulation=output_simulation, properties=properties, **kwargs
+    ).launch()
 
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(description="Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to download a simulation.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
-    parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
+    parser = argparse.ArgumentParser(
+        description="Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to download a simulation.",
+        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
+    )
+    parser.add_argument(
+        "-c",
+        "--config",
+        required=False,
+        help="This file can be a YAML file, JSON file or JSON string",
+    )
 
     # Specific args of each building block
-    required_args = parser.add_argument_group('required arguments')
-    required_args.add_argument('-o', '--output_simulation', required=True, help="Path to the output simulation in a ZIP file. Accepted formats: zip.")
+    required_args = parser.add_argument_group("required arguments")
+    required_args.add_argument(
+        "-o",
+        "--output_simulation",
+        required=True,
+        help="Path to the output simulation in a ZIP file. Accepted formats: zip.",
+    )
 
     args = parser.parse_args()
     config = args.config if args.config else None
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    memprotmd_sim(output_simulation=args.output_simulation,
-                  properties=properties)
+    memprotmd_sim(output_simulation=args.output_simulation, properties=properties)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

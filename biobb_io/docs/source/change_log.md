@@ -1,5 +1,19 @@
 # Biobb IO changelog
 
+## What's new in version [5.0.0](https://github.com/bioexcel/biobb_io/releases/tag/v5.0.0)?
+
+### Changes
+
+* [CI/CD](env.yaml): Update biobb_common version.
+* [CI/CD](linting_and_testing.yml): Update set-up micromamba.
+* [CI/CD](linting_and_testing): Update GA test workflow to Python >3.9
+* [DOCS](.readthedocs.yaml): Updating to Python 3.9
+* [CI/CD](GITIGNORE): Update .gitignore to include the new file extensions to ignore
+* [CI/CD](test) Fixing tests to avoid DB dependency
+* [CI/CD](conf.yml): Change test conf.yml to adapt to new settings configuration
+* [FEATURE] New sandbox_path property
+
+
 ## What's new in version [4.2.0](https://github.com/bioexcel/biobb_io/releases/tag/v4.2.0)?
 In version 4.2.0 the dependency biobb_common has been updated to 4.2.0 version.
 
@@ -29,7 +43,7 @@ In version 4.0.0 the dependency biobb_common has been updated to 4.0.0 version.
 * Update to biobb_common 4.0.0 (general)
 
 ## What's new in version [3.9.0](https://github.com/bioexcel/biobb_io/releases/tag/v3.9.0)?
-In version 3.9.0 the dependency biobb_common has been updated to 3.9.0 version. 
+In version 3.9.0 the dependency biobb_common has been updated to 3.9.0 version.
 
 ### New features
 
@@ -37,21 +51,21 @@ In version 3.9.0 the dependency biobb_common has been updated to 3.9.0 version.
 * All inputs/outputs are checked for correct file format, extension and type (general)
 
 ## What's new in version [3.8.0](https://github.com/bioexcel/biobb_io/releases/tag/v3.8.0)?
-In version 3.8.0 the dependency biobb_common has been updated to 3.8.1 version. 
+In version 3.8.0 the dependency biobb_common has been updated to 3.8.1 version.
 
 ### New features
 
 * Update to biobb_common 3.8.1 (general)
 
 ## What's new in version [3.7.0](https://github.com/bioexcel/biobb_io/releases/tag/v3.7.0)?
-In version 3.7.0 the dependency biobb_common has been updated to 3.7.0 version. 
+In version 3.7.0 the dependency biobb_common has been updated to 3.7.0 version.
 
 ### New features
 
 * Update to biobb_common 3.7.0 (general)
 
 ## What's new in version [3.6.0](https://github.com/bioexcel/biobb_io/releases/tag/v3.6.0)?
-In version 3.6.0 the dependency biobb_common has been updated to 3.6.0 version. 
+In version 3.6.0 the dependency biobb_common has been updated to 3.6.0 version.
 
 ### New features
 
@@ -72,7 +86,7 @@ In version 3.5.1 there have been added the new tools for binding sites, canonica
 
 * New BindingSite tool for searching binding sites through the PDBe REST API
 * New CanonicalFasta for downloading the canonical FASTA of a structure from the Protein Data Bank
-* New Mmcif tool for downloading a structure in MMCIF format 
+* New Mmcif tool for downloading a structure in MMCIF format
 * New IdealSdf tool for downloading a ligand in SDF format
 * New StructureInfo tool for getting all the available info of a structure in JSON format
 

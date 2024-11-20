@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 
 """Module containing the MemProtMDSimSearch class and the command line interface."""
+
 import argparse
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+
 from biobb_common.configuration import settings
+from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
+
 from biobb_io.api.common import check_output_path, get_memprotmd_sim_search, write_json
-from typing import Optional
 
 
 class MemProtMDSimSearch(BiobbObject):
@@ -46,8 +48,7 @@ class MemProtMDSimSearch(BiobbObject):
 
     """
 
-    def __init__(self, output_simulations,
-                 properties=None, **kwargs) -> None:
+    def __init__(self, output_simulations, properties=None, **kwargs) -> None:
         properties = properties or {}
 
         # Call parent class constructor
@@ -55,13 +56,11 @@ class MemProtMDSimSearch(BiobbObject):
         self.locals_var_dict = locals().copy()
 
         # Input/Output files
-        self.io_dict = {
-            "out": {"output_simulations": output_simulations}
-        }
+        self.io_dict = {"out": {"output_simulations": output_simulations}}
 
         # Properties specific for BB
-        self.collection_name = properties.get('collection_name', 'refs')
-        self.keyword = properties.get('keyword', None)
+        self.collection_name = properties.get("collection_name", "refs")
+        self.keyword = properties.get("keyword", None)
         self.properties = properties
 
         # Check the properties
@@ -69,8 +68,14 @@ class MemProtMDSimSearch(BiobbObject):
         self.check_arguments()
 
     def check_data_params(self, out_log, err_log):
-        """ Checks all the input/output paths and parameters """
-        self.output_simulations = check_output_path(self.io_dict["out"]["output_simulations"], "output_simulations", False, out_log, self.__class__.__name__)
+        """Checks all the input/output paths and parameters"""
+        self.output_simulations = check_output_path(
+            self.io_dict["out"]["output_simulations"],
+            "output_simulations",
+            False,
+            out_log,
+            self.__class__.__name__,
+        )
 
     @launchlogger
     def launch(self) -> int:
@@ -86,7 +91,9 @@ class MemProtMDSimSearch(BiobbObject):
         self.keyword = self.keyword.strip().lower()
 
         # get JSON object
-        json_string = get_memprotmd_sim_search(self.collection_name, self.keyword, self.out_log, self.global_log)
+        json_string = get_memprotmd_sim_search(
+            self.collection_name, self.keyword, self.out_log, self.global_log
+        )
 
         # write JSON file
         write_json(json_string, self.output_simulations, self.out_log, self.global_log)
@@ -96,31 +103,48 @@ class MemProtMDSimSearch(BiobbObject):
         return 0
 
 
-def memprotmd_sim_search(output_simulations: str, properties: Optional[dict] = None, **kwargs) -> int:
+def memprotmd_sim_search(
+    output_simulations: str, properties: Optional[dict] = None, **kwargs
+) -> int:
     """Execute the :class:`MemProtMDSimSearch <api.memprotmd_sim_search.MemProtMDSimSearch>` class and
     execute the :meth:`launch() <api.memprotmd_sim_search.MemProtMDSimSearch.launch>` method."""
 
-    return MemProtMDSimSearch(output_simulations=output_simulations,
-                              properties=properties, **kwargs).launch()
+    return MemProtMDSimSearch(
+        output_simulations=output_simulations, properties=properties, **kwargs
+    ).launch()
 
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(description="Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to perform advanced searches.", formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
-    parser.add_argument('-c', '--config', required=False, help="This file can be a YAML file, JSON file or JSON string")
+    parser = argparse.ArgumentParser(
+        description="Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to perform advanced searches.",
+        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
+    )
+    parser.add_argument(
+        "-c",
+        "--config",
+        required=False,
+        help="This file can be a YAML file, JSON file or JSON string",
+    )
 
     # Specific args of each building block
-    required_args = parser.add_argument_group('required arguments')
-    required_args.add_argument('-o', '--output_simulations', required=True, help="Path to the output JSON file. Accepted formats: json.")
+    required_args = parser.add_argument_group("required arguments")
+    required_args.add_argument(
+        "-o",
+        "--output_simulations",
+        required=True,
+        help="Path to the output JSON file. Accepted formats: json.",
+    )
 
     args = parser.parse_args()
     config = args.config if args.config else None
     properties = settings.ConfReader(config=config).get_prop_dic()
 
     # Specific call of each building block
-    memprotmd_sim_search(output_simulations=args.output_simulations,
-                         properties=properties)
+    memprotmd_sim_search(
+        output_simulations=args.output_simulations, properties=properties
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
