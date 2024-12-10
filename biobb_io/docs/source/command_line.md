@@ -14,14 +14,14 @@ Command:
 mmcif -h
 ```
     usage: mmcif [-h] [-c CONFIG] -o OUTPUT_MMCIF_PATH
-    
+
     This class is a wrapper for downloading a MMCIF structure from the Protein Data Bank.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_MMCIF_PATH, --output_mmcif_path OUTPUT_MMCIF_PATH
                             Path to the output MMCIF file. Accepted formats: cif, mmcif.
@@ -74,14 +74,14 @@ Command:
 pdb -h
 ```
     usage: pdb [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
-    
+
     This class is a wrapper for downloading a PDB structure from the Protein Data Bank.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
                             Path to the output PDB file. Accepted formats: pdb.
@@ -142,14 +142,14 @@ Command:
 api_binding_site -h
 ```
     usage: api_binding_site [-h] [-c CONFIG] -o OUTPUT_JSON_PATH
-    
+
     This class is a wrapper for the PDBe REST API Binding Sites endpoint
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_JSON_PATH, --output_json_path OUTPUT_JSON_PATH
                             Path to the JSON file with the binding sites for the requested structure. Accepted formats: json.
@@ -199,14 +199,14 @@ Command:
 memprotmd_sim_list -h
 ```
     usage: memprotmd_sim_list [-h] [-c CONFIG] -o OUTPUT_SIMULATIONS
-    
+
     Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to get all available membrane-protein systems (simulations).
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_SIMULATIONS, --output_simulations OUTPUT_SIMULATIONS
                             Path to the output JSON file. Accepted formats: json.
@@ -255,14 +255,14 @@ Command:
 memprotmd_sim -h
 ```
     usage: memprotmd_sim [-h] [-c CONFIG] -o OUTPUT_SIMULATION
-    
+
     Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to download a simulation.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_SIMULATION, --output_simulation OUTPUT_SIMULATION
                             Path to the output simulation in a ZIP file. Accepted formats: zip.
@@ -304,63 +304,6 @@ memprotmd_sim --config config_memprotmd_sim.yml --output_simulation output_sim.z
 memprotmd_sim --config config_memprotmd_sim.json --output_simulation output_sim.zip
 ```
 
-## Drugbank
-This class is a wrapper for the Drugbank REST API.
-### Get help
-Command:
-```python
-drugbank -h
-```
-    usage: drugbank [-h] [-c CONFIG] -o OUTPUT_SDF_PATH
-    
-    Download a component in SDF format from the Drugbank (https://www.drugbank.ca/).
-    
-    optional arguments:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_SDF_PATH, --output_sdf_path OUTPUT_SDF_PATH
-                            Path to the output SDF component file. Accepted formats: sdf.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_sdf_path** (*string*): Path to the output SDF component file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_drugbank.sdf). Accepted formats: SDF
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **drugbank_id** (*string*): (None) Drugbank component id..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_drugbank.yml)
-```python
-properties:
-  drugbank_id: DB00530
-
-```
-#### Command line
-```python
-drugbank --config config_drugbank.yml --output_sdf_path output_drugbank.sdf
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_drugbank.json)
-```python
-{
-  "properties": {
-    "drugbank_id": "DB00530"
-  }
-}
-```
-#### Command line
-```python
-drugbank --config config_drugbank.json --output_sdf_path output_drugbank.sdf
-```
-
 ## Pdb_variants
 This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
 ### Get help
@@ -369,14 +312,14 @@ Command:
 pdb_variants -h
 ```
     usage: pdb_variants [-h] [-c CONFIG] -o OUTPUT_MUTATIONS_LIST_TXT
-    
+
     Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_MUTATIONS_LIST_TXT, --output_mutations_list_txt OUTPUT_MUTATIONS_LIST_TXT
                             Path to the TXT file containing an ASCII comma separated values of the mutations. Accepted formats: txt.
@@ -426,14 +369,14 @@ Command:
 ideal_sdf -h
 ```
     usage: ideal_sdf [-h] [-c CONFIG] -o OUTPUT_SDF_PATH
-    
+
     This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_SDF_PATH, --output_sdf_path OUTPUT_SDF_PATH
                             Path to the output SDF file. Accepted formats: sdf.
@@ -486,14 +429,14 @@ Command:
 pdb_cluster_zip -h
 ```
     usage: pdb_cluster_zip [-h] [-c CONFIG] -o OUTPUT_PDB_ZIP_PATH
-    
+
     Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a PDB cluster.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_PDB_ZIP_PATH, --output_pdb_zip_path OUTPUT_PDB_ZIP_PATH
                             Path to the ZIP or PDB file containing the output PDB files. Accepted formats: pdb, zip.
@@ -559,14 +502,14 @@ Command:
 alphafold -h
 ```
     usage: alphafold [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
-    
+
     This class is a wrapper for downloading a PDB structure from the Protein Data Bank.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
                             Path to the output PDB file. Accepted formats: pdb.
@@ -616,14 +559,14 @@ Command:
 ligand -h
 ```
     usage: ligand [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
-    
+
     Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB ligand.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
                             Path to the output PDB ligand file. Accepted formats: pdb.
@@ -676,14 +619,14 @@ Command:
 canonical_fasta -h
 ```
     usage: canonical_fasta [-h] [-c CONFIG] -o OUTPUT_FASTA_PATH
-    
+
     This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_FASTA_PATH, --output_fasta_path OUTPUT_FASTA_PATH
                             Path to the canonical FASTA file. Accepted formats: fasta.
@@ -736,14 +679,14 @@ Command:
 structure_info -h
 ```
     usage: structure_info [-h] [-c CONFIG] -o OUTPUT_JSON_PATH
-    
+
     This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_JSON_PATH, --output_json_path OUTPUT_JSON_PATH
                             Path to the output JSON file with all the structure information. Accepted formats: json.
@@ -793,14 +736,14 @@ Command:
 memprotmd_sim_search -h
 ```
     usage: memprotmd_sim_search [-h] [-c CONFIG] -o OUTPUT_SIMULATIONS
-    
+
     Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to perform advanced searches.
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -c CONFIG, --config CONFIG
                             This file can be a YAML file, JSON file or JSON string
-    
+
     required arguments:
       -o OUTPUT_SIMULATIONS, --output_simulations OUTPUT_SIMULATIONS
                             Path to the output JSON file. Accepted formats: json.

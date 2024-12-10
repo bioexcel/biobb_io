@@ -10,14 +10,6 @@
     "rest": true,
     "tools": [
         {
-            "block": "Drugbank",
-            "tool": "API Call",
-            "desc": "This class is a wrapper for the Drugbank REST API.",
-            "exec": "drugbank",
-            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#api-drugbank-module",
-            "rest": true
-        },
-        {
             "block": "Ligand",
             "tool": "API Call",
             "desc": "This class is a wrapper for downloading a PDB ligand from the Protein Data Bank.",

@@ -2,7 +2,6 @@ from . import (
     alphafold,
     api_binding_site,
     canonical_fasta,
-    drugbank,
     ideal_sdf,
     ligand,
     memprotmd_sim,
@@ -17,7 +16,6 @@ from . import (
 
 name = "api"
 __all__ = [
-    "drugbank",
     "ligand",
     "pdb",
     "alphafold",

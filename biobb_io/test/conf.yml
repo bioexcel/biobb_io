@@ -1,13 +1,6 @@
 global_properties:
   working_dir_path: /tmp/biobb/unitests
 
-drugbank:
-  paths:
-    output_sdf_path: output_sdf_path.sdf
-    reference_output_sdf_path: file:test_reference_dir/api/output_drugbank.sdf
-  properties:
-    drugbank_id: DB00530
-
 ligand:
   paths:
     output_pdb_path: output_pdb_path.pdb

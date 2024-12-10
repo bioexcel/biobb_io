@@ -143,25 +143,6 @@ def download_fasta(pdb_code, api_id, out_log=None, global_log=None):
     return requests.get(url, verify=True).content.decode("utf-8")
 
 
-def download_drugbank(
-    drugbank_id,
-    url="https://www.drugbank.ca/structures/small_molecule_drugs/%s.sdf?type=3d",
-    out_log=None,
-    global_log=None,
-):
-    """
-    Returns:
-        String: Content of the component file.
-    """
-    url = url % drugbank_id
-
-    fu.log("Downloading %s from: %s" % (drugbank_id, url), out_log, global_log)
-
-    text = requests.get(url, verify=True).content.decode("utf-8")
-
-    return text
-
-
 def download_binding_site(
     pdb_code,
     url="https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/%s",

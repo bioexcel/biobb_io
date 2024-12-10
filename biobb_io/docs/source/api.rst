@@ -12,14 +12,6 @@ api.alphafold module
     :undoc-members:
     :show-inheritance:
 
-api.drugbank module
--------------------
-
-.. automodule:: api.drugbank
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 api.ligand module
 ------------------
 

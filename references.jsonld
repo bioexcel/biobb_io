@@ -3,17 +3,7 @@
   "@id": "https://github.com/bioexcel/biobb_io",
   "@type": "ItemList",
   "name": "biobb_io",
-  "itemListElement":[ 
-    {
-      "@type": "SoftwareApplication",
-      "description": "DrugBank is a comprehensive online database that provides information about the molecular and pharmacological aspects of drugs.",
-      "name": "DrugBank",
-      "url": "https://go.drugbank.com/",
-      "applicationCategory": "Drug database",
-      "citation": "http://www.ncbi.nlm.nih.gov/pubmed/37953279",
-      "license": "other",
-      "softwareVersion": "6.0"
-    },
+  "itemListElement": [
     {
       "@type": "SoftwareApplication",
       "description": "AlphaFold Protein Structure Database.",
