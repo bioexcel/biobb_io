@@ -1,5 +1,12 @@
 # Biobb IO changelog
 
+## What's new in version [5.0.1](https://github.com/bioexcel/biobb_io/releases/tag/v5.0.1)?
+
+### Changes
+
+* [FIX](Drugbank): Remove Drugbank block because programatical access has been prohibited.
+
+
 ## What's new in version [5.0.0](https://github.com/bioexcel/biobb_io/releases/tag/v5.0.0)?
 
 ### Changes
