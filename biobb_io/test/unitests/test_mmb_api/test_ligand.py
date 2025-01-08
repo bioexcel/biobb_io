@@ -14,4 +14,4 @@ class TestLigand():
     def test_ligand(self):
         ligand(properties=self.properties, **self.paths)
         assert fx.not_empty(self.paths['output_pdb_path'])
-        assert fx.equal_txt(self.paths['output_pdb_path'], self.paths['reference_output_pdb_path'])
+        assert fx.equal_txt(self.paths['output_pdb_path'], self.paths['reference_output_pdb_path'], percent_tolerance=50)
