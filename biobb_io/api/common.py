@@ -20,14 +20,12 @@ def check_output_path(path, argument, optional, out_log, classname) -> str:
     file_extension = PurePath(path).suffix
     if not is_valid_file(file_extension[1:], argument):
         fu.log(
-            classname
-            + ": Format %s in %s file is not compatible"
+            classname + ": Format %s in %s file is not compatible"
             % (file_extension[1:], argument),
             out_log,
         )
         raise SystemExit(
-            classname
-            + ": Format %s in %s file is not compatible"
+            classname + ": Format %s in %s file is not compatible"
             % (file_extension[1:], argument)
         )
     return path
@@ -112,9 +110,7 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
         text = requests.get(url, verify=True).content.decode("utf-8")
     elif api_id == "pdbe":
         url = (
-            "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/"
-            + ligand_code.upper()
-            + "_ideal.pdb"
+            "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
         )
         text = urllib.request.urlopen(url).read().decode("utf-8")
 
@@ -173,16 +169,12 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
 
     if api_id == "pdb":
         url = (
-            "https://files.rcsb.org/ligands/download/"
-            + ligand_code.upper()
-            + "_ideal.sdf"
+            "https://files.rcsb.org/ligands/download/" + ligand_code.upper() + "_ideal.sdf"
         )
         text = requests.get(url, verify=True).content.decode("utf-8")
     elif api_id == "pdbe":
         url = (
-            "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/"
-            + ligand_code.upper()
-            + "_ideal.sdf"
+            "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.sdf"
         )
         text = urllib.request.urlopen(url).read().decode("utf-8")
 
@@ -268,22 +260,11 @@ def get_cluster_pdb_codes(pdb_code, cluster, out_log=None, global_log=None):
 
     if out_log:
         out_log.info(
-            "Cluster: "
-            + str(cluster)
-            + " of pdb_code: "
-            + pdb_code
-            + "\n List: "
-            + str(pdb_codes)
+            "Cluster: " + str(cluster) + " of pdb_code: " + pdb_code + "\n List: " + str(pdb_codes)
         )
     if global_log:
         global_log.info(
-            fu.get_logs_prefix()
-            + "Cluster: "
-            + str(cluster)
-            + " of pdb_code: "
-            + pdb_code
-            + "\n List: "
-            + str(pdb_codes)
+            fu.get_logs_prefix() + "Cluster: " + str(cluster) + " of pdb_code: " + pdb_code + "\n List: " + str(pdb_codes)
         )
 
     return pdb_codes
@@ -395,9 +376,7 @@ def get_memprotmd_sim(pdb_code, output_file, out_log=None, global_log=None):
     fu.log("Getting simulation file from pdb code %s" % (pdb_code), out_log, global_log)
 
     url = (
-        "http://memprotmd.bioch.ox.ac.uk/data/memprotmd/simulations/"
-        + pdb_code
-        + "_default_dppc/files/run/at.zip"
+        "http://memprotmd.bioch.ox.ac.uk/data/memprotmd/simulations/" + pdb_code + "_default_dppc/files/run/at.zip"
     )
     response = requests.get(url)
 
