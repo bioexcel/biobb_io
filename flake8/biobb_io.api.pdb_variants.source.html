@@ -29,37 +29,37 @@
                class="code sev- "><tt><i>4</i> &nbsp;</tt>
             </div>
             <div id="l5"
-               class="code sev- "><tt><i>5</i> <span class="kn">import</span> <span class="nn">argparse</span></tt>
+               class="code sev- "><tt><i>5</i> <span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span></tt>
             </div>
             <div id="l6"
-               class="code sev- "><tt><i>6</i> <span class="kn">import</span> <span class="nn">re</span></tt>
+               class="code sev- "><tt><i>6</i> <span class="kn">import</span><span class="w"> </span><span class="nn">re</span></tt>
             </div>
             <div id="l7"
-               class="code sev- "><tt><i>7</i> <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span></tt>
+               class="code sev- "><tt><i>7</i> <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span></tt>
             </div>
             <div id="l8"
                class="code sev- "><tt><i>8</i> &nbsp;</tt>
             </div>
             <div id="l9"
-               class="code sev- "><tt><i>9</i> <span class="kn">import</span> <span class="nn">requests</span></tt>
+               class="code sev- "><tt><i>9</i> <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span></tt>
             </div>
             <div id="l10"
-               class="code sev- "><tt><i>10</i> <span class="kn">from</span> <span class="nn">biobb_common.configuration</span> <span class="kn">import</span> <span class="n">settings</span></tt>
+               class="code sev- "><tt><i>10</i> <span class="kn">from</span><span class="w"> </span><span class="nn">biobb_common.configuration</span><span class="w"> </span><span class="kn">import</span> <span class="n">settings</span></tt>
             </div>
             <div id="l11"
-               class="code sev- "><tt><i>11</i> <span class="kn">from</span> <span class="nn">biobb_common.generic.biobb_object</span> <span class="kn">import</span> <span class="n">BiobbObject</span></tt>
+               class="code sev- "><tt><i>11</i> <span class="kn">from</span><span class="w"> </span><span class="nn">biobb_common.generic.biobb_object</span><span class="w"> </span><span class="kn">import</span> <span class="n">BiobbObject</span></tt>
             </div>
             <div id="l12"
-               class="code sev- "><tt><i>12</i> <span class="kn">from</span> <span class="nn">biobb_common.tools</span> <span class="kn">import</span> <span class="n">file_utils</span> <span class="k">as</span> <span class="n">fu</span></tt>
+               class="code sev- "><tt><i>12</i> <span class="kn">from</span><span class="w"> </span><span class="nn">biobb_common.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">file_utils</span> <span class="k">as</span> <span class="n">fu</span></tt>
             </div>
             <div id="l13"
-               class="code sev- "><tt><i>13</i> <span class="kn">from</span> <span class="nn">biobb_common.tools.file_utils</span> <span class="kn">import</span> <span class="n">launchlogger</span></tt>
+               class="code sev- "><tt><i>13</i> <span class="kn">from</span><span class="w"> </span><span class="nn">biobb_common.tools.file_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">launchlogger</span></tt>
             </div>
             <div id="l14"
                class="code sev- "><tt><i>14</i> &nbsp;</tt>
             </div>
             <div id="l15"
-               class="code sev- "><tt><i>15</i> <span class="kn">from</span> <span class="nn">biobb_io.api.common</span> <span class="kn">import</span> <span class="p">(</span></tt>
+               class="code sev- "><tt><i>15</i> <span class="kn">from</span><span class="w"> </span><span class="nn">biobb_io.api.common</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span></tt>
             </div>
             <div id="l16"
                class="code sev- "><tt><i>16</i>     <span class="n">check_mandatory_property</span><span class="p">,</span></tt>
@@ -83,7 +83,7 @@
                class="code sev- "><tt><i>22</i> &nbsp;</tt>
             </div>
             <div id="l23"
-               class="code sev- "><tt><i>23</i> <span class="k">class</span> <span class="nc">PdbVariants</span><span class="p">(</span><span class="n">BiobbObject</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>23</i> <span class="k">class</span><span class="w"> </span><span class="nc">PdbVariants</span><span class="p">(</span><span class="n">BiobbObject</span><span class="p">):</span></tt>
             </div>
             <div id="l24"
                class="code sev- "><tt><i>24</i> <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span></tt>
@@ -185,7 +185,7 @@
                class="code sev- "><tt><i>56</i> &nbsp;</tt>
             </div>
             <div id="l57"
-               class="code sev- "><tt><i>57</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_mutations_list_txt</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>57</i>     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_mutations_list_txt</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l58"
                class="code sev- "><tt><i>58</i>         <span class="n">properties</span> <span class="o">=</span> <span class="n">properties</span> <span class="ow">or</span> <span class="p">{}</span></tt>
@@ -239,7 +239,7 @@
                class="code sev- "><tt><i>74</i> &nbsp;</tt>
             </div>
             <div id="l75"
-               class="code sev- "><tt><i>75</i>     <span class="k">def</span> <span class="nf">check_data_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_log</span><span class="p">,</span> <span class="n">err_log</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>75</i>     <span class="k">def</span><span class="w"> </span><span class="nf">check_data_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_log</span><span class="p">,</span> <span class="n">err_log</span><span class="p">):</span></tt>
             </div>
             <div id="l76"
                class="code sev- "><tt><i>76</i> <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks all the input/output paths and parameters&quot;&quot;&quot;</span></tt>
@@ -272,7 +272,7 @@
                class="code sev- "><tt><i>85</i>     <span class="nd">@launchlogger</span></tt>
             </div>
             <div id="l86"
-               class="code sev- "><tt><i>86</i>     <span class="k">def</span> <span class="nf">launch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>86</i>     <span class="k">def</span><span class="w"> </span><span class="nf">launch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span></tt>
             </div>
             <div id="l87"
                class="code sev- "><tt><i>87</i> <span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the :class:`PdbVariants &lt;api.pdb_variants.PdbVariants&gt;` api.pdb_variants.PdbVariants object.&quot;&quot;&quot;</span></tt>
@@ -560,7 +560,7 @@
                class="code sev- "><tt><i>169</i> &nbsp;</tt>
             </div>
             <div id="l170"
-               class="code sev- "><tt><i>170</i> <span class="k">def</span> <span class="nf">pdb_variants</span><span class="p">(</span></tt>
+               class="code sev- "><tt><i>170</i> <span class="k">def</span><span class="w"> </span><span class="nf">pdb_variants</span><span class="p">(</span></tt>
             </div>
             <div id="l171"
                class="code sev- "><tt><i>171</i>     <span class="n">output_mutations_list_txt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span></tt>
@@ -599,7 +599,7 @@
                class="code sev- "><tt><i>182</i> &nbsp;</tt>
             </div>
             <div id="l183"
-               class="code sev- "><tt><i>183</i> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span></tt>
+               class="code sev- "><tt><i>183</i> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span></tt>
             </div>
             <div id="l184"
                class="code sev- "><tt><i>184</i> <span class="w">    </span><span class="sd">&quot;&quot;&quot;Command line execution of this building block. Please check the command line documentation.&quot;&quot;&quot;</span></tt>
