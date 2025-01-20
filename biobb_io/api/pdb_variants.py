@@ -131,14 +131,10 @@ class PdbVariants(BiobbObject):
             for k in mapdic.keys():
                 for fragment in mapdic[k]:
                     if (
-                        int(fragment["unp_start"])
-                        <= int(uni_mut["resnum"])
-                        <= int(fragment["unp_end"])
+                        int(fragment["unp_start"]) <= int(uni_mut["resnum"]) <= int(fragment["unp_end"])
                     ):
                         resnum = (
-                            int(uni_mut["resnum"])
-                            + int(fragment["pdb_start"])
-                            - int(fragment["unp_start"])
+                            int(uni_mut["resnum"]) + int(fragment["pdb_start"]) - int(fragment["unp_start"])
                         )
                         mutations.append(
                             k[-1] + "." + uni_mut["wt"] + str(resnum) + uni_mut["mt"]

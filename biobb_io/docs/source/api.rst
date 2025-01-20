@@ -12,6 +12,14 @@ api.alphafold module
     :undoc-members:
     :show-inheritance:
 
+api.mddb module
+---------------------
+
+.. automodule:: api.mddb
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 api.ligand module
 ------------------
 
