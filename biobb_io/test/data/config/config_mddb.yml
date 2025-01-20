@@ -1,0 +1,5 @@
+properties:
+  frames: '10:20:2'
+  project_id: A0001
+  selection: backbone and _C
+  trj_format: xtc

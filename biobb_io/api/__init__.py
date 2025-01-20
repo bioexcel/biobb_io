@@ -12,6 +12,7 @@ from . import (
     pdb_cluster_zip,
     pdb_variants,
     structure_info,
+    mddb
 )
 
 name = "api"
@@ -29,4 +30,5 @@ __all__ = [
     "mmcif",
     "ideal_sdf",
     "structure_info",
+    "mddb"
 ]

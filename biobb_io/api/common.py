@@ -4,6 +4,7 @@ import json
 import os
 import re
 import urllib.request
+import urllib.parse
 from pathlib import Path, PurePath
 
 import requests
@@ -43,6 +44,8 @@ def is_valid_file(ext, argument):
         "output_json_path": ["json"],
         "output_fasta_path": ["fasta"],
         "output_mmcif_path": ["mmcif", "cif"],
+        "output_top_path": ["pdb"],
+        "output_trj_path": ["mdcrd", "trr", "xtc"]
     }
     return ext in formats[argument]
 
@@ -80,6 +83,42 @@ def download_af(uniprot_code, out_log=None, global_log=None, classname=None):
         raise SystemExit(classname + ": Incorrect Uniprot Code: %s" % (uniprot_code))
 
     return r.content.decode("utf-8")
+
+
+def download_mddb_top(project_id, node_id, selection, out_log=None, global_log=None, classname=None):
+    """
+    Returns:
+        String: Content of the pdb file.
+    """
+
+    url = "https://" + node_id + ".mddbr.eu/api/rest/v1/projects/" + project_id + "/structure?selection=" + urllib.parse.quote(str(selection))
+
+    fu.log("Downloading %s topology from: %s" % (project_id, url), out_log, global_log)
+
+    r = requests.get(url)
+    if r.status_code == 404:
+        fu.log(classname + ": Incorrect url, check project_id, node_id and selection: %s" % (url), out_log)
+        raise SystemExit(classname + ": Incorrect url, check project_id, node_id and selection: %s" % (url))
+
+    return r.content.decode("utf-8")
+
+
+def download_mddb_trj(project_id, node_id, trj_format, frames, selection, out_log=None, global_log=None, classname=None):
+    """
+    Returns:
+        String: Content of the trajectory file.
+    """
+
+    url = "https://" + node_id + ".mddbr.eu/api/rest/v1/projects/" + project_id + "/trajectory?format=" + trj_format + "&frames=" + frames + "&selection=" + urllib.parse.quote(str(selection))
+
+    fu.log("Downloading %s trajectory from: %s" % (project_id, url), out_log, global_log)
+
+    r = requests.get(url)
+    if r.status_code == 404:
+        fu.log(classname + ": Incorrect url, check project_id, node_id, trj_format, frames and selection: %s" % (url), out_log)
+        raise SystemExit(classname + ": Incorrect url, check project_id, node_id, trj_format, frames and selection: %s" % (url))
+
+    return r.content
 
 
 def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
@@ -220,6 +259,13 @@ def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=N
                     output_pdb_file.write(line)
         else:
             output_pdb_file.write(pdb_string)
+
+
+def write_bin(bin_string, output_bin_path, out_log=None, global_log=None):
+    """Writes a BIN"""
+    fu.log("Writting bin to: %s" % (output_bin_path), out_log, global_log)
+    with open(output_bin_path, "wb") as output_bin_file:
+        output_bin_file.write(bin_string)
 
 
 def write_mmcif(mmcif_string, output_mmcif_path, out_log=None, global_log=None):

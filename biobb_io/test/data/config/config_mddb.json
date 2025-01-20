@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "project_id": "A0001",
+    "trj_format": "xtc",
+    "frames": "10:20:2",
+    "selection": "backbone and _C"
+  }
+}

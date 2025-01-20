@@ -112,6 +112,14 @@
             "exec": "structure_info",
             "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.structure_info",
             "rest": true
+        },
+        {
+            "block": "MDDB",
+            "tool": "API Call",
+            "desc": "This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.",
+            "exec": "mddb",
+            "docs": "https://biobb-io.readthedocs.io/en/latest/api.html#module-api.mddb",
+            "rest": true
         }
     ],
     "dep_pypi": [
@@ -131,6 +139,8 @@
         "MemProtMD",
         "sdf",
         "mmcif",
-        "fasta"
+        "fasta",
+        "alphafold",
+        "mddb"
     ]
 }

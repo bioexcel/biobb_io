@@ -1,0 +1,151 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/mddb",
+    "name": "biobb_io MDDB",
+    "title": "This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.",
+    "description": "Wrapper for the MDDB Database for downloading a trajectory and its corresponding topology.",
+    "type": "object",
+    "info": {
+        "wrapped_software": {
+            "name": "MDDB Database",
+            "license": "Apache-2.0"
+        },
+        "ontology": {
+            "name": "EDAM",
+            "schema": "http://edamontology.org/EDAM.owl"
+        }
+    },
+    "required": [
+        "output_top_path",
+        "output_trj_path"
+    ],
+    "properties": {
+        "output_top_path": {
+            "type": "string",
+            "description": "Path to the output toplogy file",
+            "filetype": "output",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_mddb.pdb",
+            "enum": [
+                ".*\\.pdb$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.pdb$",
+                    "description": "Path to the output toplogy file",
+                    "edam": "format_1476"
+                }
+            ]
+        },
+        "output_trj_path": {
+            "type": "string",
+            "description": "Path to the output trajectory file",
+            "filetype": "output",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_mddb.xtc",
+            "enum": [
+                ".*\\.mdcrd$",
+                ".*\\.trr$",
+                ".*\\.xtc$"
+            ],
+            "file_formats": [
+                {
+                    "extension": ".*\\.mdcrd$",
+                    "description": "Path to the output trajectory file",
+                    "edam": "format_3878"
+                },
+                {
+                    "extension": ".*\\.trr$",
+                    "description": "Path to the output trajectory file",
+                    "edam": "format_3910"
+                },
+                {
+                    "extension": ".*\\.xtc$",
+                    "description": "Path to the output trajectory file",
+                    "edam": "format_3875"
+                }
+            ]
+        },
+        "properties": {
+            "type": "object",
+            "properties": {
+                "project_id": {
+                    "type": "string",
+                    "default": null,
+                    "wf_prop": false,
+                    "description": "Project accession or identifier."
+                },
+                "node_id": {
+                    "type": "string",
+                    "default": "mmb",
+                    "wf_prop": false,
+                    "description": "MDDB node identifier."
+                },
+                "trj_format": {
+                    "type": "string",
+                    "default": "xtc",
+                    "wf_prop": false,
+                    "description": "Trajectory format. ",
+                    "enum": [
+                        "mdcrd",
+                        "trr",
+                        "gro",
+                        "binpos",
+                        "xtc"
+                    ],
+                    "property_formats": [
+                        {
+                            "name": "mdcrd",
+                            "description": "AMBER trajectory format"
+                        },
+                        {
+                            "name": "trr",
+                            "description": "Trajectory of a simulation experiment used by GROMACS"
+                        },
+                        {
+                            "name": "gro",
+                            "description": "GROMACS structure"
+                        },
+                        {
+                            "name": "binpos",
+                            "description": "Translation of the ASCII atom coordinate format to binary code"
+                        },
+                        {
+                            "name": "xtc",
+                            "description": "Portable binary format for trajectories produced by GROMACS package"
+                        }
+                    ]
+                },
+                "frames": {
+                    "type": "string",
+                    "default": null,
+                    "wf_prop": false,
+                    "description": "Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: 10:20:2)."
+                },
+                "selection": {
+                    "type": "string",
+                    "default": null,
+                    "wf_prop": false,
+                    "description": "Specify a NGL-formatted selection for the returned trajectory."
+                },
+                "remove_tmp": {
+                    "type": "boolean",
+                    "default": true,
+                    "wf_prop": true,
+                    "description": "Remove temporal files."
+                },
+                "restart": {
+                    "type": "boolean",
+                    "default": false,
+                    "wf_prop": true,
+                    "description": "Do not execute if output files exist."
+                },
+                "sandbox_path": {
+                    "type": "string",
+                    "default": "./",
+                    "wf_prop": true,
+                    "description": "Parent path to the sandbox directory."
+                }
+            }
+        }
+    },
+    "additionalProperties": false
+}

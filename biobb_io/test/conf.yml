@@ -101,3 +101,15 @@ structure_info:
     reference_output_json_path: file:test_reference_dir/api/ref_str_info.json
   properties:
     pdb_code: 2VGB
+
+mddb:
+  paths:
+    output_top_path: output_top_path.pdb
+    reference_output_top_path: file:test_reference_dir/api/output_mddb.pdb
+    output_trj_path: output_trj_path.xtc
+    reference_output_trj_path: file:test_reference_dir/api/output_mddb.xtc
+  properties:
+    project_id: A0001
+    trj_format: xtc
+    frames: "10:20:2"
+    selection: backbone and _C
