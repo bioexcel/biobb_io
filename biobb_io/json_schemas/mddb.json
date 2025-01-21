@@ -87,8 +87,6 @@
                     "enum": [
                         "mdcrd",
                         "trr",
-                        "gro",
-                        "binpos",
                         "xtc"
                     ],
                     "property_formats": [
@@ -101,14 +99,6 @@
                             "description": "Trajectory of a simulation experiment used by GROMACS"
                         },
                         {
-                            "name": "gro",
-                            "description": "GROMACS structure"
-                        },
-                        {
-                            "name": "binpos",
-                            "description": "Translation of the ASCII atom coordinate format to binary code"
-                        },
-                        {
                             "name": "xtc",
                             "description": "Portable binary format for trajectories produced by GROMACS package"
                         }
@@ -118,13 +108,13 @@
                     "type": "string",
                     "default": null,
                     "wf_prop": false,
-                    "description": "Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: 10:20:2)."
+                    "description": "Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2')."
                 },
                 "selection": {
                     "type": "string",
                     "default": null,
                     "wf_prop": false,
-                    "description": "Specify a NGL-formatted selection for the returned trajectory."
+                    "description": "Specify a NGL-formatted selection for the returned trajectory. [See here for the kind of selection that can be used](http://nglviewer.org/ngl/api/manual/usage/selection-language.html)."
                 },
                 "remove_tmp": {
                     "type": "boolean",
