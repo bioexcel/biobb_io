@@ -33,7 +33,7 @@ class MDDB(BiobbObject):
             * **node_id** (*str*) - ("mmb") MDDB node identifier.
             * **trj_format** (*str*) - ("xtc") Trajectory format. Values: mdcrd (AMBER trajectory format), trr (Trajectory of a simulation experiment used by GROMACS), xtc (Portable binary format for trajectories produced by GROMACS package).
             * **frames** (*str*) - (None) Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2').
-            * **selection** (*str*) - (None) Specify a NGL-formatted selection for the returned trajectory. [See here for the kind of selection that can be used](http://nglviewer.org/ngl/api/manual/usage/selection-language.html).
+            * **selection** (*str*) - (None) Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
             * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
