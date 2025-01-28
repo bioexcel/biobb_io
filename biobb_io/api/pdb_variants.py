@@ -175,6 +175,8 @@ def pdb_variants(
         **kwargs,
     ).launch()
 
+    pdb_variants.__doc__ = PdbVariants.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""

@@ -118,6 +118,8 @@ def structure_info(
         output_json_path=output_json_path, properties=properties, **kwargs
     ).launch()
 
+    structure_info.__doc__ = StructureInfo.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""

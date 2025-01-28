@@ -120,6 +120,8 @@ def canonical_fasta(
         output_fasta_path=output_fasta_path, properties=properties, **kwargs
     ).launch()
 
+    canonical_fasta.__doc__ = CanonicalFasta.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""

@@ -118,6 +118,8 @@ def alphafold(output_pdb_path: str, properties: Optional[dict] = None, **kwargs)
         output_pdb_path=output_pdb_path, properties=properties, **kwargs
     ).launch()
 
+    alphafold.__doc__ = AlphaFold.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""

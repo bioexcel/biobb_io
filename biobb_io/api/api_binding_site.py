@@ -130,6 +130,8 @@ def api_binding_site(
         output_json_path=output_json_path, properties=properties, **kwargs
     ).launch()
 
+    api_binding_site.__doc__ = ApiBindingSite.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""

@@ -153,6 +153,8 @@ def mddb(output_top_path: str, output_trj_path: str, properties: Optional[dict] 
         output_top_path=output_top_path, output_trj_path=output_trj_path, properties=properties, **kwargs
     ).launch()
 
+    mddb.__doc__ = MDDB.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""

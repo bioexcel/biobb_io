@@ -118,6 +118,8 @@ def mmcif(output_mmcif_path: str, properties: Optional[dict] = None, **kwargs) -
         output_mmcif_path=output_mmcif_path, properties=properties, **kwargs
     ).launch()
 
+    mmcif.__doc__ = Mmcif.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""

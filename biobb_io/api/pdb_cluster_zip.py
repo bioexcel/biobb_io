@@ -132,7 +132,10 @@ class PdbClusterZip(BiobbObject):
         fu.log("Zipping the pdb files to: %s" % self.output_pdb_zip_path)
         fu.zip_list(self.output_pdb_zip_path, file_list, out_log=self.out_log)
 
-        self.tmp_files.extend([self.stage_io_dict.get("unique_dir", ""), unique_dir])
+        self.tmp_files.extend([
+            # self.stage_io_dict.get("unique_dir", ""),
+            unique_dir
+        ])
         self.remove_tmp_files()
 
         self.check_arguments(output_files_created=True, raise_exception=False)
@@ -149,6 +152,8 @@ def pdb_cluster_zip(
     return PdbClusterZip(
         output_pdb_zip_path=output_pdb_zip_path, properties=properties, **kwargs
     ).launch()
+
+    pdb_cluster_zip.__doc__ = PdbClusterZip.__doc__
 
 
 def main():

@@ -113,6 +113,8 @@ def memprotmd_sim_search(
         output_simulations=output_simulations, properties=properties, **kwargs
     ).launch()
 
+    memprotmd_sim_search.__doc__ = MemProtMDSimSearch.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""

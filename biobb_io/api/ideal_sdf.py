@@ -118,6 +118,8 @@ def ideal_sdf(output_sdf_path: str, properties: Optional[dict] = None, **kwargs)
         output_sdf_path=output_sdf_path, properties=properties, **kwargs
     ).launch()
 
+    ideal_sdf.__doc__ = IdealSdf.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""

@@ -113,6 +113,8 @@ def memprotmd_sim(
         output_simulation=output_simulation, properties=properties, **kwargs
     ).launch()
 
+    memprotmd_sim.__doc__ = MemProtMDSim.__doc__
+
 
 def main():
     """Command line execution of this building block. Please check the command line documentation."""
