@@ -38,7 +38,7 @@ pdb:
   properties:
     pdb_code: 2VGB
     filter: [ATOM, HETATM]
-    api_id: mmb
+    api_id: pdbe
 
 alphafold:
   paths:
