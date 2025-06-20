@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="biobb_io",
-    version="5.0.1",
+    version="5.1.0",
     author="Biobb developers",
     author_email="pau.andrio@bsc.es",
     description="Biobb_io is the Biobb module collection to fetch data to be consumed by the rest of the Biobb building blocks.",
@@ -19,7 +19,7 @@ setuptools.setup(
     },
     packages=setuptools.find_packages(exclude=["docs", "test"]),
     package_data={"biobb_io": ["py.typed"]},
-    install_requires=["biobb_common==5.0.0"],
+    install_requires=["biobb_common==5.1.0"],
     python_requires=">=3.9",
     entry_points={
         "console_scripts": [
@@ -28,6 +28,7 @@ setuptools.setup(
             "canonical_fasta = biobb_io.api.canonical_fasta:main",
             "ideal_sdf = biobb_io.api.ideal_sdf:main",
             "ligand = biobb_io.api.ligand:main",
+            "mddb = biobb_io.api.mddb:main",
             "memprotmd_sim_list = biobb_io.api.memprotmd_sim_list:main",
             "memprotmd_sim_search = biobb_io.api.memprotmd_sim_search:main",
             "memprotmd_sim = biobb_io.api.memprotmd_sim:main",
