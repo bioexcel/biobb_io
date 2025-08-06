@@ -6,6 +6,543 @@ biobb_command [-h] --config CONFIG --input_file(s) <input_file(s)> --output_file
 -----------------
 
 
+## Alphafold
+This class is a wrapper for downloading a PDB structure from the AlphaFold Protein Structure Database.
+### Get help
+Command:
+```python
+alphafold -h
+```
+    usage: alphafold [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
+    
+    This class is a wrapper for downloading a PDB structure from the Protein Data Bank.
+    
+    options:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
+                            Path to the output PDB file. Accepted formats: pdb.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_pdb_path** (*string*): Path to the output PDB file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_alphafold.pdb). Accepted formats: PDB
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **uniprot_code** (*string*): (None) Uniprot code..
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_alphafold.yml)
+```python
+properties:
+  uniprot_code: P00489
+
+```
+#### Command line
+```python
+alphafold --config config_alphafold.yml --output_pdb_path output_alphafold.pdb
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_alphafold.json)
+```python
+{
+  "properties": {
+    "uniprot_code": "P00489"
+  }
+}
+```
+#### Command line
+```python
+alphafold --config config_alphafold.json --output_pdb_path output_alphafold.pdb
+```
+
+## Api_binding_site
+This class is a wrapper for the PDBe REST API Binding Sites endpoint.
+### Get help
+Command:
+```python
+api_binding_site -h
+```
+    usage: api_binding_site [-h] [-c CONFIG] -o OUTPUT_JSON_PATH
+    
+    This class is a wrapper for the PDBe REST API Binding Sites endpoint
+    
+    options:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_JSON_PATH, --output_json_path OUTPUT_JSON_PATH
+                            Path to the JSON file with the binding sites for the requested structure. Accepted formats: json.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_json_path** (*string*): Path to the JSON file with the binding sites for the requested structure. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_binding_site.json). Accepted formats: JSON
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **pdb_code** (*string*): (None) RSCB PDB code..
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_api_binding_site.yml)
+```python
+properties:
+  pdb_code: 4i23
+
+```
+#### Command line
+```python
+api_binding_site --config config_api_binding_site.yml --output_json_path output_binding_site.json
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_api_binding_site.json)
+```python
+{
+  "properties": {
+    "pdb_code": "4i23"
+  }
+}
+```
+#### Command line
+```python
+api_binding_site --config config_api_binding_site.json --output_json_path output_binding_site.json
+```
+
+## Canonical_fasta
+This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.
+### Get help
+Command:
+```python
+canonical_fasta -h
+```
+    usage: canonical_fasta [-h] [-c CONFIG] -o OUTPUT_FASTA_PATH
+    
+    This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.
+    
+    options:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_FASTA_PATH, --output_fasta_path OUTPUT_FASTA_PATH
+                            Path to the canonical FASTA file. Accepted formats: fasta.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_fasta_path** (*string*): Path to the canonical FASTA file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/canonical_fasta.fasta). Accepted formats: FASTA
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **pdb_code** (*string*): (None) RSCB PDB code..
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_canonical_fasta.yml)
+```python
+properties:
+  api_id: pdbe
+  pdb_code: 4i23
+
+```
+#### Command line
+```python
+canonical_fasta --config config_canonical_fasta.yml --output_fasta_path canonical_fasta.fasta
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_canonical_fasta.json)
+```python
+{
+  "properties": {
+    "pdb_code": "4i23",
+    "api_id": "pdbe"
+  }
+}
+```
+#### Command line
+```python
+canonical_fasta --config config_canonical_fasta.json --output_fasta_path canonical_fasta.fasta
+```
+
+## Ideal_sdf
+This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.
+### Get help
+Command:
+```python
+ideal_sdf -h
+```
+    usage: ideal_sdf [-h] [-c CONFIG] -o OUTPUT_SDF_PATH
+    
+    This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.
+    
+    options:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_SDF_PATH, --output_sdf_path OUTPUT_SDF_PATH
+                            Path to the output SDF file. Accepted formats: sdf.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_sdf_path** (*string*): Path to the output SDF file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ref_output.sdf). Accepted formats: SDF
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **ligand_code** (*string*): (None) RSCB PDB ligand code..
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the SDF structure will be downloaded. .
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ideal_sdf.yml)
+```python
+properties:
+  api_id: pdbe
+  ligand_code: HYZ
+
+```
+#### Command line
+```python
+ideal_sdf --config config_ideal_sdf.yml --output_sdf_path ref_output.sdf
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ideal_sdf.json)
+```python
+{
+  "properties": {
+    "ligand_code": "HYZ",
+    "api_id": "pdbe"
+  }
+}
+```
+#### Command line
+```python
+ideal_sdf --config config_ideal_sdf.json --output_sdf_path ref_output.sdf
+```
+
+## Ligand
+This class is a wrapper for downloading a PDB ligand from the Protein Data Bank.
+### Get help
+Command:
+```python
+ligand -h
+```
+    usage: ligand [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
+    
+    Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB ligand.
+    
+    options:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
+                            Path to the output PDB ligand file. Accepted formats: pdb.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_pdb_path** (*string*): Path to the output PDB ligand file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_ligand.pdb). Accepted formats: PDB
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **ligand_code** (*string*): (None) RSCB PDB ligand code..
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ligand.yml)
+```python
+properties:
+  api_id: pdbe
+  ligand_code: IBP
+
+```
+#### Command line
+```python
+ligand --config config_ligand.yml --output_pdb_path output_ligand.pdb
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ligand.json)
+```python
+{
+  "properties": {
+    "ligand_code": "IBP",
+    "api_id": "pdbe"
+  }
+}
+```
+#### Command line
+```python
+ligand --config config_ligand.json --output_pdb_path output_ligand.pdb
+```
+
+## Mddb
+This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.
+### Get help
+Command:
+```python
+mddb -h
+```
+    usage: mddb [-h] [-c CONFIG] -o OUTPUT_TOP_PATH -t OUTPUT_TRJ_PATH
+    
+    This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.
+    
+    options:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_TOP_PATH, --output_top_path OUTPUT_TOP_PATH
+                            Path to the output toplogy file. Accepted formats: pdb.
+      -t OUTPUT_TRJ_PATH, --output_trj_path OUTPUT_TRJ_PATH
+                            Path to the output trajectory file. Accepted formats: mdcrd, trr, xtc.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_top_path** (*string*): Path to the output toplogy file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_mddb.pdb). Accepted formats: PDB
+* **output_trj_path** (*string*): Path to the output trajectory file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_mddb.xtc). Accepted formats: MDCRD, TRR, XTC
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **project_id** (*string*): (None) Project accession or identifier..
+* **node_id** (*string*): (mmb) MDDB node identifier..
+* **trj_format** (*string*): (xtc) Trajectory format. .
+* **frames** (*string*): (None) Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2')..
+* **selection** (*string*): (None) Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html..
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_mddb.yml)
+```python
+properties:
+  frames: '10:20:2'
+  project_id: A0001
+  selection: backbone and _C
+  trj_format: xtc
+
+```
+#### Command line
+```python
+mddb --config config_mddb.yml --output_top_path output_mddb.pdb --output_trj_path output_mddb.xtc
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_mddb.json)
+```python
+{
+  "properties": {
+    "project_id": "A0001",
+    "trj_format": "xtc",
+    "frames": "10:20:2",
+    "selection": "backbone and _C"
+  }
+}
+```
+#### Command line
+```python
+mddb --config config_mddb.json --output_top_path output_mddb.pdb --output_trj_path output_mddb.xtc
+```
+
+## Memprotmd_sim
+This class is a wrapper of the MemProtMD to download a simulation using its REST API.
+### Get help
+Command:
+```python
+memprotmd_sim -h
+```
+    usage: memprotmd_sim [-h] [-c CONFIG] -o OUTPUT_SIMULATION
+    
+    Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to download a simulation.
+    
+    options:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_SIMULATION, --output_simulation OUTPUT_SIMULATION
+                            Path to the output simulation in a ZIP file. Accepted formats: zip.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_simulation** (*string*): Path to the output simulation in a ZIP file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim.zip). Accepted formats: ZIP
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **pdb_code** (*string*): (None) RSCB PDB code..
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim.yml)
+```python
+properties:
+  pdb_code: 1hzx
+
+```
+#### Command line
+```python
+memprotmd_sim --config config_memprotmd_sim.yml --output_simulation output_sim.zip
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim.json)
+```python
+{
+  "properties": {
+    "pdb_code": "1hzx"
+  }
+}
+```
+#### Command line
+```python
+memprotmd_sim --config config_memprotmd_sim.json --output_simulation output_sim.zip
+```
+
+## Memprotmd_sim_list
+This class is a wrapper of the MemProtMD to get all available membrane-protein systems from its REST API.
+### Get help
+Command:
+```python
+memprotmd_sim_list -h
+```
+    usage: memprotmd_sim_list [-h] [-c CONFIG] -o OUTPUT_SIMULATIONS
+    
+    Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to get all available membrane-protein systems (simulations).
+    
+    options:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_SIMULATIONS, --output_simulations OUTPUT_SIMULATIONS
+                            Path to the output JSON file. Accepted formats: json.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_list.json). Accepted formats: JSON
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_list.yml)
+```python
+properties:
+  remove_tmp: false
+
+```
+#### Command line
+```python
+memprotmd_sim_list --config config_memprotmd_sim_list.yml --output_simulations output_sim_list.json
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_list.json)
+```python
+{
+  "properties": {
+    "remove_tmp": false
+  }
+}
+```
+#### Command line
+```python
+memprotmd_sim_list --config config_memprotmd_sim_list.json --output_simulations output_sim_list.json
+```
+
+## Memprotmd_sim_search
+This class is a wrapper of the MemProtMD to perform advanced searches in the MemProtMD DB using its REST API.
+### Get help
+Command:
+```python
+memprotmd_sim_search -h
+```
+    usage: memprotmd_sim_search [-h] [-c CONFIG] -o OUTPUT_SIMULATIONS
+    
+    Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to perform advanced searches.
+    
+    options:
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            This file can be a YAML file, JSON file or JSON string
+    
+    required arguments:
+      -o OUTPUT_SIMULATIONS, --output_simulations OUTPUT_SIMULATIONS
+                            Path to the output JSON file. Accepted formats: json.
+### I / O Arguments
+Syntax: input_argument (datatype) : Definition
+
+Config input / output arguments for this building block:
+* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_search.json). Accepted formats: JSON
+### Config
+Syntax: input_parameter (datatype) - (default_value) Definition
+
+Config parameters for this building block:
+* **collection_name** (*string*): (refs) Name of the collection to query..
+* **keyword** (*string*): (None) String to search for in the database metadata. Examples are families like gpcr or porin. .
+* **remove_tmp** (*boolean*): (True) Remove temporal files..
+* **restart** (*boolean*): (False) Do not execute if output files exist..
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+### YAML
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_search.yml)
+```python
+properties:
+  collection_name: refs
+  keyword: porin
+
+```
+#### Command line
+```python
+memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulations output_sim_search.json
+```
+### JSON
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_search.json)
+```python
+{
+  "properties": {
+    "collection_name": "refs",
+    "keyword": "porin"
+  }
+}
+```
+#### Command line
+```python
+memprotmd_sim_search --config config_memprotmd_sim_search.json --output_simulations output_sim_search.json
+```
+
 ## Mmcif
 This class is a wrapper for downloading a MMCIF structure from the Protein Data Bank.
 ### Get help
@@ -104,7 +641,7 @@ Config parameters for this building block:
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb.yml)
 ```python
 properties:
-  api_id: mmb
+  api_id: pdbe
   filter:
   - ATOM
   - HETATM
@@ -125,370 +662,13 @@ pdb --config config_pdb.yml --output_pdb_path output_pdb.pdb
       "ATOM",
       "HETATM"
     ],
-    "api_id": "mmb"
-  }
-}
-```
-#### Command line
-```python
-pdb --config config_pdb.json --output_pdb_path output_pdb.pdb
-```
-
-## Mddb
-This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.
-### Get help
-Command:
-```python
-mddb -h
-```
-    usage: mddb [-h] [-c CONFIG] -o OUTPUT_TOP_PATH -t OUTPUT_TRJ_PATH
-    
-    This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.
-    
-    options:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_TOP_PATH, --output_top_path OUTPUT_TOP_PATH
-                            Path to the output toplogy file. Accepted formats: pdb.
-      -t OUTPUT_TRJ_PATH, --output_trj_path OUTPUT_TRJ_PATH
-                            Path to the output trajectory file. Accepted formats: mdcrd, trr, xtc.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_top_path** (*string*): Path to the output toplogy file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_mddb.pdb). Accepted formats: PDB
-* **output_trj_path** (*string*): Path to the output trajectory file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_mddb.xtc). Accepted formats: MDCRD, TRR, XTC
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **project_id** (*string*): (None) Project accession or identifier..
-* **node_id** (*string*): (mmb) MDDB node identifier..
-* **trj_format** (*string*): (xtc) Trajectory format. .
-* **frames** (*string*): (None) Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: 10:20:2)..
-* **selection** (*string*): (None) Specify a NGL-formatted selection for the returned trajectory..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_mddb.yml)
-```python
-properties:
-  frames: '10:20:2'
-  project_id: A0001
-  selection: backbone and _C
-  trj_format: xtc
-
-```
-#### Command line
-```python
-mddb --config config_mddb.yml --output_top_path output_mddb.pdb --output_trj_path output_mddb.xtc
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_mddb.json)
-```python
-{
-  "properties": {
-    "project_id": "A0001",
-    "trj_format": "xtc",
-    "frames": "10:20:2",
-    "selection": "backbone and _C"
-  }
-}
-```
-#### Command line
-```python
-mddb --config config_mddb.json --output_top_path output_mddb.pdb --output_trj_path output_mddb.xtc
-```
-
-## Api_binding_site
-This class is a wrapper for the PDBe REST API Binding Sites endpoint.
-### Get help
-Command:
-```python
-api_binding_site -h
-```
-    usage: api_binding_site [-h] [-c CONFIG] -o OUTPUT_JSON_PATH
-    
-    This class is a wrapper for the PDBe REST API Binding Sites endpoint
-    
-    options:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_JSON_PATH, --output_json_path OUTPUT_JSON_PATH
-                            Path to the JSON file with the binding sites for the requested structure. Accepted formats: json.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_json_path** (*string*): Path to the JSON file with the binding sites for the requested structure. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_binding_site.json). Accepted formats: JSON
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB code..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_api_binding_site.yml)
-```python
-properties:
-  pdb_code: 4i23
-
-```
-#### Command line
-```python
-api_binding_site --config config_api_binding_site.yml --output_json_path output_binding_site.json
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_api_binding_site.json)
-```python
-{
-  "properties": {
-    "pdb_code": "4i23"
-  }
-}
-```
-#### Command line
-```python
-api_binding_site --config config_api_binding_site.json --output_json_path output_binding_site.json
-```
-
-## Memprotmd_sim_list
-This class is a wrapper of the MemProtMD to get all available membrane-protein systems from its REST API.
-### Get help
-Command:
-```python
-memprotmd_sim_list -h
-```
-    usage: memprotmd_sim_list [-h] [-c CONFIG] -o OUTPUT_SIMULATIONS
-    
-    Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to get all available membrane-protein systems (simulations).
-    
-    options:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_SIMULATIONS, --output_simulations OUTPUT_SIMULATIONS
-                            Path to the output JSON file. Accepted formats: json.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_list.json). Accepted formats: JSON
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_list.yml)
-```python
-properties:
-  remove_tmp: false
-
-```
-#### Command line
-```python
-memprotmd_sim_list --config config_memprotmd_sim_list.yml --output_simulations output_sim_list.json
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_list.json)
-```python
-{
-  "properties": {
-    "remove_tmp": false
-  }
-}
-```
-#### Command line
-```python
-memprotmd_sim_list --config config_memprotmd_sim_list.json --output_simulations output_sim_list.json
-```
-
-## Memprotmd_sim
-This class is a wrapper of the MemProtMD to download a simulation using its REST API.
-### Get help
-Command:
-```python
-memprotmd_sim -h
-```
-    usage: memprotmd_sim [-h] [-c CONFIG] -o OUTPUT_SIMULATION
-    
-    Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to download a simulation.
-    
-    options:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_SIMULATION, --output_simulation OUTPUT_SIMULATION
-                            Path to the output simulation in a ZIP file. Accepted formats: zip.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_simulation** (*string*): Path to the output simulation in a ZIP file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim.zip). Accepted formats: ZIP
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB code..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim.yml)
-```python
-properties:
-  pdb_code: 1hzx
-
-```
-#### Command line
-```python
-memprotmd_sim --config config_memprotmd_sim.yml --output_simulation output_sim.zip
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim.json)
-```python
-{
-  "properties": {
-    "pdb_code": "1hzx"
-  }
-}
-```
-#### Command line
-```python
-memprotmd_sim --config config_memprotmd_sim.json --output_simulation output_sim.zip
-```
-
-## Pdb_variants
-This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
-### Get help
-Command:
-```python
-pdb_variants -h
-```
-    usage: pdb_variants [-h] [-c CONFIG] -o OUTPUT_MUTATIONS_LIST_TXT
-    
-    Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
-    
-    options:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_MUTATIONS_LIST_TXT, --output_mutations_list_txt OUTPUT_MUTATIONS_LIST_TXT
-                            Path to the TXT file containing an ASCII comma separated values of the mutations. Accepted formats: txt.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_mutations_list_txt** (*string*): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_variants.txt). Accepted formats: TXT
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB four letter code..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb_variants.yml)
-```python
-properties:
-  pdb_code: 2vgb
-
-```
-#### Command line
-```python
-pdb_variants --config config_pdb_variants.yml --output_mutations_list_txt output_pdb_variants.txt
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb_variants.json)
-```python
-{
-  "properties": {
-    "pdb_code": "2vgb"
-  }
-}
-```
-#### Command line
-```python
-pdb_variants --config config_pdb_variants.json --output_mutations_list_txt output_pdb_variants.txt
-```
-
-## Ideal_sdf
-This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.
-### Get help
-Command:
-```python
-ideal_sdf -h
-```
-    usage: ideal_sdf [-h] [-c CONFIG] -o OUTPUT_SDF_PATH
-    
-    This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.
-    
-    options:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_SDF_PATH, --output_sdf_path OUTPUT_SDF_PATH
-                            Path to the output SDF file. Accepted formats: sdf.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_sdf_path** (*string*): Path to the output SDF file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ref_output.sdf). Accepted formats: SDF
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **ligand_code** (*string*): (None) RSCB PDB ligand code..
-* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the SDF structure will be downloaded. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ideal_sdf.yml)
-```python
-properties:
-  api_id: pdbe
-  ligand_code: HYZ
-
-```
-#### Command line
-```python
-ideal_sdf --config config_ideal_sdf.yml --output_sdf_path ref_output.sdf
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ideal_sdf.json)
-```python
-{
-  "properties": {
-    "ligand_code": "HYZ",
     "api_id": "pdbe"
   }
 }
 ```
 #### Command line
 ```python
-ideal_sdf --config config_ideal_sdf.json --output_sdf_path ref_output.sdf
+pdb --config config_pdb.json --output_pdb_path output_pdb.pdb
 ```
 
 ## Pdb_cluster_zip
@@ -564,16 +744,16 @@ pdb_cluster_zip --config config_pdb_cluster_zip.yml --output_pdb_zip_path output
 pdb_cluster_zip --config config_pdb_cluster_zip.json --output_pdb_zip_path output_pdb_cluster.zip
 ```
 
-## Alphafold
-This class is a wrapper for downloading a PDB structure from the AlphaFold Protein Structure Database.
+## Pdb_variants
+This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
 ### Get help
 Command:
 ```python
-alphafold -h
+pdb_variants -h
 ```
-    usage: alphafold [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
+    usage: pdb_variants [-h] [-c CONFIG] -o OUTPUT_MUTATIONS_LIST_TXT
     
-    This class is a wrapper for downloading a PDB structure from the Protein Data Bank.
+    Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
     
     options:
       -h, --help            show this help message and exit
@@ -581,164 +761,44 @@ alphafold -h
                             This file can be a YAML file, JSON file or JSON string
     
     required arguments:
-      -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
-                            Path to the output PDB file. Accepted formats: pdb.
+      -o OUTPUT_MUTATIONS_LIST_TXT, --output_mutations_list_txt OUTPUT_MUTATIONS_LIST_TXT
+                            Path to the TXT file containing an ASCII comma separated values of the mutations. Accepted formats: txt.
 ### I / O Arguments
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_pdb_path** (*string*): Path to the output PDB file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_alphafold.pdb). Accepted formats: PDB
+* **output_mutations_list_txt** (*string*): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_variants.txt). Accepted formats: TXT
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **uniprot_code** (*string*): (None) Uniprot code..
+* **pdb_code** (*string*): (None) RSCB PDB four letter code..
 * **remove_tmp** (*boolean*): (True) Remove temporal files..
 * **restart** (*boolean*): (False) Do not execute if output files exist..
 * **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
 ### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_alphafold.yml)
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb_variants.yml)
 ```python
 properties:
-  uniprot_code: P00489
+  pdb_code: 2vgb
 
 ```
 #### Command line
 ```python
-alphafold --config config_alphafold.yml --output_pdb_path output_alphafold.pdb
+pdb_variants --config config_pdb_variants.yml --output_mutations_list_txt output_pdb_variants.txt
 ```
 ### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_alphafold.json)
+#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb_variants.json)
 ```python
 {
   "properties": {
-    "uniprot_code": "P00489"
+    "pdb_code": "2vgb"
   }
 }
 ```
 #### Command line
 ```python
-alphafold --config config_alphafold.json --output_pdb_path output_alphafold.pdb
-```
-
-## Ligand
-This class is a wrapper for downloading a PDB ligand from the Protein Data Bank.
-### Get help
-Command:
-```python
-ligand -h
-```
-    usage: ligand [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
-    
-    Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB ligand.
-    
-    options:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_PDB_PATH, --output_pdb_path OUTPUT_PDB_PATH
-                            Path to the output PDB ligand file. Accepted formats: pdb.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_pdb_path** (*string*): Path to the output PDB ligand file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_ligand.pdb). Accepted formats: PDB
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **ligand_code** (*string*): (None) RSCB PDB ligand code..
-* **api_id** (*string*): (mmb) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ligand.yml)
-```python
-properties:
-  api_id: pdbe
-  ligand_code: IBP
-
-```
-#### Command line
-```python
-ligand --config config_ligand.yml --output_pdb_path output_ligand.pdb
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ligand.json)
-```python
-{
-  "properties": {
-    "ligand_code": "IBP",
-    "api_id": "pdbe"
-  }
-}
-```
-#### Command line
-```python
-ligand --config config_ligand.json --output_pdb_path output_ligand.pdb
-```
-
-## Canonical_fasta
-This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.
-### Get help
-Command:
-```python
-canonical_fasta -h
-```
-    usage: canonical_fasta [-h] [-c CONFIG] -o OUTPUT_FASTA_PATH
-    
-    This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.
-    
-    options:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_FASTA_PATH, --output_fasta_path OUTPUT_FASTA_PATH
-                            Path to the canonical FASTA file. Accepted formats: fasta.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_fasta_path** (*string*): Path to the canonical FASTA file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/canonical_fasta.fasta). Accepted formats: FASTA
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB code..
-* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_canonical_fasta.yml)
-```python
-properties:
-  api_id: pdbe
-  pdb_code: 4i23
-
-```
-#### Command line
-```python
-canonical_fasta --config config_canonical_fasta.yml --output_fasta_path canonical_fasta.fasta
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_canonical_fasta.json)
-```python
-{
-  "properties": {
-    "pdb_code": "4i23",
-    "api_id": "pdbe"
-  }
-}
-```
-#### Command line
-```python
-canonical_fasta --config config_canonical_fasta.json --output_fasta_path canonical_fasta.fasta
+pdb_variants --config config_pdb_variants.json --output_mutations_list_txt output_pdb_variants.txt
 ```
 
 ## Structure_info
@@ -796,64 +856,4 @@ structure_info --config config_structure_info.yml --output_json_path ref_str_inf
 #### Command line
 ```python
 structure_info --config config_structure_info.json --output_json_path ref_str_info.json
-```
-
-## Memprotmd_sim_search
-This class is a wrapper of the MemProtMD to perform advanced searches in the MemProtMD DB using its REST API.
-### Get help
-Command:
-```python
-memprotmd_sim_search -h
-```
-    usage: memprotmd_sim_search [-h] [-c CONFIG] -o OUTPUT_SIMULATIONS
-    
-    Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to perform advanced searches.
-    
-    options:
-      -h, --help            show this help message and exit
-      -c CONFIG, --config CONFIG
-                            This file can be a YAML file, JSON file or JSON string
-    
-    required arguments:
-      -o OUTPUT_SIMULATIONS, --output_simulations OUTPUT_SIMULATIONS
-                            Path to the output JSON file. Accepted formats: json.
-### I / O Arguments
-Syntax: input_argument (datatype) : Definition
-
-Config input / output arguments for this building block:
-* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_search.json). Accepted formats: JSON
-### Config
-Syntax: input_parameter (datatype) - (default_value) Definition
-
-Config parameters for this building block:
-* **collection_name** (*string*): (refs) Name of the collection to query..
-* **keyword** (*string*): (None) String to search for in the database metadata. Examples are families like gpcr or porin. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
-### YAML
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_search.yml)
-```python
-properties:
-  collection_name: refs
-  keyword: porin
-
-```
-#### Command line
-```python
-memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulations output_sim_search.json
-```
-### JSON
-#### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_search.json)
-```python
-{
-  "properties": {
-    "collection_name": "refs",
-    "keyword": "porin"
-  }
-}
-```
-#### Command line
-```python
-memprotmd_sim_search --config config_memprotmd_sim_search.json --output_simulations output_sim_search.json
 ```

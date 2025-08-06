@@ -1,5 +1,5 @@
 properties:
-  api_id: mmb
+  api_id: pdbe
   filter:
   - ATOM
   - HETATM
