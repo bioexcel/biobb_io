@@ -121,6 +121,24 @@ def download_mddb_trj(project_id, node_id, trj_format, frames, selection, out_lo
     return r.content
 
 
+def download_mddb_file(project_id, node_id, file_name, out_log=None, global_log=None, classname=None):
+    """
+    Returns:
+        String: Content of the trajectory file.
+    """
+
+    url = "https://" + node_id + ".mddbr.eu/api/rest/v1/projects/" + project_id + "/files/" + file_name
+
+    fu.log("Downloading %s file from: %s" % (project_id, url), out_log, global_log)
+
+    r = requests.get(url)
+    if r.status_code == 404:
+        fu.log(classname + ": Incorrect url, check project_id, node_id, trj_format, frames and selection: %s" % (url), out_log)
+        raise SystemExit(classname + ": Incorrect url, check project_id, node_id, trj_format, frames and selection: %s" % (url))
+
+    return r.content
+
+
 def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
     """
     Returns:

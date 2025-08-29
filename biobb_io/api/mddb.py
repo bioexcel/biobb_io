@@ -15,7 +15,8 @@ from biobb_io.api.common import (
     download_mddb_top,
     write_pdb,
     download_mddb_trj,
-    write_bin
+    write_bin,
+    download_mddb_file
 )
 
 
@@ -34,6 +35,7 @@ class MDDB(BiobbObject):
             * **trj_format** (*str*) - ("xtc") Trajectory format. Values: mdcrd (AMBER trajectory format), trr (Trajectory of a simulation experiment used by GROMACS), xtc (Portable binary format for trajectories produced by GROMACS package).
             * **frames** (*str*) - (None) Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2').
             * **selection** (*str*) - (None) Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html.
+            * **extra_files** (*list*) - (None) List of extra files to download. It should be a tuple with the name of the file and the path to be saved.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
             * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
@@ -47,8 +49,8 @@ class MDDB(BiobbObject):
                 'trj_format': 'xtc'
             }
             mddb(output_top_path='/path/to/newTopology.pdb',
-                output_trj_path='/path/to/newTrajectory.pdb',
-                properties=prop)
+                 output_trj_path='/path/to/newTrajectory.pdb',
+                 properties=prop)
 
     Info:
         * wrapped_software:
@@ -76,6 +78,7 @@ class MDDB(BiobbObject):
         self.trj_format = properties.get("trj_format", "xtc")
         self.frames = properties.get("frames", "")
         self.selection = properties.get("selection", "*")
+        self.extra_files = properties.get("extra_files", [])
         self.properties = properties
 
         # Check the properties
@@ -140,6 +143,20 @@ class MDDB(BiobbObject):
         )
         write_bin(trj_string, self.output_trj_path, self.out_log, self.global_log)
 
+        for (extra_file, extra_path) in self.extra_files:
+            try:
+                file_string = download_mddb_file(
+                    self.project_id,
+                    self.node_id,
+                    extra_file,
+                    self.out_log,
+                    self.global_log,
+                    self.__class__.__name__,
+                )
+                write_bin(file_string, extra_path, self.out_log, self.global_log)
+            except Exception:
+                pass
+
         self.check_arguments(output_files_created=True, raise_exception=False)
 
         return 0
@@ -153,7 +170,8 @@ def mddb(output_top_path: str, output_trj_path: str, properties: Optional[dict] 
         output_top_path=output_top_path, output_trj_path=output_trj_path, properties=properties, **kwargs
     ).launch()
 
-    mddb.__doc__ = MDDB.__doc__
+
+mddb.__doc__ = MDDB.__doc__
 
 
 def main():
