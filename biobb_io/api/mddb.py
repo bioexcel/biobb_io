@@ -2,10 +2,7 @@
 
 """Module containing the MDDB class and the command line interface."""
 
-import argparse
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
 
@@ -165,50 +162,11 @@ class MDDB(BiobbObject):
 def mddb(output_top_path: str, output_trj_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`MDDB <api.mddb.MDDB>` class and
     execute the :meth:`launch() <api.mddb.MDDB.launch>` method."""
-
-    return MDDB(
-        output_top_path=output_top_path, output_trj_path=output_trj_path, properties=properties, **kwargs
-    ).launch()
+    return MDDB(**dict(locals())).launch()
 
 
 mddb.__doc__ = MDDB.__doc__
-
-
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_top_path",
-        required=True,
-        help="Path to the output toplogy file. Accepted formats: pdb.",
-    )
-    required_args.add_argument(
-        "-t",
-        "--output_trj_path",
-        required=True,
-        help="Path to the output trajectory file. Accepted formats: mdcrd, trr, xtc.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    mddb(output_top_path=args.output_top_path, output_trj_path=args.output_trj_path, properties=properties)
-
+main = MDDB.get_main(mddb, "This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.")
 
 if __name__ == "__main__":
     main()

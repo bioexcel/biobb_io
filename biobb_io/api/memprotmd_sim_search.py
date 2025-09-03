@@ -2,10 +2,7 @@
 
 """Module containing the MemProtMDSimSearch class and the command line interface."""
 
-import argparse
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
 
@@ -108,45 +105,11 @@ def memprotmd_sim_search(
 ) -> int:
     """Execute the :class:`MemProtMDSimSearch <api.memprotmd_sim_search.MemProtMDSimSearch>` class and
     execute the :meth:`launch() <api.memprotmd_sim_search.MemProtMDSimSearch.launch>` method."""
-
-    return MemProtMDSimSearch(
-        output_simulations=output_simulations, properties=properties, **kwargs
-    ).launch()
-
-    memprotmd_sim_search.__doc__ = MemProtMDSimSearch.__doc__
+    return MemProtMDSimSearch(**dict(locals())).launch()
 
 
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to perform advanced searches.",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_simulations",
-        required=True,
-        help="Path to the output JSON file. Accepted formats: json.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    memprotmd_sim_search(
-        output_simulations=args.output_simulations, properties=properties
-    )
-
+memprotmd_sim_search.__doc__ = MemProtMDSimSearch.__doc__
+main = MemProtMDSimSearch.get_main(memprotmd_sim_search, "Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to perform advanced searches.")
 
 if __name__ == "__main__":
     main()

@@ -2,11 +2,8 @@
 
 """Module containing the ApiBindingSite class and the command line interface."""
 
-import argparse
 import json
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
@@ -125,43 +122,11 @@ def api_binding_site(
 ) -> int:
     """Execute the :class:`ApiBindingSite <api.api_binding_site.ApiBindingSite>` class and
     execute the :meth:`launch() <api.api_binding_site.ApiBindingSite.launch>` method."""
-
-    return ApiBindingSite(
-        output_json_path=output_json_path, properties=properties, **kwargs
-    ).launch()
-
-    api_binding_site.__doc__ = ApiBindingSite.__doc__
+    return ApiBindingSite(**dict(locals())).launch()
 
 
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="This class is a wrapper for the PDBe REST API Binding Sites endpoint",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_json_path",
-        required=True,
-        help="Path to the JSON file with the binding sites for the requested structure. Accepted formats: json.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    api_binding_site(output_json_path=args.output_json_path, properties=properties)
-
+api_binding_site.__doc__ = ApiBindingSite.__doc__
+main = ApiBindingSite.get_main(api_binding_site, "This class is a wrapper for the PDBe REST API Binding Sites endpoint")
 
 if __name__ == "__main__":
     main()

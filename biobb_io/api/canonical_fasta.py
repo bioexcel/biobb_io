@@ -2,10 +2,7 @@
 
 """Module containing the CanonicalFasta class and the command line interface."""
 
-import argparse
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
 
@@ -115,43 +112,11 @@ def canonical_fasta(
 ) -> int:
     """Execute the :class:`CanonicalFasta <api.canonical_fasta.CanonicalFasta>` class and
     execute the :meth:`launch() <api.canonical_fasta.CanonicalFasta.launch>` method."""
-
-    return CanonicalFasta(
-        output_fasta_path=output_fasta_path, properties=properties, **kwargs
-    ).launch()
-
-    canonical_fasta.__doc__ = CanonicalFasta.__doc__
+    return CanonicalFasta(**dict(locals())).launch()
 
 
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_fasta_path",
-        required=True,
-        help="Path to the canonical FASTA file. Accepted formats: fasta.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    canonical_fasta(output_fasta_path=args.output_fasta_path, properties=properties)
-
+canonical_fasta.__doc__ = CanonicalFasta.__doc__
+main = CanonicalFasta.get_main(canonical_fasta, "This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.")
 
 if __name__ == "__main__":
     main()

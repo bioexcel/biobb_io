@@ -2,10 +2,7 @@
 
 """Module containing the MemProtMDSim class and the command line interface."""
 
-import argparse
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
 
@@ -108,43 +105,11 @@ def memprotmd_sim(
 ) -> int:
     """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` class and
     execute the :meth:`launch() <api.memprotmd_sim.MemProtMDSim.launch>` method."""
-
-    return MemProtMDSim(
-        output_simulation=output_simulation, properties=properties, **kwargs
-    ).launch()
-
-    memprotmd_sim.__doc__ = MemProtMDSim.__doc__
+    return MemProtMDSim(**dict(locals())).launch()
 
 
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to download a simulation.",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_simulation",
-        required=True,
-        help="Path to the output simulation in a ZIP file. Accepted formats: zip.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    memprotmd_sim(output_simulation=args.output_simulation, properties=properties)
-
+memprotmd_sim.__doc__ = MemProtMDSim.__doc__
+main = MemProtMDSim.get_main(memprotmd_sim, "Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to download a simulation.")
 
 if __name__ == "__main__":
     main()

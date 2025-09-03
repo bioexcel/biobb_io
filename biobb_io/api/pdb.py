@@ -2,10 +2,7 @@
 
 """Module containing the Pdb class and the command line interface."""
 
-import argparse
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
 
@@ -118,43 +115,11 @@ class Pdb(BiobbObject):
 def pdb(output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`Pdb <api.pdb.Pdb>` class and
     execute the :meth:`launch() <api.pdb.Pdb.launch>` method."""
-
-    return Pdb(
-        output_pdb_path=output_pdb_path, properties=properties, **kwargs
-    ).launch()
-
-    pdb.__doc__ = Pdb.__doc__
+    return Pdb(**dict(locals())).launch()
 
 
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="This class is a wrapper for downloading a PDB structure from the Protein Data Bank.",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_pdb_path",
-        required=True,
-        help="Path to the output PDB file. Accepted formats: pdb.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    pdb(output_pdb_path=args.output_pdb_path, properties=properties)
-
+pdb.__doc__ = Pdb.__doc__
+main = Pdb.get_main(pdb, "This class is a wrapper for downloading a PDB structure from the Protein Data Bank.")
 
 if __name__ == "__main__":
     main()

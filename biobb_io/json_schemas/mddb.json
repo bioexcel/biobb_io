@@ -116,6 +116,12 @@
                     "wf_prop": false,
                     "description": "Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html."
                 },
+                "extra_files": {
+                    "type": "array",
+                    "default": null,
+                    "wf_prop": false,
+                    "description": "List of extra files to download. It should be a tuple with the name of the file and the path to be saved."
+                },
                 "remove_tmp": {
                     "type": "boolean",
                     "default": true,

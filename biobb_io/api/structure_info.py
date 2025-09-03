@@ -2,10 +2,7 @@
 
 """Module containing the StructureInfo class and the command line interface."""
 
-import argparse
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
 
@@ -113,43 +110,11 @@ def structure_info(
 ) -> int:
     """Execute the :class:`StructureInfo <api.structure_info.StructureInfo>` class and
     execute the :meth:`launch() <api.structure_info.StructureInfo.launch>` method."""
-
-    return StructureInfo(
-        output_json_path=output_json_path, properties=properties, **kwargs
-    ).launch()
-
-    structure_info.__doc__ = StructureInfo.__doc__
+    return StructureInfo(**dict(locals())).launch()
 
 
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_json_path",
-        required=True,
-        help="Path to the output JSON file with all the structure information. Accepted formats: json.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    structure_info(output_json_path=args.output_json_path, properties=properties)
-
+structure_info.__doc__ = StructureInfo.__doc__
+main = StructureInfo.get_main(structure_info, "This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.")
 
 if __name__ == "__main__":
     main()

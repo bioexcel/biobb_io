@@ -336,6 +336,7 @@ Config parameters for this building block:
 * **trj_format** (*string*): (xtc) Trajectory format. .
 * **frames** (*string*): (None) Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2')..
 * **selection** (*string*): (None) Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html..
+* **extra_files** (*array*): (None) List of extra files to download. It should be a tuple with the name of the file and the path to be saved..
 * **remove_tmp** (*boolean*): (True) Remove temporal files..
 * **restart** (*boolean*): (False) Do not execute if output files exist..
 * **sandbox_path** (*string*): (./) Parent path to the sandbox directory..

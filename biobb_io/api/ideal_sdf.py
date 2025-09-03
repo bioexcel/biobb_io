@@ -2,10 +2,7 @@
 
 """Module containing the IdealSdf class and the command line interface."""
 
-import argparse
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
 
@@ -113,43 +110,11 @@ class IdealSdf(BiobbObject):
 def ideal_sdf(output_sdf_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`IdealSdf <api.ideal_sdf.IdealSdf>` class and
     execute the :meth:`launch() <api.ideal_sdf.IdealSdf.launch>` method."""
-
-    return IdealSdf(
-        output_sdf_path=output_sdf_path, properties=properties, **kwargs
-    ).launch()
-
-    ideal_sdf.__doc__ = IdealSdf.__doc__
+    return IdealSdf(**dict(locals())).launch()
 
 
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_sdf_path",
-        required=True,
-        help="Path to the output SDF file. Accepted formats: sdf.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    ideal_sdf(output_sdf_path=args.output_sdf_path, properties=properties)
-
+ideal_sdf.__doc__ = IdealSdf.__doc__
+main = IdealSdf.get_main(ideal_sdf, "This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.")
 
 if __name__ == "__main__":
     main()

@@ -2,11 +2,8 @@
 
 """PdbClusterZip Module"""
 
-import argparse
 import os
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
@@ -132,10 +129,7 @@ class PdbClusterZip(BiobbObject):
         fu.log("Zipping the pdb files to: %s" % self.output_pdb_zip_path)
         fu.zip_list(self.output_pdb_zip_path, file_list, out_log=self.out_log)
 
-        self.tmp_files.extend([
-            # self.stage_io_dict.get("unique_dir", ""),
-            unique_dir
-        ])
+        self.tmp_files.extend([unique_dir])
         self.remove_tmp_files()
 
         self.check_arguments(output_files_created=True, raise_exception=False)
@@ -148,43 +142,11 @@ def pdb_cluster_zip(
 ) -> int:
     """Execute the :class:`PdbClusterZip <api.pdb_cluster_zip.PdbClusterZip>` class and
     execute the :meth:`launch() <api.pdb_cluster_zip.PdbClusterZip.launch>` method."""
-
-    return PdbClusterZip(
-        output_pdb_zip_path=output_pdb_zip_path, properties=properties, **kwargs
-    ).launch()
-
-    pdb_cluster_zip.__doc__ = PdbClusterZip.__doc__
+    return PdbClusterZip(**dict(locals())).launch()
 
 
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a PDB cluster.",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_pdb_zip_path",
-        required=True,
-        help="Path to the ZIP or PDB file containing the output PDB files. Accepted formats: pdb, zip.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    pdb_cluster_zip(output_pdb_zip_path=args.output_pdb_zip_path, properties=properties)
-
+pdb_cluster_zip.__doc__ = PdbClusterZip.__doc__
+main = PdbClusterZip.get_main(pdb_cluster_zip, "Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a PDB cluster.")
 
 if __name__ == "__main__":
     main()

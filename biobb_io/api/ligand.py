@@ -2,10 +2,7 @@
 
 """Module containing the Ligand class and the command line interface."""
 
-import argparse
 from typing import Optional
-
-from biobb_common.configuration import settings
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools.file_utils import launchlogger
 
@@ -113,43 +110,11 @@ class Ligand(BiobbObject):
 def ligand(output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> int:
     """Execute the :class:`Ligand <api.ligand.Ligand>` class and
     execute the :meth:`launch() <api.ligand.Ligand.launch>` method."""
-
-    return Ligand(
-        output_pdb_path=output_pdb_path, properties=properties, **kwargs
-    ).launch()
-
-    ligand.__doc__ = Ligand.__doc__
+    return Ligand(**dict(locals())).launch()
 
 
-def main():
-    """Command line execution of this building block. Please check the command line documentation."""
-    parser = argparse.ArgumentParser(
-        description="Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB ligand.",
-        formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999),
-    )
-    parser.add_argument(
-        "-c",
-        "--config",
-        required=False,
-        help="This file can be a YAML file, JSON file or JSON string",
-    )
-
-    # Specific args of each building block
-    required_args = parser.add_argument_group("required arguments")
-    required_args.add_argument(
-        "-o",
-        "--output_pdb_path",
-        required=True,
-        help="Path to the output PDB ligand file. Accepted formats: pdb.",
-    )
-
-    args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
-
-    # Specific call of each building block
-    ligand(output_pdb_path=args.output_pdb_path, properties=properties)
-
+ligand.__doc__ = Ligand.__doc__
+main = Ligand.get_main(ligand, "Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB ligand.")
 
 if __name__ == "__main__":
     main()
