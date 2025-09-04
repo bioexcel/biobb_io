@@ -169,7 +169,6 @@ mddb.__doc__ = MDDB.__doc__
 main = MDDB.get_main(
     mddb,
     "This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.",
-    custom_flags={"output_top_path": "-o", "output_trj_path": "-t"}
 )
 
 if __name__ == "__main__":

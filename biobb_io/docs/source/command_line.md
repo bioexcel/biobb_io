@@ -307,7 +307,7 @@ Command:
 ```python
 mddb -h
 ```
-    usage: mddb [-h] [-c CONFIG] -o OUTPUT_TOP_PATH -t OUTPUT_TRJ_PATH
+    usage: mddb [-h] [-c CONFIG] --output_top_path OUTPUT_TOP_PATH --output_trj_path OUTPUT_TRJ_PATH
     
     This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.
     
@@ -317,9 +317,9 @@ mddb -h
                             This file can be a YAML file, JSON file or JSON string
     
     required arguments:
-      -o OUTPUT_TOP_PATH, --output_top_path OUTPUT_TOP_PATH
+      --output_top_path OUTPUT_TOP_PATH
                             Path to the output toplogy file. Accepted formats: pdb.
-      -t OUTPUT_TRJ_PATH, --output_trj_path OUTPUT_TRJ_PATH
+      --output_trj_path OUTPUT_TRJ_PATH
                             Path to the output trajectory file. Accepted formats: mdcrd, trr, xtc.
 ### I / O Arguments
 Syntax: input_argument (datatype) : Definition
