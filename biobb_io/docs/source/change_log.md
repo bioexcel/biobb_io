@@ -1,5 +1,12 @@
 # Biobb IO changelog
 
+## What's new in version [5.1.1](https://github.com/bioexcel/biobb_io/releases/tag/v5.1.0)?
+
+### Changes
+
+* [FEATURE]: MDDB new property extra_files.
+* [UPDATE]: Update to biobb_common 5.1.1
+
 ## What's new in version [5.1.0](https://github.com/bioexcel/biobb_io/releases/tag/v5.1.0)?
 
 ### Changes

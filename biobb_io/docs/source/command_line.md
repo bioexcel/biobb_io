@@ -690,7 +690,7 @@ pdb_cluster_zip -h
     
     required arguments:
       -o OUTPUT_PDB_ZIP_PATH, --output_pdb_zip_path OUTPUT_PDB_ZIP_PATH
-                            Path to the ZIP or PDB file containing the output PDB files. Accepted formats: pdb, zip.
+                            Path to the ZIP file containing the output PDB files. Accepted formats: zip.
 ### I / O Arguments
 Syntax: input_argument (datatype) : Definition
 
