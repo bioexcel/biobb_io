@@ -451,7 +451,7 @@ memprotmd_sim_list -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_list.json). Accepted formats: JSON
+* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_list_schema_validator.json). Accepted formats: JSON
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 
@@ -507,7 +507,7 @@ memprotmd_sim_search -h
 Syntax: input_argument (datatype) : Definition
 
 Config input / output arguments for this building block:
-* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_search.json). Accepted formats: JSON
+* **output_simulations** (*string*): Path to the output JSON file. File type: output. [Sample file](https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_search_schema_validator.json). Accepted formats: JSON
 ### Config
 Syntax: input_parameter (datatype) - (default_value) Definition
 

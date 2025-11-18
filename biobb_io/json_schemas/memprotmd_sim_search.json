@@ -23,7 +23,7 @@
             "type": "string",
             "description": "Path to the output JSON file",
             "filetype": "output",
-            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_search.json",
+            "sample": "https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_sim_search_schema_validator.json",
             "enum": [
                 ".*\\.json$"
             ],
