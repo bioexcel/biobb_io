@@ -307,7 +307,7 @@ Command:
 ```python
 mddb -h
 ```
-    usage: mddb [-h] [-c CONFIG] --output_top_path OUTPUT_TOP_PATH --output_trj_path OUTPUT_TRJ_PATH
+    usage: mddb [-h] [-c CONFIG] -o OUTPUT_TOP_PATH -t OUTPUT_TRJ_PATH
     
     This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.
     
@@ -317,9 +317,9 @@ mddb -h
                             This file can be a YAML file, JSON file or JSON string
     
     required arguments:
-      --output_top_path OUTPUT_TOP_PATH
+      -o OUTPUT_TOP_PATH, --output_top_path OUTPUT_TOP_PATH
                             Path to the output toplogy file. Accepted formats: pdb.
-      --output_trj_path OUTPUT_TRJ_PATH
+      -t OUTPUT_TRJ_PATH, --output_trj_path OUTPUT_TRJ_PATH
                             Path to the output trajectory file. Accepted formats: mdcrd, trr, xtc.
 ### I / O Arguments
 Syntax: input_argument (datatype) : Definition
@@ -468,7 +468,7 @@ properties:
 ```
 #### Command line
 ```python
-memprotmd_sim_list --config config_memprotmd_sim_list.yml --output_simulations output_sim_list.json
+memprotmd_sim_list --config config_memprotmd_sim_list.yml --output_simulations output_sim_list_schema_validator.json
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_list.json)
@@ -481,7 +481,7 @@ memprotmd_sim_list --config config_memprotmd_sim_list.yml --output_simulations o
 ```
 #### Command line
 ```python
-memprotmd_sim_list --config config_memprotmd_sim_list.json --output_simulations output_sim_list.json
+memprotmd_sim_list --config config_memprotmd_sim_list.json --output_simulations output_sim_list_schema_validator.json
 ```
 
 ## Memprotmd_sim_search
@@ -527,7 +527,7 @@ properties:
 ```
 #### Command line
 ```python
-memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulations output_sim_search.json
+memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulations output_sim_search_schema_validator.json
 ```
 ### JSON
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_search.json)
@@ -541,7 +541,7 @@ memprotmd_sim_search --config config_memprotmd_sim_search.yml --output_simulatio
 ```
 #### Command line
 ```python
-memprotmd_sim_search --config config_memprotmd_sim_search.json --output_simulations output_sim_search.json
+memprotmd_sim_search --config config_memprotmd_sim_search.json --output_simulations output_sim_search_schema_validator.json
 ```
 
 ## Mmcif
