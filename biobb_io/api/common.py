@@ -232,7 +232,7 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
         text = requests.get(url, verify=True).content.decode("utf-8")
     elif api_id == "pdbe":
         url = (
-            "https://files.wwpdb.org/pub/pdb/refdata/chem_comp/" + ligand_code.upper()[0] + "/" + ligand_code.upper() + "/" + ligand_code.upper() + "_ideal.sdf"
+            "https://files.wwpdb.org/pub/pdb/refdata/chem_comp/" + ligand_code.upper()[-1] + "/" + ligand_code.upper() + "/" + ligand_code.upper() + "_ideal.sdf"
         )
         text = urllib.request.urlopen(url).read().decode("utf-8")
 

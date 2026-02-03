@@ -1,132 +1,113 @@
 {
-    "4i23": [
-        {
-            "details": "BINDING SITE FOR RESIDUE 1C9 A 9001",
-            "evidence_code": "Software",
-            "ligand_residues": [
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 9001,
-                    "chain_id": "A",
-                    "chem_comp_id": "1C9",
-                    "entity_id": 2,
-                    "residue_number": 1,
-                    "struct_asym_id": "B"
-                }
-            ],
-            "site_id": "AC1",
-            "site_residues": [
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 718,
-                    "chain_id": "A",
-                    "chem_comp_id": "LEU",
-                    "entity_id": 1,
-                    "residue_number": 25,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 743,
-                    "chain_id": "A",
-                    "chem_comp_id": "ALA",
-                    "entity_id": 1,
-                    "residue_number": 50,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 745,
-                    "chain_id": "A",
-                    "chem_comp_id": "LYS",
-                    "entity_id": 1,
-                    "residue_number": 52,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 762,
-                    "chain_id": "A",
-                    "chem_comp_id": "GLU",
-                    "entity_id": 1,
-                    "residue_number": 69,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 766,
-                    "chain_id": "A",
-                    "chem_comp_id": "MET",
-                    "entity_id": 1,
-                    "residue_number": 73,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 796,
-                    "chain_id": "A",
-                    "chem_comp_id": "GLY",
-                    "entity_id": 1,
-                    "residue_number": 103,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 790,
-                    "chain_id": "A",
-                    "chem_comp_id": "THR",
-                    "entity_id": 1,
-                    "residue_number": 97,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 791,
-                    "chain_id": "A",
-                    "chem_comp_id": "GLN",
-                    "entity_id": 1,
-                    "residue_number": 98,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 793,
-                    "chain_id": "A",
-                    "chem_comp_id": "MET",
-                    "entity_id": 1,
-                    "residue_number": 100,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 794,
-                    "chain_id": "A",
-                    "chem_comp_id": "PRO",
-                    "entity_id": 1,
-                    "residue_number": 101,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                },
-                {
-                    "author_insertion_code": null,
-                    "author_residue_number": 788,
-                    "chain_id": "A",
-                    "chem_comp_id": "LEU",
-                    "entity_id": 1,
-                    "residue_number": 95,
-                    "struct_asym_id": "A",
-                    "symmetry_symbol": "1_555"
-                }
-            ]
-        }
+  "4i23": {
+    "sequence": "GSGEAPNQALLRILKETEFKKIKVLGSGAFGTVYKGLWIPEGEKVKIPVAIKELREATSPKANKEILDEAYVMASVDNPHVCRLLGICLTSTVQLITQLMPFGCLLDYVREHKDNIGSQYLLNWCVQIAKGMNYLEDRRLVHRDLAARNVLVKTPQHVKITDFGLAKLLGAEEKEYHAEGGKVPIKWMALESILHRIYTHQSDVWSYGVTVWELMTFGSKPYDGIPASEISSILEKGERLPQPPICTIDVYMIMVKCWMIDADSRPKFRELIIEFSKMARDPQRYLVIQGDERMHLPSPTDSNFYRALMDEEDMDDVVDADEYLIPQQG",
+    "length": 329,
+    "dataType": "LIGAND BINDING SITES",
+    "data": [
+      {
+        "name": "(2E)-N-{4-[(3-chloro-4-fluorophenyl)amino]-7-methoxyquinazolin-6-yl}-4-(piperidin-1-yl)but-2-enamide",
+        "accession": "1C9",
+        "residues": [
+          {
+            "startIndex": 25,
+            "endIndex": 25,
+            "startCode": "LEU",
+            "endCode": "LEU",
+            "indexType": "PDB",
+            "additionalData": {
+              "boundMoleculeId": "bm1"
+            }
+          },
+          {
+            "startIndex": 33,
+            "endIndex": 33,
+            "startCode": "VAL",
+            "endCode": "VAL",
+            "indexType": "PDB",
+            "additionalData": {
+              "boundMoleculeId": "bm1"
+            }
+          },
+          {
+            "startIndex": 50,
+            "endIndex": 50,
+            "startCode": "ALA",
+            "endCode": "ALA",
+            "indexType": "PDB",
+            "additionalData": {
+              "boundMoleculeId": "bm1"
+            }
+          },
+          {
+            "startIndex": 52,
+            "endIndex": 52,
+            "startCode": "LYS",
+            "endCode": "LYS",
+            "indexType": "PDB",
+            "additionalData": {
+              "boundMoleculeId": "bm1"
+            }
+          },
+          {
+            "startIndex": 73,
+            "endIndex": 73,
+            "startCode": "MET",
+            "endCode": "MET",
+            "indexType": "PDB",
+            "additionalData": {
+              "boundMoleculeId": "bm1"
+            }
+          },
+          {
+            "startIndex": 95,
+            "endIndex": 95,
+            "startCode": "LEU",
+            "endCode": "LEU",
+            "indexType": "PDB",
+            "additionalData": {
+              "boundMoleculeId": "bm1"
+            }
+          },
+          {
+            "startIndex": 97,
+            "endIndex": 101,
+            "startCode": "THR",
+            "endCode": "PRO",
+            "indexType": "PDB",
+            "additionalData": {
+              "boundMoleculeId": "bm1"
+            }
+          },
+          {
+            "startIndex": 103,
+            "endIndex": 103,
+            "startCode": "GLY",
+            "endCode": "GLY",
+            "indexType": "PDB",
+            "additionalData": {
+              "boundMoleculeId": "bm1"
+            }
+          },
+          {
+            "startIndex": 151,
+            "endIndex": 151,
+            "startCode": "LEU",
+            "endCode": "LEU",
+            "indexType": "PDB",
+            "additionalData": {
+              "boundMoleculeId": "bm1"
+            }
+          }
+        ],
+        "additionalData": {
+          "bestChainId": "A",
+          "entityId": 1,
+          "scaffoldId": "O=C(/C=C/CN1CCCCC1)Nc1ccc2ncnc(Nc3ccccc3)c2c1",
+          "cofactorId": "",
+          "residueCount": 13
+        },
+        "dataType": "Ligand"
+      }
     ]
+  }
 }
