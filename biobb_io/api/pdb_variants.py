@@ -21,7 +21,7 @@ class PdbVariants(BiobbObject):
     """
     | biobb_io PdbVariants
     | This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
-    | Wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB group REST API <http://mmb.irbbarcelona.org/api/>`_ for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
+    | Wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB group REST API <https://mdb-login.bsc.es/api/>`_ for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
 
     Args:
         output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_variants.txt>`_. Accepted formats: txt (edam:format_2330).
@@ -96,7 +96,7 @@ class PdbVariants(BiobbObject):
 
         self.pdb_code = self.pdb_code.strip().lower()
 
-        url = "http://mmb.irbbarcelona.org/api"
+        url = "https://mdb-login.bsc.es/api"
         uniprot_id = get_uniprot(self.pdb_code, url, self.out_log, self.global_log)
         url_mapPDBRes = (
             url + "/uniprot/" + uniprot_id + "/mapPDBRes?pdbId=" + self.pdb_code
@@ -169,7 +169,7 @@ def pdb_variants(
 
 
 pdb_variants.__doc__ = PdbVariants.__doc__
-main = PdbVariants.get_main(pdb_variants, "Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.")
+main = PdbVariants.get_main(pdb_variants, "Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (https://mdb-login.bsc.es/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.")
 
 if __name__ == "__main__":
     main()

@@ -18,7 +18,7 @@ class StructureInfo(BiobbObject):
     """
     | biobb_io StructureInfo
     | This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.
-    | Wrapper for the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for getting all the available information of a structure from the Protein Data Bank.
+    | Wrapper for the `MMB PDB mirror <https://mdb-login.bsc.es/api/>`_ for getting all the available information of a structure from the Protein Data Bank.
 
     Args:
         output_json_path (str): Path to the output JSON file with all the structure information. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ref_str_info.json>`_. Accepted formats: json (edam:format_3464).
@@ -92,7 +92,7 @@ class StructureInfo(BiobbObject):
         )
 
         self.pdb_code = self.pdb_code.strip().lower()
-        url = "http://mmb.irbbarcelona.org/api/pdb/%s.json"
+        url = "https://mdb-login.bsc.es/api/pdb/%s.json"
 
         # Downloading PDB file
         json_string = download_str_info(

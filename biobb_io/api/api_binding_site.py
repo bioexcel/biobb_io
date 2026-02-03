@@ -95,7 +95,7 @@ class ApiBindingSite(BiobbObject):
         )
 
         self.pdb_code = self.pdb_code.strip().lower()
-        url = "https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/%s"
+        url = "https://www.ebi.ac.uk/pdbe/api/v2/pdb/entry/binding_sites/%s/1"
 
         # get JSON object
         json_string = download_binding_site(
@@ -104,7 +104,7 @@ class ApiBindingSite(BiobbObject):
 
         # get number of binding sites
         fu.log(
-            "%d binding sites found" % (len(json.loads(json_string)[self.pdb_code])),
+            "%d binding sites found" % (len(json.loads(json_string)[self.pdb_code]['data'])),
             self.out_log,
             self.global_log,
         )

@@ -57,7 +57,7 @@ def download_pdb(pdb_code, api_id, out_log=None, global_log=None):
     """
 
     if api_id == "mmb":
-        url = "https://mmb.irbbarcelona.org/api/pdb/" + pdb_code + "/coords/?"
+        url = "https://mdb-login.bsc.es/api/pdb/" + pdb_code + "/coords/?"
     elif api_id == "pdb":
         url = "https://files.rcsb.org/download/" + pdb_code + ".pdb"
     elif api_id == "pdbe":
@@ -73,7 +73,7 @@ def download_af(uniprot_code, out_log=None, global_log=None, classname=None):
         String: Content of the pdb file.
     """
 
-    url = "https://alphafold.ebi.ac.uk/files/AF-" + uniprot_code + "-F1-model_v3.pdb"
+    url = "https://alphafold.ebi.ac.uk/files/AF-" + uniprot_code + "-F1-model_v6.pdb"
 
     fu.log("Downloading %s from: %s" % (uniprot_code, url), out_log, global_log)
 
@@ -146,7 +146,7 @@ def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
     """
 
     if api_id == "mmb":
-        url = "http://mmb.irbbarcelona.org/api/pdb/" + pdb_code + ".cif"
+        url = "https://mdb-login.bsc.es/api/pdb/" + pdb_code + ".cif"
     elif api_id == "pdb":
         url = "https://files.rcsb.org/download/" + pdb_code + ".cif"
     elif api_id == "pdbe":
@@ -163,11 +163,12 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
     """
 
     if api_id == "mmb":
-        url = "http://mmb.irbbarcelona.org/api/pdbMonomer/" + ligand_code.lower()
+        url = "https://mdb-login.bsc.es/api/pdbMonomer/" + ligand_code.lower()
         text = requests.get(url, verify=True).content.decode("utf-8")
     elif api_id == "pdbe":
         url = (
-            "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
+            # "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
+            "https://files.rcsb.org/ligands/view/" + ligand_code.upper() + ".cif"
         )
         text = urllib.request.urlopen(url).read().decode("utf-8")
 
@@ -186,11 +187,11 @@ def download_fasta(pdb_code, api_id, out_log=None, global_log=None):
     """
 
     if api_id == "mmb":
-        url = "http://mmb.irbbarcelona.org/api/pdb/" + pdb_code + ".fasta"
+        url = "https://mdb-login.bsc.es/api/pdb/" + pdb_code + ".fasta"
     elif api_id == "pdb":
         url = "https://www.rcsb.org/fasta/entry/" + pdb_code
     elif api_id == "pdbe":
-        url = "https://www.ebi.ac.uk/pdbe/entry/pdb/" + pdb_code + "/fasta"
+        url = "https://www.ebi.ac.uk/pdbe/api/v2/pdb/entry/" + pdb_code + "/fasta"
 
     fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url, verify=True).content.decode("utf-8")
@@ -198,7 +199,7 @@ def download_fasta(pdb_code, api_id, out_log=None, global_log=None):
 
 def download_binding_site(
     pdb_code,
-    url="https://www.ebi.ac.uk/pdbe/api/pdb/entry/binding_sites/%s",
+    url="https://www.ebi.ac.uk/pdbe/api/v2/pdb/entry/binding_sites/%s/1",
     out_log=None,
     global_log=None,
 ):
@@ -231,7 +232,7 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
         text = requests.get(url, verify=True).content.decode("utf-8")
     elif api_id == "pdbe":
         url = (
-            "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.sdf"
+            "https://files.wwpdb.org/pub/pdb/refdata/chem_comp/" + ligand_code.upper()[0] + "/" + ligand_code.upper() + "/" + ligand_code.upper() + "_ideal.sdf"
         )
         text = urllib.request.urlopen(url).read().decode("utf-8")
 
@@ -242,7 +243,7 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
 
 def download_str_info(
     pdb_code,
-    url="http://mmb.irbbarcelona.org/api/pdb/%s.json",
+    url="https://mdb-login.bsc.es/api/pdb/%s.json",
     out_log=None,
     global_log=None,
 ):
@@ -312,7 +313,7 @@ def get_cluster_pdb_codes(pdb_code, cluster, out_log=None, global_log=None):
     Returns:
         String list: The list of pdb_codes of the selected cluster.
     """
-    url = "http://mmb.irbbarcelona.org/api/pdb/"
+    url = "https://mdb-login.bsc.es/api/pdb/"
     pdb_codes = set()
 
     url = url + pdb_code.lower() + "/clusters/cl-" + str(cluster) + ".json"
@@ -356,7 +357,7 @@ def get_uniprot(pdb_code, url, out_log=None, global_log=None):
 
 
 def get_variants(
-    uniprot_id, url="http://mmb.irbbarcelona.org/api", out_log=None, global_log=None
+    uniprot_id, url="https://mdb-login.bsc.es/api", out_log=None, global_log=None
 ):
     """Returns the variants of the `uniprot_id` code.
 

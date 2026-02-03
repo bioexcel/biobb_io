@@ -249,7 +249,7 @@ ligand -h
 ```
     usage: ligand [-h] [-c CONFIG] -o OUTPUT_PDB_PATH
     
-    Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a single PDB ligand.
+    Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (https://mdb-login.bsc.es/api/) for downloading a single PDB ligand.
     
     options:
       -h, --help            show this help message and exit
@@ -681,7 +681,7 @@ pdb_cluster_zip -h
 ```
     usage: pdb_cluster_zip [-h] [-c CONFIG] -o OUTPUT_PDB_ZIP_PATH
     
-    Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a PDB cluster.
+    Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (https://mdb-login.bsc.es/api/) for downloading a PDB cluster.
     
     options:
       -h, --help            show this help message and exit
@@ -754,7 +754,7 @@ pdb_variants -h
 ```
     usage: pdb_variants [-h] [-c CONFIG] -o OUTPUT_MUTATIONS_LIST_TXT
     
-    Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
+    Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (https://mdb-login.bsc.es/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
     
     options:
       -h, --help            show this help message and exit

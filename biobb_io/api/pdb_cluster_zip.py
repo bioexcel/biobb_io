@@ -21,7 +21,7 @@ class PdbClusterZip(BiobbObject):
     """
     | biobb_io PdbClusterZip
     | This class is a wrapper for downloading a PDB cluster from the Protein Data Bank.
-    | Wrapper for the `Protein Data Bank in Europe <https://www.ebi.ac.uk/pdbe/>`_, the `Protein Data Bank <https://www.rcsb.org/>`_ and the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for downloading a PDB cluster.
+    | Wrapper for the `Protein Data Bank in Europe <https://www.ebi.ac.uk/pdbe/>`_, the `Protein Data Bank <https://www.rcsb.org/>`_ and the `MMB PDB mirror <https://mdb-login.bsc.es/api/>`_ for downloading a PDB cluster.
 
     Args:
         output_pdb_zip_path (str): Path to the ZIP file containing the output PDB files. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_cluster.zip>`_. Accepted formats: zip (edam:format_3987).
@@ -29,7 +29,7 @@ class PdbClusterZip(BiobbObject):
             * **pdb_code** (*str*) - (None) RSCB PDB code.
             * **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
             * **cluster** (*int*) - (90) Sequence Similarity Cutoff. Values: 50 (structures having less than 50% sequence identity to each other), 70 (structures having less than 70% sequence identity to each other), 90 (structures having less than 90% sequence identity to each other), 95 (structures having less than 95% sequence identity to each other).
-            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
+            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <https://mdb-login.bsc.es/api/>`_).
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
             * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
@@ -146,7 +146,7 @@ def pdb_cluster_zip(
 
 
 pdb_cluster_zip.__doc__ = PdbClusterZip.__doc__
-main = PdbClusterZip.get_main(pdb_cluster_zip, "Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (http://mmb.irbbarcelona.org/api/) for downloading a PDB cluster.")
+main = PdbClusterZip.get_main(pdb_cluster_zip, "Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (https://mdb-login.bsc.es/api/) for downloading a PDB cluster.")
 
 if __name__ == "__main__":
     main()

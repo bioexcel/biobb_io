@@ -18,13 +18,13 @@ class CanonicalFasta(BiobbObject):
     """
     | biobb_io CanonicalFasta
     | This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.
-    | Wrapper for the `Protein Data Bank <https://www.rcsb.org/>`_ and the `MMB PDB mirror <http://mmb.irbbarcelona.org/api/>`_ for downloading a single FASTA structure.
+    | Wrapper for the `Protein Data Bank <https://www.rcsb.org/>`_ and the `MMB PDB mirror <https://mdb-login.bsc.es/api/>`_ for downloading a single FASTA structure.
 
     Args:
         output_fasta_path (str): Path to the canonical FASTA file. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/canonical_fasta.fasta>`_. Accepted formats: fasta (edam:format_1929).
         properties (dic - Python dictionary object containing the tool parameters, not input/output files):
             * **pdb_code** (*str*) - (None) RSCB PDB code.
-            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <http://mmb.irbbarcelona.org/api/>`_).
+            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <https://mdb-login.bsc.es/api/>`_).
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
             * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
