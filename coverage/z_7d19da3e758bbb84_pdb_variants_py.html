@@ -3,21 +3,21 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage for biobb_io/api/pdb_variants.py: 25%</title>
-    <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
-    <link rel="stylesheet" href="style_cb_6b508a39.css" type="text/css">
-    <script src="coverage_html_cb_6fb7b396.js" defer></script>
+    <link rel="icon" sizes="32x32" href="favicon_32_cb_c827f16f.png">
+    <link rel="stylesheet" href="style_cb_9ff733b0.css" type="text/css">
+    <script src="coverage_html_cb_dd2e7eb5.js" defer></script>
 </head>
 <body class="pyfile">
 <header>
     <div class="content">
         <h1>
-            <span class="text">Coverage for </span><b>biobb_io/api/pdb_variants.py</b>:
+            <span class="text">Coverage for </span><b>biobb_io&#8201;/&#8201;api&#8201;/&#8201;pdb_variants.py</b>:
             <span class="pc_cov">25%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
             <label for="help_panel_state">
-                <img id="keyboard_icon" src="keybd_closed_cb_ce680311.png" alt="Show/hide keyboard shortcuts">
+                <img id="keyboard_icon" src="keybd_closed_cb_900cfef5.png" alt="Show/hide keyboard shortcuts">
             </label>
             <div id="help_panel">
                 <p class="legend">Shortcuts on this page</p>
@@ -64,8 +64,8 @@
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="z_7d19da3e758bbb84_structure_info_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-04 08:31 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.13.2">coverage.py v7.13.2</a>,
+            created at 2026-02-03 12:04 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -103,7 +103,7 @@
     <p class="pln"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t"><span class="str">    | biobb_io PdbVariants</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t23" href="#t23">23</a></span><span class="t"><span class="str">    | This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t"><span class="str">    | Wrapper for the `UNIPROT &lt;http://www.uniprot.org/>`_ mirror of the `MMB group REST API &lt;http://mmb.irbbarcelona.org/api/>`_ for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t"><span class="str">    | Wrapper for the `UNIPROT &lt;http://www.uniprot.org/>`_ mirror of the `MMB group REST API &lt;https://mdb-login.bsc.es/api/>`_ for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t"><span class="str">    Args:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t"><span class="str">        output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. `Sample file &lt;https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_variants.txt>`_. Accepted formats: txt (edam:format_2330).</span>&nbsp;</span><span class="r"></span></p>
@@ -178,7 +178,7 @@
     <p class="pln"><span class="n"><a id="t96" href="#t96">96</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t97" href="#t97">97</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">pdb_code</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">pdb_code</span><span class="op">.</span><span class="nam">strip</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">lower</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t98" href="#t98">98</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t99" href="#t99">99</a></span><span class="t">        <span class="nam">url</span> <span class="op">=</span> <span class="str">"http://mmb.irbbarcelona.org/api"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t99" href="#t99">99</a></span><span class="t">        <span class="nam">url</span> <span class="op">=</span> <span class="str">"https://mdb-login.bsc.es/api"</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t100" href="#t100">100</a></span><span class="t">        <span class="nam">uniprot_id</span> <span class="op">=</span> <span class="nam">get_uniprot</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">pdb_code</span><span class="op">,</span> <span class="nam">url</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">out_log</span><span class="op">,</span> <span class="nam">self</span><span class="op">.</span><span class="nam">global_log</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t101" href="#t101">101</a></span><span class="t">        <span class="nam">url_mapPDBRes</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis mis2 show_mis"><span class="n"><a id="t102" href="#t102">102</a></span><span class="t">            <span class="nam">url</span> <span class="op">+</span> <span class="str">"/uniprot/"</span> <span class="op">+</span> <span class="nam">uniprot_id</span> <span class="op">+</span> <span class="str">"/mapPDBRes?pdbId="</span> <span class="op">+</span> <span class="nam">self</span><span class="op">.</span><span class="nam">pdb_code</span>&nbsp;</span><span class="r"></span></p>
@@ -251,7 +251,7 @@
     <p class="pln"><span class="n"><a id="t169" href="#t169">169</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t170" href="#t170">170</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t171" href="#t171">171</a></span><span class="t"><span class="nam">pdb_variants</span><span class="op">.</span><span class="nam">__doc__</span> <span class="op">=</span> <span class="nam">PdbVariants</span><span class="op">.</span><span class="nam">__doc__</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t172" href="#t172">172</a></span><span class="t"><span class="nam">main</span> <span class="op">=</span> <span class="nam">PdbVariants</span><span class="op">.</span><span class="nam">get_main</span><span class="op">(</span><span class="nam">pdb_variants</span><span class="op">,</span> <span class="str">"Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (http://mmb.irbbarcelona.org/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t172" href="#t172">172</a></span><span class="t"><span class="nam">main</span> <span class="op">=</span> <span class="nam">PdbVariants</span><span class="op">.</span><span class="nam">get_main</span><span class="op">(</span><span class="nam">pdb_variants</span><span class="op">,</span> <span class="str">"Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (https://mdb-login.bsc.es/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries."</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t173" href="#t173">173</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t174" href="#t174">174</a></span><span class="t"><span class="key">if</span> <span class="nam">__name__</span> <span class="op">==</span> <span class="str">"__main__"</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t175" href="#t175">175</a></span><span class="t">    <span class="nam">main</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -263,8 +263,8 @@
             <a class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a class="nav" href="z_7d19da3e758bbb84_structure_info_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-04 08:31 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.13.2">coverage.py v7.13.2</a>,
+            created at 2026-02-03 12:04 +0000
         </p>
     </div>
 </footer>

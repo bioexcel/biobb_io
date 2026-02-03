@@ -3,21 +3,21 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage for biobb_io/api/mmcif.py: 94%</title>
-    <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
-    <link rel="stylesheet" href="style_cb_6b508a39.css" type="text/css">
-    <script src="coverage_html_cb_6fb7b396.js" defer></script>
+    <link rel="icon" sizes="32x32" href="favicon_32_cb_c827f16f.png">
+    <link rel="stylesheet" href="style_cb_9ff733b0.css" type="text/css">
+    <script src="coverage_html_cb_dd2e7eb5.js" defer></script>
 </head>
 <body class="pyfile">
 <header>
     <div class="content">
         <h1>
-            <span class="text">Coverage for </span><b>biobb_io/api/mmcif.py</b>:
+            <span class="text">Coverage for </span><b>biobb_io&#8201;/&#8201;api&#8201;/&#8201;mmcif.py</b>:
             <span class="pc_cov">94%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
             <label for="help_panel_state">
-                <img id="keyboard_icon" src="keybd_closed_cb_ce680311.png" alt="Show/hide keyboard shortcuts">
+                <img id="keyboard_icon" src="keybd_closed_cb_900cfef5.png" alt="Show/hide keyboard shortcuts">
             </label>
             <div id="help_panel">
                 <p class="legend">Shortcuts on this page</p>
@@ -64,8 +64,8 @@
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="z_7d19da3e758bbb84_pdb_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-04 08:31 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.13.2">coverage.py v7.13.2</a>,
+            created at 2026-02-03 12:04 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -100,13 +100,13 @@
     <p class="pln"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="str">    | biobb_io Mmcif</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="str">    | This class is a wrapper for downloading a MMCIF structure from the Protein Data Bank.</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t"><span class="str">    | Wrapper for the `Protein Data Bank in Europe &lt;https://www.ebi.ac.uk/pdbe/>`_, the `Protein Data Bank &lt;https://www.rcsb.org/>`_ and the `MMB PDB mirror &lt;http://mmb.irbbarcelona.org/api/>`_ for downloading a single MMCIF structure.</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t"><span class="str">    | Wrapper for the `Protein Data Bank in Europe &lt;https://www.ebi.ac.uk/pdbe/>`_, the `Protein Data Bank &lt;https://www.rcsb.org/>`_ and the `MMB PDB mirror &lt;https://mdb-login.bsc.es/api/>`_ for downloading a single MMCIF structure.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t23" href="#t23">23</a></span><span class="t"><span class="str">    Args:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t"><span class="str">        output_mmcif_path (str): Path to the output MMCIF file. File type: output. `Sample file &lt;https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/ref_output.mmcif>`_. Accepted formats: cif (edam:format_1477), mmcif (edam:format_1477).</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t"><span class="str">        properties (dic - Python dictionary object containing the tool parameters, not input/output files):</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t"><span class="str">            * **pdb_code** (*str*) - (None) RSCB PDB code.</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t"><span class="str">            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the MMCIF structure will be downloaded. Values: pdbe (`PDB in Europe REST API &lt;https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API &lt;https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API &lt;http://mmb.irbbarcelona.org/api/>`_).</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t"><span class="str">            * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the MMCIF structure will be downloaded. Values: pdbe (`PDB in Europe REST API &lt;https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API &lt;https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API &lt;https://mdb-login.bsc.es/api/>`_).</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t"><span class="str">            * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t29" href="#t29">29</a></span><span class="t"><span class="str">            * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t30" href="#t30">30</a></span><span class="t"><span class="str">            * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.</span>&nbsp;</span><span class="r"></span></p>
@@ -208,8 +208,8 @@
             <a class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a class="nav" href="z_7d19da3e758bbb84_pdb_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.10.6">coverage.py v7.10.6</a>,
-            created at 2025-09-04 08:31 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.13.2">coverage.py v7.13.2</a>,
+            created at 2026-02-03 12:04 +0000
         </p>
     </div>
 </footer>
