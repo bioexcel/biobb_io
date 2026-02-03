@@ -1,5 +1,12 @@
 # Biobb IO changelog
 
+## What's new in version [5.2.1](https://github.com/bioexcel/biobb_amber/releases/tag/v5.2.1)?
+
+### Changes
+
+* [UPDATE] Fixed URLs of MMB PDB API
+
+
 ## What's new in version [5.2.0](https://github.com/bioexcel/biobb_amber/releases/tag/v5.2.0)?
 
 ### Changes
