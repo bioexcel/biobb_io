@@ -1,5 +1,11 @@
 # Biobb IO changelog
 
+## What's new in version [5.2.2](https://github.com/bioexcel/biobb_amber/releases/tag/v5.2.2)?
+
+### Changes
+
+* [UPDATE] Minor bug fix in IdealSdf
+
 ## What's new in version [5.2.1](https://github.com/bioexcel/biobb_amber/releases/tag/v5.2.1)?
 
 ### Changes
