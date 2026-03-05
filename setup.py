@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="biobb_io",
-    version="5.2.2",
+    version="5.2.3",
     author="Biobb developers",
     author_email="pau.andrio@bsc.es",
     description="Biobb_io is the Biobb module collection to fetch data to be consumed by the rest of the Biobb building blocks.",
@@ -19,7 +19,7 @@ setuptools.setup(
     },
     packages=setuptools.find_packages(exclude=["docs", "test"]),
     package_data={"biobb_io": ["py.typed"]},
-    install_requires=["biobb_common==5.2.0"],
+    install_requires=["biobb_common==5.2.2"],
     python_requires=">=3.10",
     entry_points={
         "console_scripts": [

@@ -1,5 +1,11 @@
 # Biobb IO changelog
 
+## What's new in version [5.2.3](https://github.com/bioexcel/biobb_amber/releases/tag/v5.2.3)?
+
+### Changes
+
+* [UPDATE] Update to biobb_common 5.2.2
+
 ## What's new in version [5.2.2](https://github.com/bioexcel/biobb_amber/releases/tag/v5.2.2)?
 
 ### Changes
