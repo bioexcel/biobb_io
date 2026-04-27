@@ -34,10 +34,10 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **uniprot_code** (*string*): (None) Uniprot code..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **uniprot_code** (*string*): (None) Uniprot code.
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_alphafold.yml)
 ```python
@@ -91,10 +91,10 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB code..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **pdb_code** (*string*): (None) RSCB PDB code.
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_api_binding_site.yml)
 ```python
@@ -148,11 +148,11 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB code..
-* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **pdb_code** (*string*): (None) RSCB PDB code.
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. 
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_canonical_fasta.yml)
 ```python
@@ -208,11 +208,11 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **ligand_code** (*string*): (None) RSCB PDB ligand code..
-* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the SDF structure will be downloaded. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **ligand_code** (*string*): (None) RSCB PDB ligand code.
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the SDF structure will be downloaded. 
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ideal_sdf.yml)
 ```python
@@ -268,11 +268,11 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **ligand_code** (*string*): (None) RSCB PDB ligand code..
-* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **ligand_code** (*string*): (None) RSCB PDB ligand code.
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. 
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_ligand.yml)
 ```python
@@ -331,15 +331,15 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **project_id** (*string*): (None) Project accession or identifier..
-* **node_id** (*string*): (mmb) MDDB node identifier..
-* **trj_format** (*string*): (xtc) Trajectory format. .
-* **frames** (*string*): (None) Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2')..
-* **selection** (*string*): (None) Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html..
-* **extra_files** (*array*): (None) List of extra files to download. It should be a tuple with the name of the file and the path to be saved..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **project_id** (*string*): (None) Project accession or identifier.
+* **node_id** (*string*): (mmb) MDDB node identifier.
+* **trj_format** (*string*): (xtc) Trajectory format. 
+* **frames** (*string*): (None) Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2').
+* **selection** (*string*): (None) Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html.
+* **extra_files** (*array*): (None) List of extra files to download. It should be a tuple with the name of the file and the path to be saved.
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_mddb.yml)
 ```python
@@ -399,10 +399,10 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB code..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **pdb_code** (*string*): (None) RSCB PDB code.
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim.yml)
 ```python
@@ -456,9 +456,9 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_list.yml)
 ```python
@@ -512,11 +512,11 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **collection_name** (*string*): (refs) Name of the collection to query..
-* **keyword** (*string*): (None) String to search for in the database metadata. Examples are families like gpcr or porin. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **collection_name** (*string*): (refs) Name of the collection to query.
+* **keyword** (*string*): (None) String to search for in the database metadata. Examples are families like gpcr or porin. 
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_memprotmd_sim_search.yml)
 ```python
@@ -572,11 +572,11 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB code..
-* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the MMCIF structure will be downloaded. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **pdb_code** (*string*): (None) RSCB PDB code.
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the MMCIF structure will be downloaded. 
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_mmcif.yml)
 ```python
@@ -632,12 +632,12 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB code..
-* **filter** (*string*): ([ATOM, MODEL, ENDMDL]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification..
-* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **pdb_code** (*string*): (None) RSCB PDB code.
+* **filter** (*string*): ([ATOM, MODEL, ENDMDL]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification.
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. 
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb.yml)
 ```python
@@ -700,13 +700,13 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB code..
-* **filter** (*string*): ([ATOM, MODEL, ENDMDL]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html).
-* **cluster** (*integer*): (90) Sequence Similarity Cutoff. .
-* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. .
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **pdb_code** (*string*): (None) RSCB PDB code.
+* **filter** (*string*): ([ATOM, MODEL, ENDMDL]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification (http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)
+* **cluster** (*integer*): (90) Sequence Similarity Cutoff. 
+* **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. 
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb_cluster_zip.yml)
 ```python
@@ -773,10 +773,10 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB four letter code..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **pdb_code** (*string*): (None) RSCB PDB four letter code.
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_pdb_variants.yml)
 ```python
@@ -830,10 +830,10 @@ Config input / output arguments for this building block:
 Syntax: input_parameter (datatype) - (default_value) Definition
 
 Config parameters for this building block:
-* **pdb_code** (*string*): (None) RSCB PDB structure code..
-* **remove_tmp** (*boolean*): (True) Remove temporal files..
-* **restart** (*boolean*): (False) Do not execute if output files exist..
-* **sandbox_path** (*string*): (./) Parent path to the sandbox directory..
+* **pdb_code** (*string*): (None) RSCB PDB structure code.
+* **remove_tmp** (*boolean*): (True) Remove temporal files.
+* **restart** (*boolean*): (False) Do not execute if output files exist.
+* **sandbox_path** (*string*): (./) Parent path to the sandbox directory.
 ### YAML
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_structure_info.yml)
 ```python
