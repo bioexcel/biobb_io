@@ -61,7 +61,7 @@ class Ligand(BiobbObject):
         self.io_dict = {"out": {"output_pdb_path": output_pdb_path}}
 
         # Properties specific for BB
-        self.api_id = properties.get("api_id", "pdbe")
+        self.api_id = properties.get("api_id", "mmb")
         self.ligand_code = properties.get("ligand_code", None)
         self.properties = properties
 

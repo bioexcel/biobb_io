@@ -167,8 +167,8 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
         text = requests.get(url, verify=True).content.decode("utf-8")
     elif api_id == "pdbe":
         url = (
-            # "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
-            "https://files.rcsb.org/ligands/view/" + ligand_code.upper() + ".cif"
+            "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
+            #"https://files.rcsb.org/ligands/view/" + ligand_code.upper() + ".cif"
         )
         text = urllib.request.urlopen(url).read().decode("utf-8")
 
