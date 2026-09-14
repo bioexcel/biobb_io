@@ -26,6 +26,7 @@ class Pdb(BiobbObject):
             * **pdb_code** (*str*) - (None) RSCB PDB code.
             * **filter** (*str*) - (["ATOM", "MODEL", "ENDMDL"]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the `official PDB specification <http://www.wwpdb.org/documentation/file-format-content/format33/v3.3.html)>`_.
             * **api_id** (*str*) - ("pdbe") Identifier of the PDB REST API from which the PDB structure will be downloaded. Values: pdbe (`PDB in Europe REST API <https://www.ebi.ac.uk/pdbe/pdbe-rest-api>`_), pdb (`RCSB PDB REST API <https://data.rcsb.org/>`_), mmb (`MMB PDB mirror API <https://mdb-login.bsc.es/api/>`_).
+            * **assembly** (*str*) - (None) Biological Assembly ID to be downloaded. If None or False the asemitric unit will be downloaded.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
             * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
@@ -66,6 +67,7 @@ class Pdb(BiobbObject):
         self.api_id = properties.get("api_id", "pdbe")
         self.pdb_code = properties.get("pdb_code", None)
         self.filter = properties.get("filter", ["ATOM", "MODEL", "ENDMDL"])
+        self.assembly = properties.get("assembly", None)
         self.properties = properties
 
         # Check the properties
@@ -101,7 +103,7 @@ class Pdb(BiobbObject):
 
         # Downloading PDB file
         pdb_string = download_pdb(
-            self.pdb_code, self.api_id, self.out_log, self.global_log
+            self.pdb_code, self.api_id, self.assembly, self.out_log, self.global_log,
         )
         write_pdb(
             pdb_string, self.output_pdb_path, self.filter, self.out_log, self.global_log

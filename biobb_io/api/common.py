@@ -50,16 +50,18 @@ def is_valid_file(ext, argument):
     return ext in formats[argument]
 
 
-def download_pdb(pdb_code, api_id, out_log=None, global_log=None):
+def download_pdb(pdb_code, api_id, assembly=None, out_log=None, global_log=None):
     """
     Returns:
         String: Content of the pdb file.
     """
-
+    if assembly and api_id != "pdb":
+        raise ValueError("Assembly can only be used with api_id='pdb'")
+    assembly = str(assembly) if assembly else ""
     if api_id == "mmb":
         url = "https://mdb-login.bsc.es/api/pdb/" + pdb_code + "/coords/?"
     elif api_id == "pdb":
-        url = "https://files.rcsb.org/download/" + pdb_code + ".pdb"
+        url = "https://files.rcsb.org/download/" + pdb_code + ".pdb" + assembly
     elif api_id == "pdbe":
         url = "https://www.ebi.ac.uk/pdbe/entry-files/download/pdb" + pdb_code + ".ent"
 
