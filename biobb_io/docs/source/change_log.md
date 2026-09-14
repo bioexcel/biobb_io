@@ -1,5 +1,13 @@
 # Biobb IO changelog
 
+## [Unreleased]
+
+## What's new in version [5.3.1](https://github.com/bioexcel/biobb_io/releases/tag/v5.3.1)?
+
+### Changes
+
+* [FEATURE] Add the `assembly` property to download biological assemblies from RCSB PDB with `api_id="pdb"`.
+
 ## What's new in version [5.3.0](https://github.com/bioexcel/biobb_amber/releases/tag/v5.3.0)?
 
 ### Changes

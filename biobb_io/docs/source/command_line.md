@@ -635,6 +635,7 @@ Config parameters for this building block:
 * **pdb_code** (*string*): (None) RSCB PDB code.
 * **filter** (*string*): ([ATOM, MODEL, ENDMDL]) Array of groups to be kept. If value is None or False no filter will be applied. All the possible values are defined in the official PDB specification.
 * **api_id** (*string*): (pdbe) Identifier of the PDB REST API from which the PDB structure will be downloaded. 
+* **assembly** (*string*): (None) Biological Assembly ID to be downloaded. If None or False the asemitric unit will be downloaded.
 * **remove_tmp** (*boolean*): (True) Remove temporal files.
 * **restart** (*boolean*): (False) Do not execute if output files exist.
 * **sandbox_path** (*string*): (./) Parent path to the sandbox directory.

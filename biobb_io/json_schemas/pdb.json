@@ -75,6 +75,12 @@
                         }
                     ]
                 },
+                "assembly": {
+                    "type": "string",
+                    "default": null,
+                    "wf_prop": false,
+                    "description": "Biological Assembly ID to be downloaded. If None or False the asemitric unit will be downloaded."
+                },
                 "remove_tmp": {
                     "type": "boolean",
                     "default": true,
