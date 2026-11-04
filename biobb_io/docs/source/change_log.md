@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## What's new in version [5.3.2](https://github.com/bioexcel/biobb_io/releases/tag/v5.3.2)?
+
 ### Changes
 
 * [FIX] `pdb_variants`: the MMB mirror stopped serving the residue mapping (HTTP 500 on `mapPDBRes`) and the humsavar variants (now a list of nulls). The mapping now comes from PDBe SIFTS (observed residues, author numbering) and the variants from the UniProt REST API (natural variants); same output for 2VGB. Its unit test runs again.
