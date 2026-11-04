@@ -755,7 +755,7 @@ pdb_variants -h
 ```
     usage: pdb_variants [-h] [-c CONFIG] -o OUTPUT_MUTATIONS_LIST_TXT
     
-    Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (https://mdb-login.bsc.es/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
+    Wrapper for the MMB group REST API (https://mdb-login.bsc.es/api/), the PDBe SIFTS API (https://www.ebi.ac.uk/pdbe/api/doc/) and the UNIPROT REST API (https://rest.uniprot.org/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
     
     options:
       -h, --help            show this help message and exit

@@ -3,7 +3,7 @@
     "$id": "http://bioexcel.eu/biobb_io/json_schemas/1.0/pdb_variants",
     "name": "biobb_io PdbVariants",
     "title": "This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.",
-    "description": "Wrapper for the UNIPROT mirror of the MMB group REST API for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.",
+    "description": "Wrapper for the MMB group REST API (UNIPROT code of the PDB entry), the PDBe SIFTS API (residue mapping) and the UNIPROT REST API (natural variants) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.",
     "type": "object",
     "info": {
         "wrapped_software": {

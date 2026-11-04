@@ -3,7 +3,6 @@
 """PdbVariants Module"""
 
 import re
-import requests
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools import file_utils as fu
@@ -12,6 +11,7 @@ from biobb_common.tools.file_utils import launchlogger
 from biobb_io.api.common import (
     check_mandatory_property,
     check_output_path,
+    get_pdb_uniprot_mapping,
     get_uniprot,
     get_variants,
 )
@@ -21,7 +21,7 @@ class PdbVariants(BiobbObject):
     """
     | biobb_io PdbVariants
     | This class creates a text file containing a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
-    | Wrapper for the `UNIPROT <http://www.uniprot.org/>`_ mirror of the `MMB group REST API <https://mdb-login.bsc.es/api/>`_ for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
+    | Wrapper for the `MMB group REST API <https://mdb-login.bsc.es/api/>`_ (UNIPROT code of the PDB entry), the `PDBe SIFTS API <https://www.ebi.ac.uk/pdbe/api/doc/>`_ (residue mapping) and the `UNIPROT REST API <https://rest.uniprot.org/>`_ (natural variants) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.
 
     Args:
         output_mutations_list_txt (str): Path to the TXT file containing an ASCII comma separated values of the mutations. File type: output. `Sample file <https://github.com/bioexcel/biobb_io/raw/master/biobb_io/test/reference/api/output_pdb_variants.txt>`_. Accepted formats: txt (edam:format_2330).
@@ -98,9 +98,6 @@ class PdbVariants(BiobbObject):
 
         url = "https://mdb-login.bsc.es/api"
         uniprot_id = get_uniprot(self.pdb_code, url, self.out_log, self.global_log)
-        url_mapPDBRes = (
-            url + "/uniprot/" + uniprot_id + "/mapPDBRes?pdbId=" + self.pdb_code
-        )
         pattern = re.compile(
             (r"p.(?P<wt>[a-zA-Z]{3})(?P<resnum>\d+)(?P<mt>[a-zA-Z]{3})")
         )
@@ -111,31 +108,23 @@ class PdbVariants(BiobbObject):
             self.out_log,
             self.global_log,
         )
-        unfiltered_dic = requests.get(url_mapPDBRes, verify=True).json()
-        if not unfiltered_dic:
+        mapdic = get_pdb_uniprot_mapping(self.pdb_code, uniprot_id, out_log=self.out_log, global_log=self.global_log)
+        if not any(mapdic.values()):
             fu.log("No mutation found", self.out_log, self.global_log)
             return 1
 
-        mapdic = requests.get(url_mapPDBRes, verify=True).json()
         mutations = []
-        uniprot_var_list = get_variants(uniprot_id, url, self.out_log, self.global_log)
+        uniprot_var_list = get_variants(uniprot_id, out_log=self.out_log, global_log=self.global_log)
         for var in uniprot_var_list:
             match = pattern.match(var)
             if match:
                 uni_mut = match.groupdict()
             else:
                 continue
-            for k in mapdic.keys():
-                for fragment in mapdic[k]:
-                    if (
-                        int(fragment["unp_start"]) <= int(uni_mut["resnum"]) <= int(fragment["unp_end"])
-                    ):
-                        resnum = (
-                            int(uni_mut["resnum"]) + int(fragment["pdb_start"]) - int(fragment["unp_start"])
-                        )
-                        mutations.append(
-                            k[-1] + "." + uni_mut["wt"] + str(resnum) + uni_mut["mt"]
-                        )
+            for chain, residues in mapdic.items():
+                resnum = residues.get(int(uni_mut["resnum"]))
+                if resnum:
+                    mutations.append(chain + "." + uni_mut["wt"] + resnum + uni_mut["mt"])
 
         fu.log(
             "Found %d mutations mapped to PDB: %s" % (len(mutations), self.pdb_code),
@@ -169,7 +158,7 @@ def pdb_variants(
 
 
 pdb_variants.__doc__ = PdbVariants.__doc__
-main = PdbVariants.get_main(pdb_variants, "Wrapper for the UNIPROT (http://www.uniprot.org/) mirror of the MMB group REST API (https://mdb-login.bsc.es/api/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.")
+main = PdbVariants.get_main(pdb_variants, "Wrapper for the MMB group REST API (https://mdb-login.bsc.es/api/), the PDBe SIFTS API (https://www.ebi.ac.uk/pdbe/api/doc/) and the UNIPROT REST API (https://rest.uniprot.org/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.")
 
 if __name__ == "__main__":
     main()

@@ -358,26 +358,78 @@ def get_uniprot(pdb_code, url, out_log=None, global_log=None):
     return uniprot_id
 
 
+AMINO_ACIDS_3 = {
+    "A": "Ala", "R": "Arg", "N": "Asn", "D": "Asp", "C": "Cys", "Q": "Gln", "E": "Glu",
+    "G": "Gly", "H": "His", "I": "Ile", "L": "Leu", "K": "Lys", "M": "Met", "F": "Phe",
+    "P": "Pro", "S": "Ser", "T": "Thr", "W": "Trp", "Y": "Tyr", "V": "Val",
+}
+
+
 def get_variants(
-    uniprot_id, url="https://mdb-login.bsc.es/api", out_log=None, global_log=None
+    uniprot_id, url="https://rest.uniprot.org/uniprotkb", out_log=None, global_log=None
 ):
-    """Returns the variants of the `uniprot_id` code.
+    """Returns the single amino acid natural variants (UniProt humsavar) of the `uniprot_id` code.
 
     Returns:
-        :obj:`list` of :obj:`str`: List of variants.
+        :obj:`list` of :obj:`str`: List of variants (p.Glu172Gln).
     """
-    url_uniprot_mut = (
-        url + "/uniprot/" + uniprot_id + "/entry/variants/vardata/mut/?varorig=humsavar"
-    )
-    variants = requests.get(url_uniprot_mut, verify=True).json()["variants.vardata.mut"]
-    variants = variants if variants else []
+    url_uniprot_mut = url + "/" + uniprot_id + ".json?fields=ft_variant"
+    response = requests.get(url_uniprot_mut, verify=True)
+    response.raise_for_status()
+    variants = []
+    for feature in response.json().get("features", []):
+        alt = feature.get("alternativeSequence", {})
+        wt, mts = alt.get("originalSequence", ""), alt.get("alternativeSequences", [])
+        if feature["type"] == "Natural variant" and wt in AMINO_ACIDS_3 and len(mts) == 1 and mts[0] in AMINO_ACIDS_3:
+            variants.append("p." + AMINO_ACIDS_3[wt] + str(feature["location"]["start"]["value"]) + AMINO_ACIDS_3[mts[0]])
 
     fu.log(
         "Found: %d variants for uniprot id: %s" % (len(variants), uniprot_id),
         out_log,
         global_log,
     )
-    return variants if variants else []
+    return variants
+
+
+def get_pdb_uniprot_mapping(
+    pdb_code, uniprot_id, url="https://www.ebi.ac.uk/pdbe/api/v2", out_log=None, global_log=None
+):
+    """Returns the SIFTS mapping of the observed residues of `pdb_code` to `uniprot_id`.
+
+    Returns:
+        dict: {chain_id: {uniprot residue number (int): PDB author residue number (str)}}.
+    """
+    pdb_code = pdb_code.lower()
+    sifts = requests.get(url + "/mappings/uniprot/" + pdb_code, verify=True)
+    sifts.raise_for_status()
+    listing = requests.get(url + "/pdb/entry/residue_listing/" + pdb_code, verify=True)
+    listing.raise_for_status()
+
+    # (entity_id, struct_asym_id) -> {residue_number: author number + insertion code} of the observed residues
+    observed = {}
+    for molecule in listing.json()[pdb_code]["molecules"]:
+        for chain in molecule["chains"]:
+            observed[(molecule["entity_id"], chain["struct_asym_id"])] = {
+                res["residue_number"]: str(res["author_residue_number"]) + (res["author_insertion_code"] or "")
+                for res in chain["residues"] if res["observed_ratio"] > 0
+            }
+
+    mapping = {}
+    for segment in sifts.json()[pdb_code]["UniProt"].get(uniprot_id, {}).get("mappings", []):
+        residues = observed.get((segment["entity_id"], segment["struct_asym_id"]), {})
+        chain_map = mapping.setdefault(segment["chain_id"], {})
+        for unp_num in range(segment["unp_start"], segment["unp_end"] + 1):
+            residue_number = segment["start"]["residue_number"] + unp_num - segment["unp_start"]
+            if residue_number in residues:
+                chain_map[unp_num] = residues[residue_number]
+
+    fu.log(
+        "Mapped %d residues of %s to uniprot id: %s"
+        % (sum(len(v) for v in mapping.values()), pdb_code, uniprot_id),
+        out_log,
+        global_log,
+    )
+    return mapping
 
 
 def write_json(json_string, output_json_path, out_log=None, global_log=None):
