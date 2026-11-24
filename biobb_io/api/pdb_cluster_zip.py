@@ -6,11 +6,9 @@ import os
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools import file_utils as fu
-from biobb_common.tools.file_utils import launchlogger
 
 from biobb_io.api.common import (
     check_mandatory_property,
-    check_output_path,
     download_pdb,
     get_cluster_pdb_codes,
     write_pdb,
@@ -74,30 +72,11 @@ class PdbClusterZip(BiobbObject):
         self.cluster = properties.get("cluster", 90)
         self.properties = properties
 
-        # Check the properties
-        self.check_properties(properties)
-        self.check_arguments()
+    def stage_files(self) -> None:
+        """The block does not use the sandbox: there are no files to stage."""
 
-    def check_data_params(self, out_log, err_log):
-        """Checks all the input/output paths and parameters"""
-        self.output_pdb_zip_path = check_output_path(
-            self.io_dict["out"]["output_pdb_zip_path"],
-            "output_pdb_zip_path",
-            False,
-            out_log,
-            self.__class__.__name__,
-        )
-
-    @launchlogger
-    def launch(self) -> int:
+    def run(self) -> int:
         """Execute the :class:`PdbClusterZip <api.pdb_cluster_zip.PdbClusterZip>` api.pdb_cluster_zip.PdbClusterZip object."""
-
-        # check input/output paths and parameters
-        self.check_data_params(self.out_log, self.err_log)
-
-        # Setup Biobb
-        if self.check_restart():
-            return 0
 
         check_mandatory_property(
             self.pdb_code, "pdb_code", self.out_log, self.__class__.__name__
@@ -126,8 +105,8 @@ class PdbClusterZip(BiobbObject):
             file_list.append(os.path.abspath(pdb_file))
 
         # Zipping files
-        fu.log("Zipping the pdb files to: %s" % self.output_pdb_zip_path)
-        fu.zip_list(self.output_pdb_zip_path, file_list, out_log=self.out_log)
+        fu.log("Zipping the pdb files to: %s" % self.io_dict["out"]["output_pdb_zip_path"])
+        fu.zip_list(self.io_dict["out"]["output_pdb_zip_path"], file_list, out_log=self.out_log)
 
         self.tmp_files.append(unique_dir)
         self.remove_tmp_files()

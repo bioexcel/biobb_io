@@ -4,16 +4,14 @@
 
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.tools.file_utils import launchlogger
 
 from biobb_io.api.common import (
     check_mandatory_property,
-    check_output_path,
     download_mddb_top,
     write_pdb,
     download_mddb_trj,
     write_bin,
-    download_mddb_file
+    download_mddb_file,
 )
 
 
@@ -78,37 +76,11 @@ class MDDB(BiobbObject):
         self.extra_files = properties.get("extra_files", [])
         self.properties = properties
 
-        # Check the properties
-        self.check_properties(properties)
-        self.check_arguments()
+    def stage_files(self) -> None:
+        """The block does not use the sandbox: there are no files to stage."""
 
-    def check_data_params(self, out_log, err_log):
-        """Checks all the input/output paths and parameters"""
-        self.output_top_path = check_output_path(
-            self.io_dict["out"]["output_top_path"],
-            "output_top_path",
-            False,
-            out_log,
-            self.__class__.__name__,
-        )
-        self.output_trj_path = check_output_path(
-            self.io_dict["out"]["output_trj_path"],
-            "output_trj_path",
-            False,
-            out_log,
-            self.__class__.__name__,
-        )
-
-    @launchlogger
-    def launch(self) -> int:
+    def run(self) -> int:
         """Execute the :class:`MDDB <api.mddb.MDDB>` api.mddb.MDDB object."""
-
-        # check input/output paths and parameters
-        self.check_data_params(self.out_log, self.err_log)
-
-        # Setup Biobb
-        if self.check_restart():
-            return 0
 
         check_mandatory_property(
             self.project_id, "project_id", self.out_log, self.__class__.__name__
@@ -125,7 +97,7 @@ class MDDB(BiobbObject):
             self.global_log,
             self.__class__.__name__
         )
-        write_pdb(top_string, self.output_top_path, None, self.out_log, self.global_log)
+        write_pdb(top_string, self.io_dict["out"]["output_top_path"], None, self.out_log, self.global_log)
 
         # Downloading trajectory file
         trj_string = download_mddb_trj(
@@ -138,7 +110,7 @@ class MDDB(BiobbObject):
             self.global_log,
             self.__class__.__name__,
         )
-        write_bin(trj_string, self.output_trj_path, self.out_log, self.global_log)
+        write_bin(trj_string, self.io_dict["out"]["output_trj_path"], self.out_log, self.global_log)
 
         for (extra_file, extra_path) in self.extra_files:
             try:

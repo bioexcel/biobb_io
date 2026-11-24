@@ -4,11 +4,9 @@
 
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.tools.file_utils import launchlogger
 
 from biobb_io.api.common import (
     check_mandatory_property,
-    check_output_path,
     check_uniprot_code,
     download_af,
     write_pdb,
@@ -63,30 +61,11 @@ class AlphaFold(BiobbObject):
         self.uniprot_code = properties.get("uniprot_code", None)
         self.properties = properties
 
-        # Check the properties
-        self.check_properties(properties)
-        self.check_arguments()
+    def stage_files(self) -> None:
+        """The block does not use the sandbox: there are no files to stage."""
 
-    def check_data_params(self, out_log, err_log):
-        """Checks all the input/output paths and parameters"""
-        self.output_pdb_path = check_output_path(
-            self.io_dict["out"]["output_pdb_path"],
-            "output_pdb_path",
-            False,
-            out_log,
-            self.__class__.__name__,
-        )
-
-    @launchlogger
-    def launch(self) -> int:
+    def run(self) -> int:
         """Execute the :class:`AlphaFold <api.alphafold.AlphaFold>` api.alphafold.AlphaFold object."""
-
-        # check input/output paths and parameters
-        self.check_data_params(self.out_log, self.err_log)
-
-        # Setup Biobb
-        if self.check_restart():
-            return 0
 
         check_mandatory_property(
             self.uniprot_code, "uniprot_code", self.out_log, self.__class__.__name__
@@ -100,7 +79,7 @@ class AlphaFold(BiobbObject):
         pdb_string = download_af(
             self.uniprot_code, self.out_log, self.global_log, self.__class__.__name__
         )
-        write_pdb(pdb_string, self.output_pdb_path, None, self.out_log, self.global_log)
+        write_pdb(pdb_string, self.io_dict["out"]["output_pdb_path"], None, self.out_log, self.global_log)
 
         self.check_arguments(output_files_created=True, raise_exception=False)
 

@@ -5,49 +5,9 @@ import os
 import re
 import urllib.request
 import urllib.parse
-from pathlib import Path, PurePath
 
 import requests
 from biobb_common.tools import file_utils as fu
-
-
-def check_output_path(path, argument, optional, out_log, classname) -> str:
-    """Checks output file"""
-    if optional and not path:
-        return ""
-    if PurePath(path).parent and not Path(PurePath(path).parent).exists():
-        fu.log(classname + ": Unexisting %s folder, exiting" % argument, out_log)
-        raise SystemExit(classname + ": Unexisting %s folder" % argument)
-    file_extension = PurePath(path).suffix
-    if not is_valid_file(file_extension[1:], argument):
-        fu.log(
-            classname + ": Format %s in %s file is not compatible"
-            % (file_extension[1:], argument),
-            out_log,
-        )
-        raise SystemExit(
-            classname + ": Format %s in %s file is not compatible"
-            % (file_extension[1:], argument)
-        )
-    return path
-
-
-def is_valid_file(ext, argument):
-    """Checks if file format is compatible"""
-    formats = {
-        "output_sdf_path": ["sdf"],
-        "output_pdb_path": ["pdb"],
-        "output_simulations": ["json"],
-        "output_simulation": ["zip"],
-        "output_pdb_zip_path": ["zip"],
-        "output_mutations_list_txt": ["txt"],
-        "output_json_path": ["json"],
-        "output_fasta_path": ["fasta"],
-        "output_mmcif_path": ["mmcif", "cif"],
-        "output_top_path": ["pdb"],
-        "output_trj_path": ["mdcrd", "trr", "xtc"]
-    }
-    return ext in formats[argument]
 
 
 def download_pdb(pdb_code, api_id, assembly=None, out_log=None, global_log=None):

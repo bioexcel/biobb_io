@@ -4,11 +4,9 @@
 
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.tools.file_utils import launchlogger
 
 from biobb_io.api.common import (
     check_mandatory_property,
-    check_output_path,
     download_mmcif,
     write_mmcif,
 )
@@ -65,30 +63,11 @@ class Mmcif(BiobbObject):
         self.pdb_code = properties.get("pdb_code", None)
         self.properties = properties
 
-        # Check the properties
-        self.check_properties(properties)
-        self.check_arguments()
+    def stage_files(self) -> None:
+        """The block does not use the sandbox: there are no files to stage."""
 
-    def check_data_params(self, out_log, err_log):
-        """Checks all the input/output paths and parameters"""
-        self.output_mmcif_path = check_output_path(
-            self.io_dict["out"]["output_mmcif_path"],
-            "output_mmcif_path",
-            False,
-            out_log,
-            self.__class__.__name__,
-        )
-
-    @launchlogger
-    def launch(self) -> int:
+    def run(self) -> int:
         """Execute the :class:`Mmcif <api.mmcif.Mmcif>` api.mmcif.Mmcif object."""
-
-        # check input/output paths and parameters
-        self.check_data_params(self.out_log, self.err_log)
-
-        # Setup Biobb
-        if self.check_restart():
-            return 0
 
         check_mandatory_property(
             self.pdb_code, "pdb_code", self.out_log, self.__class__.__name__
@@ -100,7 +79,7 @@ class Mmcif(BiobbObject):
         mmcif_string = download_mmcif(
             self.pdb_code, self.api_id, self.out_log, self.global_log
         )
-        write_mmcif(mmcif_string, self.output_mmcif_path, self.out_log, self.global_log)
+        write_mmcif(mmcif_string, self.io_dict["out"]["output_mmcif_path"], self.out_log, self.global_log)
 
         self.check_arguments(output_files_created=True, raise_exception=False)
 

@@ -6,11 +6,9 @@ import re
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 from biobb_common.tools import file_utils as fu
-from biobb_common.tools.file_utils import launchlogger
 
 from biobb_io.api.common import (
     check_mandatory_property,
-    check_output_path,
     get_pdb_uniprot_mapping,
     get_uniprot,
     get_variants,
@@ -65,30 +63,11 @@ class PdbVariants(BiobbObject):
         self.pdb_code = properties.get("pdb_code", None)
         self.properties = properties
 
-        # Check the properties
-        self.check_properties(properties)
-        self.check_arguments()
+    def stage_files(self) -> None:
+        """The block does not use the sandbox: there are no files to stage."""
 
-    def check_data_params(self, out_log, err_log):
-        """Checks all the input/output paths and parameters"""
-        self.output_mutations_list_txt = check_output_path(
-            self.io_dict["out"]["output_mutations_list_txt"],
-            "output_mutations_list_txt",
-            False,
-            out_log,
-            self.__class__.__name__,
-        )
-
-    @launchlogger
-    def launch(self) -> int:
+    def run(self) -> int:
         """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` api.pdb_variants.PdbVariants object."""
-
-        # check input/output paths and parameters
-        self.check_data_params(self.out_log, self.err_log)
-
-        # Setup Biobb
-        if self.check_restart():
-            return 0
 
         check_mandatory_property(
             self.pdb_code, "pdb_code", self.out_log, self.__class__.__name__
@@ -132,15 +111,15 @@ class PdbVariants(BiobbObject):
             self.global_log,
         )
         fu.log(
-            "Writting mutations to: %s" % self.output_mutations_list_txt,
+            "Writting mutations to: %s" % self.io_dict["out"]["output_mutations_list_txt"],
             self.out_log,
             self.global_log,
         )
 
-        if not self.output_mutations_list_txt:
+        if not self.io_dict["out"]["output_mutations_list_txt"]:
             raise ValueError("Output mutations list file path is not specified.")
 
-        with open(self.output_mutations_list_txt, "w") as mut_file:
+        with open(self.io_dict["out"]["output_mutations_list_txt"], "w") as mut_file:
             mutations.sort()
             mut_file.write(",".join(mutations))
 
