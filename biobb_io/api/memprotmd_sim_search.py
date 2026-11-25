@@ -5,7 +5,7 @@
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject
 
-from biobb_io.api.common import get_memprotmd_sim_search, write_json
+from biobb_io.api.common import check_mandatory_property, get_memprotmd_sim_search, write_json
 
 
 class MemProtMDSimSearch(BiobbObject):
@@ -64,6 +64,10 @@ class MemProtMDSimSearch(BiobbObject):
 
     def run(self) -> int:
         """Execute the :class:`MemProtMDSimSearch <api.memprotmd_sim_search.MemProtMDSimSearch>` api.memprotmd_sim_search.MemProtMDSimSearch object."""
+
+        check_mandatory_property(
+            self.keyword, "keyword", self.out_log, self.__class__.__name__
+        )
 
         self.keyword = self.keyword.strip().lower()
 
