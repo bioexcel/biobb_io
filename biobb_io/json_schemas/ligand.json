@@ -46,7 +46,7 @@
                 },
                 "api_id": {
                     "type": "string",
-                    "default": "pdbe",
+                    "default": "mmb",
                     "wf_prop": false,
                     "description": "Identifier of the PDB REST API from which the PDB structure will be downloaded. ",
                     "enum": [
