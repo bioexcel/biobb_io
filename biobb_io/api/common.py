@@ -246,7 +246,7 @@ def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=N
                 global_log,
             )
             for line in pdb_string.splitlines(True):
-                if line.strip().split()[0][0:6] in filt:
+                if line.strip() and line.strip().split()[0][0:6] in filt:
                     output_pdb_file.write(line)
         else:
             output_pdb_file.write(pdb_string)
