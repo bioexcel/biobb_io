@@ -28,9 +28,9 @@ class MDDB(BiobbObject):
             * **project_id** (*str*) - (None) Project accession or identifier.
             * **node_id** (*str*) - ("mmb") MDDB node identifier.
             * **trj_format** (*str*) - ("xtc") Trajectory format. Values: mdcrd (AMBER trajectory format), trr (Trajectory of a simulation experiment used by GROMACS), xtc (Portable binary format for trajectories produced by GROMACS package).
-            * **frames** (*str*) - (None) Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2').
-            * **selection** (*str*) - (None) Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html.
-            * **extra_files** (*list*) - (None) List of extra files to download. It should be a tuple with the name of the file and the path to be saved.
+            * **frames** (*str*) - ("") Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2').
+            * **selection** (*str*) - ("*") Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html.
+            * **extra_files** (*list*) - ([]) List of extra files to download. It should be a tuple with the name of the file and the path to be saved.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
             * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
@@ -58,23 +58,7 @@ class MDDB(BiobbObject):
     """
 
     def __init__(self, output_top_path, output_trj_path, properties=None, **kwargs) -> None:
-        properties = properties or {}
-
-        # Call parent class constructor
-        super().__init__(properties)
-        self.locals_var_dict = locals().copy()
-
-        # Input/Output files
-        self.io_dict = {"out": {"output_top_path": output_top_path, "output_trj_path": output_trj_path}}
-
-        # Properties specific for BB
-        self.project_id = properties.get("project_id", None)
-        self.node_id = properties.get("node_id", "mmb")
-        self.trj_format = properties.get("trj_format", "xtc")
-        self.frames = properties.get("frames", "")
-        self.selection = properties.get("selection", "*")
-        self.extra_files = properties.get("extra_files", [])
-        self.properties = properties
+        super().__init__(**locals())
 
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""

@@ -106,19 +106,19 @@
                 },
                 "frames": {
                     "type": "string",
-                    "default": null,
+                    "default": "",
                     "wf_prop": false,
                     "description": "Specify a frame range for the returned trajectory. Ranges are defined by dashes, and multiple ranges can be defined separated by commas. It can also be defined as the start:end:step format (ie: '10:20:2')."
                 },
                 "selection": {
                     "type": "string",
-                    "default": null,
+                    "default": "*",
                     "wf_prop": false,
                     "description": "Specify a NGL-formatted selection for the returned trajectory. See here for the kind of selection that can be used: http://nglviewer.org/ngl/api/manual/usage/selection-language.html."
                 },
                 "extra_files": {
                     "type": "array",
-                    "default": null,
+                    "default": "[]",
                     "wf_prop": false,
                     "description": "List of extra files to download. It should be a tuple with the name of the file and the path to be saved."
                 },

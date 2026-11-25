@@ -52,21 +52,7 @@ class Pdb(BiobbObject):
     """
 
     def __init__(self, output_pdb_path, properties=None, **kwargs) -> None:
-        properties = properties or {}
-
-        # Call parent class constructor
-        super().__init__(properties)
-        self.locals_var_dict = locals().copy()
-
-        # Input/Output files
-        self.io_dict = {"out": {"output_pdb_path": output_pdb_path}}
-
-        # Properties specific for BB
-        self.api_id = properties.get("api_id", "pdbe")
-        self.pdb_code = properties.get("pdb_code", None)
-        self.filter = properties.get("filter", ["ATOM", "MODEL", "ENDMDL"])
-        self.assembly = properties.get("assembly", None)
-        self.properties = properties
+        super().__init__(**locals())
 
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""

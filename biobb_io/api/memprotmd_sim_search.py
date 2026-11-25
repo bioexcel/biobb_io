@@ -45,19 +45,7 @@ class MemProtMDSimSearch(BiobbObject):
     """
 
     def __init__(self, output_simulations, properties=None, **kwargs) -> None:
-        properties = properties or {}
-
-        # Call parent class constructor
-        super().__init__(properties)
-        self.locals_var_dict = locals().copy()
-
-        # Input/Output files
-        self.io_dict = {"out": {"output_simulations": output_simulations}}
-
-        # Properties specific for BB
-        self.collection_name = properties.get("collection_name", "refs")
-        self.keyword = properties.get("keyword", None)
-        self.properties = properties
+        super().__init__(**locals())
 
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
