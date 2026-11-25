@@ -92,7 +92,7 @@ class PdbClusterZip(BiobbObject):
             out_log=self.out_log,
             global_log=self.global_log,
         )
-        unique_dir = fu.create_unique_dir()
+        unique_dir = self.create_tmp_dir()
         for pdb_code in pdb_code_list:
             pdb_file = os.path.join(unique_dir, pdb_code + ".pdb")
             pdb_string = download_pdb(
@@ -107,8 +107,6 @@ class PdbClusterZip(BiobbObject):
         # Zipping files
         fu.log("Zipping the pdb files to: %s" % self.io_dict["out"]["output_pdb_zip_path"])
         fu.zip_list(self.io_dict["out"]["output_pdb_zip_path"], file_list, out_log=self.out_log)
-
-        self.tmp_files.append(unique_dir)
 
 
 def pdb_cluster_zip(
