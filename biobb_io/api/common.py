@@ -24,6 +24,8 @@ def download_pdb(pdb_code, api_id, assembly=None, out_log=None, global_log=None)
         url = "https://files.rcsb.org/download/" + pdb_code + ".pdb" + assembly
     elif api_id == "pdbe":
         url = "https://www.ebi.ac.uk/pdbe/entry-files/download/pdb" + pdb_code + ".ent"
+    else:
+        raise ValueError("api_id %s not valid" % api_id)
 
     fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url).content.decode("utf-8")
@@ -113,6 +115,8 @@ def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
         url = "https://files.rcsb.org/download/" + pdb_code + ".cif"
     elif api_id == "pdbe":
         url = "https://www.ebi.ac.uk/pdbe/entry-files/download/" + pdb_code + ".cif"
+    else:
+        raise ValueError("api_id %s not valid" % api_id)
 
     fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url, verify=True).content.decode("utf-8")
@@ -133,6 +137,8 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
             #"https://files.rcsb.org/ligands/view/" + ligand_code.upper() + ".cif"
         )
         text = urllib.request.urlopen(url).read().decode("utf-8")
+    else:
+        raise ValueError("api_id %s not valid" % api_id)
 
     fu.log("Downloading %s from: %s" % (ligand_code, url), out_log, global_log)
 
@@ -154,6 +160,8 @@ def download_fasta(pdb_code, api_id, out_log=None, global_log=None):
         url = "https://www.rcsb.org/fasta/entry/" + pdb_code
     elif api_id == "pdbe":
         url = "https://www.ebi.ac.uk/pdbe/api/v2/pdb/entry/" + pdb_code + "/fasta"
+    else:
+        raise ValueError("api_id %s not valid" % api_id)
 
     fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
     return requests.get(url, verify=True).content.decode("utf-8")
@@ -197,6 +205,8 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
             "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.sdf"
         )
         text = urllib.request.urlopen(url).read().decode("utf-8")
+    else:
+        raise ValueError("api_id %s not valid" % api_id)
 
     fu.log("Downloading %s from: %s" % (ligand_code, url), out_log, global_log)
 
