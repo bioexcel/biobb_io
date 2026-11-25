@@ -62,7 +62,7 @@ class MemProtMDSim(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` api.memprotmd_sim.MemProtMDSim object."""
 
         check_mandatory_property(
@@ -73,10 +73,6 @@ class MemProtMDSim(BiobbObject):
         get_memprotmd_sim(
             self.pdb_code, self.io_dict["out"]["output_simulation"], self.out_log, self.global_log
         )
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def memprotmd_sim(

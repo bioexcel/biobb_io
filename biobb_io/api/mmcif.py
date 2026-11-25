@@ -66,7 +66,7 @@ class Mmcif(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`Mmcif <api.mmcif.Mmcif>` api.mmcif.Mmcif object."""
 
         check_mandatory_property(
@@ -80,10 +80,6 @@ class Mmcif(BiobbObject):
             self.pdb_code, self.api_id, self.out_log, self.global_log
         )
         write_mmcif(mmcif_string, self.io_dict["out"]["output_mmcif_path"], self.out_log, self.global_log)
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def mmcif(output_mmcif_path: str, properties: Optional[dict] = None, **kwargs) -> int:

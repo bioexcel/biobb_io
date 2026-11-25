@@ -75,7 +75,7 @@ class PdbClusterZip(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`PdbClusterZip <api.pdb_cluster_zip.PdbClusterZip>` api.pdb_cluster_zip.PdbClusterZip object."""
 
         check_mandatory_property(
@@ -109,11 +109,6 @@ class PdbClusterZip(BiobbObject):
         fu.zip_list(self.io_dict["out"]["output_pdb_zip_path"], file_list, out_log=self.out_log)
 
         self.tmp_files.append(unique_dir)
-        self.remove_tmp_files()
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def pdb_cluster_zip(

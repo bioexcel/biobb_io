@@ -79,7 +79,7 @@ class MDDB(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`MDDB <api.mddb.MDDB>` api.mddb.MDDB object."""
 
         check_mandatory_property(
@@ -125,10 +125,6 @@ class MDDB(BiobbObject):
                 write_bin(file_string, extra_path, self.out_log, self.global_log)
             except Exception:
                 pass
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def mddb(output_top_path: str, output_trj_path: str, properties: Optional[dict] = None, **kwargs) -> int:

@@ -63,7 +63,7 @@ class StructureInfo(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`StructureInfo <api.structure_info.StructureInfo>` api.structure_info.StructureInfo object."""
 
         check_mandatory_property(
@@ -78,10 +78,6 @@ class StructureInfo(BiobbObject):
             self.pdb_code, url, self.out_log, self.global_log
         )
         write_json(json_string, self.io_dict["out"]["output_json_path"], self.out_log, self.global_log)
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def structure_info(

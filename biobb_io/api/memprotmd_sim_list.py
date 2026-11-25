@@ -54,7 +54,7 @@ class MemProtMDSimList(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`MemProtMDSimList <api.memprotmd_sim_list.MemProtMDSimList>` api.memprotmd_sim_list.MemProtMDSimList object."""
 
         # get JSON object
@@ -62,10 +62,6 @@ class MemProtMDSimList(BiobbObject):
 
         # write JSON file
         write_json(json_string, self.io_dict["out"]["output_simulations"], self.out_log, self.global_log)
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def memprotmd_sim_list(

@@ -71,7 +71,7 @@ class Pdb(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`Pdb <api.pdb.Pdb>` api.pdb.Pdb object."""
 
         check_mandatory_property(
@@ -87,10 +87,6 @@ class Pdb(BiobbObject):
         write_pdb(
             pdb_string, self.io_dict["out"]["output_pdb_path"], self.filter, self.out_log, self.global_log
         )
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def pdb(output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> int:

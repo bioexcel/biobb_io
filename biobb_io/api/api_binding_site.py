@@ -65,7 +65,7 @@ class ApiBindingSite(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`ApiBindingSite <api.api_binding_site.ApiBindingSite>` api.api_binding_site.ApiBindingSite object."""
 
         check_mandatory_property(
@@ -89,10 +89,6 @@ class ApiBindingSite(BiobbObject):
 
         # write JSON file
         write_json(json_string, self.io_dict["out"]["output_json_path"], self.out_log, self.global_log)
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def api_binding_site(

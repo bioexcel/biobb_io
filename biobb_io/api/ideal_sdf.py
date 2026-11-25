@@ -66,7 +66,7 @@ class IdealSdf(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`IdealSdf <api.ideal_sdf.IdealSdf>` api.ideal_sdf.IdealSdf object."""
 
         check_mandatory_property(
@@ -80,10 +80,6 @@ class IdealSdf(BiobbObject):
             self.ligand_code, self.api_id, self.out_log, self.global_log
         )
         write_sdf(sdf_string, self.io_dict["out"]["output_sdf_path"], self.out_log, self.global_log)
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def ideal_sdf(output_sdf_path: str, properties: Optional[dict] = None, **kwargs) -> int:

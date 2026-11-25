@@ -64,7 +64,7 @@ class AlphaFold(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`AlphaFold <api.alphafold.AlphaFold>` api.alphafold.AlphaFold object."""
 
         check_mandatory_property(
@@ -80,10 +80,6 @@ class AlphaFold(BiobbObject):
             self.uniprot_code, self.out_log, self.global_log, self.__class__.__name__
         )
         write_pdb(pdb_string, self.io_dict["out"]["output_pdb_path"], None, self.out_log, self.global_log)
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def alphafold(output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> int:

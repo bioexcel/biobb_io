@@ -66,7 +66,7 @@ class PdbVariants(BiobbObject):
     def stage_files(self) -> None:
         """The block does not use the sandbox: there are no files to stage."""
 
-    def run(self) -> int:
+    def run(self) -> None:
         """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` api.pdb_variants.PdbVariants object."""
 
         check_mandatory_property(
@@ -90,7 +90,8 @@ class PdbVariants(BiobbObject):
         mapdic = get_pdb_uniprot_mapping(self.pdb_code, uniprot_id, out_log=self.out_log, global_log=self.global_log)
         if not any(mapdic.values()):
             fu.log("No mutation found", self.out_log, self.global_log)
-            return 1
+            self.return_code = 1
+            return
 
         mutations = []
         uniprot_var_list = get_variants(uniprot_id, out_log=self.out_log, global_log=self.global_log)
@@ -122,10 +123,6 @@ class PdbVariants(BiobbObject):
         with open(self.io_dict["out"]["output_mutations_list_txt"], "w") as mut_file:
             mutations.sort()
             mut_file.write(",".join(mutations))
-
-        self.check_arguments(output_files_created=True, raise_exception=False)
-
-        return 0
 
 
 def pdb_variants(
