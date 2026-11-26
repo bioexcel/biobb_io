@@ -99,7 +99,7 @@ Config parameters for this building block:
 #### [Common config file](https://github.com/bioexcel/biobb_io/blob/master/biobb_io/test/data/config/config_api_binding_site.yml)
 ```python
 properties:
-  pdb_code: 4i23
+  pdb_code: 1cbs
 
 ```
 #### Command line
@@ -111,7 +111,7 @@ api_binding_site --config config_api_binding_site.yml --output_json_path output_
 ```python
 {
   "properties": {
-    "pdb_code": "4i23"
+    "pdb_code": "1cbs"
   }
 }
 ```

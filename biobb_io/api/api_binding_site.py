@@ -33,7 +33,7 @@ class ApiBindingSite(BiobbObject):
 
             from biobb_io.api.api_binding_site import api_binding_site
             prop = {
-                'pdb_code': '4i23'
+                'pdb_code': '1cbs'
             }
             api_binding_site(output_json_path='/path/to/newBindingSites.json',
                     properties=prop)

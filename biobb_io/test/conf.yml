@@ -69,7 +69,7 @@ api_binding_site:
     output_json_path: output_json_path.json
     reference_output_json_path: file:test_reference_dir/api/output_binding_site.json
   properties:
-    pdb_code: 4i23
+    pdb_code: 1cbs
 
 canonical_fasta:
   paths:
