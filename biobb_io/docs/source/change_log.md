@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changes
+
+* [FIX] The download blocks fail when the server answers an error (ie: a PDB code, ligand code or project that does not exist) or stops answering for 60 seconds. Before, `pdb`, `mmcif`, `canonical_fasta`, `ligand`, `ideal_sdf`, `structure_info` and `memprotmd_sim` wrote the error page (or an empty file) as the output and returned 0, and a download could hang forever. The error is now a `requests` exception (`HTTPError`, `Timeout`...), also for `alphafold` and `mddb`, which raised `SystemExit` on a 404 only.
+
 ## What's new in version [5.3.2](https://github.com/bioexcel/biobb_io/releases/tag/v5.3.2)?
 
 ### Changes

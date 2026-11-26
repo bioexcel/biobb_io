@@ -3,11 +3,26 @@
 import json
 import os
 import re
-import urllib.request
 import urllib.parse
 
 import requests
 from biobb_common.tools import file_utils as fu
+
+# Seconds to wait for the connection and between two packets of the answer (not for the whole download)
+TIMEOUT = 60
+
+
+def download(url, out_log=None, global_log=None, method="GET", json_body=None):
+    """Go from a URL to the content (bytes) of the server's answer. An HTTP error, or TIMEOUT
+    seconds without an answer, raise the requests exception."""
+    fu.log("Downloading: %s" % url, out_log, global_log)
+    try:
+        response = requests.request(method, url, json=json_body, timeout=TIMEOUT)
+        response.raise_for_status()
+    except requests.RequestException as error:
+        fu.log("Download failed: %s" % error, out_log, global_log)
+        raise
+    return response.content
 
 
 def download_pdb(pdb_code, api_id, assembly=None, out_log=None, global_log=None):
@@ -27,80 +42,47 @@ def download_pdb(pdb_code, api_id, assembly=None, out_log=None, global_log=None)
     else:
         raise ValueError("api_id %s not valid" % api_id)
 
-    fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
-    return requests.get(url).content.decode("utf-8")
+    return download(url, out_log, global_log).decode("utf-8")
 
 
-def download_af(uniprot_code, out_log=None, global_log=None, classname=None):
+def download_af(uniprot_code, out_log=None, global_log=None):
     """
     Returns:
         String: Content of the pdb file.
     """
 
     url = "https://alphafold.ebi.ac.uk/files/AF-" + uniprot_code + "-F1-model_v6.pdb"
-
-    fu.log("Downloading %s from: %s" % (uniprot_code, url), out_log, global_log)
-
-    r = requests.get(url)
-    if r.status_code == 404:
-        fu.log(classname + ": Incorrect Uniprot Code: %s" % (uniprot_code), out_log)
-        raise SystemExit(classname + ": Incorrect Uniprot Code: %s" % (uniprot_code))
-
-    return r.content.decode("utf-8")
+    return download(url, out_log, global_log).decode("utf-8")
 
 
-def download_mddb_top(project_id, node_id, selection, out_log=None, global_log=None, classname=None):
+def download_mddb_top(project_id, node_id, selection, out_log=None, global_log=None):
     """
     Returns:
         String: Content of the pdb file.
     """
 
     url = "https://" + node_id + ".mddbr.eu/api/rest/v1/projects/" + project_id + "/structure?selection=" + urllib.parse.quote(str(selection))
-
-    fu.log("Downloading %s topology from: %s" % (project_id, url), out_log, global_log)
-
-    r = requests.get(url)
-    if r.status_code == 404:
-        fu.log(classname + ": Incorrect url, check project_id, node_id and selection: %s" % (url), out_log)
-        raise SystemExit(classname + ": Incorrect url, check project_id, node_id and selection: %s" % (url))
-
-    return r.content.decode("utf-8")
+    return download(url, out_log, global_log).decode("utf-8")
 
 
-def download_mddb_trj(project_id, node_id, trj_format, frames, selection, out_log=None, global_log=None, classname=None):
+def download_mddb_trj(project_id, node_id, trj_format, frames, selection, out_log=None, global_log=None):
     """
     Returns:
         String: Content of the trajectory file.
     """
 
     url = "https://" + node_id + ".mddbr.eu/api/rest/v1/projects/" + project_id + "/trajectory?format=" + trj_format + "&frames=" + frames + "&selection=" + urllib.parse.quote(str(selection))
-
-    fu.log("Downloading %s trajectory from: %s" % (project_id, url), out_log, global_log)
-
-    r = requests.get(url)
-    if r.status_code == 404:
-        fu.log(classname + ": Incorrect url, check project_id, node_id, trj_format, frames and selection: %s" % (url), out_log)
-        raise SystemExit(classname + ": Incorrect url, check project_id, node_id, trj_format, frames and selection: %s" % (url))
-
-    return r.content
+    return download(url, out_log, global_log)
 
 
-def download_mddb_file(project_id, node_id, file_name, out_log=None, global_log=None, classname=None):
+def download_mddb_file(project_id, node_id, file_name, out_log=None, global_log=None):
     """
     Returns:
         String: Content of the trajectory file.
     """
 
     url = "https://" + node_id + ".mddbr.eu/api/rest/v1/projects/" + project_id + "/files/" + file_name
-
-    fu.log("Downloading %s file from: %s" % (project_id, url), out_log, global_log)
-
-    r = requests.get(url)
-    if r.status_code == 404:
-        fu.log(classname + ": Incorrect url, check project_id, node_id, trj_format, frames and selection: %s" % (url), out_log)
-        raise SystemExit(classname + ": Incorrect url, check project_id, node_id, trj_format, frames and selection: %s" % (url))
-
-    return r.content
+    return download(url, out_log, global_log)
 
 
 def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
@@ -118,8 +100,7 @@ def download_mmcif(pdb_code, api_id, out_log=None, global_log=None):
     else:
         raise ValueError("api_id %s not valid" % api_id)
 
-    fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
-    return requests.get(url, verify=True).content.decode("utf-8")
+    return download(url, out_log, global_log).decode("utf-8")
 
 
 def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
@@ -130,17 +111,15 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
 
     if api_id == "mmb":
         url = "https://mdb-login.bsc.es/api/pdbMonomer/" + ligand_code.lower()
-        text = requests.get(url, verify=True).content.decode("utf-8")
     elif api_id == "pdbe":
         url = (
             "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
             #"https://files.rcsb.org/ligands/view/" + ligand_code.upper() + ".cif"
         )
-        text = urllib.request.urlopen(url).read().decode("utf-8")
     else:
         raise ValueError("api_id %s not valid" % api_id)
 
-    fu.log("Downloading %s from: %s" % (ligand_code, url), out_log, global_log)
+    text = download(url, out_log, global_log).decode("utf-8")
 
     # removing useless empty lines at the end of the file
     text = os.linesep.join([s for s in text.splitlines() if s])
@@ -163,8 +142,13 @@ def download_fasta(pdb_code, api_id, out_log=None, global_log=None):
     else:
         raise ValueError("api_id %s not valid" % api_id)
 
-    fu.log("Downloading %s from: %s" % (pdb_code, url), out_log, global_log)
-    return requests.get(url, verify=True).content.decode("utf-8")
+    text = download(url, out_log, global_log).decode("utf-8")
+    # The RCSB answers 200 with a message for a PDB code that does not exist
+    if not text.startswith(">"):
+        message = "No FASTA for %s in the answer of %s: %s" % (pdb_code, url, text[:100])
+        fu.log(message, out_log, global_log)
+        raise ValueError(message)
+    return text
 
 
 def download_binding_site(
@@ -179,10 +163,7 @@ def download_binding_site(
     """
     url = url % pdb_code
 
-    fu.log("Getting binding sites from: %s" % (url), out_log, global_log)
-
-    text = urllib.request.urlopen(url).read()
-    json_obj = json.loads(text)
+    json_obj = json.loads(download(url, out_log, global_log))
     json_string = json.dumps(json_obj, indent=4, sort_keys=True)
     # json_string = json.dumps(text, indent=4)
 
@@ -199,18 +180,14 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
         url = (
             "https://files.rcsb.org/ligands/download/" + ligand_code.upper() + "_ideal.sdf"
         )
-        text = requests.get(url, verify=True).content.decode("utf-8")
     elif api_id == "pdbe":
         url = (
             "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.sdf"
         )
-        text = urllib.request.urlopen(url).read().decode("utf-8")
     else:
         raise ValueError("api_id %s not valid" % api_id)
 
-    fu.log("Downloading %s from: %s" % (ligand_code, url), out_log, global_log)
-
-    return text
+    return download(url, out_log, global_log).decode("utf-8")
 
 
 def download_str_info(
@@ -225,10 +202,12 @@ def download_str_info(
     """
     url = url % pdb_code
 
-    fu.log("Getting structure info from: %s" % (url), out_log, global_log)
-
-    text = urllib.request.urlopen(url).read()
-    json_obj = json.loads(text)
+    json_obj = json.loads(download(url, out_log, global_log))
+    # The MMB mirror answers 200 with [] for a PDB code that does not exist
+    if not json_obj:
+        message = "Empty answer from %s: %s" % (url, json_obj)
+        fu.log(message, out_log, global_log)
+        raise ValueError(message)
     json_string = json.dumps(json_obj, indent=4, sort_keys=True)
     # json_string = json.dumps(text, indent=4)
 
@@ -289,9 +268,7 @@ def get_cluster_pdb_codes(pdb_code, cluster, out_log=None, global_log=None):
     pdb_codes = set()
 
     url = url + pdb_code.lower() + "/clusters/cl-" + str(cluster) + ".json"
-    cluster_list = json.loads(requests.get(url, verify=True).content.decode("utf-8"))[
-        "clusterMembers"
-    ]
+    cluster_list = json.loads(download(url, out_log, global_log))["clusterMembers"]
     for elem in cluster_list:
         pdb_codes.add(elem["_id"].lower())
 
@@ -314,7 +291,7 @@ def get_uniprot(pdb_code, url, out_log=None, global_log=None):
         str: UNIPROT code.
     """
     url_uniprot_id = url + "/pdb/" + pdb_code.lower() + "/entry/uniprotRefs/_id"
-    uniprot_id = requests.get(url_uniprot_id, verify=True).json()["uniprotRefs._id"][0]
+    uniprot_id = json.loads(download(url_uniprot_id, out_log, global_log))["uniprotRefs._id"][0]
 
     if out_log:
         out_log.info(
@@ -344,10 +321,8 @@ def get_variants(
         :obj:`list` of :obj:`str`: List of variants (p.Glu172Gln).
     """
     url_uniprot_mut = url + "/" + uniprot_id + ".json?fields=ft_variant"
-    response = requests.get(url_uniprot_mut, verify=True)
-    response.raise_for_status()
     variants = []
-    for feature in response.json().get("features", []):
+    for feature in json.loads(download(url_uniprot_mut, out_log, global_log)).get("features", []):
         alt = feature.get("alternativeSequence", {})
         wt, mts = alt.get("originalSequence", ""), alt.get("alternativeSequences", [])
         if feature["type"] == "Natural variant" and wt in AMINO_ACIDS_3 and len(mts) == 1 and mts[0] in AMINO_ACIDS_3:
@@ -370,14 +345,12 @@ def get_pdb_uniprot_mapping(
         dict: {chain_id: {uniprot residue number (int): PDB author residue number (str)}}.
     """
     pdb_code = pdb_code.lower()
-    sifts = requests.get(url + "/mappings/uniprot/" + pdb_code, verify=True)
-    sifts.raise_for_status()
-    listing = requests.get(url + "/pdb/entry/residue_listing/" + pdb_code, verify=True)
-    listing.raise_for_status()
+    sifts = json.loads(download(url + "/mappings/uniprot/" + pdb_code, out_log, global_log))
+    listing = json.loads(download(url + "/pdb/entry/residue_listing/" + pdb_code, out_log, global_log))
 
     # (entity_id, struct_asym_id) -> {residue_number: author number + insertion code} of the observed residues
     observed = {}
-    for molecule in listing.json()[pdb_code]["molecules"]:
+    for molecule in listing[pdb_code]["molecules"]:
         for chain in molecule["chains"]:
             observed[(molecule["entity_id"], chain["struct_asym_id"])] = {
                 res["residue_number"]: str(res["author_residue_number"]) + (res["author_insertion_code"] or "")
@@ -385,7 +358,7 @@ def get_pdb_uniprot_mapping(
             }
 
     mapping = {}
-    for segment in sifts.json()[pdb_code]["UniProt"].get(uniprot_id, {}).get("mappings", []):
+    for segment in sifts[pdb_code]["UniProt"].get(uniprot_id, {}).get("mappings", []):
         residues = observed.get((segment["entity_id"], segment["struct_asym_id"]), {})
         chain_map = mapping.setdefault(segment["chain_id"], {})
         for unp_num in range(segment["unp_start"], segment["unp_end"] + 1):
@@ -419,7 +392,7 @@ def get_memprotmd_sim_list(out_log=None, global_log=None):
     )
 
     url = "http://memprotmd.bioch.ox.ac.uk/api/simulations/all"
-    json_obj = requests.post(url).json()
+    json_obj = json.loads(download(url, out_log, global_log, method="POST"))
     json_string = json.dumps(json_obj, indent=4)
 
     fu.log("Total number of simulations: %d" % (len(json_obj)), out_log, global_log)
@@ -445,7 +418,7 @@ def get_memprotmd_sim_search(collection_name, keyword, out_log=None, global_log=
         "options": {},
     }
 
-    json_obj = requests.post(url, json=json_query).json()
+    json_obj = json.loads(download(url, out_log, global_log, method="POST", json_body=json_query))
     json_string = json.dumps(json_obj, indent=4)
 
     # get total number of simulation
@@ -467,9 +440,9 @@ def get_memprotmd_sim(pdb_code, output_file, out_log=None, global_log=None):
     url = (
         "http://memprotmd.bioch.ox.ac.uk/data/memprotmd/simulations/" + pdb_code + "_default_dppc/files/run/at.zip"
     )
-    response = requests.get(url)
-
-    open(output_file, "wb").write(response.content)
+    content = download(url, out_log, global_log)
+    with open(output_file, "wb") as zip_file:
+        zip_file.write(content)
 
     fu.log("Saving output %s file" % (output_file), out_log, global_log)
 

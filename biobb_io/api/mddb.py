@@ -81,7 +81,6 @@ class MDDB(BiobbObject):
             self.selection,
             self.out_log,
             self.global_log,
-            self.__class__.__name__
         )
         write_pdb(top_string, self.io_dict["out"]["output_top_path"], None, self.out_log, self.global_log)
 
@@ -94,7 +93,6 @@ class MDDB(BiobbObject):
             self.selection,
             self.out_log,
             self.global_log,
-            self.__class__.__name__,
         )
         write_bin(trj_string, self.io_dict["out"]["output_trj_path"], self.out_log, self.global_log)
 
@@ -105,7 +103,6 @@ class MDDB(BiobbObject):
                 extra_file,
                 self.out_log,
                 self.global_log,
-                self.__class__.__name__,
             )
             write_bin(file_string, extra_path, self.out_log, self.global_log)
 

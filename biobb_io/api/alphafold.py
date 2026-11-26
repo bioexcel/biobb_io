@@ -66,7 +66,7 @@ class AlphaFold(BiobbObject):
 
         # Downloading PDB file
         pdb_string = download_af(
-            self.uniprot_code, self.out_log, self.global_log, self.__class__.__name__
+            self.uniprot_code, self.out_log, self.global_log
         )
         write_pdb(pdb_string, self.io_dict["out"]["output_pdb_path"], None, self.out_log, self.global_log)
 
