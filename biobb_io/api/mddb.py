@@ -99,18 +99,15 @@ class MDDB(BiobbObject):
         write_bin(trj_string, self.io_dict["out"]["output_trj_path"], self.out_log, self.global_log)
 
         for (extra_file, extra_path) in self.extra_files:
-            try:
-                file_string = download_mddb_file(
-                    self.project_id,
-                    self.node_id,
-                    extra_file,
-                    self.out_log,
-                    self.global_log,
-                    self.__class__.__name__,
-                )
-                write_bin(file_string, extra_path, self.out_log, self.global_log)
-            except Exception:
-                pass
+            file_string = download_mddb_file(
+                self.project_id,
+                self.node_id,
+                extra_file,
+                self.out_log,
+                self.global_log,
+                self.__class__.__name__,
+            )
+            write_bin(file_string, extra_path, self.out_log, self.global_log)
 
 
 mddb = launcher(MDDB)
