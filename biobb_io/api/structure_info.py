@@ -7,8 +7,8 @@ from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
-    download_str_info,
-    write_json,
+    download_json,
+    write_file,
 )
 
 
@@ -60,13 +60,10 @@ class StructureInfo(BiobbObject):
         )
 
         self.pdb_code = self.pdb_code.strip().lower()
-        url = "https://mdb-login.bsc.es/api/pdb/%s.json"
+        url = "https://mdb-login.bsc.es/api/pdb/%s.json" % self.pdb_code
 
-        # Downloading PDB file
-        json_string = download_str_info(
-            self.pdb_code, url, self.out_log, self.global_log
-        )
-        write_json(json_string, self.io_dict["out"]["output_json_path"], self.out_log, self.global_log)
+        json_string = download_json(url, self.out_log, self.global_log)
+        write_file(json_string, self.io_dict["out"]["output_json_path"], self.out_log, self.global_log)
 
 
 structure_info = launcher(StructureInfo)

@@ -3,7 +3,6 @@
 import json
 import os
 import re
-import urllib.parse
 
 import requests
 from biobb_common.tools import file_utils as fu
@@ -55,33 +54,10 @@ def download_af(uniprot_code, out_log=None, global_log=None):
     return download(url, out_log, global_log).decode("utf-8")
 
 
-def download_mddb_top(project_id, node_id, selection, out_log=None, global_log=None):
-    """
-    Returns:
-        String: Content of the pdb file.
-    """
-
-    url = "https://" + node_id + ".mddbr.eu/api/rest/v1/projects/" + project_id + "/structure?selection=" + urllib.parse.quote(str(selection))
-    return download(url, out_log, global_log).decode("utf-8")
-
-
-def download_mddb_trj(project_id, node_id, trj_format, frames, selection, out_log=None, global_log=None):
-    """
-    Returns:
-        String: Content of the trajectory file.
-    """
-
-    url = "https://" + node_id + ".mddbr.eu/api/rest/v1/projects/" + project_id + "/trajectory?format=" + trj_format + "&frames=" + frames + "&selection=" + urllib.parse.quote(str(selection))
-    return download(url, out_log, global_log)
-
-
-def download_mddb_file(project_id, node_id, file_name, out_log=None, global_log=None):
-    """
-    Returns:
-        String: Content of the trajectory file.
-    """
-
-    url = "https://" + node_id + ".mddbr.eu/api/rest/v1/projects/" + project_id + "/files/" + file_name
+def download_mddb(project_id, node_id, endpoint, out_log=None, global_log=None):
+    """Go from an MDDB project and one of its REST endpoints (ie: structure?selection=protein,
+    files/name) to the downloaded content (bytes)."""
+    url = "https://%s.mddbr.eu/api/rest/v1/projects/%s/%s" % (node_id, project_id, endpoint)
     return download(url, out_log, global_log)
 
 
@@ -112,10 +88,7 @@ def download_ligand(ligand_code, api_id, out_log=None, global_log=None):
     if api_id == "mmb":
         url = "https://mdb-login.bsc.es/api/pdbMonomer/" + ligand_code.lower()
     elif api_id == "pdbe":
-        url = (
-            "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
-            #"https://files.rcsb.org/ligands/view/" + ligand_code.upper() + ".cif"
-        )
+        url = "https://www.ebi.ac.uk/pdbe/static/files/pdbechem_v2/" + ligand_code.upper() + "_ideal.pdb"
     else:
         raise ValueError("api_id %s not valid" % api_id)
 
@@ -151,23 +124,16 @@ def download_fasta(pdb_code, api_id, out_log=None, global_log=None):
     return text
 
 
-def download_binding_site(
-    pdb_code,
-    url="https://www.ebi.ac.uk/pdbe/api/v2/pdb/entry/binding_sites/%s/1",
-    out_log=None,
-    global_log=None,
-):
-    """
-    Returns:
-        String: Content of the component file.
-    """
-    url = url % pdb_code
-
+def download_json(url, out_log=None, global_log=None):
+    """Go from a URL that answers JSON to the JSON text, indented and with sorted keys. An empty
+    answer raises a ValueError."""
     json_obj = json.loads(download(url, out_log, global_log))
-    json_string = json.dumps(json_obj, indent=4, sort_keys=True)
-    # json_string = json.dumps(text, indent=4)
-
-    return json_string
+    # The MMB mirror answers 200 with [] for a PDB code that does not exist
+    if not json_obj:
+        message = "Empty answer from %s: %s" % (url, json_obj)
+        fu.log(message, out_log, global_log)
+        raise ValueError(message)
+    return json.dumps(json_obj, indent=4, sort_keys=True)
 
 
 def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
@@ -190,73 +156,19 @@ def download_ideal_sdf(ligand_code, api_id, out_log=None, global_log=None):
     return download(url, out_log, global_log).decode("utf-8")
 
 
-def download_str_info(
-    pdb_code,
-    url="https://mdb-login.bsc.es/api/pdb/%s.json",
-    out_log=None,
-    global_log=None,
-):
-    """
-    Returns:
-        String: Content of the JSON file.
-    """
-    url = url % pdb_code
-
-    json_obj = json.loads(download(url, out_log, global_log))
-    # The MMB mirror answers 200 with [] for a PDB code that does not exist
-    if not json_obj:
-        message = "Empty answer from %s: %s" % (url, json_obj)
-        fu.log(message, out_log, global_log)
-        raise ValueError(message)
-    json_string = json.dumps(json_obj, indent=4, sort_keys=True)
-    # json_string = json.dumps(text, indent=4)
-
-    return json_string
+def filter_pdb(pdb_string, filt=None, out_log=None, global_log=None):
+    """Go from a PDB to its lines whose record name is in **filt** (the whole PDB without filt)."""
+    if not filt:
+        return pdb_string
+    fu.log("Filtering lines NOT starting with one of these words: %s" % str(filt), out_log, global_log)
+    return "".join(line for line in pdb_string.splitlines(True) if line.strip() and line.strip().split()[0][0:6] in filt)
 
 
-def write_pdb(pdb_string, output_pdb_path, filt=None, out_log=None, global_log=None):
-    """Writes and filters a PDB"""
-    fu.log("Writting pdb to: %s" % (output_pdb_path), out_log, global_log)
-    with open(output_pdb_path, "w") as output_pdb_file:
-        if filt:
-            fu.log(
-                "Filtering lines NOT starting with one of these words: %s" % str(filt),
-                out_log,
-                global_log,
-            )
-            for line in pdb_string.splitlines(True):
-                if line.strip() and line.strip().split()[0][0:6] in filt:
-                    output_pdb_file.write(line)
-        else:
-            output_pdb_file.write(pdb_string)
-
-
-def write_bin(bin_string, output_bin_path, out_log=None, global_log=None):
-    """Writes a BIN"""
-    fu.log("Writting bin to: %s" % (output_bin_path), out_log, global_log)
-    with open(output_bin_path, "wb") as output_bin_file:
-        output_bin_file.write(bin_string)
-
-
-def write_mmcif(mmcif_string, output_mmcif_path, out_log=None, global_log=None):
-    """Writes a mmcif"""
-    fu.log("Writting mmcif to: %s" % (output_mmcif_path), out_log, global_log)
-    with open(output_mmcif_path, "w") as output_mmcif_file:
-        output_mmcif_file.write(mmcif_string)
-
-
-def write_fasta(fasta_string, output_fasta_path, out_log=None, global_log=None):
-    """Writes a FASTA"""
-    fu.log("Writting FASTA to: %s" % (output_fasta_path), out_log, global_log)
-    with open(output_fasta_path, "w") as output_fasta_file:
-        output_fasta_file.write(fasta_string)
-
-
-def write_sdf(sdf_string, output_sdf_path, out_log=None, global_log=None):
-    """Writes a SDF"""
-    fu.log("Writting sdf to: %s" % (output_sdf_path), out_log, global_log)
-    with open(output_sdf_path, "w") as output_sdf_file:
-        output_sdf_file.write(sdf_string)
+def write_file(content, output_path, out_log=None, global_log=None):
+    """Go from a downloaded text (str) or binary content (bytes) to the file at **output_path**."""
+    fu.log("Writing: %s" % output_path, out_log, global_log)
+    with open(output_path, "wb" if isinstance(content, bytes) else "w") as output_file:
+        output_file.write(content)
 
 
 def get_cluster_pdb_codes(pdb_code, cluster, out_log=None, global_log=None):
@@ -375,13 +287,6 @@ def get_pdb_uniprot_mapping(
     return mapping
 
 
-def write_json(json_string, output_json_path, out_log=None, global_log=None):
-    """Writes a JSON"""
-    fu.log("Writting json to: %s" % (output_json_path), out_log, global_log)
-    with open(output_json_path, "w") as output_json_file:
-        output_json_file.write(json_string)
-
-
 def get_memprotmd_sim_list(out_log=None, global_log=None):
     """Returns all available membrane-protein systems (simulations) from the MemProtMD DB using its REST API"""
 
@@ -440,11 +345,7 @@ def get_memprotmd_sim(pdb_code, output_file, out_log=None, global_log=None):
     url = (
         "http://memprotmd.bioch.ox.ac.uk/data/memprotmd/simulations/" + pdb_code + "_default_dppc/files/run/at.zip"
     )
-    content = download(url, out_log, global_log)
-    with open(output_file, "wb") as zip_file:
-        zip_file.write(content)
-
-    fu.log("Saving output %s file" % (output_file), out_log, global_log)
+    write_file(download(url, out_log, global_log), output_file, out_log, global_log)
 
 
 def check_mandatory_property(property, name, out_log, classname):

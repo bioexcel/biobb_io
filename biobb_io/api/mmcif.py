@@ -8,7 +8,7 @@ from biobb_common.generic.biobb_object import BiobbObject, launcher
 from biobb_io.api.common import (
     check_mandatory_property,
     download_mmcif,
-    write_mmcif,
+    write_file,
 )
 
 
@@ -67,7 +67,7 @@ class Mmcif(BiobbObject):
         mmcif_string = download_mmcif(
             self.pdb_code, self.api_id, self.out_log, self.global_log
         )
-        write_mmcif(mmcif_string, self.io_dict["out"]["output_mmcif_path"], self.out_log, self.global_log)
+        write_file(mmcif_string, self.io_dict["out"]["output_mmcif_path"], self.out_log, self.global_log)
 
 
 mmcif = launcher(Mmcif)

@@ -4,7 +4,7 @@
 
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject, launcher
-from biobb_io.api.common import get_memprotmd_sim_list, write_json
+from biobb_io.api.common import get_memprotmd_sim_list, write_file
 
 
 class MemProtMDSimList(BiobbObject):
@@ -51,7 +51,7 @@ class MemProtMDSimList(BiobbObject):
         json_string = get_memprotmd_sim_list(self.out_log, self.global_log)
 
         # write JSON file
-        write_json(json_string, self.io_dict["out"]["output_simulations"], self.out_log, self.global_log)
+        write_file(json_string, self.io_dict["out"]["output_simulations"], self.out_log, self.global_log)
 
 
 memprotmd_sim_list = launcher(MemProtMDSimList)

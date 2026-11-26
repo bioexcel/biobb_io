@@ -8,7 +8,8 @@ from biobb_common.generic.biobb_object import BiobbObject, launcher
 from biobb_io.api.common import (
     check_mandatory_property,
     download_pdb,
-    write_pdb,
+    filter_pdb,
+    write_file,
 )
 
 
@@ -70,9 +71,8 @@ class Pdb(BiobbObject):
         pdb_string = download_pdb(
             self.pdb_code, self.api_id, self.assembly, self.out_log, self.global_log,
         )
-        write_pdb(
-            pdb_string, self.io_dict["out"]["output_pdb_path"], self.filter, self.out_log, self.global_log
-        )
+        pdb_string = filter_pdb(pdb_string, self.filter, self.out_log, self.global_log)
+        write_file(pdb_string, self.io_dict["out"]["output_pdb_path"], self.out_log, self.global_log)
 
 
 pdb = launcher(Pdb)

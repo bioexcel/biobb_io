@@ -8,7 +8,7 @@ from biobb_common.generic.biobb_object import BiobbObject, launcher
 from biobb_io.api.common import (
     check_mandatory_property,
     download_ideal_sdf,
-    write_sdf,
+    write_file,
 )
 
 
@@ -67,7 +67,7 @@ class IdealSdf(BiobbObject):
         sdf_string = download_ideal_sdf(
             self.ligand_code, self.api_id, self.out_log, self.global_log
         )
-        write_sdf(sdf_string, self.io_dict["out"]["output_sdf_path"], self.out_log, self.global_log)
+        write_file(sdf_string, self.io_dict["out"]["output_sdf_path"], self.out_log, self.global_log)
 
 
 ideal_sdf = launcher(IdealSdf)

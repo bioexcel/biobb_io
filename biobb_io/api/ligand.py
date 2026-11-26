@@ -8,7 +8,7 @@ from biobb_common.generic.biobb_object import BiobbObject, launcher
 from biobb_io.api.common import (
     check_mandatory_property,
     download_ligand,
-    write_pdb,
+    write_file,
 )
 
 
@@ -67,7 +67,7 @@ class Ligand(BiobbObject):
         pdb_string = download_ligand(
             self.ligand_code, self.api_id, self.out_log, self.global_log
         )
-        write_pdb(pdb_string, self.io_dict["out"]["output_pdb_path"], None, self.out_log, self.global_log)
+        write_file(pdb_string, self.io_dict["out"]["output_pdb_path"], self.out_log, self.global_log)
 
 
 ligand = launcher(Ligand)

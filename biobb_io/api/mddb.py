@@ -2,16 +2,14 @@
 
 """Module containing the MDDB class and the command line interface."""
 
+import urllib.parse
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
-    download_mddb_top,
-    write_pdb,
-    download_mddb_trj,
-    write_bin,
-    download_mddb_file,
+    download_mddb,
+    write_file,
 )
 
 
@@ -74,37 +72,15 @@ class MDDB(BiobbObject):
 
         self.project_id = self.project_id.strip().upper()
 
-        # Downloading topology file
-        top_string = download_mddb_top(
-            self.project_id,
-            self.node_id,
-            self.selection,
-            self.out_log,
-            self.global_log,
-        )
-        write_pdb(top_string, self.io_dict["out"]["output_top_path"], None, self.out_log, self.global_log)
-
-        # Downloading trajectory file
-        trj_string = download_mddb_trj(
-            self.project_id,
-            self.node_id,
-            self.trj_format,
-            self.frames,
-            self.selection,
-            self.out_log,
-            self.global_log,
-        )
-        write_bin(trj_string, self.io_dict["out"]["output_trj_path"], self.out_log, self.global_log)
-
-        for (extra_file, extra_path) in self.extra_files:
-            file_string = download_mddb_file(
-                self.project_id,
-                self.node_id,
-                extra_file,
-                self.out_log,
-                self.global_log,
-            )
-            write_bin(file_string, extra_path, self.out_log, self.global_log)
+        # Topology, trajectory and extra files: (REST endpoint of the project, output path)
+        selection = urllib.parse.quote(str(self.selection))
+        downloads = [
+            ("structure?selection=" + selection, self.io_dict["out"]["output_top_path"]),
+            ("trajectory?format=%s&frames=%s&selection=%s" % (self.trj_format, self.frames, selection), self.io_dict["out"]["output_trj_path"]),
+        ] + [("files/" + extra_file, extra_path) for extra_file, extra_path in self.extra_files]
+        for endpoint, output_path in downloads:
+            content = download_mddb(self.project_id, self.node_id, endpoint, self.out_log, self.global_log)
+            write_file(content, output_path, self.out_log, self.global_log)
 
 
 mddb = launcher(MDDB)
