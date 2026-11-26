@@ -3,7 +3,7 @@
 """Module containing the MemProtMDSimSearch class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import check_mandatory_property, get_memprotmd_sim_search, write_json
 
@@ -44,7 +44,7 @@ class MemProtMDSimSearch(BiobbObject):
 
     """
 
-    def __init__(self, output_simulations, properties=None, **kwargs) -> None:
+    def __init__(self, output_simulations: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -68,16 +68,7 @@ class MemProtMDSimSearch(BiobbObject):
         write_json(json_string, self.io_dict["out"]["output_simulations"], self.out_log, self.global_log)
 
 
-def memprotmd_sim_search(
-    output_simulations: str, properties: Optional[dict] = None, **kwargs
-) -> int:
-    """Execute the :class:`MemProtMDSimSearch <api.memprotmd_sim_search.MemProtMDSimSearch>` class and
-    execute the :meth:`launch() <api.memprotmd_sim_search.MemProtMDSimSearch.launch>` method."""
-    return MemProtMDSimSearch(**dict(locals())).launch()
-
-
-memprotmd_sim_search.__doc__ = MemProtMDSimSearch.__doc__
-main = MemProtMDSimSearch.get_main(memprotmd_sim_search, "Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to perform advanced searches.")
+memprotmd_sim_search = launcher(MemProtMDSimSearch)
 
 if __name__ == "__main__":
-    main()
+    MemProtMDSimSearch.main()

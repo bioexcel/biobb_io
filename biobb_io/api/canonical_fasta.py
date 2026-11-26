@@ -3,7 +3,7 @@
 """Module containing the CanonicalFasta class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
@@ -48,7 +48,7 @@ class CanonicalFasta(BiobbObject):
 
     """
 
-    def __init__(self, output_fasta_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_fasta_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -70,16 +70,7 @@ class CanonicalFasta(BiobbObject):
         write_fasta(pdb_string, self.io_dict["out"]["output_fasta_path"], self.out_log, self.global_log)
 
 
-def canonical_fasta(
-    output_fasta_path: str, properties: Optional[dict] = None, **kwargs
-) -> int:
-    """Execute the :class:`CanonicalFasta <api.canonical_fasta.CanonicalFasta>` class and
-    execute the :meth:`launch() <api.canonical_fasta.CanonicalFasta.launch>` method."""
-    return CanonicalFasta(**dict(locals())).launch()
-
-
-canonical_fasta.__doc__ = CanonicalFasta.__doc__
-main = CanonicalFasta.get_main(canonical_fasta, "This class is a wrapper for downloading a FASTA structure from the Protein Data Bank.")
+canonical_fasta = launcher(CanonicalFasta)
 
 if __name__ == "__main__":
-    main()
+    CanonicalFasta.main()

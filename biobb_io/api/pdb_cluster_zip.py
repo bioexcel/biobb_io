@@ -4,7 +4,7 @@
 
 import os
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 from biobb_common.tools import file_utils as fu
 
 from biobb_io.api.common import (
@@ -55,7 +55,7 @@ class PdbClusterZip(BiobbObject):
 
     """
 
-    def __init__(self, output_pdb_zip_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_pdb_zip_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -95,16 +95,7 @@ class PdbClusterZip(BiobbObject):
         fu.zip_list(self.io_dict["out"]["output_pdb_zip_path"], file_list, out_log=self.out_log)
 
 
-def pdb_cluster_zip(
-    output_pdb_zip_path: str, properties: Optional[dict] = None, **kwargs
-) -> int:
-    """Execute the :class:`PdbClusterZip <api.pdb_cluster_zip.PdbClusterZip>` class and
-    execute the :meth:`launch() <api.pdb_cluster_zip.PdbClusterZip.launch>` method."""
-    return PdbClusterZip(**dict(locals())).launch()
-
-
-pdb_cluster_zip.__doc__ = PdbClusterZip.__doc__
-main = PdbClusterZip.get_main(pdb_cluster_zip, "Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/), the Protein Data Bank (https://www.rcsb.org/) and the MMB PDB mirror (https://mdb-login.bsc.es/api/) for downloading a PDB cluster.")
+pdb_cluster_zip = launcher(PdbClusterZip)
 
 if __name__ == "__main__":
-    main()
+    PdbClusterZip.main()

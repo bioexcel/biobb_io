@@ -3,7 +3,7 @@
 """Module containing the MemProtMDSim class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
@@ -45,7 +45,7 @@ class MemProtMDSim(BiobbObject):
 
     """
 
-    def __init__(self, output_simulation, properties=None, **kwargs) -> None:
+    def __init__(self, output_simulation: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -64,16 +64,7 @@ class MemProtMDSim(BiobbObject):
         )
 
 
-def memprotmd_sim(
-    output_simulation: str, properties: Optional[dict] = None, **kwargs
-) -> int:
-    """Execute the :class:`MemProtMDSim <api.memprotmd_sim.MemProtMDSim>` class and
-    execute the :meth:`launch() <api.memprotmd_sim.MemProtMDSim.launch>` method."""
-    return MemProtMDSim(**dict(locals())).launch()
-
-
-memprotmd_sim.__doc__ = MemProtMDSim.__doc__
-main = MemProtMDSim.get_main(memprotmd_sim, "Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to download a simulation.")
+memprotmd_sim = launcher(MemProtMDSim)
 
 if __name__ == "__main__":
-    main()
+    MemProtMDSim.main()

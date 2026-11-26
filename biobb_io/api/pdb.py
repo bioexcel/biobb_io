@@ -3,7 +3,7 @@
 """Module containing the Pdb class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
@@ -51,7 +51,7 @@ class Pdb(BiobbObject):
 
     """
 
-    def __init__(self, output_pdb_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -75,14 +75,7 @@ class Pdb(BiobbObject):
         )
 
 
-def pdb(output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> int:
-    """Execute the :class:`Pdb <api.pdb.Pdb>` class and
-    execute the :meth:`launch() <api.pdb.Pdb.launch>` method."""
-    return Pdb(**dict(locals())).launch()
-
-
-pdb.__doc__ = Pdb.__doc__
-main = Pdb.get_main(pdb, "This class is a wrapper for downloading a PDB structure from the Protein Data Bank.")
+pdb = launcher(Pdb)
 
 if __name__ == "__main__":
-    main()
+    Pdb.main()

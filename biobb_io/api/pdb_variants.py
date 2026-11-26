@@ -4,7 +4,7 @@
 
 import re
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 from biobb_common.tools import file_utils as fu
 
 from biobb_io.api.common import (
@@ -49,7 +49,7 @@ class PdbVariants(BiobbObject):
 
     """
 
-    def __init__(self, output_mutations_list_txt, properties=None, **kwargs) -> None:
+    def __init__(self, output_mutations_list_txt: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -114,16 +114,7 @@ class PdbVariants(BiobbObject):
             mut_file.write(",".join(mutations))
 
 
-def pdb_variants(
-    output_mutations_list_txt: str, properties: Optional[dict] = None, **kwargs
-) -> int:
-    """Execute the :class:`PdbVariants <api.pdb_variants.PdbVariants>` class and
-    execute the :meth:`launch() <api.pdb_variants.PdbVariants.launch>` method."""
-    return PdbVariants(**dict(locals())).launch()
-
-
-pdb_variants.__doc__ = PdbVariants.__doc__
-main = PdbVariants.get_main(pdb_variants, "Wrapper for the MMB group REST API (https://mdb-login.bsc.es/api/), the PDBe SIFTS API (https://www.ebi.ac.uk/pdbe/api/doc/) and the UNIPROT REST API (https://rest.uniprot.org/) for creating a list of all the variants mapped to a PDB code from the corresponding UNIPROT entries.")
+pdb_variants = launcher(PdbVariants)
 
 if __name__ == "__main__":
-    main()
+    PdbVariants.main()

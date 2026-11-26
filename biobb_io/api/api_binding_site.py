@@ -4,7 +4,7 @@
 
 import json
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 from biobb_common.tools import file_utils as fu
 
 from biobb_io.api.common import (
@@ -48,7 +48,7 @@ class ApiBindingSite(BiobbObject):
 
     """
 
-    def __init__(self, output_json_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_json_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -80,16 +80,7 @@ class ApiBindingSite(BiobbObject):
         write_json(json_string, self.io_dict["out"]["output_json_path"], self.out_log, self.global_log)
 
 
-def api_binding_site(
-    output_json_path: str, properties: Optional[dict] = None, **kwargs
-) -> int:
-    """Execute the :class:`ApiBindingSite <api.api_binding_site.ApiBindingSite>` class and
-    execute the :meth:`launch() <api.api_binding_site.ApiBindingSite.launch>` method."""
-    return ApiBindingSite(**dict(locals())).launch()
-
-
-api_binding_site.__doc__ = ApiBindingSite.__doc__
-main = ApiBindingSite.get_main(api_binding_site, "This class is a wrapper for the PDBe REST API Binding Sites endpoint")
+api_binding_site = launcher(ApiBindingSite)
 
 if __name__ == "__main__":
-    main()
+    ApiBindingSite.main()

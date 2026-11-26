@@ -3,7 +3,7 @@
 """Module containing the AlphaFold class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
@@ -47,7 +47,7 @@ class AlphaFold(BiobbObject):
 
     """
 
-    def __init__(self, output_pdb_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -71,14 +71,7 @@ class AlphaFold(BiobbObject):
         write_pdb(pdb_string, self.io_dict["out"]["output_pdb_path"], None, self.out_log, self.global_log)
 
 
-def alphafold(output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> int:
-    """Execute the :class:`AlphaFold <api.alphafold.AlphaFold>` class and
-    execute the :meth:`launch() <api.alphafold.AlphaFold.launch>` method."""
-    return AlphaFold(**dict(locals())).launch()
-
-
-alphafold.__doc__ = AlphaFold.__doc__
-main = AlphaFold.get_main(alphafold, "This class is a wrapper for downloading a PDB structure from the Protein Data Bank.")
+alphafold = launcher(AlphaFold)
 
 if __name__ == "__main__":
-    main()
+    AlphaFold.main()

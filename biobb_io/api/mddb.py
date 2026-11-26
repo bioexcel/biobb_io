@@ -3,7 +3,7 @@
 """Module containing the MDDB class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
@@ -57,7 +57,9 @@ class MDDB(BiobbObject):
 
     """
 
-    def __init__(self, output_top_path, output_trj_path, properties=None, **kwargs) -> None:
+    custom_flags = {"output_top_path": "-o", "output_trj_path": "-t"}
+
+    def __init__(self, output_top_path: str, output_trj_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -111,18 +113,7 @@ class MDDB(BiobbObject):
                 pass
 
 
-def mddb(output_top_path: str, output_trj_path: str, properties: Optional[dict] = None, **kwargs) -> int:
-    """Execute the :class:`MDDB <api.mddb.MDDB>` class and
-    execute the :meth:`launch() <api.mddb.MDDB.launch>` method."""
-    return MDDB(**dict(locals())).launch()
-
-
-mddb.__doc__ = MDDB.__doc__
-main = MDDB.get_main(
-    mddb,
-    "This class is a wrapper for downloading a trajectory / topology pair from the MDDB Database.",
-    custom_flags={"output_top_path": "-o", "output_trj_path": "-t"}
-)
+mddb = launcher(MDDB)
 
 if __name__ == "__main__":
-    main()
+    MDDB.main()

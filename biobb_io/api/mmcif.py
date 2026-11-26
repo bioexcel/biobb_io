@@ -3,7 +3,7 @@
 """Module containing the Mmcif class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
@@ -48,7 +48,7 @@ class Mmcif(BiobbObject):
 
     """
 
-    def __init__(self, output_mmcif_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_mmcif_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -70,14 +70,7 @@ class Mmcif(BiobbObject):
         write_mmcif(mmcif_string, self.io_dict["out"]["output_mmcif_path"], self.out_log, self.global_log)
 
 
-def mmcif(output_mmcif_path: str, properties: Optional[dict] = None, **kwargs) -> int:
-    """Execute the :class:`Mmcif <api.mmcif.Mmcif>` class and
-    execute the :meth:`launch() <api.mmcif.Mmcif.launch>` method."""
-    return Mmcif(**dict(locals())).launch()
-
-
-mmcif.__doc__ = Mmcif.__doc__
-main = Mmcif.get_main(mmcif, "This class is a wrapper for downloading a MMCIF structure from the Protein Data Bank.")
+mmcif = launcher(Mmcif)
 
 if __name__ == "__main__":
-    main()
+    Mmcif.main()

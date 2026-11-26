@@ -3,7 +3,7 @@
 """Module containing the Ligand class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
@@ -48,7 +48,7 @@ class Ligand(BiobbObject):
 
     """
 
-    def __init__(self, output_pdb_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -70,14 +70,7 @@ class Ligand(BiobbObject):
         write_pdb(pdb_string, self.io_dict["out"]["output_pdb_path"], None, self.out_log, self.global_log)
 
 
-def ligand(output_pdb_path: str, properties: Optional[dict] = None, **kwargs) -> int:
-    """Execute the :class:`Ligand <api.ligand.Ligand>` class and
-    execute the :meth:`launch() <api.ligand.Ligand.launch>` method."""
-    return Ligand(**dict(locals())).launch()
-
-
-ligand.__doc__ = Ligand.__doc__
-main = Ligand.get_main(ligand, "Wrapper for the Protein Data Bank in Europe (https://www.ebi.ac.uk/pdbe/) and the MMB PDB mirror (https://mdb-login.bsc.es/api/) for downloading a single PDB ligand.")
+ligand = launcher(Ligand)
 
 if __name__ == "__main__":
-    main()
+    Ligand.main()

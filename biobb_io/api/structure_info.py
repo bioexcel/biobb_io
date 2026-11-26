@@ -3,7 +3,7 @@
 """Module containing the StructureInfo class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
@@ -46,7 +46,7 @@ class StructureInfo(BiobbObject):
 
     """
 
-    def __init__(self, output_json_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_json_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -69,16 +69,7 @@ class StructureInfo(BiobbObject):
         write_json(json_string, self.io_dict["out"]["output_json_path"], self.out_log, self.global_log)
 
 
-def structure_info(
-    output_json_path: str, properties: Optional[dict] = None, **kwargs
-) -> int:
-    """Execute the :class:`StructureInfo <api.structure_info.StructureInfo>` class and
-    execute the :meth:`launch() <api.structure_info.StructureInfo.launch>` method."""
-    return StructureInfo(**dict(locals())).launch()
-
-
-structure_info.__doc__ = StructureInfo.__doc__
-main = StructureInfo.get_main(structure_info, "This class is a wrapper for getting all the available information of a structure from the Protein Data Bank.")
+structure_info = launcher(StructureInfo)
 
 if __name__ == "__main__":
-    main()
+    StructureInfo.main()

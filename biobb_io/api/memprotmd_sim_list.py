@@ -3,7 +3,7 @@
 """Module containing the MemProtMDSimList class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 from biobb_io.api.common import get_memprotmd_sim_list, write_json
 
 
@@ -38,7 +38,7 @@ class MemProtMDSimList(BiobbObject):
 
     """
 
-    def __init__(self, output_simulations, properties=None, **kwargs) -> None:
+    def __init__(self, output_simulations: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -54,16 +54,7 @@ class MemProtMDSimList(BiobbObject):
         write_json(json_string, self.io_dict["out"]["output_simulations"], self.out_log, self.global_log)
 
 
-def memprotmd_sim_list(
-    output_simulations: str, properties: Optional[dict] = None, **kwargs
-) -> int:
-    """Execute the :class:`MemProtMDSimList <api.memprotmd_sim_list.MemProtMDSimList>` class and
-    execute the :meth:`launch() <api.memprotmd_sim_list.MemProtMDSimList.launch>` method."""
-    return MemProtMDSimList(**dict(locals())).launch()
-
-
-memprotmd_sim_list.__doc__ = MemProtMDSimList.__doc__
-main = MemProtMDSimList.get_main(memprotmd_sim_list, "Wrapper for the MemProtMD DB REST API (http://memprotmd.bioch.ox.ac.uk/) to get all available membrane-protein systems (simulations).")
+memprotmd_sim_list = launcher(MemProtMDSimList)
 
 if __name__ == "__main__":
-    main()
+    MemProtMDSimList.main()

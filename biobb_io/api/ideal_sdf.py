@@ -3,7 +3,7 @@
 """Module containing the IdealSdf class and the command line interface."""
 
 from typing import Optional
-from biobb_common.generic.biobb_object import BiobbObject
+from biobb_common.generic.biobb_object import BiobbObject, launcher
 
 from biobb_io.api.common import (
     check_mandatory_property,
@@ -48,7 +48,7 @@ class IdealSdf(BiobbObject):
 
     """
 
-    def __init__(self, output_sdf_path, properties=None, **kwargs) -> None:
+    def __init__(self, output_sdf_path: str, properties: Optional[dict] = None, **kwargs) -> None:
         super().__init__(**locals())
 
     def stage_files(self) -> None:
@@ -70,14 +70,7 @@ class IdealSdf(BiobbObject):
         write_sdf(sdf_string, self.io_dict["out"]["output_sdf_path"], self.out_log, self.global_log)
 
 
-def ideal_sdf(output_sdf_path: str, properties: Optional[dict] = None, **kwargs) -> int:
-    """Execute the :class:`IdealSdf <api.ideal_sdf.IdealSdf>` class and
-    execute the :meth:`launch() <api.ideal_sdf.IdealSdf.launch>` method."""
-    return IdealSdf(**dict(locals())).launch()
-
-
-ideal_sdf.__doc__ = IdealSdf.__doc__
-main = IdealSdf.get_main(ideal_sdf, "This class is a wrapper for downloading an ideal SDF ligand from the Protein Data Bank.")
+ideal_sdf = launcher(IdealSdf)
 
 if __name__ == "__main__":
-    main()
+    IdealSdf.main()
