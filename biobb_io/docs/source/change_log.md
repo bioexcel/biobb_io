@@ -2,9 +2,18 @@
 
 ## [Unreleased]
 
+## What's new in version [5.4.0](https://github.com/bioexcel/biobb_io/releases/tag/v5.4.0)?
+
 ### Changes
 
+* [UPDATE] Update to biobb_common 5.4.0.
 * [FIX] The download blocks fail when the server answers an error (ie: a PDB code, ligand code or project that does not exist) or stops answering for 60 seconds. Before, `pdb`, `mmcif`, `canonical_fasta`, `ligand`, `ideal_sdf`, `structure_info` and `memprotmd_sim` wrote the error page (or an empty file) as the output and returned 0, and a download could hang forever. The error is now a `requests` exception (`HTTPError`, `Timeout`...), also for `alphafold` and `mddb`, which raised `SystemExit` on a 404 only.
+* [FIX] `mddb`: a file of `extra_files` that cannot be downloaded fails the block; it was skipped without a message.
+* [FIX] `pdb`, `mmcif`, `ligand`, `canonical_fasta` and `ideal_sdf`: an unknown `api_id` stops the block with the error `api_id X not valid` (it crashed with `UnboundLocalError`).
+* [FIX] `pdb` and `pdb_cluster_zip`: the `filter` no longer crashes with `IndexError` on blank lines of the downloaded PDB.
+* [FIX] `memprotmd_sim_search`: `keyword` is mandatory; without it the block stops with a clear error (it crashed with `AttributeError`).
+* [DOCS] `ligand`: the `api_id` default is documented as `mmb` (it said `pdbe`). `api_binding_site`: the example and the test use 1CBS, as PDBe no longer has binding sites for 4I23.
+* [UPDATE] Python 3.11 to 3.13.
 
 ## What's new in version [5.3.2](https://github.com/bioexcel/biobb_io/releases/tag/v5.3.2)?
 
