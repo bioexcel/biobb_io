@@ -10,8 +10,9 @@ from biobb_common.tools import file_utils as fu
 from biobb_io.api.common import (
     check_mandatory_property,
     download_pdb,
+    filter_pdb,
     get_cluster_pdb_codes,
-    write_pdb,
+    write_file,
 )
 
 
@@ -87,7 +88,8 @@ class PdbClusterZip(BiobbObject):
                 out_log=self.out_log,
                 global_log=self.global_log,
             )
-            write_pdb(pdb_string, pdb_file, self.filter, self.out_log, self.global_log)
+            pdb_string = filter_pdb(pdb_string, self.filter, self.out_log, self.global_log)
+            write_file(pdb_string, pdb_file, self.out_log, self.global_log)
             file_list.append(os.path.abspath(pdb_file))
 
         # Zipping files

@@ -8,7 +8,7 @@ from biobb_common.generic.biobb_object import BiobbObject, launcher
 from biobb_io.api.common import (
     check_mandatory_property,
     download_fasta,
-    write_fasta,
+    write_file,
 )
 
 
@@ -67,7 +67,7 @@ class CanonicalFasta(BiobbObject):
         pdb_string = download_fasta(
             self.pdb_code, self.api_id, self.out_log, self.global_log
         )
-        write_fasta(pdb_string, self.io_dict["out"]["output_fasta_path"], self.out_log, self.global_log)
+        write_file(pdb_string, self.io_dict["out"]["output_fasta_path"], self.out_log, self.global_log)
 
 
 canonical_fasta = launcher(CanonicalFasta)

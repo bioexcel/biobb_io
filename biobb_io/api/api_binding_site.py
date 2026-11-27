@@ -9,8 +9,8 @@ from biobb_common.tools import file_utils as fu
 
 from biobb_io.api.common import (
     check_mandatory_property,
-    download_binding_site,
-    write_json,
+    download_json,
+    write_file,
 )
 
 
@@ -33,7 +33,7 @@ class ApiBindingSite(BiobbObject):
 
             from biobb_io.api.api_binding_site import api_binding_site
             prop = {
-                'pdb_code': '4i23'
+                'pdb_code': '1cbs'
             }
             api_binding_site(output_json_path='/path/to/newBindingSites.json',
                     properties=prop)
@@ -62,12 +62,10 @@ class ApiBindingSite(BiobbObject):
         )
 
         self.pdb_code = self.pdb_code.strip().lower()
-        url = "https://www.ebi.ac.uk/pdbe/api/v2/pdb/entry/binding_sites/%s/1"
+        url = "https://www.ebi.ac.uk/pdbe/api/v2/pdb/entry/binding_sites/%s/1" % self.pdb_code
 
         # get JSON object
-        json_string = download_binding_site(
-            self.pdb_code, url, self.out_log, self.global_log
-        )
+        json_string = download_json(url, self.out_log, self.global_log)
 
         # get number of binding sites
         fu.log(
@@ -77,7 +75,7 @@ class ApiBindingSite(BiobbObject):
         )
 
         # write JSON file
-        write_json(json_string, self.io_dict["out"]["output_json_path"], self.out_log, self.global_log)
+        write_file(json_string, self.io_dict["out"]["output_json_path"], self.out_log, self.global_log)
 
 
 api_binding_site = launcher(ApiBindingSite)

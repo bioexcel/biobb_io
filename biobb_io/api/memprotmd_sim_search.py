@@ -5,7 +5,7 @@
 from typing import Optional
 from biobb_common.generic.biobb_object import BiobbObject, launcher
 
-from biobb_io.api.common import check_mandatory_property, get_memprotmd_sim_search, write_json
+from biobb_io.api.common import check_mandatory_property, get_memprotmd_sim_search, write_file
 
 
 class MemProtMDSimSearch(BiobbObject):
@@ -65,7 +65,7 @@ class MemProtMDSimSearch(BiobbObject):
         )
 
         # write JSON file
-        write_json(json_string, self.io_dict["out"]["output_simulations"], self.out_log, self.global_log)
+        write_file(json_string, self.io_dict["out"]["output_simulations"], self.out_log, self.global_log)
 
 
 memprotmd_sim_search = launcher(MemProtMDSimSearch)
